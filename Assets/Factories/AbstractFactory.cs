@@ -14,6 +14,7 @@ public abstract class AbstractFactory : MonoBehaviour
   protected GameObject newEnemy;
   protected float r;
   protected float s;
+  protected Identifier identifier;
   /**
     1. Create empty object
     2. Randomize point within bounds

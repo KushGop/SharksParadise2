@@ -10,9 +10,10 @@ public class JellyFactory : AbstractFactory
     newEnemy.transform.tag = "Prey";
     newEnemy.transform.localScale = new Vector3(-1, 1, 1) * (player.playerSize / 100);
 
-    
-    newEnemy.transform.GetComponent<Identifier>().fishName = "Jelly";    
-    newEnemy.transform.GetComponent<Identifier>().fishType = "Prey";    
-    newEnemy.transform.GetComponent<Identifier>().value = 20 +  Random.Range(1,9);
+    identifier = newEnemy.AddComponent<Identifier>();
+
+    identifier.fishName = "Jelly";    
+    identifier.fishType = "Prey";    
+    identifier.value = 20 +  Random.Range(1,9);
   }
 }

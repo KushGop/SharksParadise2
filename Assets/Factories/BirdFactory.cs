@@ -9,11 +9,12 @@ public class BirdFactory : AbstractFactory
     newEnemy.transform.name = "Bird";
     newEnemy.transform.tag = "Prey";
     newEnemy.transform.localScale = new Vector3(-1, 1, 1) * (player.playerSize / 100);
+    identifier = newEnemy.AddComponent<Identifier>();
 
-    
-    newEnemy.transform.GetComponent<Identifier>().fishName = "Bird";    
-    newEnemy.transform.GetComponent<Identifier>().fishType = "Prey";    
-    newEnemy.transform.GetComponent<Identifier>().value = 20;
+    identifier.fishName = "Bird";    
+    identifier.fishType = "Prey";    
+    identifier.value = 20;
+
   }
   
 }

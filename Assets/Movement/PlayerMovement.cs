@@ -18,6 +18,19 @@ public class PlayerMovement : MonoBehaviour
   public Transform splash;
   public Transform splashOffset;
   public Slider energySlider;
+  public Transform newPoints;
+  public MunchSounds sounds;
+  public AudioSource splashSound;
+  public AudioSource diveSound;
+  public ScoreHandler scoreHandler;
+  private SpriteRenderer spriteRenderer;
+  public Transform trails;
+  public AudioSource boostSound;
+  private Color[] colors;
+  public GameObject[] enemies;
+  public GameObject inkOverlayParent;
+  public GameObject inkFactory;
+
 
   [Space(20)]
   //player variables
@@ -37,6 +50,9 @@ public class PlayerMovement : MonoBehaviour
   public int drainSpeed;
   private IEnumerator boostCoroutine;
   private bool canRefill;
+  private bool isOverBoat;
+  private bool isInvincible, isUnlimitedBoost;
+  private int i = 0;
 
   private void Start()
   {
@@ -54,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
     isJump = false;
     enemyCount = 0;
     boostCoroutine = RefillEnergyTimer();
+    spriteRenderer = transform.GetComponent<SpriteRenderer>();
+    isInvincible = false;
+    isUnlimitedBoost = false;
+
+    colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
 
     //events
     joystickInput.OnMove += MovePlayer;
@@ -67,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
   private void Update()
   {
     stats.playerPosition = transform.position;
-    if (boostButtonPressed)
+    if (boostButtonPressed && !isUnlimitedBoost)
     {
       DrainEnergySlider();
       if (energyAmount < 0)
@@ -106,10 +127,15 @@ public class PlayerMovement : MonoBehaviour
     }
   }
 
+  public bool getIsInvincible()
+  {
+    return isInvincible;
+  }
 
   //Boost
   private void BoostOn()
   {
+    boostSound.Play();
     boostButtonPressed = true;
     canRefill = false;
     StopCoroutine(boostCoroutine);
@@ -153,11 +179,16 @@ public class PlayerMovement : MonoBehaviour
     }
   }
 
+  //Boat
+  public void setIsOverBoat(bool b)
+  {
+    isOverBoat = b;
+  }
 
   //Jump
   private void PlayerJump()
   {
-    if (!isStun && energyAmount >= 10)
+    if (!isStun && energyAmount >= 10 && !isJump)
     {
       //Boost routine
       energyAmount -= 10;
@@ -166,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
       StopCoroutine(boostCoroutine);
 
       //Splash routine
+      splashSound.Play();
       SplashAnim();
       wait = isBoost ? 1 : 1.5f;
       StartCoroutine(SplashDelay());
@@ -202,6 +234,7 @@ public class PlayerMovement : MonoBehaviour
 
   private void SplashAnim()
   {
+    JumpActions();
     splash.position = isBoost ? splashOffset.position : stats.playerPosition;
     splash.rotation = transform.rotation;
     splash.GetComponent<Animator>().Play("Base Layer.Splash", 0, 0);
@@ -211,20 +244,31 @@ public class PlayerMovement : MonoBehaviour
   {
     yield return new WaitForSeconds(wait);
     SplashAnim();
+    diveSound.Play();
+  }
+
+  private void JumpActions()
+  {
+    spriteRenderer.sortingLayerName = spriteRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
+    trails.GetComponent<TrailScript>().changeParent();
   }
 
   //Stun
   public void Stun()
   {
-    isStun = true;
-    if (isBoost)
+    if (!isInvincible)
     {
-      BoostOff();
+      isStun = true;
+      if (isBoost)
+      {
+        BoostOff();
+      }
+      playerInput.OnBoostPressed -= BoostOn;
+      playerInput.OnBoostReleased -= BoostOff;
+      playerInput.JumpPlayer -= PlayerJump;
+      StartCoroutine(StunDelay());
     }
-    playerInput.OnBoostPressed -= BoostOn;
-    playerInput.OnBoostReleased -= BoostOff;
-    playerInput.JumpPlayer -= PlayerJump;
-    StartCoroutine(StunDelay());
+
   }
   IEnumerator StunDelay()
   {
@@ -250,51 +294,100 @@ public class PlayerMovement : MonoBehaviour
     }
   }
 
-  private void OnCollisionEnter2D(Collision2D other)
-  {
-    // if (other.transform.name == "Shark")
-    // {
-    if (!GetIsJump())
-    {
-      switch (other.transform.GetComponent<Identifier>().fishType)
-      {
-        case "Predator":
-          break;
-        case "Prey":
-          other.transform.parent.GetComponent<AbstractFactory>().UpdateObject(other.transform);
-          break;
-        case "Food":
-          Destroy(other.gameObject);
-          break;
-        case "Starfish":
-          Destroy(other.gameObject);
-          TriggerPower();
-          break;
-      }
-      stats.points += other.transform.GetComponent<Identifier>().value;
-    }
-
-    // }
-  }
-
-
-  void TriggerPower()
+  public void TriggerPower()
   {
     // PowerAnimation();
-    StartCoroutine(PowerEvent());
+    int power = Random.Range(0, 3);
+    power = 2;
+    StartCoroutine(PowerEvent(power));
   }
 
-  IEnumerator PowerEvent()
+  IEnumerator PowerEvent(int power)
   {
-    yield return new WaitForSeconds(4f);
-    int power = Random.Range(0, 3);
-    Debug.Log(power);
+    switch (power)
+    {
+      case 0://Invincible
+        Debug.Log("Invincible");
+        isInvincible = true;
+        UpdateEnemies("Prey");
+        StartCoroutine(Invincible());
+        break;
+      case 1://Double Points
+        Debug.Log("Double Points");
+        scoreHandler.starfishMultiplyer = 2;
+        break;
+      case 2://Unlimited Boost
+        Debug.Log("Unlimited Boost");
+        isUnlimitedBoost = true;
+        break;
+    }
+    yield return new WaitForSeconds(10f);
+    switch (power)
+    {
+      case 0://Invincible
+        Debug.Log("Invincible End");
+        isInvincible = false;
+        UpdateEnemies("Predator");
+        break;
+      case 1://Double Points
+        Debug.Log("Double Points End");
+        scoreHandler.starfishMultiplyer = 1;
+        break;
+      case 2://Unlimited Boost
+        Debug.Log("Unlimited Boost End");
+        isUnlimitedBoost = false;
+        break;
+    }
+  }
+  private void UpdateEnemies(string fishType)
+  {
+    foreach (GameObject enemy in enemies)
+    {
+      foreach (Transform e in enemy.transform)
+      {
+        e.GetComponent<Identifier>().fishType = fishType;
+      }
+    }
+  }
+  IEnumerator Invincible()
+  {
+    i = 0;
+    float waitTime = 10f;
+    float timePassed = 0f;
+    StartCoroutine(ColorDelay());
+    while (timePassed < waitTime)
+    {
+      spriteRenderer.color = Color.Lerp(spriteRenderer.color, colors[i % 6], waitTime * Time.deltaTime);
+      timePassed += Time.deltaTime;
+      yield return null;
+    }
+    StopCoroutine(ColorDelay());
+    spriteRenderer.color = Color.white;
+    yield return null;
+  }
+  IEnumerator ColorDelay()
+  {
+    yield return new WaitForSeconds(0.2f);
+    i++;
+    StartCoroutine(ColorDelay());
   }
 
   //Reset stat position
   void OnApplicationQuit()
   {
     stats.playerPosition = Vector3.zero;
+  }
+
+  internal void Ink()
+  {
+    GameObject newOverlay = Instantiate(inkFactory, transform.position, new Quaternion(), inkOverlayParent.transform);
+    StartCoroutine(destroyDelay(newOverlay));
+  }
+
+  IEnumerator destroyDelay(GameObject o)
+  {
+    yield return new WaitForSeconds(5f);
+    Destroy(o);
   }
 
 

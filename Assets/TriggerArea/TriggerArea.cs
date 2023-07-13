@@ -9,12 +9,12 @@ public class TriggerArea : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D other) {
     if(list.triggerAreaList.Contains(other.transform.name)){
-      other.GetComponent<EnemySharkMovement>().TriggerAI(true);
+      other.GetComponent<AbstractMovement>().TriggerAI(true);
     }
   }
   private void OnTriggerExit2D(Collider2D other) {
     if(list.triggerAreaList.Contains(other.transform.name)){
-      other.GetComponent<EnemySharkMovement>().TriggerAI(false);
+      other.GetComponent<AbstractMovement>().TriggerAI(false);
     }
   }
 }

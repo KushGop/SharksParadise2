@@ -11,4 +11,10 @@ public class BoatMovement : MonoBehaviour
     }
   }
   
+  private void OnTriggerStay2D(Collider2D other) {
+    if(other.transform.tag == "Player"){
+      other.transform.GetComponent<PolygonCollider2D>().isTrigger = false;
+      // other.transform.GetComponentInParent<PlayerMovement>().setIsOverBoat(true);
+    }
+  }
 }

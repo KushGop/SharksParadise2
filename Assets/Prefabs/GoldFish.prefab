@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6912446743301761210}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &511015805091527436
 SpriteRenderer:
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2
+  m_SortingLayer: -8
   m_SortingOrder: -34
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,12 +93,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6912446743301761210}
+  - component: {fileID: -296671676317504942}
   - component: {fileID: 6912446743301761209}
   - component: {fileID: 6912446743301761208}
   - component: {fileID: 6912446743301761212}
   - component: {fileID: 6912446743301761211}
   - component: {fileID: 8636212906265070859}
-  - component: {fileID: 9134811082446458082}
   m_Layer: 0
   m_Name: GoldFish
   m_TagString: Prey
@@ -116,12 +116,27 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.2553776, y: -3.2082884, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6631762523684055404}
   - {fileID: 2276711559516027121}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-296671676317504942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912446743301761095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9d81f8f288dbb428d5780d365ffd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6912446743301761209}
+  animator: {fileID: 6912446743301761208}
 --- !u!212 &6912446743301761209
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -160,8 +175,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2
+  m_SortingLayer: -8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 447bd5753bd6d9d4ab77d96de39cccb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -176,7 +191,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &6912446743301761208
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -193,7 +208,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &6912446743301761212
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -249,18 +265,69 @@ MonoBehaviour:
   rotationSpeed: 15
   idleRot: 0.74
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
---- !u!114 &9134811082446458082
-MonoBehaviour:
+--- !u!1001 &6390697819900068941
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6912446743301761210}
+    m_Modifications:
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493382064651575820, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_Name
+      value: TurnAround
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981916203307366443, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: fishName
+      value: Fish
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+--- !u!4 &6631762523684055404 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+  m_PrefabInstance: {fileID: 6390697819900068941}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6912446743301761095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fishName: 
-  fishType: 
-  value: 0

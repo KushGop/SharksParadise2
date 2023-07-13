@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class TriggerAreaIndicator : MonoBehaviour
 {
+
+  private PlayerMovement movement;
+
+  private void Start() {
+    movement = transform.parent.GetComponent<PlayerMovement>();
+  }
+
   private void OnTriggerEnter2D(Collider2D other)
   {
     if (other.transform.tag == "Predator")
     {
-      transform.parent.GetComponent<PlayerMovement>().enemyCounter(true);
+      movement.enemyCounter(true);
     }
   }
   private void OnTriggerExit2D(Collider2D other)
   {
     if (other.transform.tag == "Predator")
     {
-      transform.parent.GetComponent<PlayerMovement>().enemyCounter(false);
+      movement.enemyCounter(false);
     }
   }
 }

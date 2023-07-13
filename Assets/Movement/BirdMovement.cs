@@ -2,27 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdMovement : MonoBehaviour
+public class BirdMovement : AbstractMovement
 {
-
-  public Rigidbody2D rb2d;
-  public float speed;
-
   //Moves in one direction
-  private void Update() {
-    rb2d.velocity = transform.up * speed;
-  }
-
-  //Eaten when player jumps on it
-  private void OnTriggerStay2D(Collider2D other)
+  protected override void Update()
   {
-    if (other.transform.tag == "Player")
-    {
-      if (other.transform.GetComponent<PlayerMovement>().GetIsJump())
-      {
-        transform.parent.GetComponent<AbstractFactory>().UpdateObject(transform);
-      }
-    }
+    Move();
   }
 
+  protected override void Move()
+  {
+    rb2d.velocity = transform.up * movementSpeed;
+  }
+  
+  protected override void OnCollisionEnter2D(Collision2D other)
+  { }
+  protected override void OnTriggerExit2D(Collider2D other)
+  { }
 }

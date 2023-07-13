@@ -16,16 +16,19 @@ public class FishNetFactory : AbstractFactory
 
   protected override void SetPreferences()
   {
-    newEnemy.transform.name = "Shark";
+    newEnemy.transform.name = "SharkNet";
     newEnemy.transform.tag = "Food";
     newEnemy.transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.yellow;
     newEnemy.transform.localScale = new Vector3(-1, 1, 1) * 0.2f;
-    newEnemy.transform.GetComponent<EnemySharkMovement>().SetActive(false);
-
+    newEnemy.transform.GetChild(0).gameObject.SetActive(false);
     
-    newEnemy.transform.GetComponent<Identifier>().fishName = "Shark";    
-    newEnemy.transform.GetComponent<Identifier>().fishType = "Food";    
-    newEnemy.transform.GetComponent<Identifier>().value = 5;
+    identifier = newEnemy.AddComponent<Identifier>();
+
+    identifier.fishName = "SharkNet";    
+    identifier.fishType = "Object";    
+    identifier.value = 5;
+
+    newEnemy.transform.GetComponent<AbstractMovement>().enabled = false;
   }
 
   //Use origin from boat to get new spawn origin
@@ -40,7 +43,9 @@ public class FishNetFactory : AbstractFactory
   public void ActivateChildren(){
     foreach (Transform e in transform)
     {
-      e.GetComponent<EnemySharkMovement>().SetActive(true);
+      e.GetComponent<AbstractMovement>().enabled = true;
+      e.GetComponent<Identifier>().fishType = "Food";
+      e.GetChild(0).gameObject.SetActive(true);
     }
   }
 

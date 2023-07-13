@@ -9,14 +9,15 @@ public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IP
   private RectTransform joystick;
   private Vector2 offset;
 
-  [SerializeField] private int dragMovementDistance = 30;
-  [SerializeField] private int dragOffsetDistance = 200; // limits the joystick drag distance
-
+  [SerializeField] private int dragMovementDistance = 88;
+  [SerializeField] private float dragOffsetDistance = 120; // limits the joystick drag distance
+  private float angle;
+  private Vector2 unitValue;
   public event Action<Vector2> OnMove;
 
   private void Update()
   {
-    OnMove?.Invoke(offset);
+    OnMove?.Invoke(unitValue);
   }
 
   public void OnDrag(PointerEventData eventData)
@@ -24,14 +25,18 @@ public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IP
     RectTransformUtility.ScreenPointToLocalPointInRectangle(
       joystick,
       eventData.position,
-      null,
+      Camera.main,
       out offset);
 
     //normalize magnitude
     //clamp limits offset value to dragOffsetDistance, sets range ( -100 : 100 )
     //divide it by dragOffsetDistance to normalize, sets range ( -1 : 1 )
+    // offset = Vector2.ClampMagnitude(offset, dragOffsetDistance) / dragOffsetDistance;
+    angle = Mathf.Atan2(offset.y,offset.x);
+    unitValue.x = Mathf.Cos(angle);
+    unitValue.y = Mathf.Sin(angle);
     offset = Vector2.ClampMagnitude(offset, dragOffsetDistance) / dragOffsetDistance;
-    
+
     joystick.anchoredPosition = offset * dragMovementDistance;
     // fixedDistance(offset);
   }

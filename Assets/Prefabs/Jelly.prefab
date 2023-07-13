@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1867465172142419586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630560845503887658}
+  - component: {fileID: 7748759659363561466}
+  - component: {fileID: 563724613322999089}
+  m_Layer: 0
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630560845503887658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867465172142419586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7521910139860367229}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &7748759659363561466
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867465172142419586}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.16}
+  serializedVersion: 2
+  m_Radius: 0.61
+--- !u!114 &563724613322999089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867465172142419586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishName: Jelly
+  fishType: Prey
+  value: 0
 --- !u!1 &3030828680735082641
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,14 +73,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7521910139860367229}
+  - component: {fileID: -1464317012093414947}
   - component: {fileID: 703912492651482695}
   - component: {fileID: 5542269692712824020}
-  - component: {fileID: 4046480920192819469}
-  - component: {fileID: 8638849893157695465}
   - component: {fileID: 667742972956974229}
   - component: {fileID: 8272433217730604369}
-  - component: {fileID: 7207338619583411753}
-  - component: {fileID: 8123983741102486247}
   m_Layer: 0
   m_Name: Jelly
   m_TagString: Untagged
@@ -35,10 +96,27 @@ Transform:
   m_LocalPosition: {x: -0.33834893, y: -3.0337572, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1209808558817558988}
+  - {fileID: 787960683242626237}
+  - {fileID: 1630560845503887658}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1464317012093414947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030828680735082641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9d81f8f288dbb428d5780d365ffd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 703912492651482695}
+  animator: {fileID: 5542269692712824020}
 --- !u!212 &703912492651482695
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -77,8 +155,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2
+  m_SortingLayer: -8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 31cfcf6f359ff074798e86ad6f87d360, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,7 +171,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &5542269692712824020
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,49 +188,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &4046480920192819469
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030828680735082641}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.24}
-  m_Size: {x: 1.23, y: 0.76}
-  m_Direction: 1
---- !u!61 &8638849893157695465
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030828680735082641}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.44}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.68, y: 1.93}
-    newSize: {x: 2.68, y: 1.93}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.82}
-  m_EdgeRadius: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &667742972956974229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +203,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 8272433217730604369}
-  speed: 2
+  movementSpeed: 2
+  idleSpeed: 0
+  rotationSpeed: 10
+  idleRot: 0
+  player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
 --- !u!50 &8272433217730604369
 Rigidbody2D:
   serializedVersion: 4
@@ -188,46 +229,143 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &7207338619583411753
-PolygonCollider2D:
+--- !u!1 &3910238172743578002
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030828680735082641}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787960683242626237}
+  - component: {fileID: 513695955398379763}
+  - component: {fileID: 4163900219906442450}
+  m_Layer: 0
+  m_Name: Tentacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &787960683242626237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910238172743578002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7521910139860367229}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &513695955398379763
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910238172743578002}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.34}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.68, y: 1.93}
-    newSize: {x: 2.68, y: 1.93}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.011148095, y: 0.6836208}
-      - {x: -0.52506316, y: 0.4876907}
-      - {x: 0.6111373, y: 0.45982015}
---- !u!114 &8123983741102486247
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.73}
+  m_EdgeRadius: 0
+--- !u!114 &4163900219906442450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030828680735082641}
+  m_GameObject: {fileID: 3910238172743578002}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: 
-  fishType: 
+  fishName: Jelly
+  fishType: Stun
   value: 0
+--- !u!1001 &1473393235197045997
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7521910139860367229}
+    m_Modifications:
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493382064651575820, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: m_Name
+      value: TurnAround
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981916203307366443, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+      propertyPath: fishName
+      value: Jelly
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+--- !u!4 &1209808558817558988 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 340181399643254049, guid: 002645d7eb837b941baa0693207860ab, type: 3}
+  m_PrefabInstance: {fileID: 1473393235197045997}
+  m_PrefabAsset: {fileID: 0}

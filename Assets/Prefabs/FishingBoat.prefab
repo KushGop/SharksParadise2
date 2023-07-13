@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5159998418438808851}
   - component: {fileID: 424025796093728152}
   - component: {fileID: 139303623679155240}
+  - component: {fileID: 6840010332209890682}
   m_Layer: 0
   m_Name: Origin
   m_TagString: Object
@@ -63,6 +64,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   net: {fileID: 6771334236083656555}
   factory: {fileID: 6771334237131517646}
+--- !u!114 &6840010332209890682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6259237737049964873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishName: NetOrigin
+  fishType: Object
+  value: 0
 --- !u!1 &6771334235737084066
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,8 +149,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1403553761
+  m_SortingLayer: -5
   m_SortingOrder: -2
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0.99197686, b: 0, a: 1}
@@ -177,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 6771334235839270525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.57, y: 13.7, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6771334236083656557}
@@ -224,9 +240,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingLayerID: 1403553761
+  m_SortingLayer: -5
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6580f7c7145e2ac4489035055637e5cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -291,7 +307,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1000
-  m_LinearDrag: 0
+  m_LinearDrag: 1000
   m_AngularDrag: 1000
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -323,8 +339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: 
-  fishType: 
+  fishName: Boat
+  fishType: Object
   value: 0
 --- !u!1 &6771334236083656556
 GameObject:
@@ -340,6 +356,7 @@ GameObject:
   - component: {fileID: 6771334236083656553}
   - component: {fileID: 6771334236083656554}
   - component: {fileID: 6771334236083656555}
+  - component: {fileID: 5565250829629590823}
   m_Layer: 0
   m_Name: FishingBoatArm
   m_TagString: Object
@@ -401,8 +418,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1403553761
+  m_SortingLayer: -5
   m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 939f5e358409d074ab1abb415e04e37c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -527,6 +544,21 @@ PolygonCollider2D:
       - {x: 8.760801, y: 2.3382378}
       - {x: 9.602905, y: 1.727005}
       - {x: 10.016395, y: 1.1008486}
+--- !u!114 &5565250829629590823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6771334236083656556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishName: Net
+  fishType: Object
+  value: 0
 --- !u!1 &6771334237131517644
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +607,7 @@ MonoBehaviour:
   enemy: {fileID: 738650125920437243, guid: 613ff47e2dbebd742bea32c2da7c6dd7, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  newR: 0.8
+  newR: 3.2
   newS: 0.01
   boatOrigin: {fileID: 5159998418438808851}
   x: 4
