@@ -50,3 +50,4 @@ MonoBehaviour:
   sizeOffset: 0.1
   newR: 3.2
   newS: 0.1
+  hasCollider: 0

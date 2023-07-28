@@ -10,6 +10,8 @@ TagManager:
   - Prey
   - Object
   - Starfish
+  - CoinFIsh
+  - Special
   layers:
   - Default
   - TransparentFX
@@ -49,6 +51,9 @@ TagManager:
     locked: 0
   - name: Skeleton
     uniqueID: 4
+    locked: 0
+  - name: Coins
+    uniqueID: 3509279735
     locked: 0
   - name: Ink
     uniqueID: 2360626397

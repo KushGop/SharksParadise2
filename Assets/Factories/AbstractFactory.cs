@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractFactory : MonoBehaviour
+public class AbstractFactory : MonoBehaviour
 {
 
   public int numEnemies;

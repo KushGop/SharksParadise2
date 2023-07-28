@@ -6,14 +6,17 @@ public class InkOverlay : MonoBehaviour
 {
  
   public SpriteRenderer sprite;
-  private Color newColor = new Color(56, 56, 56, 0);
-  private float delayTime = 1f;
+  private Color newColor = new Color32(56, 56, 56, 0);
+  private Color startColor;
+
+  private float delayTime = 3f;
 
   // Start is called before the first frame update
   public void Start()
   {
     transform.localScale = Vector3.zero;
-    sprite.color = new Color(56, 56, 56, 176);
+    startColor = new Color32(56, 56, 56, 100);
+    sprite.color = startColor;
     StartCoroutine(GrowInk());
   }
 

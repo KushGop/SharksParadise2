@@ -35,7 +35,9 @@ public class EatingHandler : MonoBehaviour
       {
         Debug.Log("Death");
       }
-      else if (fishType == "Object") { }
+      else if (fishType == "Object")
+      {
+      }
       else
       {
         Vector3 pos = other.transform.position;
@@ -87,19 +89,23 @@ public class EatingHandler : MonoBehaviour
     otherIdentifier = otherTransform.GetComponent<Identifier>();
     fishType = otherIdentifier.fishType;
     fishName = otherIdentifier.fishName;
-    if (fishType == "Stun")
+    switch (fishType)
     {
-      if (!playerMovement.GetIsJump())
-      {
-        playerMovement.Stun();
-      }
-    }else if (fishType == "Ink")
-    {
-      if (!playerMovement.GetIsJump())
-      {
-        playerMovement.Ink();
-      }
+      case "Stun":
+        if (!playerMovement.GetIsJump())
+          playerMovement.Stun();
+        break;
+      case "Ink":
+        if (!playerMovement.GetIsJump())
+          other.enabled = false;
+          playerMovement.Ink();
+        break;
+      case "Coin":
+        if (!playerMovement.GetIsJump())
+          Destroy(other.gameObject);
+        break;
     }
+
   }
 
   private void eatEvent(string fishName, int value, Vector3 pos)

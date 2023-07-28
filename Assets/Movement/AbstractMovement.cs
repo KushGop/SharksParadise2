@@ -10,21 +10,23 @@ public class AbstractMovement : MonoBehaviour
   protected bool isTriggered, isActive;
   public float rotationSpeed, idleRot;
   public PlayerStats player;
-  private Identifier identifier;
+  protected string fishType;
 
-  private void Start()
+  protected void Start()
   {
     isTriggered = false;
     isActive = true;
+    fishType = transform.GetComponent<Identifier>().fishType;
   }
 
   //If player is near, swim towards the player
+  //FIX UPDATE, EXPENSIVE FOR NO REASON, LINE 28 & 29
   protected virtual void Update()
   {
     if (isTriggered)
     {
       Move();
-      Vector3 relativePos = transform.GetComponent<Identifier>().fishType == "Predator" ? player.playerPosition - transform.position : transform.position - player.playerPosition;
+      Vector3 relativePos = fishType == "Predator" ? player.playerPosition - transform.position : transform.position - player.playerPosition;
       float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
       RotateEnemy(angle);
     }

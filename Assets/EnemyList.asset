@@ -17,6 +17,7 @@ MonoBehaviour:
   - GoldFish
   - AngelFish
   - Squid
+  - CoinFish
   playAreaList:
   - Prey
   - Predator

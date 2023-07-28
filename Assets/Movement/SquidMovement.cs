@@ -12,7 +12,7 @@ public class SquidMovement : AbstractMovement
   private GameObject newInk;
   private bool isIdle;
 
-  private void Start()
+  private new void Start()
   {
     isIdle = true;
     idleSpeed = movementSpeed;

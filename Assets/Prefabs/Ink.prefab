@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 7883889373569818929}
   - component: {fileID: 3281700333989015403}
   - component: {fileID: 1478202231910889533}
-  - component: {fileID: 2578656695994441589}
-  - component: {fileID: 8719723408207245250}
   - component: {fileID: -4753399888531043282}
   m_Layer: 0
   m_Name: Ink
@@ -78,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: -10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b89ccabdbf70bcb40a9ef3406dbc6645, type: 3}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.5529412}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.56078434}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,39 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd9f04b693a74b64e88f9aee9c095c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circle: {fileID: 2578656695994441589}
   sprite: {fileID: 3281700333989015403}
---- !u!58 &2578656695994441589
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377220901094800399}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &8719723408207245250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377220901094800399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fishName: Ink
-  fishType: Ink
-  value: 0
 --- !u!82 &-4753399888531043282
 AudioSource:
   m_ObjectHideFlags: 0

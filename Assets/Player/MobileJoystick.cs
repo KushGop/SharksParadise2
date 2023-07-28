@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointerDownHandler
 {
-  private RectTransform joystick;
+  public RectTransform joystick;
   private Vector2 offset;
 
   [SerializeField] private int dragMovementDistance = 88;
@@ -14,6 +14,9 @@ public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IP
   private float angle;
   private Vector2 unitValue;
   public event Action<Vector2> OnMove;
+  public float offsetDivider;
+  private Vector2 pivotPoint;
+  private Vector3 origin,test;
 
   private void Update()
   {
@@ -32,11 +35,10 @@ public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IP
     //clamp limits offset value to dragOffsetDistance, sets range ( -100 : 100 )
     //divide it by dragOffsetDistance to normalize, sets range ( -1 : 1 )
     // offset = Vector2.ClampMagnitude(offset, dragOffsetDistance) / dragOffsetDistance;
-    angle = Mathf.Atan2(offset.y,offset.x);
+    angle = Mathf.Atan2(offset.y, offset.x);
     unitValue.x = Mathf.Cos(angle);
     unitValue.y = Mathf.Sin(angle);
     offset = Vector2.ClampMagnitude(offset, dragOffsetDistance) / dragOffsetDistance;
-
     joystick.anchoredPosition = offset * dragMovementDistance;
     // fixedDistance(offset);
   }
@@ -45,17 +47,30 @@ public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IP
   //Adjust parent position rect to where player presses
   public void OnPointerDown(PointerEventData eventData)
   {
-    //OnMove?.Invoke(offset);
+    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+      joystick,
+      eventData.pressPosition,
+      Camera.main,
+      out pivotPoint);
+
+    // offset = pivotPoint / offsetDivider;
+    test.y += pivotPoint.y / offsetDivider;
+    test.x += pivotPoint.x / offsetDivider;
+    transform.GetComponent<RectTransform>().anchoredPosition = test;
+    // joystick.anchoredPosition = pivotPoint / offsetDivider;
   }
 
 
   public void OnPointerUp(PointerEventData eventData)
   {
     joystick.anchoredPosition = Vector2.zero;
+    test = origin;
+    transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
   }
 
   private void Awake()
   {
-    joystick = (RectTransform)transform;
+    origin = transform.GetComponent<RectTransform>().anchoredPosition;
+    test = origin;
   }
 }

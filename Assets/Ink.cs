@@ -5,17 +5,15 @@ using UnityEngine;
 public class Ink : MonoBehaviour
 {
 
-  public CircleCollider2D circle;
   public SpriteRenderer sprite;
-  private Color newColor = new Color(56, 56, 56, 0);
-  private float delayTime = 1f;
+  private Color newColor = new Color32(56, 56, 56, 0);
+  private float delayTime = 2f;
 
   // Start is called before the first frame update
   void Start()
   {
     transform.localScale = Vector3.zero;
-    circle.radius = 0;
-    sprite.color = new Color(56, 56, 56, 176);
+    sprite.color = new Color32(56, 56, 56, 170);
     StartCoroutine(GrowInk());
   }
 
@@ -26,7 +24,6 @@ public class Ink : MonoBehaviour
     while (elapsedTime < waitTime)
     {
       transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * 0.75f, (elapsedTime / waitTime));
-      circle.radius = Mathf.Lerp(0, 0.5f, (elapsedTime / waitTime));
       elapsedTime += Time.deltaTime;
 
       // Yield here
