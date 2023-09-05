@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: beb69e06d06ee664f9d966e691ea4d3d
+guid: 178bacf7f6aec404fb3f07bb1a51e783
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -10,7 +10,8 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Shark
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: beb69e06d06ee664f9d966e691ea4d3d, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

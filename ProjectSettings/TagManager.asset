@@ -19,8 +19,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - ShopText
+  - ShopIcon
   - 
   - 
   - 
@@ -85,6 +85,15 @@ TagManager:
   - name: Canvas
     uniqueID: 6
     locked: 0
+  - name: GreyOut
+    uniqueID: 4049519425
+    locked: 0
+  - name: Pause
+    uniqueID: 2110688319
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bubbles
+    uniqueID: 2661602631
     locked: 0

@@ -65,7 +65,7 @@ public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IP
   {
     joystick.anchoredPosition = Vector2.zero;
     test = origin;
-    transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+    transform.GetComponent<RectTransform>().anchoredPosition = origin;
   }
 
   private void Awake()

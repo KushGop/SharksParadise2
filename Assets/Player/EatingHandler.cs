@@ -16,6 +16,7 @@ public class EatingHandler : MonoBehaviour
   private string fishType, fishName;
   private Transform otherTransform;
   private Identifier otherIdentifier;
+  [SerializeField] private CoinCounter coinCounter;
 
   private void Start()
   {
@@ -98,11 +99,14 @@ public class EatingHandler : MonoBehaviour
       case "Ink":
         if (!playerMovement.GetIsJump())
           other.enabled = false;
-          playerMovement.Ink();
+        playerMovement.Ink();
         break;
       case "Coin":
         if (!playerMovement.GetIsJump())
+        {
+          coinCounter.AddCoin(1);
           Destroy(other.gameObject);
+        }
         break;
     }
 
