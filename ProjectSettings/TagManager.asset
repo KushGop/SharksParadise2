@@ -88,6 +88,9 @@ TagManager:
   - name: GreyOut
     uniqueID: 4049519425
     locked: 0
+  - name: DeathScreen
+    uniqueID: 1019544529
+    locked: 0
   - name: Pause
     uniqueID: 2110688319
     locked: 0
