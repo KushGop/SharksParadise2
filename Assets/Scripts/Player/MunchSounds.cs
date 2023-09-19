@@ -7,8 +7,9 @@ public class MunchSounds : MonoBehaviour
   public AudioClip[] munches;
   public AudioSource audioSource;
 
-  public void playMunch(){
-    audioSource.clip = munches[Random.Range(0,6)];
+  public void playMunch()
+  {
+    audioSource.clip = munches[Random.Range(0, 6)];
     audioSource.Play();
   }
 }

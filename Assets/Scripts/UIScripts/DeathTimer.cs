@@ -9,6 +9,8 @@ public class DeathTimer : MonoBehaviour
   [SerializeField] private TextMeshProUGUI count;
   [SerializeField] private ChangeScene changeScene;
   [SerializeField] private ExitGame exitGame;
+  [SerializeField] private PolygonCollider2D playercollider;
+  [SerializeField] private PlayerMovement playerMovement;
   private int startTime;
 
   private void Start()
@@ -33,9 +35,23 @@ public class DeathTimer : MonoBehaviour
     }
     else
     {
-      exitGame.ExitGameSequence();
-      changeScene.ChangeSceneTo("Score");
+      GiveUp();
     }
 
+  }
+
+  public void ContinueGame()
+  {
+    StopAllCoroutines();
+    transform.parent.gameObject.SetActive(false);
+    playercollider.enabled = true;
+    playerMovement.TriggerPower(0);
+    Time.timeScale = 1;
+  }
+
+  public void GiveUp()
+  {
+    exitGame.ExitGameSequence();
+    changeScene.ChangeSceneTo("Score");
   }
 }

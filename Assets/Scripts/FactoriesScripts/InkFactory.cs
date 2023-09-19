@@ -51,12 +51,7 @@ public class InkFactory : AbstractFactory
       yield return null;
     }
     yield return null;
-    StartCoroutine(Delay());
-  }
-  IEnumerator Delay()
-  {
-    yield return new WaitForSeconds(8f);
-    Destroy(gameObject);
+    Destroy(gameObject,8f);
   }
 
 }

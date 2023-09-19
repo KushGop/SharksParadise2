@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AbstractFactory : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class AbstractFactory : MonoBehaviour
   protected float r;
   protected float s;
   protected Identifier identifier;
+  protected SortingGroup sortingGroup;
+
   /**
     1. Create empty object
     2. Randomize point within bounds
@@ -34,6 +37,8 @@ public class AbstractFactory : MonoBehaviour
   {
     UpdateOrigin();
     newEnemy = Instantiate(enemy, SetPosition(), SetRotation(), transform);
+    sortingGroup = newEnemy.AddComponent<SortingGroup>();
+    sortingGroup.sortingLayerName = "Enemy";
     SetPreferences();
   }
 

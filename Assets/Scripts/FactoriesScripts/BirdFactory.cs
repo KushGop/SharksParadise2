@@ -6,6 +6,7 @@ public class BirdFactory : AbstractFactory
 {
   protected override void SetPreferences()
   {
+    sortingGroup.sortingLayerName = "Bird";
     newEnemy.transform.name = "Bird";
     newEnemy.transform.tag = "Prey";
     newEnemy.transform.localScale = new Vector3(-1, 1, 1) * (player.playerSize / 100);

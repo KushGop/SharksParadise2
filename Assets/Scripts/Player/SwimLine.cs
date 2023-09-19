@@ -6,13 +6,7 @@ public class SwimLine : MonoBehaviour
 {
   private void Start()
   {
-    StartCoroutine(destroy());
-  }
-
-  IEnumerator destroy()
-  {
-    yield return new WaitForSeconds(1.5f);
-    Destroy(gameObject);
+    Destroy(gameObject,1.5f);
   }
 
 }

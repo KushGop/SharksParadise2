@@ -111,7 +111,7 @@ public class EatingHandler : MonoBehaviour
         if (!playerMovement.GetIsJump())
         {
           coinCounter.AddCoin(1);
-          Destroy(other.gameObject);
+          other.transform.GetComponent<CoinScript>().Collected();
         }
         break;
     }

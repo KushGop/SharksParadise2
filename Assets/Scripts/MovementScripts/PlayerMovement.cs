@@ -297,9 +297,11 @@ public class PlayerMovement : MonoBehaviour
   public void TriggerPower()
   {
     // PowerAnimation();
-    int power = Random.Range(0, 3);
-    power = 2;
-    StartCoroutine(PowerEvent(power));
+    StartCoroutine(PowerEvent(Random.Range(0, 3)));
+  }
+  public void TriggerPower(int i)
+  {
+    StartCoroutine(PowerEvent(i));
   }
 
   IEnumerator PowerEvent(int power)
@@ -354,6 +356,7 @@ public class PlayerMovement : MonoBehaviour
     i = 0;
     float waitTime = 10f;
     float timePassed = 0f;
+    Color color = spriteRenderer.color;
     StartCoroutine(ColorDelay());
     while (timePassed < waitTime)
     {
@@ -362,7 +365,7 @@ public class PlayerMovement : MonoBehaviour
       yield return null;
     }
     StopCoroutine(ColorDelay());
-    spriteRenderer.color = Color.white;
+    spriteRenderer.color = color;
     yield return null;
   }
   IEnumerator ColorDelay()
@@ -381,13 +384,7 @@ public class PlayerMovement : MonoBehaviour
   internal void Ink()
   {
     GameObject newOverlay = Instantiate(inkFactory, transform.position, new Quaternion(), inkOverlayParent.transform);
-    StartCoroutine(destroyDelay(newOverlay));
-  }
-
-  IEnumerator destroyDelay(GameObject o)
-  {
-    yield return new WaitForSeconds(5f);
-    Destroy(o);
+    Destroy(newOverlay,5f);
   }
 
 
