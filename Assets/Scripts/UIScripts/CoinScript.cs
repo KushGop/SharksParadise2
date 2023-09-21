@@ -4,14 +4,33 @@ using UnityEngine;
 
 public class CoinScript : MonoBehaviour
 {
-  [SerializeField] private AudioSource ding;
+  [SerializeField] private GameObject ding;
   [SerializeField] private SpriteRenderer sprite;
   [SerializeField] private CircleCollider2D collider2d;
+  private Color newColor = new Color32(255, 255, 255, 0);
 
-  public void Collected(){
-    ding.Play();
+  private void Start() {
+    StartCoroutine(FadeAway());
+  }
+
+  public void Collected()
+  {
+    Instantiate(ding,transform.parent);
     sprite.enabled = false;
     collider2d.enabled = false;
-    Destroy(gameObject,1f);
+    
+    Destroy(gameObject);
+  }
+
+  IEnumerator FadeAway()
+  {
+    yield return new WaitForSeconds(5);
+    float waitTime = 3f;
+    while (sprite.color.a > 0.01)
+    {
+      sprite.color = Color.Lerp(sprite.color, newColor, Time.deltaTime * waitTime);
+      yield return null;
+    }
+    Destroy(gameObject);
   }
 }

@@ -8,4 +8,9 @@ public class GameSessionStats : ScriptableObject
   public string lastFish;
   public int multiplyer, multiplyerCap;
   public Transform position;
+
+  public string getVariableToString(string name)
+  {
+    return GetType().GetField(name).GetValue(this).ToString();
+  }
 }

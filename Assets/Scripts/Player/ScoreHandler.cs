@@ -6,6 +6,7 @@ public class ScoreHandler : MonoBehaviour
 {
 
   public GameSessionStats gameStats;
+  public MissionStats missionStats;
   public EnemyList enemyList;
   public Transform newPoints;
   public Transform multiplyerText;
@@ -25,6 +26,7 @@ public class ScoreHandler : MonoBehaviour
   {
     if (fishName == gameStats.lastFish || starfishMultiplyer > 1)
     {
+      missionStats.IncrementMission(MissionName.multiplyerMax);
       if (gameStats.multiplyer < enemyList.multiplyerCap[fishName] && fishName == gameStats.lastFish)
       {
         gameStats.multiplyer++;
@@ -35,6 +37,8 @@ public class ScoreHandler : MonoBehaviour
     else
     {
       gameStats.multiplyer = 1;
+      missionStats.ResetMission(MissionName.multiplyerMax);
+      missionStats.IncrementMission(MissionName.multiplyerMax);
     }
   }
 

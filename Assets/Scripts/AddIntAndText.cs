@@ -23,7 +23,7 @@ public class AddIntAndText : MonoBehaviour
 
   private void Start()
   {
-    text.text = left + stats.GetType().GetField(stat.ToString()).GetValue(stats) + " " + right;
+    text.text = left + stats.getVariableToString(stat.ToString()) + " " + right;
   }
 
 }

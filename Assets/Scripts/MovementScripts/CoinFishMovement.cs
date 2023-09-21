@@ -9,7 +9,7 @@ public class CoinFishMovement : AbstractMovement
   public GameObject Coin;
   private GameObject newCoin;
   public SpriteRenderer sprite;
-  public Collider2D col;
+  private CapsuleCollider2D col;
   private Color newColor = new Color32(255, 255, 255, 0);
   private bool hasBeenTriggered;
 
@@ -17,6 +17,7 @@ public class CoinFishMovement : AbstractMovement
   {
     hasBeenTriggered = false;
     CoinParent = transform.parent.GetChild(0);
+    col = transform.GetComponent<CapsuleCollider2D>();
   }
 
   protected override void Update()
@@ -67,7 +68,6 @@ public class CoinFishMovement : AbstractMovement
       sprite.color = Color.Lerp(sprite.color, newColor, Time.deltaTime * waitTime);
       yield return null;
     }
-    Destroy(gameObject);
   }
 
 

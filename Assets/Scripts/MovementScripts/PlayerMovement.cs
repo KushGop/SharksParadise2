@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     transform.position = Vector3.zero;
     stats.playerSize = size;
     stats.playerScript = transform;
+    stats.playerPosition = Vector3.zero;
     isJump = false;
     enemyCount = 0;
     boostCoroutine = RefillEnergyTimer();
@@ -376,7 +377,7 @@ public class PlayerMovement : MonoBehaviour
   }
 
   //Reset start position
-  void OnApplicationQuit()
+  void Awake()
   {
     stats.playerPosition = Vector3.zero;
   }

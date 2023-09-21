@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8afc4d5773f6d4ab87e25d6e164e84, type: 3}
-  m_Name: GameSessionStats
+  m_Script: {fileID: 11500000, guid: f4d5c171028dde54f8a8af6d9b2fc646, type: 3}
+  m_Name: MissionStats
   m_EditorClassIdentifier: 
-  score: 0
-  highscore: 0
-  xp: 0
-  coins: 1500
-  totalCoins: 0
-  totalXP: 0
-  lastFish: AngelFish
-  multiplyer: 1
-  multiplyerCap: 8
-  position: {fileID: 0}
+  timesInked: 0
+  birdEaten: 0
+  timesStung: 0
+  coinsCollected: 0
+  coinFishEaten: 0
+  bigSharkEaten: 0
+  starfishCollected: 0
+  fishnetsBroken: 0
+  multiplyerMax: 0
+  bigSharkDodges: 0
