@@ -32,7 +32,7 @@ public class ScoreHandler : MonoBehaviour
         gameStats.multiplyer++;
       }
       multiplyerText.GetComponent<NewPoints>().OnMultiply(gameStats.multiplyer * starfishMultiplyer, pos);
-      Mathf.Lerp(1f, 0, 1.2f * gameStats.multiplyer * Time.deltaTime);
+      // Mathf.Lerp(1f, 0, 1.2f * gameStats.multiplyer * Time.deltaTime);
     }
     else
     {

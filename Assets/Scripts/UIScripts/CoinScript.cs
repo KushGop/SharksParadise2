@@ -17,8 +17,6 @@ public class CoinScript : MonoBehaviour
   {
     Instantiate(ding,transform.parent);
     sprite.enabled = false;
-    collider2d.enabled = false;
-    
     Destroy(gameObject);
   }
 

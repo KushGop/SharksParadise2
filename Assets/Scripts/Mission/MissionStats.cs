@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,11 @@ public class MissionStats : ScriptableObject
 {
   public int timesInked, birdsEaten, timesStung, coinsCollected, coinFishesEaten, bigSharksEaten, starfishesCollected, fishnetsBroken, multiplyerMax, bigSharkDodges;
   private int numMissions;
+
+  public GameObject missionComplete;
+  public Transform missionParent;
+  
+  public event EventHandler<string> OnCompletion;
 
   public Dictionary<MissionName, int> missionDictionary = new(){
       {MissionName.timesInked, 0},
@@ -85,12 +91,16 @@ public class MissionStats : ScriptableObject
   }
   public void UpdateMissions(MissionName name)
   {
-    missions[name].CheckCount(missionDictionary[name]);
+    string mString = missions[name].CheckCount(missionDictionary[name]);
+    if (mString != null)
+    {
+      OnCompletion(this, mString);
+    }
   }
 
   private MissionBehavior NewMission()
   {
-    int randMission = Random.Range(0, numMissions);
+    int randMission = UnityEngine.Random.Range(0, numMissions);
     newMission = new MissionBehavior(missionList.ElementAt(randMission));
     return newMission;
   }
@@ -107,14 +117,14 @@ public class MissionStats : ScriptableObject
   }
 
 
-  public int getVariableToInt(string name)
-  {
-    return (int)GetType().GetField(name).GetValue(this);
-  }
-  public void setVariable(string name, int value)
-  {
-    GetType().GetField(name).SetValue(this, value);
-  }
+  // public int getVariableToInt(string name)
+  // {
+  //   return (int)GetType().GetField(name).GetValue(this);
+  // }
+  // public void setVariable(string name, int value)
+  // {
+  //   GetType().GetField(name).SetValue(this, value);
+  // }
 
 
 }

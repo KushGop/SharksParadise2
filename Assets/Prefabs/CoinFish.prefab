@@ -122,14 +122,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: -6014347343409939021}
-  movementSpeed: 13.5
+  movementSpeed: 10
   idleSpeed: 5
   rotationSpeed: 15
   idleRot: 0.74
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   Coin: {fileID: 3751636209727910014, guid: c11d01c1699ac5a4080b48005a517114, type: 3}
   sprite: {fileID: 4925372311823117167}
-  col: {fileID: -4798018495248223301}
 --- !u!50 &-6014347343409939021
 Rigidbody2D:
   serializedVersion: 4

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class MissionBehavior
   public MissionStats missionStats;
   private readonly int xpWorth;
   private bool isComplete;
+ 
 
   private readonly MissionName missionName;
   private readonly int countNeeded;
@@ -38,37 +40,39 @@ public class MissionBehavior
     missionString = missionDescription.beginningString + countNeeded.ToString() + missionDescription.endString;
   }
 
-  public void MissionInit()
-  {
-    missionStats.setVariable(missionString, 0);
-    isComplete = false;
-  }
+  // public void MissionInit()
+  // {
+  //   missionStats.setVariable(missionString, 0);
+  //   isComplete = false;
+  // }
 
-  public void CheckCount(int currentCount)
+  public string CheckCount(int currentCount)
   {
     if (currentCount == countNeeded)
     {
       isComplete = true;
-      Debug.Log(missionString);
+      return missionString;
     }
+    return null;
   }
-  public string GetMissionString(){
+  public string GetMissionString()
+  {
     return missionString;
   }
 
 }
 
-  // public MissionBehavior(KeyValuePair<MissionName, int[,]> dicionaryElement, int level)
-  // {
-  //   missionName = dicionaryElement.Key;
-  //   countNeeded = dicionaryElement.Value[0, level];
-  //   xpWorth = dicionaryElement.Value[1, level];
-  //   missionString = missionName.ToString();
-  // }
-  // public MissionBehavior(KeyValuePair<MissionName, MissionDescription> dictionaryElement)
-  // {
-  //   missionName = dictionaryElement.Key;
-  //   countNeeded = dictionaryElement.Value.countNeeded;
-  //   xpWorth = dictionaryElement.Value.xpWorth;
-  //   missionString = dictionaryElement.Value.beginningString + countNeeded.ToString() + dictionaryElement.Value.endString;
-  // }
+// public MissionBehavior(KeyValuePair<MissionName, int[,]> dicionaryElement, int level)
+// {
+//   missionName = dicionaryElement.Key;
+//   countNeeded = dicionaryElement.Value[0, level];
+//   xpWorth = dicionaryElement.Value[1, level];
+//   missionString = missionName.ToString();
+// }
+// public MissionBehavior(KeyValuePair<MissionName, MissionDescription> dictionaryElement)
+// {
+//   missionName = dictionaryElement.Key;
+//   countNeeded = dictionaryElement.Value.countNeeded;
+//   xpWorth = dictionaryElement.Value.xpWorth;
+//   missionString = dictionaryElement.Value.beginningString + countNeeded.ToString() + dictionaryElement.Value.endString;
+// }

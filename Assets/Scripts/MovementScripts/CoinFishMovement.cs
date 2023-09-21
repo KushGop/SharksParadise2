@@ -56,7 +56,8 @@ public class CoinFishMovement : AbstractMovement
   {
     yield return new WaitForSeconds(5f);
     StopCoroutine(Coins());
-    col.enabled = false;
+    // col.enabled = false;
+    col.isTrigger = true;
     StartCoroutine(FadeAway());
   }
 
@@ -68,6 +69,7 @@ public class CoinFishMovement : AbstractMovement
       sprite.color = Color.Lerp(sprite.color, newColor, Time.deltaTime * waitTime);
       yield return null;
     }
+    Destroy(gameObject);
   }
 
 

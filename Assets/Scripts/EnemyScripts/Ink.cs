@@ -23,7 +23,7 @@ public class Ink : MonoBehaviour
     float waitTime = delayTime;
     while (elapsedTime < waitTime)
     {
-      transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * 0.75f, (elapsedTime / waitTime));
+      transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * 0.75f, elapsedTime / waitTime);
       elapsedTime += Time.deltaTime;
 
       // Yield here
