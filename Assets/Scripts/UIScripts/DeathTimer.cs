@@ -21,6 +21,7 @@ public class DeathTimer : MonoBehaviour
   private void OnEnable()
   {
     count.text = "5";
+    startTime = 5;
     StartCoroutine(countDown());
   }
 

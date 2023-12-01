@@ -27,7 +27,7 @@ public class EatingHandler : MonoBehaviour
     deathScreen.SetActive(false);
   }
 
-  private void OnCollisionEnter2D(Collision2D other)
+  private void OnCollisionStay2D(Collision2D other)
   {
     otherTransform = other.transform;
     otherIdentifier = otherTransform.GetComponent<Identifier>();

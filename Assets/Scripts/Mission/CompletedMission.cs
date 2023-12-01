@@ -26,23 +26,26 @@ public class CompletedMission : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    finalPos = transform.position + (Vector3.down * distance);
+    finalPos = transform.localPosition + (Vector3.down * distance);
+    Debug.Log(finalPos);
+    Debug.Log(transform.localPosition);
     StartCoroutine(DropDown());
   }
 
   IEnumerator DropDown()
   {
-    while (elapsedTime < waitTime)
+    while (transform.localPosition.y-finalPos.y > 0.01)
     {
-      transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + (Vector3.down * distance), elapsedTime / waitTime);
+      transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + (Vector3.down * distance), waitTime*Time.deltaTime);
       elapsedTime += Time.deltaTime;
       yield return null;
     }
     elapsedTime = 0;
+    yield return new WaitForSeconds(1);
     scratch.Play();
     while (elapsedTime < waitTime)
     {
-      mask.sizeDelta = Vector2.Lerp(mask.sizeDelta, new Vector2(860,110),elapsedTime / waitTime);
+      mask.sizeDelta = Vector2.Lerp(mask.sizeDelta, new Vector2(860, 110), elapsedTime / waitTime);
       elapsedTime += Time.deltaTime;
       yield return null;
     }

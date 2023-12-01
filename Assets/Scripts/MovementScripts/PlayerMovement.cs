@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
   [Space(20)]
   //player variables
-  private float wait;
+  private float wait = 1.5f;
   private const float speedRef = 5;
   private float speed;
   private float boostMultiplyer;
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
   private float energyAmount;
   private int enemyCount;
   public int drainSpeed;
-  private IEnumerator boostCoroutine;
+  private IEnumerator energyCoroutine;
   private bool canRefill;
   private bool isOverBoat;
   private bool isInvincible, isUnlimitedBoost;
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     stats.playerPosition = Vector3.zero;
     isJump = false;
     enemyCount = 0;
-    boostCoroutine = RefillEnergyTimer();
+    energyCoroutine = RefillEnergyDelay();
     spriteRenderer = transform.GetComponent<SpriteRenderer>();
     isInvincible = false;
     isUnlimitedBoost = false;
@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
     boostSound.Play();
     boostButtonPressed = true;
     canRefill = false;
-    StopCoroutine(boostCoroutine);
+    StopCoroutine(energyCoroutine);
     if (!isJump && energyAmount > 0)
     {
       speed = speedRef * boostMultiplyer;
@@ -151,8 +151,8 @@ public class PlayerMovement : MonoBehaviour
   private void BoostOff()
   {
     boostButtonPressed = false;
-    boostCoroutine = RefillEnergyTimer();
-    StartCoroutine(boostCoroutine);
+    energyCoroutine = RefillEnergyDelay();
+    StartCoroutine(energyCoroutine);
     if (!isJump)
     {
       speed = speedRef;
@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
       energyAmount -= Time.deltaTime * drainSpeed;
     }
   }
-  IEnumerator RefillEnergyTimer()
+  IEnumerator RefillEnergyDelay()
   {
     yield return new WaitForSeconds(2f);
     canRefill = true;
@@ -191,16 +191,19 @@ public class PlayerMovement : MonoBehaviour
   {
     if (!isStun && energyAmount >= 10 && !isJump)
     {
-      //Boost routine
+      //Energy routine
       energyAmount -= 10;
-      StartCoroutine(boostCoroutine);
+      StartCoroutine(energyCoroutine);
       canRefill = false;
-      StopCoroutine(boostCoroutine);
+
+      if (!isBoost)
+      {
+        rb2d.velocity = rb2d.velocity * 1.5f;
+      }
 
       //Splash routine
       splashSound.Play();
       SplashAnim();
-      wait = isBoost ? 1 : 1.5f;
       StartCoroutine(SplashDelay());
       col.isTrigger = true;
       anim.SetTrigger("JumpTrigger");
@@ -385,7 +388,7 @@ public class PlayerMovement : MonoBehaviour
   internal void Ink()
   {
     GameObject newOverlay = Instantiate(inkFactory, transform.position, new Quaternion(), inkOverlayParent.transform);
-    Destroy(newOverlay,5f);
+    Destroy(newOverlay, 5f);
   }
 
 
