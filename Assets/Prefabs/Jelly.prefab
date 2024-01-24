@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: Jelly
   fishType: Prey
-  value: 0
+  value: 35
 --- !u!1 &3910238172743578002
 GameObject:
   m_ObjectHideFlags: 0

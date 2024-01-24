@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8afc4d5773f6d4ab87e25d6e164e84, type: 3}
   m_Name: GameSessionStats
   m_EditorClassIdentifier: 
-  score: 0
+  score: 245
   highscore: 0
-  xp: 0
-  coins: 1500
-  totalCoins: 0
-  totalXP: 0
-  lastFish: AngelFish
-  multiplyer: 1
+  xp: 2
+  coins: 5
+  totalCoins: 63
+  totalXP: 278
+  lastFish: GoldFish
+  multiplyer: 3
   multiplyerCap: 8
   position: {fileID: 0}

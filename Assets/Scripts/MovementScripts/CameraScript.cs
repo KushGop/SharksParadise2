@@ -19,7 +19,7 @@ public class CameraScript : MonoBehaviour
   {
     QualitySettings.vSyncCount = 0;
 
-    currentSize = 10;
+    currentSize = 7.5f;
     transform.position = Vector3.zero;
 
     playerInput.OnBoostPressed += CameraBoostOn;

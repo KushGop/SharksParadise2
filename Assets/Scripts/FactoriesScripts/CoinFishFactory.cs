@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class CoinFishFactory : AbstractFactory
 {
-    protected override void SetPreferences()
+  protected override void SetPreferences()
   {
     newEnemy.transform.name = "CoinFish";
-    newEnemy.transform.tag = "Food";
+    newEnemy.transform.tag = "Prey";
     // newEnemy.transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.yellow;
     newEnemy.transform.localScale = new Vector3(1, 1, 1);
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "CoinFish";    
-    identifier.fishType = "Food";    
-    identifier.value = 15 +  Random.Range(1,11);
-    
+    identifier.fishName = "CoinFish";
+    identifier.fishType = "Prey";
+    identifier.value = 15 + Random.Range(1, 11);
+
   }
 }

@@ -69,7 +69,7 @@ public class CoinFishMovement : AbstractMovement
       sprite.color = Color.Lerp(sprite.color, newColor, Time.deltaTime * waitTime);
       yield return null;
     }
-    Destroy(gameObject);
+    transform.parent.GetComponent<AbstractFactory>().UpdateObject(transform);
   }
 
 
