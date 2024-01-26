@@ -50,6 +50,7 @@ public class AbstractMovement : MonoBehaviour
   //triggers follow mechanic
   public virtual void TriggerAI(bool trigger)
   {
+    Debug.Log(fishType);
     isTriggered = trigger;
   }
   public bool getTrigger()

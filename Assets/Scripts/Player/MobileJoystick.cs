@@ -43,6 +43,7 @@ public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IP
     // fixedDistance(offset);
   }
 
+  //NOT IMPLEMENTED 
   //Adjust parent position rect to where player presses
   public void OnPointerDown(PointerEventData eventData)
   {
