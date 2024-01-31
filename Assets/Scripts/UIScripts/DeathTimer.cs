@@ -39,8 +39,21 @@ public class DeathTimer : MonoBehaviour
     }
 
   }
+    public void Revive()
+    {
+        Time.timeScale = 0;
+        Gley.MobileAds.API.ShowRewardedVideo(CompleteMethod);
+    }
 
-  public void ContinueGame()
+    private void CompleteMethod(bool completed)
+    {
+        if (completed)
+        {
+            ContinueGame();
+           // coins += 100;
+        }
+    }
+    public void ContinueGame()
   {
     StopAllCoroutines();
     transform.parent.gameObject.SetActive(false);
@@ -51,6 +64,7 @@ public class DeathTimer : MonoBehaviour
 
   public void GiveUp()
   {
+    Gley.MobileAds.API.ShowInterstitial();
     exitGame.ExitGameSequence();
     changeScene.ChangeSceneTo("Score");
   }
