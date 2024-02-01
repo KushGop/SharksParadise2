@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class ExitGame : MonoBehaviour
 {
-    public void ExitGameSequence(){
-      Time.timeScale = 1;
-    }
+
+  [SerializeField] Collider2D playerCollider;
+
+  public void ExitGameSequence()
+  {
+    playerCollider.enabled = false;
+  }
 }

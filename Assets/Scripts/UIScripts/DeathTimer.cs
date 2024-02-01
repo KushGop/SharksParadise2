@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Gley.MobileAds;
 
 public class DeathTimer : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class DeathTimer : MonoBehaviour
   private void OnEnable()
   {
     count.text = "5";
+    startTime = 5;
     StartCoroutine(countDown());
   }
 
@@ -39,21 +41,22 @@ public class DeathTimer : MonoBehaviour
     }
 
   }
-    public void Revive()
-    {
-        Time.timeScale = 0;
-        Gley.MobileAds.API.ShowRewardedVideo(CompleteMethod);
-    }
+  public void Revive()
+  {
+    StopAllCoroutines();
+    Time.timeScale = 0;
+    API.ShowRewardedVideo(CompleteMethod);
+  }
 
-    private void CompleteMethod(bool completed)
+  private void CompleteMethod(bool completed)
+  {
+    if (completed)
     {
-        if (completed)
-        {
-            ContinueGame();
-           // coins += 100;
-        }
+      ContinueGame();
+      // coins += 100;
     }
-    public void ContinueGame()
+  }
+  public void ContinueGame()
   {
     StopAllCoroutines();
     transform.parent.gameObject.SetActive(false);
@@ -64,7 +67,7 @@ public class DeathTimer : MonoBehaviour
 
   public void GiveUp()
   {
-    Gley.MobileAds.API.ShowInterstitial();
+    API.ShowInterstitial();
     exitGame.ExitGameSequence();
     changeScene.ChangeSceneTo("Score");
   }

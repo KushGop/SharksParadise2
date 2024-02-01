@@ -22,16 +22,18 @@ public class PauseToggle : MonoBehaviour
     {
       Debug.Log("option");
       optionsMenu.SetActive(true);
-      icon.SetActive(false); 
+      icon.SetActive(false);
       pauseGame();
     }
   }
 
-  private void pauseGame(){
-        Gley.MobileAds.API.ShowInterstitial();
-        Time.timeScale = 0;
+  private void pauseGame()
+  {
+    //Gley.MobileAds.API.ShowInterstitial();
+    Time.timeScale = 0;
   }
-  private void resumeGame(){
+  private void resumeGame()
+  {
     Time.timeScale = 1;
   }
 }

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoinCounter : MonoBehaviour
 {
 
   public GameSessionStats stats;
   public TextMeshProUGUI coinCount;
-  public SpriteRenderer coinIcon, coinSeperator;
+  public Image coinIcon, coinSeperator;
   private Color newColor = Color.clear;
 
   // Start is called before the first frame update
@@ -33,7 +34,7 @@ public class CoinCounter : MonoBehaviour
   {
     yield return new WaitForSeconds(3f);
     float waitTime = 3f;
-    
+
     for (float i = waitTime; i >= 0; i -= Time.deltaTime)
     {
       // set color with i as alpha
