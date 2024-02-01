@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 034bed5992608634a9dc3944ec5ba6e0
+    path: Assets/Scenes/MainMenu 1.unity
+    guid: 98a223c87d58f2f40875223849c2d22a
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: a7be2b175c9f91541bd49ea408cd15d9
-  - enabled: 0
-    path: Assets/IronSource/DemoScene/IronSourceDemo.unity
-    guid: ccc0ac08126704384bdda74c26d99797
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: a64ed03507f2e1049920e39d44649c83, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6cbf345ce90cc95439b6fba642889a33, type: 2}

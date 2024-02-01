@@ -28,7 +28,8 @@ public class PauseToggle : MonoBehaviour
   }
 
   private void pauseGame(){
-    Time.timeScale = 0;
+        Gley.MobileAds.API.ShowInterstitial();
+        Time.timeScale = 0;
   }
   private void resumeGame(){
     Time.timeScale = 1;

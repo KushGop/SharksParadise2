@@ -41,7 +41,7 @@ public class PlayerMobileInput : MonoBehaviour, IAgentInput
   {
     MovementVector = input;
     OnMovement?.Invoke(MovementVector);
-  }
+    }
 
   public void BoostPressed()
   {
