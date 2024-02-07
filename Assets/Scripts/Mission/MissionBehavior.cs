@@ -23,9 +23,9 @@ public class MissionBehavior
   */
 
   public MissionStats missionStats;
-  private readonly int xpWorth;
+  private readonly int coins;
   private bool isComplete;
- 
+
 
   private readonly MissionName missionName;
   private readonly int countNeeded;
@@ -35,7 +35,7 @@ public class MissionBehavior
   {
     missionName = missionDescription.missionName;
     countNeeded = missionDescription.countNeeded;
-    xpWorth = missionDescription.xpWorth;
+    coins = missionDescription.coins;
     isComplete = missionDescription.isComplete;
     missionString = missionDescription.beginningString + countNeeded.ToString() + missionDescription.endString;
   }

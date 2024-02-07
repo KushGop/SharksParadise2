@@ -557,8 +557,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
-  m_SizeDelta: {x: 800, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &153032370
 MonoBehaviour:
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use Extra Life
+  m_text: Use 500 coins
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eec5fac94aeac884abc9260f875b071b, type: 2}
   m_sharedMaterial: {fileID: 658464841323681958, guid: eec5fac94aeac884abc9260f875b071b, type: 2}
@@ -610,9 +610,9 @@ MonoBehaviour:
   m_fontSize: 60
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 60
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1008,7 +1008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ac14395dc4c2a4a924e783c58d530c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSessionStats: {fileID: 11400000, guid: 427589dc1465d814393a432c42fb69dc, type: 2}
 --- !u!4 &325624519
 Transform:
   m_ObjectHideFlags: 0
@@ -1321,6 +1320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 376123399}
+  - component: {fileID: 376123400}
   m_Layer: 5
   m_Name: Coins
   m_TagString: Untagged
@@ -1350,6 +1350,21 @@ RectTransform:
   m_AnchoredPosition: {x: -250, y: 0}
   m_SizeDelta: {x: 285.33, y: 120}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &376123400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376123398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6343084c7ba756f4fa388f30ab256b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinCount: {fileID: 2052490119}
+  coinIcon: {fileID: 1389603974}
+  coinSeperator: {fileID: 2043590585}
 --- !u!1 &399573230
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,6 +2737,7 @@ MonoBehaviour:
   exitGame: {fileID: 556231754}
   playercollider: {fileID: 2132061366}
   playerMovement: {fileID: 1459522624}
+  countdownTime: 3
 --- !u!114 &556231754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3739,6 +3755,7 @@ GameObject:
   - component: {fileID: 830953159}
   - component: {fileID: 830953158}
   - component: {fileID: 830953157}
+  - component: {fileID: 830953160}
   m_Layer: 5
   m_Name: ExtraLife
   m_TagString: Untagged
@@ -3810,9 +3827,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 556231753}
-        m_TargetAssemblyTypeName: DeathTimer, Assembly-CSharp
-        m_MethodName: Revive
+      - m_Target: {fileID: 830953160}
+        m_TargetAssemblyTypeName: ExtraLiveButton, Assembly-CSharp
+        m_MethodName: UseExtraLife
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3860,6 +3877,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830953155}
   m_CullTransparentMesh: 1
+--- !u!114 &830953160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830953155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b8ffd9ad35cf84ca041bf0919cb2b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 830953157}
+  buttonText: {fileID: 153032370}
+  coinText: {fileID: 2052490119}
+  reviveCost: 10
 --- !u!1 &841421013
 GameObject:
   m_ObjectHideFlags: 0
@@ -3974,7 +4007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &861153084
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9376,7 +9409,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 556231753}
         m_TargetAssemblyTypeName: DeathTimer, Assembly-CSharp
-        m_MethodName: Revive
+        m_MethodName: ReviveAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9611,7 +9644,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2052490113}
   - component: {fileID: 2052490117}
-  - component: {fileID: 2052490118}
   - component: {fileID: 2052490119}
   m_Layer: 5
   m_Name: CoinCount
@@ -9647,22 +9679,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052490112}
   m_CullTransparentMesh: 1
---- !u!114 &2052490118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052490112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6343084c7ba756f4fa388f30ab256b86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 427589dc1465d814393a432c42fb69dc, type: 2}
-  coinCount: {fileID: 2052490119}
-  coinIcon: {fileID: 1389603974}
-  coinSeperator: {fileID: 2043590585}
 --- !u!114 &2052490119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10088,7 +10104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb6c01d9473301409b04e1a79244eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 427589dc1465d814393a432c42fb69dc, type: 2}
   scoreText: {fileID: 2093371294}
 --- !u!210 &2093371293
 SortingGroup:
@@ -10423,7 +10438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a5eeeff44403d44af32eb23d0d85bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStats: {fileID: 11400000, guid: 427589dc1465d814393a432c42fb69dc, type: 2}
   missionStats: {fileID: 11400000, guid: 2816b2811bf01fb45bfae6f5c8faaec0, type: 2}
   enemyList: {fileID: 11400000, guid: cc0d6858d017bef4e8fb0d1b48d37aac, type: 2}
   newPoints: {fileID: 769210183}
@@ -10445,12 +10459,11 @@ MonoBehaviour:
   playerMovement: {fileID: 1459522624}
   munchSounds: {fileID: 1321593111}
   scoreHandler: {fileID: 2132061364}
-  stats: {fileID: 11400000, guid: 427589dc1465d814393a432c42fb69dc, type: 2}
   missionStats: {fileID: 11400000, guid: 2816b2811bf01fb45bfae6f5c8faaec0, type: 2}
   skeleton: {fileID: 7426008971321554344, guid: 96b4c18ff7cd2324492674db0264da6f, type: 3}
   skeletonParent: {fileID: 403526564}
   enemyList: {fileID: 11400000, guid: cc0d6858d017bef4e8fb0d1b48d37aac, type: 2}
-  coinCounter: {fileID: 2052490118}
+  coinCounter: {fileID: 376123400}
   deathScreen: {fileID: 861153083}
 --- !u!60 &2132061366
 PolygonCollider2D:

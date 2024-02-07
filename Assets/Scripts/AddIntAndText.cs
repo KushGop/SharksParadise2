@@ -8,22 +8,37 @@ public class AddIntAndText : MonoBehaviour
 {
   public enum Stat
   {
-    score,
-    highscore,
-    coins,
-    xp,
-    totalCoins,
-    totalXP
+    SCORE,
+    HIGHSCORE,
+    COINS,
+    XP,
+    TOTAL_COINS,
+    TOTAL_XP
   }
   public Stat stat;
-  public GameSessionStats stats;
-  public string left;
-  public string right;
+  public string str;
   public TextMeshProUGUI text;
 
   private void Start()
   {
-    text.text = left + stats.getVariableToString(stat.ToString()) + " " + right;
+    switch (stat)
+    {
+      case Stat.COINS:
+        text.text = string.Format(str, GameManager.coins);
+        break;
+      case Stat.XP:
+        text.text = string.Format(str, GameManager.score / 100);
+        break;
+      case Stat.SCORE:
+        text.text = string.Format(str, GameManager.score);
+        break;
+      case Stat.HIGHSCORE:
+        text.text = string.Format(str, GameManager.highscore);
+        break;
+      case Stat.TOTAL_COINS:
+        text.text = string.Format(str, GameManager.totalCoins);
+        break;
+    }
   }
 
 }

@@ -8,7 +8,6 @@ public class EatingHandler : MonoBehaviour
   public PlayerMovement playerMovement;
   public MunchSounds munchSounds;
   public ScoreHandler scoreHandler;
-  public GameSessionStats stats;
   public MissionStats missionStats;
   public GameObject skeleton;
   public Transform skeletonParent;
@@ -23,7 +22,7 @@ public class EatingHandler : MonoBehaviour
 
   private void Start()
   {
-    stats.lastFish = "null";
+    GameManager.lastFish = "null";
     deathScreen.SetActive(false);
   }
 

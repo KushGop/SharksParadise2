@@ -14,7 +14,7 @@ public class MissionHolder : MonoBehaviour
     for (int i = 0; i < 3; i++)
     {
       missionObject = Instantiate(mission, transform);
-      missionObject.GetComponent<Mission>().SetMissionString(missionStats.missions.ElementAt(i).Value.GetMissionString());
+      //missionObject.GetComponent<Mission>().SetMissionString(missionStats.missions.ElementAt(i).Value.GetMissionString());
     }
   }
 

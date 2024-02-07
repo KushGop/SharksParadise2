@@ -12,28 +12,29 @@ public class DeathTimer : MonoBehaviour
   [SerializeField] private ExitGame exitGame;
   [SerializeField] private PolygonCollider2D playercollider;
   [SerializeField] private PlayerMovement playerMovement;
+  [SerializeField] private int countdownTime = 3;
   private int startTime;
 
   private void Start()
   {
-    startTime = 5;
+    startTime = countdownTime;
   }
 
   private void OnEnable()
   {
-    count.text = "5";
-    startTime = 5;
-    StartCoroutine(countDown());
+    count.text = countdownTime.ToString();
+    startTime = countdownTime;
+    StartCoroutine(CountDown());
   }
 
-  IEnumerator countDown()
+  IEnumerator CountDown()
   {
     yield return new WaitForSecondsRealtime(1f);
     startTime--;
     count.text = startTime.ToString();
     if (startTime > 0)
     {
-      StartCoroutine(countDown());
+      StartCoroutine(CountDown());
     }
     else
     {
@@ -41,7 +42,7 @@ public class DeathTimer : MonoBehaviour
     }
 
   }
-  public void Revive()
+  public void ReviveAd()
   {
     StopAllCoroutines();
     Time.timeScale = 0;

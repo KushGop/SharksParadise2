@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class CoinCounter : MonoBehaviour
 {
-
-  public GameSessionStats stats;
   public TextMeshProUGUI coinCount;
   public Image coinIcon, coinSeperator;
   private Color newColor = Color.clear;
@@ -15,15 +13,15 @@ public class CoinCounter : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    coinCount.text = stats.coins.ToString();
+    coinCount.text = GameManager.coins.ToString();
     StartCoroutine(FadeOut());
   }
 
   public void AddCoin(int value)
   {
     StopAllCoroutines();
-    stats.coins += value;
-    coinCount.text = stats.coins.ToString();
+    GameManager.coins += value;
+    coinCount.text = GameManager.coins.ToString();
     coinCount.color = Color.black;
     coinIcon.color = Color.white;
     coinSeperator.color = Color.white;

@@ -9,7 +9,7 @@ public class GameSessionStats : ScriptableObject
   public int multiplyer, multiplyerCap;
   public Transform position;
 
-  public string getVariableToString(string name)
+  public string GetVariableToString(string name)
   {
     return GetType().GetField(name).GetValue(this).ToString();
   }

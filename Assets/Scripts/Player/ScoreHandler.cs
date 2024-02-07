@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ScoreHandler : MonoBehaviour
 {
-
-  public GameSessionStats gameStats;
   public MissionStats missionStats;
   public EnemyList enemyList;
   public Transform newPoints;
@@ -15,28 +13,28 @@ public class ScoreHandler : MonoBehaviour
 
   private void Start()
   {
-    gameStats.multiplyer = 1;
+    GameManager.multiplyer = 1;
   }
 
   public void updateLastFish(string fishName)
   {
-    gameStats.lastFish = fishName;
+    GameManager.lastFish = fishName;
   }
   public void updateMultiplyer(string fishName, Vector3 pos)
   {
-    if (fishName == gameStats.lastFish || starfishMultiplyer > 1)
+    if (fishName == GameManager.lastFish || starfishMultiplyer > 1)
     {
       missionStats.IncrementMission(MissionName.multiplyerMax);
-      if (gameStats.multiplyer < enemyList.multiplyerCap[fishName] && fishName == gameStats.lastFish)
+      if (GameManager.multiplyer < enemyList.multiplyerCap[fishName] && fishName == GameManager.lastFish)
       {
-        gameStats.multiplyer++;
+        GameManager.multiplyer++;
       }
-      multiplyerText.GetComponent<NewPoints>().OnMultiply(gameStats.multiplyer * starfishMultiplyer, pos);
+      multiplyerText.GetComponent<NewPoints>().OnMultiply(GameManager.multiplyer * starfishMultiplyer, pos);
       // Mathf.Lerp(1f, 0, 1.2f * gameStats.multiplyer * Time.deltaTime);
     }
     else
     {
-      gameStats.multiplyer = 1;
+      GameManager.multiplyer = 1;
       missionStats.ResetMission(MissionName.multiplyerMax);
       missionStats.IncrementMission(MissionName.multiplyerMax);
     }
@@ -44,8 +42,8 @@ public class ScoreHandler : MonoBehaviour
 
   public void addPoints(int value)
   {
-    gameStats.score += value * gameStats.multiplyer * starfishMultiplyer;
-    newPoints.GetComponent<NewPoints>().OnNewPoint(value * gameStats.multiplyer * starfishMultiplyer);
+    GameManager.score += value * GameManager.multiplyer * starfishMultiplyer;
+    newPoints.GetComponent<NewPoints>().OnNewPoint(value * GameManager.multiplyer * starfishMultiplyer);
   }
 
   IEnumerator MultiplyerTimeout()

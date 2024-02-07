@@ -20,7 +20,6 @@ public class CompletedMission : MonoBehaviour
   public void SetText(string mission)
   {
     text.text = mission;
-
   }
 
   // Start is called before the first frame update

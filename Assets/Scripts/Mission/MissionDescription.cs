@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class MissionDescription
 {
-  public int level, countNeeded, xpWorth;
+  public int level, countNeeded, coins;
   public string beginningString, endString;
   public bool isComplete;
   public MissionName missionName;
 
-  public MissionDescription(MissionName missionName, int level, int countNeeded, int xpWorth, string beginningString, string endString)
+  public MissionDescription(MissionName missionName, int level, int countNeeded, string beginningString, string endString)
   {
     this.missionName = missionName;
     isComplete = false;
     this.level = level;
     this.countNeeded = countNeeded;
-    this.xpWorth = xpWorth;
+    this.coins = 100 * level;
     this.beginningString = beginningString;
     this.endString = endString;
   }

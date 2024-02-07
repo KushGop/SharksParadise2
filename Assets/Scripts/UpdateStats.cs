@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class UpdateStats : MonoBehaviour
 {
-  public GameSessionStats stats;
 
-  void Awake()
-  {
-    Debug.Log("hele");
-    stats.totalCoins = SaveSystem.LoadPlayer().coins + stats.coins;
-    //stats.totalCoins = stats.coins + stats.coins;
-    stats.xp = stats.score / 100;
-    stats.totalXP += stats.xp;
+  //void Awake()
+  //{
 
-    SaveSystem.SaveData(new(stats.totalCoins, stats.score));
-  }
+  //  if (SaveSystem.HasSave())
+  //  {
+  //    GameManager.totalCoins = SaveSystem.LoadPlayer().coins + GameManager.coins;
+  //    //stats.totalCoins = stats.coins + stats.coins;
+  //    GameManager.xp = GameManager.score / 100;
+  //    GameManager.totalXP += GameManager.xp;
+
+  //    SaveSystem.SaveData(new(GameManager.totalCoins, GameManager.score));
+  //    GameManager.coins = 0;
+  //    GameManager.xp = 0;
+  //  }
+  //  else
+  //  {
+  //    SaveSystem.SaveData(new(0, 0));
+  //  }
+
+  //}
 }

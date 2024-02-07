@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6383526205811249782}
-  - component: {fileID: 8831503700258552814}
+  - component: {fileID: 873822350704162909}
   m_Layer: 5
   m_Name: Mission
   m_TagString: Untagged
@@ -31,14 +31,13 @@ RectTransform:
   m_Children:
   - {fileID: 6383526206086184338}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 75}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &8831503700258552814
+--- !u!114 &873822350704162909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,11 +46,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6383526205811249777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a5780822d8ffd4db9dcee624b466dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 57d9c8f222a5c4d4687f46a7940628ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionString: 
-  text: {fileID: 6383526206086184339}
 --- !u!1 &6383526206086184349
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +80,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6383526205811249782}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}

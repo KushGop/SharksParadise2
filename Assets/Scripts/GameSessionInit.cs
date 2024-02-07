@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class GameSessionInit : MonoBehaviour
 {
-
-  public GameSessionStats gameSessionStats;
-
-  // Start is called before the first frame update
   void Start()
   {
-    gameSessionStats.coins  = 0;
-    gameSessionStats.score = 0;
-    gameSessionStats.xp = 0;
+    GameManager.coins = 0;
+    GameManager.score = 0;
+    GameManager.xp = 0;
   }
 }
