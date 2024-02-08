@@ -6,42 +6,45 @@ using UnityEngine;
 [System.Serializable]
 public class Mission
 {
-  internal int indexInManager;
-  internal int indexInMissionList;
-  internal MissionName missionName;
-  internal int level;
-  internal int coins;
-  private bool isComplete;
-  private int count;
-  private string text;
-
-  public Mission(MissionName name, int lvl, int count, string txt)
-  {
-    missionName = name;
-    level = lvl;
-    isComplete = false;
-    this.count = count;
-    text = string.Format(txt, count);
-  }
+  public int indexInManager;
+  public int indexInMissionList;
+  public MissionName missionName;
+  public int level;
+  public int coins;
+  public bool isComplete;
+  public int count;
+  public string text;
 
   public Mission(int iInML, MissionName name, int baseCount, string txt)
   {
     indexInMissionList = iInML;
     missionName = name;
-    level = Random.Range(1, 4);
     isComplete = false;
-    count = baseCount * level;
-    Debug.Log(string.Format(txt, count));
-    text = string.Format(txt, count);
+    count = baseCount;
+    text = txt;
+
+  }
+  public Mission()
+  {
+    indexInMissionList = -1;
+    missionName = MissionName.timesInked;
+    isComplete = false;
+    level = -1;
+    count = -1;
+    text = "NA";
   }
 
 
-  public void SetMission(MissionName missionName, int level)
+  public void SetMission(int iInML, int iInM, MissionName name, int baseCount, string txt)
   {
-    this.missionName = missionName;
-    this.level = level;
+    level = Random.Range(1, 4);
     coins = level * 100;
+    indexInMissionList = iInML;
+    indexInManager = iInM;
+    missionName = name;
     isComplete = false;
+    count = baseCount * level;
+    text = string.Format(txt, count);
   }
 
   public void CompletMission()

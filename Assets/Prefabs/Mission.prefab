@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d9c8f222a5c4d4687f46a7940628ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipOrClaimText: {fileID: 0}
+  missionText: {fileID: 6383526206086184339}
 --- !u!1 &6383526206086184349
 GameObject:
   m_ObjectHideFlags: 0

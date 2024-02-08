@@ -8,4 +8,5 @@ public static class GameManager
   public static string lastFish;
   public static int multiplyer, multiplyerCap;
   public static Transform position;
+  public static Mission[] missionList = new Mission[3];
 }

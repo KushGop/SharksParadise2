@@ -8,7 +8,7 @@ using UnityEngine;
 public static class MissionManager
 {
 
-  private static Mission[] missions = new Mission[3];
+  public static Mission[] missions = new Mission[3];
   public delegate void UpdateCoins(int coins);
   public static UpdateCoins AddCoins;
 
@@ -36,14 +36,6 @@ public static class MissionManager
         AddCoins(missions[i].coins);
         missions[i] = null;
       }
-    }
-  }
-
-  public static void SetMissions(Mission[] ms)
-  {
-    for (int i = 0; i < 3; i++)
-    {
-      missions[i] = ms[i];
     }
   }
 

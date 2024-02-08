@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class MissionData
 {
+  public static readonly int missionCount = 7;
+
   public static Dictionary<MissionName, int> missionDictionary = new()
   {
     { MissionName.timesInked, 0 },
@@ -18,7 +20,7 @@ public static class MissionData
     { MissionName.bigSharkDodges, 0 }
   };
 
-  private static readonly List<Mission> allMissions = new()
+  public static readonly List<Mission> allMissions = new()
   {
     { new(0, MissionName.timesInked, 2, "Get inked {0} times") },
     { new(1, MissionName.birdsEaten, 5, "Eat {0} birds") },

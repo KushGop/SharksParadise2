@@ -2,46 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissionLoader : MonoBehaviour
+public class MissionLoader : MonoBehaviour, IDataPersistence
 {
+  public void LoadData(GameData data)
+  {
+    DataPersistenceManager.instance.SaveGame();
 
-  //Mission[] missions = new Mission[3];
+    print("LoadMission");
 
-  //private void Awake()
-  //{
-  //  if (SaveMission.HasSave())
-  //  {
-  //    print("save");
-  //    missions = SaveMission.LoadMissions();
-  //    //check if all missions are not null
-  //    for (int i = 0; i < 3; i++)
-  //    {
-  //      if (missions[i] == null)
-  //      {
-  //        print("null");
-  //        missions[i] = MissionData.GetRandomMission();
-  //      }
-  //    }
-  //  }
-  //  else
-  //  {
-  //    print("file dne");
-  //    CreateMissions();
-  //  }
-  //}
+    for (int i = 0; i < 3; i++)
+    {
+      MissionManager.missions[i] = data.missionList[i];
+      print("data mission: " + data.missionList[i].text);
+      print("manager mission: " + MissionManager.missions[i].text);
+    }
+  }
 
-  //private void Start()
-  //{
-  //  MissionManager.SetMissions(missions);
-  //  SaveMission.UpdateMissions();
-  //}
+  public void SaveData(GameData data)
+  {
+    for (int i = 0; i < 3; i++)
+    {
+      if (data.missionList[i].level == -1)
+      {
+        print("empty");
+        Mission m = MissionData.GetRandomMission();
+        data.missionList[i].SetMission(m.indexInMissionList, i, m.missionName, m.count, m.text);
+      }
+    }
 
-  //private void CreateMissions()
-  //{
-  //  for (int i = 0; i < 3; i++)
-  //  {
-  //    missions[i] = MissionData.GetRandomMission();
-  //  }
+  }
 
-  //}
 }

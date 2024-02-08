@@ -6,6 +6,7 @@ using TMPro;
 public class ScoreMission : MonoBehaviour
 {
   [SerializeField] private TextMeshProUGUI skipOrClaimText;
+  [SerializeField] private TextMeshProUGUI missionText;
   private Mission mission;
   private int coins;
 
@@ -13,6 +14,7 @@ public class ScoreMission : MonoBehaviour
   {
     this.mission = mission;
 
+    missionText.text = this.mission.GetText();
     //TODO: Add button
     //SetSkipOrClaimButton();
   }

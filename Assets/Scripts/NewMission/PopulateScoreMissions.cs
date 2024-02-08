@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopulateScoreMissions : MonoBehaviour
+public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
 {
   [SerializeField] private GameObject missionPrefab;
   private GameObject missionItem;
-  // Start is called before the first frame update
-  void Start()
+
+  public void LoadData(GameData data)
   {
     for (int i = 0; i < 3; i++)
     {
@@ -15,4 +15,9 @@ public class PopulateScoreMissions : MonoBehaviour
       missionItem.GetComponent<ScoreMission>().SetMission(MissionManager.GetMission(i));
     }
   }
+
+  public void SaveData(GameData data)
+  {
+  }
+
 }

@@ -52,13 +52,13 @@ public class DataPersistenceManager : MonoBehaviour
   private void OnEnable()
   {
     SceneManager.sceneLoaded += OnSceneLoaded;
-    SceneManager.sceneUnloaded += OnSceneUnloaded;
+    //  SceneManager.sceneUnloaded += OnSceneUnloaded;
   }
 
   private void OnDisable()
   {
     SceneManager.sceneLoaded -= OnSceneLoaded;
-    SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    //SceneManager.sceneUnloaded -= OnSceneUnloaded;
   }
 
   public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -66,11 +66,11 @@ public class DataPersistenceManager : MonoBehaviour
     this.dataPersistenceObjects = FindAllDataPersistenceObjects();
     LoadGame();
   }
-  public void OnSceneUnloaded(Scene scene)
-  {
-    this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-    SaveGame();
-  }
+  //public void OnSceneUnloaded(Scene scene)
+  //{
+  //  this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+  //  SaveGame();
+  //}
 
   public void ChangeSelectedProfileId(string newProfileId)
   {
@@ -119,6 +119,7 @@ public class DataPersistenceManager : MonoBehaviour
     // start a new game if the data is null and we're configured to initialize data for debugging purposes
     if (this.gameData == null && initializeDataIfNull)
     {
+      print("newGame");
       NewGame();
     }
 
@@ -144,6 +145,12 @@ public class DataPersistenceManager : MonoBehaviour
       return;
     }
 
+    // start a new game if the data is null and we're configured to initialize data for debugging purposes
+    if (this.gameData == null && initializeDataIfNull)
+    {
+      NewGame();
+    }
+
     // if we don't have any data to save, log a warning here
     if (this.gameData == null)
     {
@@ -164,10 +171,10 @@ public class DataPersistenceManager : MonoBehaviour
     dataHandler.Save(gameData, selectedProfileId);
   }
 
-  private void OnApplicationQuit()
-  {
-    SaveGame();
-  }
+  //private void OnApplicationQuit()
+  //{
+  //  SaveGame();
+  //}
 
   private List<IDataPersistence> FindAllDataPersistenceObjects()
   {
