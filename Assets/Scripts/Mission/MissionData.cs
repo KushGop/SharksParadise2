@@ -39,19 +39,7 @@ public static class MissionData
     return allMissions[Random.Range(0, allMissions.Count)];
   }
 
-  public static void IncrementMission(MissionName name)
-  {
-    missionDictionary[name]++;
-    if (missionDictionary.ContainsKey(name))
-    {
-      MissionDelegate(name, missionDictionary[name]);
-    }
-  }
 
-  public static void ResetMission(MissionName missionName)
-  {
-    missionDictionary[missionName] = 0;
-  }
 
 
 }

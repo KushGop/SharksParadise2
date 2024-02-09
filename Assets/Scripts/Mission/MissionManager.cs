@@ -41,6 +41,21 @@ public static class MissionManager
     }
   }
 
+  public static void IncrementMission(MissionName name)
+  {
+    MissionData.missionDictionary[name]++;
+    if (MissionData.missionDictionary.ContainsKey(name))
+    {
+      MissionData.MissionDelegate(name, MissionData.missionDictionary[name]);
+    }
+  }
+
+  public static void ResetMission(MissionName missionName)
+  {
+    MissionData.missionDictionary[missionName] = 0;
+  }
+
+
   public static Mission GetMission(int index)
   {
     return missions[index];

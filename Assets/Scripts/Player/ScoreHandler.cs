@@ -15,15 +15,15 @@ public class ScoreHandler : MonoBehaviour
     GameManager.multiplyer = 1;
   }
 
-  public void updateLastFish(string fishName)
+  public void UpdateLastFish(string fishName)
   {
     GameManager.lastFish = fishName;
   }
-  public void updateMultiplyer(string fishName, Vector3 pos)
+  public void UpdateMultiplyer(string fishName, Vector3 pos)
   {
     if (fishName == GameManager.lastFish || starfishMultiplyer > 1)
     {
-      MissionData.IncrementMission(MissionName.multiplyerMax);
+      MissionManager.IncrementMission(MissionName.multiplyerMax);
       if (GameManager.multiplyer < enemyList.multiplyerCap[fishName] && fishName == GameManager.lastFish)
       {
         GameManager.multiplyer++;
@@ -34,19 +34,20 @@ public class ScoreHandler : MonoBehaviour
     else
     {
       GameManager.multiplyer = 1;
-      MissionData.ResetMission(MissionName.multiplyerMax);
-      MissionData.IncrementMission(MissionName.multiplyerMax);
+      MissionManager.ResetMission(MissionName.multiplyerMax);
+      MissionManager.IncrementMission(MissionName.multiplyerMax);
     }
   }
 
-  public void addPoints(int value)
+  public void AddPoints(int value)
   {
     GameManager.score += value * GameManager.multiplyer * starfishMultiplyer;
     newPoints.GetComponent<NewPoints>().OnNewPoint(value * GameManager.multiplyer * starfishMultiplyer);
   }
 
-  IEnumerator MultiplyerTimeout()
-  {
-    yield return new WaitForSeconds(2f);
-  }
+  //IEnumerator MultiplyerTimeout()
+  //{
+  //  //TODO: Multiplyer fades away
+  //  yield return new WaitForSeconds(2f);
+  //}
 }

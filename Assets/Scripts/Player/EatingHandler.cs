@@ -51,20 +51,20 @@ public class EatingHandler : MonoBehaviour
         switch (fishType)
         {
           case "Prey":
-            instatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
+            InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
             otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
             break;
           case "Food":
-            instatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
+            InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
             Destroy(other.gameObject);
             break;
           case "Starfish":
             playerMovement.TriggerPower();
             Destroy(other.gameObject);
-            MissionData.IncrementMission(MissionName.starfishesCollected);
+            MissionManager.IncrementMission(MissionName.starfishesCollected);
             break;
         }
-        eatEvent(fishName, otherIdentifier.value, pos);
+        EatEvent(fishName, otherIdentifier.value, pos);
       }
     }
   }
@@ -81,13 +81,13 @@ public class EatingHandler : MonoBehaviour
       if (fishName == "Bird")
       {
         otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
-        eatEvent(fishName, otherIdentifier.value, pos);
-        MissionData.IncrementMission(MissionName.birdsEaten);
+        EatEvent(fishName, otherIdentifier.value, pos);
+        MissionManager.IncrementMission(MissionName.birdsEaten);
       }
       else if (fishName == "People")
       {
         Destroy(other.gameObject);
-        eatEvent(fishName, otherIdentifier.value, pos);
+        EatEvent(fishName, otherIdentifier.value, pos);
       }
     }
   }
@@ -103,14 +103,14 @@ public class EatingHandler : MonoBehaviour
         if (!playerMovement.GetIsJump())
         {
           playerMovement.Stun();
-          MissionData.IncrementMission(MissionName.timesStung);
+          MissionManager.IncrementMission(MissionName.timesStung);
         }
         break;
       case "Ink":
         if (!playerMovement.GetIsJump())
         {
           other.enabled = false;
-          MissionData.IncrementMission(MissionName.timesInked);
+          MissionManager.IncrementMission(MissionName.timesInked);
         }
         playerMovement.Ink();
         break;
@@ -119,28 +119,28 @@ public class EatingHandler : MonoBehaviour
         {
           other.transform.GetComponent<CoinScript>().Collected();
           coinCounter.AddCoin(1);
-          MissionData.IncrementMission(MissionName.coinsCollected);
+          MissionManager.IncrementMission(MissionName.coinsCollected);
         }
         break;
       case "Predator":
         if (playerMovement.GetIsJump())
         {
-          MissionData.IncrementMission(MissionName.bigSharkDodges);
+          MissionManager.IncrementMission(MissionName.bigSharkDodges);
         }
         break;
     }
 
   }
 
-  private void eatEvent(string fishName, int value, Vector3 pos)
+  private void EatEvent(string fishName, int value, Vector3 pos)
   {
-    scoreHandler.updateMultiplyer(fishName, pos);
-    scoreHandler.updateLastFish(fishName);
-    scoreHandler.addPoints(value);
+    scoreHandler.UpdateMultiplyer(fishName, pos);
+    scoreHandler.UpdateLastFish(fishName);
+    scoreHandler.AddPoints(value);
     munchSounds.playMunch();
   }
 
-  private void instatiateSkeleton(Vector3 position, Quaternion rotation, Vector3 scale)
+  private void InstatiateSkeleton(Vector3 position, Quaternion rotation, Vector3 scale)
   {
     newSkeleton = Instantiate(skeleton, position, rotation, skeletonParent);
     newSkeleton.transform.localScale = scale;
