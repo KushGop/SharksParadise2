@@ -14,14 +14,14 @@ public class ScoreMission : MonoBehaviour
   {
     this.mission = mission;
 
-    missionText.text = this.mission.GetText();
+    missionText.text = this.mission.text;
     //TODO: Add button
     //SetSkipOrClaimButton();
   }
 
   private void SetSkipOrClaimButton()
   {
-    if (mission.GetIsComplete())
+    if (mission.isComplete)
     {
       //claim coins
       coins = mission.coins;

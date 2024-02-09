@@ -22,7 +22,6 @@ public class MissionBehavior
   if mission is available, call checkCount
   */
 
-  public MissionStats missionStats;
   private readonly int coins;
   private bool isComplete;
 

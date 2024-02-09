@@ -5,6 +5,9 @@ using UnityEngine;
 public static class MissionData
 {
   public static readonly int missionCount = 7;
+  //public static event EventHandler<string> OnCompletion;
+  public delegate void MissionUpdate(MissionName name, int count);
+  public static MissionUpdate MissionDelegate;
 
   public static Dictionary<MissionName, int> missionDictionary = new()
   {
@@ -35,5 +38,20 @@ public static class MissionData
   {
     return allMissions[Random.Range(0, allMissions.Count)];
   }
+
+  public static void IncrementMission(MissionName name)
+  {
+    missionDictionary[name]++;
+    if (missionDictionary.ContainsKey(name))
+    {
+      MissionDelegate(name, missionDictionary[name]);
+    }
+  }
+
+  public static void ResetMission(MissionName missionName)
+  {
+    missionDictionary[missionName] = 0;
+  }
+
 
 }

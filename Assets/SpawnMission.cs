@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class SpawnMission : MonoBehaviour
 {
-
-  public MissionStats missionStats;
   public GameObject missionComplete;
 
-  private void Start() {
-    missionStats .OnCompletion += CompleteMission;
+  private void Start()
+  {
+    MissionManager.MissionCompletionDelegate += CompleteMission;
   }
 
-  public void CompleteMission(object sender, string s){
-    GameObject cm = Instantiate(missionComplete,transform);
+  public void CompleteMission(string s)
+  {
+    GameObject cm = Instantiate(missionComplete, transform);
     cm.transform.GetComponent<CompletedMission>().SetText(s);
   }
 }

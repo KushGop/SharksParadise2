@@ -5,8 +5,6 @@ using UnityEngine;
 public class SaveScore : MonoBehaviour, IDataPersistence
 {
 
-  private bool saveScore;
-
   public void LoadData(GameData data)
   {
     print("Load Score");

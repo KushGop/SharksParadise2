@@ -22,7 +22,6 @@ public class Mission
     isComplete = false;
     count = baseCount;
     text = txt;
-
   }
   public Mission()
   {
@@ -45,13 +44,19 @@ public class Mission
     isComplete = false;
     count = baseCount * level;
     text = string.Format(txt, count);
+    MissionData.MissionDelegate += MissionEvent;
   }
 
-  public void CompletMission()
+  private void MissionEvent(MissionName name, int currentCount)
+  {
+    if (name == missionName && currentCount == count && !isComplete)
+      CompleteMission();
+  }
+
+  public void CompleteMission()
   {
     isComplete = true;
+    MissionManager.MissionCompletionDelegate(text);
   }
 
-  public bool GetIsComplete() { return isComplete; }
-  public string GetText() { return text; }
 }

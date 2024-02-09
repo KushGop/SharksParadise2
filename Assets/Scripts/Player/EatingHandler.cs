@@ -8,7 +8,6 @@ public class EatingHandler : MonoBehaviour
   public PlayerMovement playerMovement;
   public MunchSounds munchSounds;
   public ScoreHandler scoreHandler;
-  public MissionStats missionStats;
   public GameObject skeleton;
   public Transform skeletonParent;
   private GameObject newSkeleton;
@@ -62,7 +61,7 @@ public class EatingHandler : MonoBehaviour
           case "Starfish":
             playerMovement.TriggerPower();
             Destroy(other.gameObject);
-            missionStats.IncrementMission(MissionName.starfishesCollected);
+            MissionData.IncrementMission(MissionName.starfishesCollected);
             break;
         }
         eatEvent(fishName, otherIdentifier.value, pos);
@@ -83,7 +82,7 @@ public class EatingHandler : MonoBehaviour
       {
         otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
         eatEvent(fishName, otherIdentifier.value, pos);
-        missionStats.IncrementMission(MissionName.birdsEaten);
+        MissionData.IncrementMission(MissionName.birdsEaten);
       }
       else if (fishName == "People")
       {
@@ -104,14 +103,14 @@ public class EatingHandler : MonoBehaviour
         if (!playerMovement.GetIsJump())
         {
           playerMovement.Stun();
-          missionStats.IncrementMission(MissionName.timesStung);
+          MissionData.IncrementMission(MissionName.timesStung);
         }
         break;
       case "Ink":
         if (!playerMovement.GetIsJump())
         {
           other.enabled = false;
-          missionStats.IncrementMission(MissionName.timesInked);
+          MissionData.IncrementMission(MissionName.timesInked);
         }
         playerMovement.Ink();
         break;
@@ -120,13 +119,13 @@ public class EatingHandler : MonoBehaviour
         {
           other.transform.GetComponent<CoinScript>().Collected();
           coinCounter.AddCoin(1);
-          missionStats.IncrementMission(MissionName.coinsCollected);
+          MissionData.IncrementMission(MissionName.coinsCollected);
         }
         break;
       case "Predator":
         if (playerMovement.GetIsJump())
         {
-          missionStats.IncrementMission(MissionName.bigSharkDodges);
+          MissionData.IncrementMission(MissionName.bigSharkDodges);
         }
         break;
     }
