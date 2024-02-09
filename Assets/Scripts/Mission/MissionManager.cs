@@ -11,8 +11,6 @@ public static class MissionManager
   public static Mission[] missions = new Mission[3];
   public delegate void UpdateCoins(int coins);
   public static UpdateCoins AddCoins;
-  public delegate void MissionCompletion(string text);
-  public static MissionCompletion MissionCompletionDelegate;
 
 
   public static void AddMission(Mission mission)
@@ -33,7 +31,7 @@ public static class MissionManager
   {
     for (int i = 0; i < 3; i++)
     {
-      if (missions[i].isComplete)
+      if (missions[i].GetIsComplete())
       {
         AddCoins(missions[i].coins);
         missions[i] = null;

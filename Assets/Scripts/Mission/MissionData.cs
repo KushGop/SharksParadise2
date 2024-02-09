@@ -5,9 +5,6 @@ using UnityEngine;
 public static class MissionData
 {
   public static readonly int missionCount = 7;
-  //public static event EventHandler<string> OnCompletion;
-  public delegate void MissionUpdate(MissionName name, int count);
-  public static MissionUpdate MissionDelegate;
 
   public static Dictionary<MissionName, int> missionDictionary = new()
   {

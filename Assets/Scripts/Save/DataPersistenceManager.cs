@@ -17,7 +17,7 @@ public class DataPersistenceManager : MonoBehaviour
   [SerializeField] private bool useEncryption;
 
   [Header("Auto Saving Configuration")]
-  //[SerializeField] private float autoSaveTimeSeconds = 60f;
+  [SerializeField] private float autoSaveTimeSeconds = 60f;
 
   private GameData gameData;
   private List<IDataPersistence> dataPersistenceObjects;
