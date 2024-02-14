@@ -32,26 +32,34 @@ public class Mission
     level = -1;
     count = -1;
     text = "NA";
+    MissionData.MissionDelegate += CompleteMission;
   }
 
 
-  public void SetMission(int iInML, int iInM, MissionName name, int baseCount, string txt)
+  public void SetMission(bool isComplete, int iInML, int iInM, MissionName name, int baseCount, string txt)
   {
     level = Random.Range(1, 4);
     coins = level * 100;
     indexInMissionList = iInML;
     indexInManager = iInM;
     missionName = name;
-    isComplete = false;
+    this.isComplete = isComplete;
     count = baseCount * level;
     text = string.Format(txt, count);
+    if (isComplete)
+    {
+      MissionData.MissionDelegate -= CompleteMission;
+    }
   }
 
-  public void CompletMission()
+  public void CompleteMission(MissionName name, int count)
   {
-    isComplete = true;
+    if (name == missionName && count == this.count && !isComplete)
+    {
+      isComplete = true;
+      MissionManager.MissionCompletionDelegate(this);
+      MissionData.MissionDelegate -= CompleteMission;
+    }
   }
 
-  public bool GetIsComplete() { return isComplete; }
-  public string GetText() { return text; }
 }

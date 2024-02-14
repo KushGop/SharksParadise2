@@ -16,6 +16,7 @@ public class MissionLoader : MonoBehaviour, IDataPersistence
       print("data mission: " + data.missionList[i].text);
       print("manager mission: " + MissionManager.missions[i].text);
     }
+    MissionManager.SubscribeToCompletion();
   }
 
   public void SaveData(GameData data)
@@ -26,7 +27,7 @@ public class MissionLoader : MonoBehaviour, IDataPersistence
       {
         print("empty");
         Mission m = MissionData.GetRandomMission();
-        data.missionList[i].SetMission(m.indexInMissionList, i, m.missionName, m.count, m.text);
+        data.missionList[i].SetMission(m.isComplete, m.indexInMissionList, i, m.missionName, m.count, m.text);
       }
     }
 

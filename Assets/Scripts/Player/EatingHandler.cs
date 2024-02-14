@@ -8,7 +8,6 @@ public class EatingHandler : MonoBehaviour
   public PlayerMovement playerMovement;
   public MunchSounds munchSounds;
   public ScoreHandler scoreHandler;
-  public MissionStats missionStats;
   public GameObject skeleton;
   public Transform skeletonParent;
   private GameObject newSkeleton;
@@ -52,6 +51,10 @@ public class EatingHandler : MonoBehaviour
         switch (fishType)
         {
           case "Prey":
+            if (fishName == "BigShark")
+            {
+              MissionData.IncrementMission(MissionName.bigSharksEaten);
+            }
             InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
             otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
             break;
@@ -62,8 +65,7 @@ public class EatingHandler : MonoBehaviour
           case "Starfish":
             playerMovement.TriggerPower();
             Destroy(other.gameObject);
-            MissionManager.IncrementMission(MissionName.starfishesCollected);
-            missionStats.IncrementMission(MissionName.starfishesCollected);
+            MissionData.IncrementMission(MissionName.starfishesCollected);
             break;
         }
         EatEvent(fishName, otherIdentifier.value, pos);
@@ -84,9 +86,8 @@ public class EatingHandler : MonoBehaviour
       {
         otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
         EatEvent(fishName, otherIdentifier.value, pos);
-        MissionManager.IncrementMission(MissionName.birdsEaten);
-        eatEvent(fishName, otherIdentifier.value, pos);
-        missionStats.IncrementMission(MissionName.birdsEaten);
+        MissionData.IncrementMission(MissionName.birdsEaten);
+        EatEvent(fishName, otherIdentifier.value, pos);
       }
       else if (fishName == "People")
       {
@@ -107,33 +108,29 @@ public class EatingHandler : MonoBehaviour
         if (!playerMovement.GetIsJump())
         {
           playerMovement.Stun();
-          MissionManager.IncrementMission(MissionName.timesStung);
-          missionStats.IncrementMission(MissionName.timesStung);
+          MissionData.IncrementMission(MissionName.timesStung);
         }
         break;
       case "Ink":
         if (!playerMovement.GetIsJump())
         {
           other.enabled = false;
-          MissionManager.IncrementMission(MissionName.timesInked);
-          missionStats.IncrementMission(MissionName.timesInked);
         }
         playerMovement.Ink();
+        MissionData.IncrementMission(MissionName.timesInked);
         break;
       case "Coin":
         if (!playerMovement.GetIsJump())
         {
           other.transform.GetComponent<CoinScript>().Collected();
           coinCounter.AddCoin(1);
-          MissionManager.IncrementMission(MissionName.coinsCollected);
-          missionStats.IncrementMission(MissionName.coinsCollected);
+          MissionData.IncrementMission(MissionName.coinsCollected);
         }
         break;
       case "Predator":
         if (playerMovement.GetIsJump())
         {
-          MissionManager.IncrementMission(MissionName.bigSharkDodges);
-          missionStats.IncrementMission(MissionName.bigSharkDodges);
+          MissionData.IncrementMission(MissionName.bigSharkDodges);
         }
         break;
     }

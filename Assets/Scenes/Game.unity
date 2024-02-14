@@ -5179,6 +5179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175761431}
   - component: {fileID: 1175761432}
+  - component: {fileID: 1175761433}
   m_Layer: 5
   m_Name: CompletedMissions
   m_TagString: Untagged
@@ -5218,6 +5219,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionComplete: {fileID: 2960244595796239588, guid: 2dbb5a8b42cfc1e4dbf7cb5067ab826f, type: 3}
+--- !u!114 &1175761433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175761430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d754b819c804a4dbe4baf8f17418fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1186393391
 GameObject:
   m_ObjectHideFlags: 0

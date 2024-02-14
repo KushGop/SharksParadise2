@@ -11,7 +11,14 @@ public static class MissionManager
   public static Mission[] missions = new Mission[3];
   public delegate void UpdateCoins(int coins);
   public static UpdateCoins AddCoins;
+  public delegate void MissionCompletion(Mission m);
+  public static MissionCompletion MissionCompletionDelegate;
 
+
+  public static void SubscribeToCompletion()
+  {
+    MissionCompletionDelegate += UpdateMissionStatus;
+  }
 
   public static void AddMission(Mission mission)
   {
@@ -27,25 +34,18 @@ public static class MissionManager
     Debug.Log("mission list full");
   }
 
-  public static void UpdateMissionStatus()
+  public static void UpdateMissionStatus(Mission m)
   {
-    for (int i = 0; i < 3; i++)
-    {
-      if (missions[i].GetIsComplete())
-      {
-        AddCoins(missions[i].coins);
-        missions[i] = null;
-      }
-    }
-  }
+    DataPersistenceManager.instance.SaveGame();
 
-  public static void IncrementMission(MissionName name)
-  {
-    MissionData.missionDictionary[name]++;
-    if (MissionData.missionDictionary.ContainsKey(name))
-    {
-      MissionData.MissionDelegate(name, MissionData.missionDictionary[name]);
-    }
+    //for (int i = 0; i < 3; i++)
+    //{
+    //  if (missions[i].isComplete)
+    //  {
+    //    AddCoins(missions[i].coins);
+    //    missions[i] = null;
+    //  }
+    //}
   }
 
   public static void ResetMission(MissionName missionName)
