@@ -10,6 +10,7 @@ public class ExtraLiveButton : MonoBehaviour
   [SerializeField] private Button button;
   [SerializeField] private TextMeshProUGUI buttonText;
   [SerializeField] private TextMeshProUGUI coinText;
+  [SerializeField] private DeathTimer timer;
   [SerializeField] private int reviveCost;
   private int reviveCount;
 
@@ -43,6 +44,7 @@ public class ExtraLiveButton : MonoBehaviour
     }
     //SaveSystem.SaveData(new(GameManager.totalCoins, GameManager.score));
     coinText.text = GameManager.coins.ToString();
+    timer.ContinueGame();
     reviveCount++;
   }
 }

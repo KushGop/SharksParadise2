@@ -5,6 +5,7 @@ using UnityEngine;
 public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
 {
   [SerializeField] private GameObject missionPrefab;
+  [SerializeField] public GameObject coinTarget;
   private GameObject missionItem;
 
   public void LoadData(GameData data)

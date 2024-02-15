@@ -416,6 +416,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skipOrClaimText: {fileID: 983463275943946325}
   missionText: {fileID: 6383526206086184339}
+  icon: {fileID: 6499627558990172607}
+  icons: {fileID: 11400000, guid: ae75e455d66b3d1478b1feaa1d63ad97, type: 2}
+  r: 1
+  s: 0
+  coinPrefab: {fileID: 3751636209727910014, guid: 1c8b8304c9c453a49824b38f7715c32e, type: 3}
 --- !u!222 &9134824374796541107
 CanvasRenderer:
   m_ObjectHideFlags: 0

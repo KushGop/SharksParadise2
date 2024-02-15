@@ -14,9 +14,10 @@ public class NewPoints : MonoBehaviour
     newPoint.transform.GetComponent<TextMeshProUGUI>().text = "+ " + value;
   }
 
-  public void OnMultiply(int value, Vector3 pos){
+  public void OnMultiply(int value, Vector3 pos)
+  {
     newPoint = Instantiate(pointPrefab, transform);
-    newPoint.transform.position = pos;
+    //newPoint.transform.Translate(pos);
     newPoint.transform.GetComponent<TextMeshProUGUI>().text = "* " + value;
   }
 }
