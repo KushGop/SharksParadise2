@@ -25,6 +25,24 @@ public class EatingHandler : MonoBehaviour
     deathScreen.SetActive(false);
   }
 
+  private void OnCollisionStay2D(Collision2D other)
+  {
+    otherTransform = other.transform;
+    otherIdentifier = otherTransform.GetComponent<Identifier>();
+    fishType = otherIdentifier.fishType;
+
+    if (!playerMovement.GetIsJump())
+    {
+      if (fishType == "Predator")
+      {
+        Debug.Log("Death");
+        Time.timeScale = 0;
+        transform.GetComponent<PolygonCollider2D>().enabled = false;
+        deathScreen.SetActive(true);
+      }
+    }
+  }
+
   private void OnCollisionEnter2D(Collision2D other)
   {
     otherTransform = other.transform;
@@ -87,14 +105,26 @@ public class EatingHandler : MonoBehaviour
         otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
         EatEvent(fishName, otherIdentifier.value, pos);
         MissionData.IncrementMission(MissionName.birdsEaten);
-        EatEvent(fishName, otherIdentifier.value, pos);
       }
       else if (fishName == "People")
       {
         Destroy(other.gameObject);
         EatEvent(fishName, otherIdentifier.value, pos);
       }
+      //Slo-mo
+      //else if (fishType == "Predator")
+      //  Time.timeScale = 0.5f;
     }
+  }
+  private void OnTriggerExit2D(Collider2D other)
+  {
+    //Slo-mo
+    //otherTransform = other.transform;
+    //otherIdentifier = otherTransform.GetComponent<Identifier>();
+    //fishName = otherIdentifier.fishName;
+
+    //if (fishType == "Predator")
+    //  Time.timeScale = 1f;
   }
   private void OnTriggerEnter2D(Collider2D other)
   {

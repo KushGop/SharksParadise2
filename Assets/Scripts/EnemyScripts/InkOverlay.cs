@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InkOverlay : MonoBehaviour
 {
- 
+
   public SpriteRenderer sprite;
   private Color newColor = new Color32(56, 56, 56, 0);
   private Color startColor;
@@ -15,6 +15,9 @@ public class InkOverlay : MonoBehaviour
   public void Start()
   {
     transform.localScale = Vector3.zero;
+    Vector3 pos = transform.localPosition;
+    pos.z = 10;
+    transform.localPosition = pos;
     startColor = new Color32(56, 56, 56, 100);
     sprite.color = startColor;
     StartCoroutine(GrowInk());
@@ -45,7 +48,7 @@ public class InkOverlay : MonoBehaviour
     float waitTime = 3f;
     while (sprite.color.a > 0.01)
     {
-      sprite.color = Color.Lerp(sprite.color, newColor, waitTime*Time.deltaTime);
+      sprite.color = Color.Lerp(sprite.color, newColor, waitTime * Time.deltaTime);
 
       yield return null;
     }

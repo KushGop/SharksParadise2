@@ -12,6 +12,7 @@ public class Mission
   public int level;
   public int coins;
   public bool isComplete;
+  public bool isClaimed;
   public int count;
   public string text;
 
@@ -22,13 +23,14 @@ public class Mission
     isComplete = false;
     count = baseCount;
     text = txt;
-
+    isClaimed = false;
   }
   public Mission()
   {
     indexInMissionList = -1;
-    missionName = MissionName.timesInked;
+    missionName = MissionName.noMission;
     isComplete = false;
+    isClaimed = false;
     level = -1;
     count = -1;
     text = "NA";
@@ -43,6 +45,7 @@ public class Mission
     indexInMissionList = iInML;
     indexInManager = iInM;
     missionName = name;
+    isClaimed = false;
     this.isComplete = isComplete;
     count = baseCount * level;
     text = string.Format(txt, count);

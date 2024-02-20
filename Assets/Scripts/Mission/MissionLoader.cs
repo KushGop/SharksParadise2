@@ -27,10 +27,28 @@ public class MissionLoader : MonoBehaviour, IDataPersistence
       {
         print("empty");
         Mission m = MissionData.GetRandomMission();
+        m = CheckForDuplicates(m, ref data.missionListName);
         data.missionList[i].SetMission(m.isComplete, m.indexInMissionList, i, m.missionName, m.count, m.text);
       }
     }
 
   }
+
+  private Mission CheckForDuplicates(Mission mission, ref List<MissionName> mln)
+  {
+    while (true)
+    {
+      if (mln.Contains(mission.missionName))
+      {
+        mission = MissionData.GetRandomMission();
+      }
+      else
+      {
+        mln.Add(mission.missionName);
+        return mission;
+      }
+    }
+  }
+
 
 }

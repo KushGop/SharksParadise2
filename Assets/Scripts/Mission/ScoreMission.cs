@@ -6,13 +6,14 @@ using TMPro;
 
 public class ScoreMission : MonoBehaviour
 {
-  [SerializeField] private TextMeshProUGUI skipOrClaimText;
   [SerializeField] private TextMeshProUGUI missionText;
+  [SerializeField] private TextMeshProUGUI coinAmount;
   [SerializeField] private Image icon;
   [SerializeField] private MissionIcons_ScritableObject icons;
   protected Vector3 origin;
   private Mission mission;
   private int coins;
+  private bool isComplete;
 
   [SerializeField] private float r;
   [SerializeField] private float s;
@@ -23,38 +24,20 @@ public class ScoreMission : MonoBehaviour
   {
     origin = icon.transform.position;
     //Check if mission is complete
-    if (mission.isComplete)
+    if (isComplete)
     {
       CompleteMissionAnimation();
     }
-    //Add coins to total coins
-    //Change Mission
-
-    //CASE 1: Player waits for animation
-    //Show animation
-    //Update coin text, but not game manager
-    //Have an On Hold mission list to easily switch out missions
-    //When animation is complete, show new mission, dont update game manager
-
-    //DEFAULT (CASE 2):
-    //Update hold missions and missions on button click, Play again or main menu
-    //update game manger coins, missions, hold missions
-    //save locally on click
-
-
-    //CASE 3: Player exits game
-    //Update hold missions and missions on exit
-    //update game manger coins, missions, hold missions
-    //save locally on exit
-    //
   }
 
   public void SetMission(Mission mission)
   {
     this.mission = mission;
-
+    isComplete = mission.isComplete;
     missionText.text = this.mission.text;
     icon.sprite = icons.iconDictionary[mission.missionName];
+    coinAmount.text = mission.coins.ToString();
+    coins = mission.coins;
     //TODO: Add button
     //SetSkipOrClaimButton();
   }
@@ -69,7 +52,7 @@ public class ScoreMission : MonoBehaviour
   {
     //Scratch out mission and play sound
     //Spawn 10,20,30 coins based on its value
-    int numCoins = mission.coins / 10;
+    int numCoins = coins / 10;
     for (int i = 0; i < numCoins; i++)
     {
       Instantiate(coinPrefab, SetPosition(), SetRotation(), transform);
@@ -94,26 +77,5 @@ public class ScoreMission : MonoBehaviour
   protected virtual Quaternion SetRotation()
   {
     return Quaternion.Euler(0, 0, Random.Range(0, 360));
-  }
-
-  private void AddCoin()
-  {
-  }
-
-
-  private void SetSkipOrClaimButton()
-  {
-    if (mission.isComplete)
-    {
-      //claim coins
-      coins = mission.coins;
-      skipOrClaimText.text = "Claim " + coins.ToString();
-      //update total coins
-    }
-    else
-    {
-      //skip with ad
-      skipOrClaimText.text = "Skip";
-    }
   }
 }

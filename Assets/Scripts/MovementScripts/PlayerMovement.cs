@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
   [Space(20)]
   //player variables
-  private float wait;
   private const float speedRef = 5;
   private float speed;
   private float boostMultiplyer;
@@ -53,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
   private bool isOverBoat;
   private bool isInvincible, isUnlimitedBoost;
   private int i = 0;
+
+  //Reset start position
+  void Awake()
+  {
+    stats.playerPosition = Vector3.zero;
+  }
 
   private void Start()
   {
@@ -84,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
     playerInput.JumpPlayer += PlayerJump;
   }
 
-
   //Position, boost (UI, Refill, Drain)
   private void Update()
   {
@@ -105,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
     energySlider.value = energyAmount;
     stats.energy = energyAmount;
   }
+  #region Movement
   //Move Player
   private void MovePlayer(Vector2 input)
   {
@@ -127,12 +132,32 @@ public class PlayerMovement : MonoBehaviour
       return Mathf.Atan2(vector2.x, vector2.y) * Mathf.Rad2Deg;
     }
   }
-
-  public bool getIsInvincible()
+  //called from animation state for right timing
+  public void AnimSwim()
   {
-    return isInvincible;
+    isJump = false;
+    if (!boostButtonPressed)
+    {
+      BoostOff();
+    }
+    else
+    {
+      BoostOn();
+    }
+    col.isTrigger = false;
+    color.enabled = true;
   }
+  #endregion
 
+  #region Boat
+  //Boat
+  public void setIsOverBoat(bool b)
+  {
+    isOverBoat = b;
+  }
+  #endregion
+
+  #region Boost
   //Boost
   private void BoostOn()
   {
@@ -179,13 +204,9 @@ public class PlayerMovement : MonoBehaviour
       energyAmount += Time.deltaTime * drainSpeed * 4;
     }
   }
+  #endregion
 
-  //Boat
-  public void setIsOverBoat(bool b)
-  {
-    isOverBoat = b;
-  }
-
+  #region Jump
   //Jump
   private void PlayerJump()
   {
@@ -200,8 +221,7 @@ public class PlayerMovement : MonoBehaviour
       //Splash routine
       splashSound.Play();
       SplashAnim();
-      wait = isBoost ? 1 : 1.5f;
-      StartCoroutine(SplashDelay());
+      StartCoroutine(SplashDelay(1.5f));
       col.isTrigger = true;
       anim.SetTrigger("JumpTrigger");
     }
@@ -210,24 +230,17 @@ public class PlayerMovement : MonoBehaviour
   //called from animation state fro right timing
   public void AnimJump()
   {
+    speed = speedRef * boostMultiplyer;
+    anim.speed = 1.5f;
+    StartCoroutine(FrameDelay());
+  }
+  private IEnumerator FrameDelay()
+  {
+    yield return null;
     isJump = true;
     color.enabled = false;
   }
-  //called from animation state for right timing
-  public void AnimSwim()
-  {
-    isJump = false;
-    if (!boostButtonPressed)
-    {
-      BoostOff();
-    }
-    else
-    {
-      BoostOn();
-    }
-    col.isTrigger = false;
-    color.enabled = true;
-  }
+
   public bool GetIsJump()
   {
     return isJump;
@@ -241,9 +254,14 @@ public class PlayerMovement : MonoBehaviour
     splash.GetComponent<Animator>().Play("Base Layer.Splash", 0, 0);
   }
 
-  IEnumerator SplashDelay()
+  IEnumerator SplashDelay(float wait)
   {
     yield return new WaitForSeconds(wait);
+    if (!isBoost)
+    {
+      speed = speedRef;
+      anim.speed = 1f;
+    }
     SplashAnim();
     diveSound.Play();
   }
@@ -253,7 +271,9 @@ public class PlayerMovement : MonoBehaviour
     spriteRenderer.sortingLayerName = spriteRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
     trails.GetComponent<TrailScript>().changeParent();
   }
+  #endregion
 
+  #region Stun
   //Stun
   public void Stun()
   {
@@ -279,22 +299,9 @@ public class PlayerMovement : MonoBehaviour
     playerInput.OnBoostReleased += BoostOff;
     playerInput.JumpPlayer += PlayerJump;
   }
+  #endregion
 
-
-  //Indicator
-  public void enemyCounter(bool val)
-  {
-    enemyCount = val ? enemyCount + 1 : enemyCount - 1;
-    if (enemyCount == 0)
-    {
-      color.color = Color.yellow;
-    }
-    else if (enemyCount == 1)
-    {
-      color.color = Color.red;
-    }
-  }
-
+  #region Power
   public void TriggerPower()
   {
     // PowerAnimation();
@@ -342,6 +349,7 @@ public class PlayerMovement : MonoBehaviour
         break;
     }
   }
+
   private void UpdateEnemies(string fishType)
   {
     foreach (GameObject enemy in enemies)
@@ -369,23 +377,38 @@ public class PlayerMovement : MonoBehaviour
     spriteRenderer.color = color;
     yield return null;
   }
+  public bool getIsInvincible()
+  {
+    return isInvincible;
+  }
   IEnumerator ColorDelay()
   {
     yield return new WaitForSeconds(0.2f);
     i++;
     StartCoroutine(ColorDelay());
   }
+  #endregion
 
-  //Reset start position
-  void Awake()
+  //Indicator
+  public void enemyCounter(bool val)
   {
-    stats.playerPosition = Vector3.zero;
+    enemyCount = val ? enemyCount + 1 : enemyCount - 1;
+    if (enemyCount == 0)
+    {
+      color.color = Color.yellow;
+    }
+    else if (enemyCount == 1)
+    {
+      color.color = Color.red;
+    }
   }
 
   internal void Ink()
   {
-    GameObject newOverlay = Instantiate(inkFactory, transform.position, new Quaternion(), inkOverlayParent.transform);
-    Destroy(newOverlay,5f);
+    Vector3 pos = transform.position;
+    pos.z = 0;
+    GameObject newOverlay = Instantiate(inkFactory, pos, new Quaternion(), inkOverlayParent.transform);
+    Destroy(newOverlay, 5f);
   }
 
 

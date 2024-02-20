@@ -3894,7 +3894,7 @@ MonoBehaviour:
   buttonText: {fileID: 153032370}
   coinText: {fileID: 2052490119}
   timer: {fileID: 556231753}
-  reviveCost: 10
+  reviveCost: 500
 --- !u!1 &841421013
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,7 +4606,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061275908}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3837.0283}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 45, y: 45, z: 45}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6989,7 +6989,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 841421013}
   inkOverlayParent: {fileID: 1061275908}
-  inkFactory: {fileID: 8178413520374834327, guid: f761631e1ed058b468fcd2abca053fde, type: 3}
+  inkFactory: {fileID: 5410903097102001049, guid: fc46902e88c8d2c4ab616a32804e4441, type: 3}
   drainSpeed: 5
 --- !u!95 &1459522625
 Animator:

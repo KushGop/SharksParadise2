@@ -14,6 +14,9 @@ public class InkFactory : AbstractFactory
   {
     r = newR;
     s = newS;
+    Vector3 pos = transform.localPosition;
+    pos.z = 10;
+    transform.localPosition = pos;
     for (int i = 0; i < numEnemies; i++)
     {
       StartCoroutine(InkSpawnDelay());
@@ -36,6 +39,7 @@ public class InkFactory : AbstractFactory
   protected override void UpdateOrigin()
   {
     origin = transform.position;
+    origin.z = 0;
   }
 
   IEnumerator GrowCollider()
@@ -51,7 +55,8 @@ public class InkFactory : AbstractFactory
       yield return null;
     }
     yield return null;
-    Destroy(gameObject,8f);
+    Destroy(gameObject, 8f);
   }
+
 
 }
