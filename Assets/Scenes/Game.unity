@@ -2737,6 +2737,8 @@ MonoBehaviour:
   changeScene: {fileID: 556231755}
   exitGame: {fileID: 556231754}
   playercollider: {fileID: 2132061366}
+  playerSprite: {fileID: 1459522622}
+  playerColor: {fileID: 2000852979}
   playerMovement: {fileID: 1459522624}
   countdownTime: 3
 --- !u!114 &556231754
@@ -3123,7 +3125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &685939034
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3445,7 +3447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &751817213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4009,7 +4011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &861153084
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4538,6 +4540,7 @@ MonoBehaviour:
   fishName: Player
   fishType: Trigger
   value: 0
+  id: 0
 --- !u!1 &1034382489
 GameObject:
   m_ObjectHideFlags: 0
@@ -5545,7 +5548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1290188426
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6009,7 +6012,7 @@ RectTransform:
   m_Father: {fileID: 60677481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7246,6 +7249,7 @@ MonoBehaviour:
   fishName: 
   fishType: Player
   value: 0
+  id: 0
 --- !u!82 &1459522633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7491,7 +7495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Master
+  m_text: Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eec5fac94aeac884abc9260f875b071b, type: 2}
   m_sharedMaterial: {fileID: 658464841323681958, guid: eec5fac94aeac884abc9260f875b071b, type: 2}
@@ -8319,6 +8323,7 @@ MonoBehaviour:
   fishName: Player
   fishType: Trigger
   value: 0
+  id: 0
 --- !u!1 &1754460601
 GameObject:
   m_ObjectHideFlags: 0
@@ -8351,8 +8356,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 859693832}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8983,6 +8988,7 @@ MonoBehaviour:
   fishName: Player
   fishType: Trigger
   value: 0
+  id: 0
 --- !u!1 &1955226370
 GameObject:
   m_ObjectHideFlags: 0
@@ -10461,6 +10467,7 @@ GameObject:
   - component: {fileID: 2132061365}
   - component: {fileID: 2132061364}
   - component: {fileID: 2132061367}
+  - component: {fileID: 2132061368}
   m_Layer: 0
   m_Name: ColliderPlayer
   m_TagString: Player
@@ -10517,6 +10524,7 @@ MonoBehaviour:
   scoreHandler: {fileID: 2132061364}
   skeleton: {fileID: 7426008971321554344, guid: 96b4c18ff7cd2324492674db0264da6f, type: 3}
   skeletonParent: {fileID: 403526564}
+  dodgeSound: {fileID: 2132061368}
   enemyList: {fileID: 11400000, guid: cc0d6858d017bef4e8fb0d1b48d37aac, type: 2}
   coinCounter: {fileID: 376123400}
   deathScreen: {fileID: 861153083}
@@ -10586,6 +10594,103 @@ MonoBehaviour:
   fishName: Player
   fishType: Collider
   value: 0
+  id: 0
+--- !u!82 &2132061368
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132061362}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f62489b4a028b7e41a68eb6730da5037, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 0.7
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &7325909976416445174
 PrefabInstance:
   m_ObjectHideFlags: 0

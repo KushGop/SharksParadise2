@@ -63,7 +63,6 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
       print("HIGHSCORE");
       data.highscore = GameManager.score;
     }
-
   }
 
 }

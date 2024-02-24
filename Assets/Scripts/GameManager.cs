@@ -9,4 +9,5 @@ public static class GameManager
   public static int multiplyer, multiplyerCap;
   public static Transform position;
   public static Mission[] missionList = new Mission[3];
+  public static List<int> dodgeHelper = new();
 }

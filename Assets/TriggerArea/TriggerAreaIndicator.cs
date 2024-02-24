@@ -15,14 +15,14 @@ public class TriggerAreaIndicator : MonoBehaviour
   {
     if (other.transform.tag == "Predator")
     {
-      movement.enemyCounter(true);
+      movement.EnemyCounter(true);
     }
   }
   private void OnTriggerExit2D(Collider2D other)
   {
     if (other.transform.tag == "Predator")
     {
-      movement.enemyCounter(false);
+      movement.EnemyCounter(false);
     }
   }
 }

@@ -10,6 +10,7 @@ public class EatingHandler : MonoBehaviour
   public ScoreHandler scoreHandler;
   public GameObject skeleton;
   public Transform skeletonParent;
+  public AudioSource dodgeSound;
   private GameObject newSkeleton;
   public EnemyList enemyList;
   private string fishType, fishName;
@@ -112,19 +113,23 @@ public class EatingHandler : MonoBehaviour
         EatEvent(fishName, otherIdentifier.value, pos);
       }
       //Slo-mo
-      //else if (fishType == "Predator")
-      //  Time.timeScale = 0.5f;
+      else if (fishType == "Predator")
+      {
+        Time.timeScale = 0.6f;
+      }
+
     }
   }
   private void OnTriggerExit2D(Collider2D other)
   {
     //Slo-mo
-    //otherTransform = other.transform;
-    //otherIdentifier = otherTransform.GetComponent<Identifier>();
-    //fishName = otherIdentifier.fishName;
-
-    //if (fishType == "Predator")
-    //  Time.timeScale = 1f;
+    otherTransform = other.transform;
+    otherIdentifier = otherTransform.GetComponent<Identifier>();
+    fishName = otherIdentifier.fishName;
+    if (fishType == "Predator" && playerMovement.GetIsJump())
+    {
+      Time.timeScale = 1f;
+    }
   }
   private void OnTriggerEnter2D(Collider2D other)
   {
@@ -158,8 +163,12 @@ public class EatingHandler : MonoBehaviour
         }
         break;
       case "Predator":
-        if (playerMovement.GetIsJump())
+        if (playerMovement.GetIsJump() && !GameManager.dodgeHelper.Contains(otherIdentifier.id))
         {
+          //SloMo
+          dodgeSound.Play();
+          GameManager.dodgeHelper.Add(otherIdentifier.id);
+          Time.timeScale = 0.6f;
           MissionData.IncrementMission(MissionName.bigSharkDodges);
         }
         break;

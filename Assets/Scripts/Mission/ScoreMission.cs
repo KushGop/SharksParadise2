@@ -9,6 +9,7 @@ public class ScoreMission : MonoBehaviour
   [SerializeField] private TextMeshProUGUI missionText;
   [SerializeField] private TextMeshProUGUI coinAmount;
   [SerializeField] private Image icon;
+  [SerializeField] private CanvasGroup canvasGroup;
   [SerializeField] private MissionIcons_ScritableObject icons;
   protected Vector3 origin;
   private Mission mission;
@@ -59,10 +60,36 @@ public class ScoreMission : MonoBehaviour
       //AddCoin();
     }
 
-
+    StartCoroutine(UpdateNewMission());
     //Coins trail towards coin count and increase its text
     //Use Colliders to increment text by 10
     //Play sound on collision
+  }
+
+  private IEnumerator UpdateNewMission()
+  {
+    yield return new WaitForSecondsRealtime(2f);
+    StartCoroutine(SwitchMission());
+  }
+
+  IEnumerator SwitchMission()
+  {
+    // loop over 1 second backwards
+    for (float i = 1; i >= 0; i -= Time.deltaTime)
+    {
+      // set color with i as alpha
+      canvasGroup.alpha = i;
+      yield return null;
+    }
+    // fade from transparent to opaque
+    SetMission(mission);
+    // loop over 1 second
+    for (float i = 0; i <= 1; i += Time.deltaTime)
+    {
+      // set color with i as alpha
+      canvasGroup.alpha = i;
+      yield return null;
+    }
   }
 
   protected virtual Vector3 SetPosition()

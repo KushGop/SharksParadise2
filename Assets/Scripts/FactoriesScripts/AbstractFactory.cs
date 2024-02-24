@@ -15,6 +15,7 @@ public class AbstractFactory : MonoBehaviour
   protected GameObject newEnemy;
   protected float r;
   protected float s;
+  protected int i;
   protected Identifier identifier;
   protected SortingGroup sortingGroup;
 
@@ -27,7 +28,7 @@ public class AbstractFactory : MonoBehaviour
   {
     r = player.r;
     s = player.s;
-    for (int i = 0; i < numEnemies; i++)
+    for (i = 0; i < numEnemies; i++)
     {
       AddEnemy();
     }

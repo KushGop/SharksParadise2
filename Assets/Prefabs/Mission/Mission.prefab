@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 873822350704162909}
   - component: {fileID: 9134824374796541107}
   - component: {fileID: 7169845080693874098}
+  - component: {fileID: 6331916844865494288}
   m_Layer: 5
   m_Name: Mission
   m_TagString: Untagged
@@ -549,10 +550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d9c8f222a5c4d4687f46a7940628ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipOrClaimText: {fileID: 983463275943946325}
   missionText: {fileID: 6383526206086184339}
   coinAmount: {fileID: 7627383180839053070}
   icon: {fileID: 6499627558990172607}
+  canvasGroup: {fileID: 6331916844865494288}
   icons: {fileID: 11400000, guid: ae75e455d66b3d1478b1feaa1d63ad97, type: 2}
   r: 1
   s: 0
@@ -595,6 +596,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &6331916844865494288
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383526205811249777}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6383526206086184349
 GameObject:
   m_ObjectHideFlags: 0

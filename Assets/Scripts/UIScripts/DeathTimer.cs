@@ -12,6 +12,8 @@ public class DeathTimer : MonoBehaviour
   [SerializeField] private ChangeScene changeScene;
   [SerializeField] private ExitGame exitGame;
   [SerializeField] private PolygonCollider2D playercollider;
+  [SerializeField] private SpriteRenderer playerSprite;
+  [SerializeField] private SpriteRenderer playerColor;
   [SerializeField] private PlayerMovement playerMovement;
   [SerializeField] private int countdownTime = 3;
   private int startTime;
@@ -71,6 +73,8 @@ public class DeathTimer : MonoBehaviour
 
   public void GiveUp()
   {
+    playerSprite.color = new Color(0, 0, 0, 0);
+    playerColor.color = new Color(0, 0, 0, 0);
     API.ShowInterstitial();
     exitGame.ExitGameSequence();
     changeScene.ChangeSceneTo("Score");

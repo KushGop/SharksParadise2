@@ -15,11 +15,13 @@ public class CompletedMissionDropDrown : MonoBehaviour
   private float elapsedTime = 0;
   public float waitTime;
   public float distance;
+  private bool state;
   private Vector3 finalPos;
 
-  public void SetText(string mission)
+  public void SetTextAndState(string mission, bool state)
   {
     text.text = mission;
+    this.state = state;
   }
 
   // Start is called before the first frame update
@@ -37,13 +39,16 @@ public class CompletedMissionDropDrown : MonoBehaviour
       elapsedTime += Time.deltaTime;
       yield return null;
     }
-    elapsedTime = 0;
-    scratch.Play();
-    while (elapsedTime < waitTime)
+    if (state)
     {
-      mask.sizeDelta = Vector2.Lerp(mask.sizeDelta, new Vector2(860, 110), elapsedTime / waitTime);
-      elapsedTime += Time.deltaTime;
-      yield return null;
+      elapsedTime = 0;
+      scratch.Play();
+      while (elapsedTime < waitTime)
+      {
+        mask.sizeDelta = Vector2.Lerp(mask.sizeDelta, new Vector2(860, 110), elapsedTime / waitTime);
+        elapsedTime += Time.deltaTime;
+        yield return null;
+      }
     }
     while (image.color.a > 0.01)
     {

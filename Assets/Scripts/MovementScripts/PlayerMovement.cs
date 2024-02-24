@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
 
   #region Boat
   //Boat
-  public void setIsOverBoat(bool b)
+  public void SetIsOverBoat(bool b)
   {
     isOverBoat = b;
   }
@@ -249,8 +249,7 @@ public class PlayerMovement : MonoBehaviour
   private void SplashAnim()
   {
     JumpActions();
-    splash.position = isBoost ? splashOffset.position : stats.playerPosition;
-    splash.rotation = transform.rotation;
+    splash.SetPositionAndRotation(isBoost ? splashOffset.position : stats.playerPosition, transform.rotation);
     splash.GetComponent<Animator>().Play("Base Layer.Splash", 0, 0);
   }
 
@@ -268,6 +267,8 @@ public class PlayerMovement : MonoBehaviour
 
   private void JumpActions()
   {
+    GameManager.dodgeHelper.Clear();
+    Time.timeScale = 1f;
     spriteRenderer.sortingLayerName = spriteRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
     trails.GetComponent<TrailScript>().changeParent();
   }
@@ -377,7 +378,7 @@ public class PlayerMovement : MonoBehaviour
     spriteRenderer.color = color;
     yield return null;
   }
-  public bool getIsInvincible()
+  public bool GetIsInvincible()
   {
     return isInvincible;
   }
@@ -390,7 +391,7 @@ public class PlayerMovement : MonoBehaviour
   #endregion
 
   //Indicator
-  public void enemyCounter(bool val)
+  public void EnemyCounter(bool val)
   {
     enemyCount = val ? enemyCount + 1 : enemyCount - 1;
     if (enemyCount == 0)
