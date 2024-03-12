@@ -11,25 +11,27 @@ public class UpgradesData
   {
     upgrades = new();
 
+    //Cap at level 5 prestige
     //Coin Upgrades
     upgrades.Add(UpgradeList.baseSpeed, 0);
     upgrades.Add(UpgradeList.boostSpeed, 0);
     upgrades.Add(UpgradeList.boostCost, 0);
-    upgrades.Add(UpgradeList.airTime, 0);
     upgrades.Add(UpgradeList.jumpCost, 0);
 
+    //Don't reset on prestige
     //Gem Upgrades
+    upgrades.Add(UpgradeList.treasureFrequency, 0);
     upgrades.Add(UpgradeList.starfishFrequency, 0);
     upgrades.Add(UpgradeList.warningRadius, 0);
     upgrades.Add(UpgradeList.coinFishCount, 0);
-    upgrades.Add(UpgradeList.treasureFrequency, 0);
+
 
 
     /*
      * Prestige
      * level 0 - nothing
-     * level 1 - one extra starfish
-     * level 2 - one extra treasure chest
+     * level 1 - one extra treasure chest
+     * level 2 - one extra starfish
      * level 3 - extra gems
      * repeat 1 2 3
      */

@@ -21,6 +21,12 @@ public class AddIntAndText : MonoBehaviour
 
   private void Start()
   {
+    SetText();
+    UpgradesManager.updateCosts += SetText;
+  }
+
+  private void SetText()
+  {
     switch (stat)
     {
       case Stat.COINS:
@@ -40,5 +46,4 @@ public class AddIntAndText : MonoBehaviour
         break;
     }
   }
-
 }

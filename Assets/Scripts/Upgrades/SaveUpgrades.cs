@@ -12,6 +12,7 @@ public class SaveUpgrades : MonoBehaviour, IDataPersistence
 
   public void SaveData(GameData data)
   {
+    print("Save upgrades");
     data.upgradesData = UpgradesManager.upgradesData;
   }
 }
