@@ -7,7 +7,6 @@ public class CoinFishMovement : AbstractMovement
 
   private Transform CoinParent;
   public GameObject Coin;
-  private GameObject newCoin;
   public SpriteRenderer sprite;
   private CapsuleCollider2D col;
   private Color newColor = new Color32(255, 255, 255, 0);
@@ -48,7 +47,7 @@ public class CoinFishMovement : AbstractMovement
 
   IEnumerator Coins()
   {
-    newCoin = Instantiate(Coin, transform.position, transform.rotation, CoinParent);
+    Instantiate(Coin, transform.position, transform.rotation, CoinParent);
     yield return new WaitForSeconds(0.2f);
     StartCoroutine(Coins());
   }
@@ -69,7 +68,7 @@ public class CoinFishMovement : AbstractMovement
       sprite.color = Color.Lerp(sprite.color, newColor, Time.deltaTime * waitTime);
       yield return null;
     }
-    transform.parent.GetComponent<AbstractFactory>().UpdateObject(transform);
+    transform.parent.GetComponent<AbstractFactory>().SpawnObject(transform);
   }
 
 

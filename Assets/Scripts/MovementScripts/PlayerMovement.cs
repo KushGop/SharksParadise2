@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -34,9 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
   [Space(20)]
   //player variables
-  private const float speedRef = 5;
   private float speed;
-  private float boostMultiplyer;
   private bool isBoost;
   private float rotationSpeed;
   private bool isJump;
@@ -46,12 +42,20 @@ public class PlayerMovement : MonoBehaviour
   private bool boostButtonPressed;
   private float energyAmount;
   private int enemyCount;
-  public int drainSpeed;
   private IEnumerator boostCoroutine;
   private bool canRefill;
   private bool isOverBoat;
   private bool isInvincible, isUnlimitedBoost;
   private int i = 0;
+
+  //upgrades
+  private float baseSpeed;
+  private float boostSpeed;
+  private float boostCost;
+  private float jumpCost;
+  private float refillSpeed;
+  private float refillDelay;
+  private float powerTime;
 
   //Reset start position
   void Awake()
@@ -61,9 +65,17 @@ public class PlayerMovement : MonoBehaviour
 
   private void Start()
   {
+    //upgrades
+    baseSpeed = 5 + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
+    boostSpeed = 2 + (UpgradesManager.upgradesData.upgrades[UpgradeList.boostSpeed] * 0.1f);
+    boostCost = 5 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
+    jumpCost = 10 - (UpgradesManager.upgradesData.upgrades[UpgradeList.jumpCost] * 0.1f);
+    refillSpeed = 40 + (UpgradesManager.upgradesData.upgrades[UpgradeList.refillSpeed] * 0.1f);
+    refillDelay = 2 - (UpgradesManager.upgradesData.upgrades[UpgradeList.refillDelay] * 0.1f);
+    powerTime = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.powerTime] * 0.1f);
+
     //setup
-    speed = speedRef;
-    boostMultiplyer = 3f;
+    speed = baseSpeed;
     rotationSpeed = 15;
     isBoost = false;
     size = 100;
@@ -80,7 +92,13 @@ public class PlayerMovement : MonoBehaviour
     isInvincible = false;
     isUnlimitedBoost = false;
 
+
+
+
+
     colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
+
+
 
     //events
     joystickInput.OnMove += MovePlayer;
@@ -167,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
     StopCoroutine(boostCoroutine);
     if (!isJump && energyAmount > 0)
     {
-      speed = speedRef * boostMultiplyer;
+      speed = baseSpeed * boostSpeed;
       anim.speed = 1.5f;
       isBoost = true;
     }
@@ -180,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
     StartCoroutine(boostCoroutine);
     if (!isJump)
     {
-      speed = speedRef;
+      speed = baseSpeed;
       anim.speed = 1;
       isBoost = false;
     }
@@ -189,19 +207,19 @@ public class PlayerMovement : MonoBehaviour
   {
     if (energyAmount > 0)
     {
-      energyAmount -= Time.deltaTime * drainSpeed;
+      energyAmount -= Time.deltaTime * boostCost;
     }
   }
   IEnumerator RefillEnergyTimer()
   {
-    yield return new WaitForSeconds(2f);
+    yield return new WaitForSeconds(refillDelay);
     canRefill = true;
   }
   private void RefillEnergy()
   {
     if (energyAmount < 100 && canRefill)
     {
-      energyAmount += Time.deltaTime * drainSpeed * 4;
+      energyAmount += Time.deltaTime * refillSpeed;
     }
   }
   #endregion
@@ -213,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
     if (!isStun && energyAmount >= 10 && !isJump)
     {
       //Boost routine
-      energyAmount -= 10;
+      energyAmount -= jumpCost;
       StartCoroutine(boostCoroutine);
       canRefill = false;
       StopCoroutine(boostCoroutine);
@@ -230,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
   //called from animation state fro right timing
   public void AnimJump()
   {
-    speed = speedRef * boostMultiplyer;
+    speed = baseSpeed * boostSpeed;
     anim.speed = 1.5f;
     StartCoroutine(FrameDelay());
   }
@@ -258,7 +276,7 @@ public class PlayerMovement : MonoBehaviour
     yield return new WaitForSeconds(wait);
     if (!isBoost)
     {
-      speed = speedRef;
+      speed = baseSpeed;
       anim.speed = 1f;
     }
     SplashAnim();
@@ -332,7 +350,7 @@ public class PlayerMovement : MonoBehaviour
         isUnlimitedBoost = true;
         break;
     }
-    yield return new WaitForSeconds(10f);
+    yield return new WaitForSeconds(powerTime);
     switch (power)
     {
       case 0://Invincible

@@ -10,7 +10,9 @@ public class PlayAreaTrigger : MonoBehaviour
     if (list.playAreaList.Contains(other.transform.tag))
     {
       other.transform.parent.GetComponent<AbstractFactory>().UpdateObject(other.transform);
-    }else{
+    }
+    else
+    {
       Destroy(other.gameObject);
     }
   }

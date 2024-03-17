@@ -744,7 +744,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.16078432, g: 0.49411768, b: 0.6117647, a: 1}
+  m_BackGroundColor: {r: 0.15294118, g: 0.79607844, b: 0.81960785, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1449,7 +1449,6 @@ GameObject:
   - component: {fileID: 721223263}
   - component: {fileID: 721223266}
   - component: {fileID: 721223264}
-  - component: {fileID: 721223267}
   m_Layer: 5
   m_Name: MissionList
   m_TagString: Untagged
@@ -1514,18 +1513,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionPrefab: {fileID: 6383526205811249777, guid: db48cb0770cb9de418b5c2694adb371a, type: 3}
   coinTarget: {fileID: 1507313985}
---- !u!114 &721223267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721223262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab581aa0f0fed1041a1c688f0127d2d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &759842142
 GameObject:
   m_ObjectHideFlags: 0

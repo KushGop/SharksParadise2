@@ -11,13 +11,30 @@ public enum UpgradeList : ushort
   baseSpeed = 00,
   boostSpeed = 01,
   boostCost = 02,
-  airTime = 03,
-  jumpCost = 04,
+  jumpCost = 03,
+  refillSpeed = 04,
+  refillDelay = 05,
   treasureFrequency = 10,
   starfishFrequency = 11,
   warningRadius = 12,
-  coinFishCount = 13,
+  coinFishFrequency = 13,
+  powerTime = 14,
   prestigeCount = 20,
-  starfishCount = 21,
-  treasureCount = 22
+  greatStarfishFrequency = 21,
+  greatTreasureFrequency = 22,
+  greatCoinFishFrequency = 23
+}
+
+public enum RewardList
+{
+  coins,
+  gems,
+  token,
+  life
+}
+
+public enum RewardType
+{
+  prestige,
+  fullUpgrade
 }

@@ -17,14 +17,16 @@ public class UpgradesData
     upgrades.Add(UpgradeList.boostSpeed, 0);
     upgrades.Add(UpgradeList.boostCost, 0);
     upgrades.Add(UpgradeList.jumpCost, 0);
+    upgrades.Add(UpgradeList.refillSpeed, 0);
+    upgrades.Add(UpgradeList.refillDelay, 0);
 
     //Don't reset on prestige
     //Gem Upgrades
     upgrades.Add(UpgradeList.treasureFrequency, 0);
     upgrades.Add(UpgradeList.starfishFrequency, 0);
     upgrades.Add(UpgradeList.warningRadius, 0);
-    upgrades.Add(UpgradeList.coinFishCount, 0);
-
+    upgrades.Add(UpgradeList.coinFishFrequency, 0);
+    upgrades.Add(UpgradeList.powerTime, 0);
 
 
     /*
@@ -34,10 +36,13 @@ public class UpgradesData
      * level 2 - one extra starfish
      * level 3 - extra gems
      * repeat 1 2 3
+     * 
+     * or prestige token
      */
 
     upgrades.Add(UpgradeList.prestigeCount, 0);
-    upgrades.Add(UpgradeList.starfishCount, 0);
-    upgrades.Add(UpgradeList.treasureCount, 0);
+    upgrades.Add(UpgradeList.greatCoinFishFrequency, 0);
+    upgrades.Add(UpgradeList.greatStarfishFrequency, 0);
+    upgrades.Add(UpgradeList.greatTreasureFrequency, 0);
   }
 }

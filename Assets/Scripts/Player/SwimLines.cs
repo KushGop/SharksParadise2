@@ -6,19 +6,18 @@ public class SwimLines : MonoBehaviour
 {
   public Vector3 offset;
   public GameObject swimLine;
-  private GameObject newSwimLine;
   public Transform parent;
 
   private void Start()
   {
-    StartCoroutine(spawnLines());
+    StartCoroutine(SpawnLines());
   }
 
-  IEnumerator spawnLines()
+  IEnumerator SpawnLines()
   {
 
     yield return new WaitForSeconds(0.1f);
-    newSwimLine = Instantiate(swimLine, transform.position, transform.rotation, parent);
-    StartCoroutine(spawnLines());
+    Instantiate(swimLine, transform.position, transform.rotation, parent);
+    StartCoroutine(SpawnLines());
   }
 }

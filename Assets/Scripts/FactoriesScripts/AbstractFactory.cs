@@ -19,6 +19,10 @@ public class AbstractFactory : MonoBehaviour
   protected Identifier identifier;
   protected SortingGroup sortingGroup;
 
+  //for special cases, coin fish, starfish, boat, etc.
+  protected bool isSpecial = false;
+  protected float spawnDelayTime;
+
   /**
     1. Create empty object
     2. Randomize point within bounds
@@ -69,6 +73,24 @@ public class AbstractFactory : MonoBehaviour
   {
     UpdateOrigin();
     o.SetPositionAndRotation(SetPosition(), SetRotation());
+  }
+
+  public virtual void SpawnObject(Transform o)
+  {
+    UpdateOrigin();
+    o.SetPositionAndRotation(SetPosition(), SetRotation());
+    if (isSpecial)
+      StartCoroutine(DelaySpawn(o));
+
+  }
+
+  IEnumerator DelaySpawn(Transform o)
+  {
+    o.gameObject.SetActive(false);
+    yield return new WaitForSeconds(spawnDelayTime);
+    UpdateOrigin();
+    o.SetPositionAndRotation(SetPosition(), SetRotation());
+    o.gameObject.SetActive(true);
   }
 
   //Set unique preferences

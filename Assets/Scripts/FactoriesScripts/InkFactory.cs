@@ -7,7 +7,7 @@ public class InkFactory : AbstractFactory
   public float newR;
   public float newS;
   public bool hasCollider;
-  private float delayTime = 1f;
+  private readonly float delayTime = 1f;
   private CircleCollider2D circle;
   // Start is called before the first frame update
   void Start()

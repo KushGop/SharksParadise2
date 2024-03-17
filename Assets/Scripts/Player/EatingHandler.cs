@@ -75,7 +75,7 @@ public class EatingHandler : MonoBehaviour
               MissionData.IncrementMission(MissionName.bigSharksEaten);
             }
             InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
-            otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
+            otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
             break;
           case "Food":
             InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
@@ -103,7 +103,7 @@ public class EatingHandler : MonoBehaviour
       Vector3 pos = otherTransform.position;
       if (fishName == "Bird")
       {
-        otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
+        otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
         EatEvent(fishName, otherIdentifier.value, pos);
         MissionData.IncrementMission(MissionName.birdsEaten);
       }

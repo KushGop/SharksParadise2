@@ -2870,6 +2870,67 @@ SortingGroup:
   m_SortingLayer: -4
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!1 &577731971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 577731972}
+  - component: {fileID: 577731974}
+  - component: {fileID: 577731973}
+  m_Layer: 0
+  m_Name: StarfishFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &577731972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577731971}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1376336114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &577731973
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577731971}
+  m_Enabled: 1
+  m_SortingLayerID: 2
+  m_SortingLayer: -12
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+--- !u!114 &577731974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577731971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644bb8186d8c51e4c8a77240b92a14f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numEnemies: 1
+  enemy: {fileID: 883634014959979343, guid: 855960f961d362b4e904c679d6703fd6, type: 3}
+  player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
+  sizeOffset: 0
 --- !u!1 &620397761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4490,6 +4551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca56097d368f00649ac4875e3e011754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circle: {fileID: 1023877691}
 --- !u!58 &1023877691
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6185,6 +6247,7 @@ Transform:
   - {fileID: 841421014}
   - {fileID: 542869044}
   - {fileID: 1430311811}
+  - {fileID: 577731972}
   - {fileID: 1679016350}
   - {fileID: 82633939}
   - {fileID: 620397763}
@@ -6993,7 +7056,6 @@ MonoBehaviour:
   - {fileID: 841421013}
   inkOverlayParent: {fileID: 1061275908}
   inkFactory: {fileID: 5410903097102001049, guid: fc46902e88c8d2c4ab616a32804e4441, type: 3}
-  drainSpeed: 5
 --- !u!95 &1459522625
 Animator:
   serializedVersion: 5

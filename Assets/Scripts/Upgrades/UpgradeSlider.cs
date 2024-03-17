@@ -10,6 +10,7 @@ public class UpgradeSlider : MonoBehaviour
   [SerializeField] Slider slider;
   [SerializeField] Image coinIcon;
   [SerializeField] Image gemIcon;
+  [SerializeField] Image tokenIcon;
   [SerializeField] TextMeshProUGUI costText;
   [SerializeField] CanvasGroup canvasGroup;
   [SerializeField] Button button;
@@ -39,26 +40,38 @@ public class UpgradeSlider : MonoBehaviour
       case 03:
         des = "Decrease jump cost";
         break;
+      case 04:
+        des = "Increase refill speed";
+        break;
+      case 05:
+        des = "Decrease refill delay";
+        break;
       case 10:
-        des = "Increase treasure spawn Rate";
+        des = "Slightly Increase treasure spawn Rate";
         break;
       case 11:
-        des = "Increase starfish spawn rate";
+        des = "Slightly Increase starfish spawn rate";
         break;
       case 12:
         des = "Increase warning radius";
         break;
       case 13:
-        des = "Add one more coin fish";
+        des = "Slightly Increase coin fish fequency";
+        break;
+      case 14:
+        des = "Increase power up time";
         break;
       case 20:
         des = "prestige";
         break;
       case 21:
-        des = "Add one more starfish";
+        des = "greatly Increase starfish spawn Rate";
         break;
       case 22:
-        des = "Add one more treasure chest";
+        des = "greatly Increase treasure spawn Rate";
+        break;
+      case 23:
+        des = "greatly Increase coin fish fequency";
         break;
     }
     description.text = des;
@@ -79,6 +92,11 @@ public class UpgradeSlider : MonoBehaviour
       Debug.Log("Does not contain upgrade key: " + key.ToString());
     }
     slider.value = UpgradesManager.upgradesData.upgrades[key];
+    if (slider.value == 10)
+    {
+      UpgradesManager.activateReward(UpgradesManager.rewards[RewardType.fullUpgrade].Item1, UpgradesManager.rewards[RewardType.fullUpgrade].Item2);
+    }
+
     GameManager.totalCoins -= cost;
     UpdateCost();
     UpgradesManager.updateCosts();
@@ -111,7 +129,9 @@ public class UpgradeSlider : MonoBehaviour
       costText.text = "";
       coinIcon.color = new(0, 0, 0, 0);
       gemIcon.color = new(0, 0, 0, 0);
+      tokenIcon.color = new(0, 0, 0, 0);
       button.gameObject.SetActive(false);
+
       return;
     }
     //Coin item
@@ -119,7 +139,7 @@ public class UpgradeSlider : MonoBehaviour
     {
       coinIcon.color = new(255, 255, 255, 255);
       //initial value 1000 or 2000
-      cost = ((ushort)key) % 10 == 0 ? 2000 : 1000;
+      cost = ((ushort)key) % 10 == 0 ? 200 : 100;
       cost = RecursiveCost(cost, UpgradesManager.upgradesData.upgrades[UpgradeList.prestigeCount]);
       cost = RecursiveCoinCost(cost, (UpgradesManager.upgradesData.upgrades[key]));
     }
@@ -131,11 +151,16 @@ public class UpgradeSlider : MonoBehaviour
       cost = ((ushort)key) % 10 == 0 ? 2 : 1;
       cost = RecursiveGemCost(cost, (UpgradesManager.upgradesData.upgrades[key]));
     }
+    else
+    {
+      tokenIcon.color = new(255, 255, 255, 255);
+      cost = 1;
+    }
     costText.text = cost.ToString();
     UpdateVisuals();
   }
 
-  #region Recusive
+  #region Recursive
   private int RecursiveCost(int baseCost, int n)
   {
     if (n == 0)
@@ -155,7 +180,7 @@ public class UpgradeSlider : MonoBehaviour
     }
     else
     {
-      return Mathf.FloorToInt(((RecursiveCoinCost(baseCost, n - 1) * (1.25f + (UpgradesManager.upgradesData.upgrades[UpgradeList.prestigeCount] * 0.01f))) / 100)) * 100;
+      return Mathf.FloorToInt(((RecursiveCoinCost(baseCost, n - 1) * (1.25f + (UpgradesManager.upgradesData.upgrades[UpgradeList.prestigeCount] * 0.01f))) / 10)) * 10;
     }
   }
   private int RecursiveGemCost(int baseCost, int n)

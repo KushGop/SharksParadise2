@@ -11,16 +11,19 @@ public class ExtraLiveButton : MonoBehaviour
   [SerializeField] private TextMeshProUGUI buttonText;
   [SerializeField] private TextMeshProUGUI coinText;
   [SerializeField] private DeathTimer timer;
-  [SerializeField] private int reviveCost;
-  private int reviveCount;
+  private int reviveCost = 100;
+  private int reviveCount = 1;
 
   private void Start()
   {
+    reviveCost = 100;
     reviveCount = 1;
   }
 
   private void OnEnable()
   {
+    print(reviveCost);
+    print(reviveCount);
     buttonText.text = "Use " + (reviveCost * reviveCount).ToString() + " coins";
     if (GameManager.totalCoins + GameManager.coins >= reviveCost * reviveCount)
     {

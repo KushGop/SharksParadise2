@@ -8,8 +8,6 @@ public class SquidMovement : AbstractMovement
   public Animator anim;
   private Transform inkParent;
   public GameObject ink;
-  // public SquirtScript sound;
-  private GameObject newInk;
   private bool isIdle;
 
   private new void Start()
@@ -51,7 +49,7 @@ public class SquidMovement : AbstractMovement
   IEnumerator InkDelay()
   {
     yield return new WaitForSeconds(0.5f);
-    newInk = Instantiate(ink, transform.position, transform.rotation, inkParent);
+    Instantiate(ink, transform.position, transform.rotation, inkParent);
   }
 
 }
