@@ -1483,7 +1483,7 @@ GameObject:
   - component: {fileID: 1321095104}
   - component: {fileID: 1321095103}
   m_Layer: 0
-  m_Name: LoadGameManager
+  m_Name: LoadCoins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

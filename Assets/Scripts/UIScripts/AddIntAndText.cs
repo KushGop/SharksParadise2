@@ -13,6 +13,8 @@ public class AddIntAndText : MonoBehaviour
     COINS,
     XP,
     TOTAL_COINS,
+    TOTAL_GEMS,
+    TOTAL_TOKENS,
     TOTAL_XP
   }
   public Stat stat;
@@ -43,6 +45,12 @@ public class AddIntAndText : MonoBehaviour
         break;
       case Stat.TOTAL_COINS:
         text.text = string.Format(str, GameManager.totalCoins);
+        break;
+      case Stat.TOTAL_GEMS:
+        text.text = string.Format(str, GameManager.totalGems);
+        break;
+      case Stat.TOTAL_TOKENS:
+        text.text = string.Format(str, GameManager.totalTokens);
         break;
     }
   }

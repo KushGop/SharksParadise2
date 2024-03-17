@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GameManager
 {
-  public static int score, highscore, xp, coins, totalCoins, totalXP;
+  public static int score, highscore, xp, coins, totalCoins, totalXP, totalGems, totalTokens;
   public static string lastFish;
   public static int multiplyer, multiplyerCap;
   public static Transform position;

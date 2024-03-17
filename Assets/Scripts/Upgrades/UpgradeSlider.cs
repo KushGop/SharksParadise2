@@ -16,10 +16,12 @@ public class UpgradeSlider : MonoBehaviour
   [SerializeField] Button button;
   [SerializeField] TextMeshProUGUI description;
   private int cost;
+  private RewardList rewardType;
 
   private void Start()
   {
     UpgradesManager.updateCosts += UpdateVisuals;
+    UpgradesManager.prestige += Reset;
     SetDescription();
   }
 
@@ -77,6 +79,18 @@ public class UpgradeSlider : MonoBehaviour
     description.text = des;
   }
 
+  private void Reset()
+  {
+    if ((ushort)key < 10)
+    {
+      UpgradesManager.upgradesData.upgrades[key] = 0;
+      slider.value = 0;
+      UpdateCost();
+      UpdateVisuals();
+    }
+
+  }
+
   public void IncrementUpgrade()
   {
     if (UpgradesManager.upgradesData.upgrades.ContainsKey(key))
@@ -96,8 +110,12 @@ public class UpgradeSlider : MonoBehaviour
     {
       UpgradesManager.activateReward(UpgradesManager.rewards[RewardType.fullUpgrade].Item1, UpgradesManager.rewards[RewardType.fullUpgrade].Item2);
     }
-
-    GameManager.totalCoins -= cost;
+    if (rewardType == RewardList.coins)
+      GameManager.totalCoins -= cost;
+    else if (rewardType == RewardList.gems)
+      GameManager.totalGems -= cost;
+    else if (rewardType == RewardList.token)
+      GameManager.totalTokens -= cost;
     UpdateCost();
     UpgradesManager.updateCosts();
     DataPersistenceManager.instance.SaveGame();
@@ -107,17 +125,36 @@ public class UpgradeSlider : MonoBehaviour
   {
     this.key = key;
     slider.value = count;
-    //Coin item
+
+    if (((ushort)key) < 10)
+      rewardType = RewardList.coins;
+    else if (((ushort)key) < 20)
+      rewardType = RewardList.gems;
+    else
+      rewardType = RewardList.token;
+
     UpdateCost();
   }
 
   private void UpdateVisuals()
   {
-    //Check if enough coins
-    if (GameManager.totalCoins < cost)
+    int total = 0;
+    if (rewardType == RewardList.coins)
+      total = GameManager.totalCoins;
+    else if (rewardType == RewardList.gems)
+      total = GameManager.totalGems;
+    else if (rewardType == RewardList.token)
+      total = GameManager.totalTokens;
+
+    if (total < cost)
     {
       canvasGroup.alpha = 0.5f;
       button.interactable = false;
+    }
+    else
+    {
+      canvasGroup.alpha = 1f;
+      button.interactable = true;
     }
   }
 
@@ -134,8 +171,9 @@ public class UpgradeSlider : MonoBehaviour
 
       return;
     }
+    button.gameObject.SetActive(true);
     //Coin item
-    if (((ushort)key) < 10)
+    if (rewardType == RewardList.coins)
     {
       coinIcon.color = new(255, 255, 255, 255);
       //initial value 1000 or 2000
@@ -144,11 +182,11 @@ public class UpgradeSlider : MonoBehaviour
       cost = RecursiveCoinCost(cost, (UpgradesManager.upgradesData.upgrades[key]));
     }
     //Gem item
-    else if (((ushort)key) < 20)
+    else if (rewardType == RewardList.gems)
     {
       gemIcon.color = new(255, 255, 255, 255);
       //initial value 1 or 2
-      cost = ((ushort)key) % 10 == 0 ? 2 : 1;
+      cost = ((ushort)key) % 10 == 0 ? 4 : 2;
       cost = RecursiveGemCost(cost, (UpgradesManager.upgradesData.upgrades[key]));
     }
     else
@@ -169,7 +207,7 @@ public class UpgradeSlider : MonoBehaviour
     }
     else
     {
-      return RecursiveCost(baseCost + (n * 250), n - 1);
+      return Mathf.FloorToInt((RecursiveCost(baseCost, n - 1) * 1.25f) / 10) * 10;
     }
   }
   private int RecursiveCoinCost(int baseCost, int n)
@@ -180,7 +218,7 @@ public class UpgradeSlider : MonoBehaviour
     }
     else
     {
-      return Mathf.FloorToInt(((RecursiveCoinCost(baseCost, n - 1) * (1.25f + (UpgradesManager.upgradesData.upgrades[UpgradeList.prestigeCount] * 0.01f))) / 10)) * 10;
+      return Mathf.FloorToInt((RecursiveCoinCost(baseCost, n - 1) * (1.1f + (UpgradesManager.upgradesData.upgrades[UpgradeList.prestigeCount] * 0.01f))) / 10) * 10;
     }
   }
   private int RecursiveGemCost(int baseCost, int n)
@@ -191,7 +229,7 @@ public class UpgradeSlider : MonoBehaviour
     }
     else
     {
-      return Mathf.CeilToInt(RecursiveGemCost(baseCost, n - 1) * 1.4f);
+      return Mathf.CeilToInt(RecursiveGemCost(baseCost, n - 1) * 1.2f);
     }
   }
   #endregion

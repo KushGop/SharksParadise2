@@ -41,6 +41,24 @@ public class UpgradeRewardScreen : MonoBehaviour
   }
   private void StartRewards(RewardList[] rewards, int[] amount)
   {
+    for (int i = 0; i < rewards.Length; i++)
+    {
+      switch (rewards[i])
+      {
+        case RewardList.coins:
+          GameManager.totalCoins += amount[i];
+          break;
+        case RewardList.gems:
+          GameManager.totalGems += amount[i];
+          break;
+        case RewardList.token:
+          GameManager.totalTokens += amount[i];
+          break;
+      }
+    }
+    UpgradesManager.updateCosts();
+    DataPersistenceManager.instance.SaveGame();
+
     gameObject.SetActive(true);
     StartCoroutine(ShowRewards(rewards, amount));
   }
@@ -55,7 +73,7 @@ public class UpgradeRewardScreen : MonoBehaviour
       tap = false;
       Destroy(newReward);
     }
-    StartCoroutine(FadeOut());
+    gameObject.SetActive(false);
     yield return null;
   }
 
@@ -69,17 +87,5 @@ public class UpgradeRewardScreen : MonoBehaviour
       elapsedTime += Time.deltaTime;
       yield return null;
     }
-  }
-  IEnumerator FadeOut()
-  {
-    float elapsedTime = 0f;
-    float waitTime = 1f;
-    while (elapsedTime < waitTime)
-    {
-      backdrop.color = Color.Lerp(backdrop.color, colorOut, elapsedTime / waitTime);
-      elapsedTime += Time.deltaTime;
-      yield return null;
-    }
-    gameObject.SetActive(false);
   }
 }
