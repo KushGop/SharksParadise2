@@ -9,7 +9,7 @@ public class StarfishFactory : AbstractFactory
     newEnemy.transform.name = "Starfish";
     newEnemy.transform.tag = "Starfish";
     // newEnemy.transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.yellow;
-    newEnemy.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+    newEnemy.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     isSpecial = true;
     spawnDelayTime = 15f
       - (UpgradesManager.upgradesData.upgrades[UpgradeList.starfishFrequency] * 0.1f)

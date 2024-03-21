@@ -14,6 +14,7 @@ public static class MissionData
     { MissionName.birdsEaten, 0 },
     { MissionName.timesStung, 0 },
     { MissionName.coinsCollected, 0 },
+    { MissionName.treasureCollected, 0 },
     { MissionName.coinFishesEaten, 0 },
     { MissionName.bigSharksEaten, 0 },
     { MissionName.starfishesCollected, 0 },
@@ -31,6 +32,7 @@ public static class MissionData
     { new(4, MissionName.bigSharksEaten, 3, "Eat {0} big sharks") },
     { new(5, MissionName.starfishesCollected, 1, "Collect {0} starfish") },
     { new(6, MissionName.multiplyerMax, 5, "Get a {0} combo") },
+    { new(7, MissionName.treasureCollected, 1, "Collect {0} treasure chests") },
   };
 
   public static Mission GetRandomMission()
@@ -41,7 +43,7 @@ public static class MissionData
   public static void IncrementMission(MissionName name)
   {
     missionDictionary[name]++;
-    Debug.Log("Mission Name:" + name + "  Count: " + missionDictionary[name]);
+    //Debug.Log("Mission Name:" + name + "  Count: " + missionDictionary[name]);
     if (missionDictionary.ContainsKey(name))
     {
       MissionDelegate(name, missionDictionary[name]);

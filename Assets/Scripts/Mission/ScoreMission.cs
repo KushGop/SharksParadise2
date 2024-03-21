@@ -13,6 +13,7 @@ public class ScoreMission : MonoBehaviour
   [SerializeField] private MissionIcons_ScritableObject icons;
   protected Vector3 origin;
   private Mission mission;
+  private int index;
   private int coins;
   private bool isComplete;
 
@@ -39,8 +40,14 @@ public class ScoreMission : MonoBehaviour
     icon.sprite = icons.iconDictionary[mission.missionName];
     coinAmount.text = mission.coins.ToString();
     coins = mission.coins;
+    index = mission.indexInManager;
     //TODO: Add button
     //SetSkipOrClaimButton();
+  }
+
+  public int getMissionIndex()
+  {
+    return index;
   }
 
   public void SkipMission()

@@ -12,6 +12,12 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
 
   public void LoadData(GameData data)
   {
+    if (transform.childCount > 0)
+    {
+      Destroy(transform.GetChild(0).gameObject);
+      Destroy(transform.GetChild(1).gameObject);
+      Destroy(transform.GetChild(2).gameObject);
+    }
     names = data.missionListName;
     GameManager.totalCoins = GameManager.coins + data.totalCoins;
     for (int i = 0; i < 3; i++)
@@ -20,6 +26,11 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
       missionItem.GetComponent<ScoreMission>().SetMission(MissionManager.GetMission(i));
       if (MissionManager.GetMission(i).isComplete)
       {
+        //for skipped missions
+        if (!data.missionList[i].isComplete)
+        {
+          data.missionList[i].isComplete = true;
+        }
         MissionManager.missions[i].isClaimed = true;
         while (true)
         {

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "EnemyList", menuName = "Sharks Paradise/EnemyList", order = 0)]
 public class EnemyList : ScriptableObject
 {
-  readonly List<string> fullList = new() {
+  readonly List<string> fullList = new()
+  {
     "SmallShark",
     "BigShark",
     "GoldFish",
@@ -16,7 +17,8 @@ public class EnemyList : ScriptableObject
     "CoinFish"
   };
 
-  readonly Dictionary<string, int> pointDictionary = new() {
+  readonly Dictionary<string, int> pointDictionary = new()
+  {
     { "SmallShark", 100 },
     { "BigShark", 1000 },
     { "GoldFish", 10 },
@@ -28,24 +30,39 @@ public class EnemyList : ScriptableObject
     { "CoinFish", 0 }
   };
 
-  readonly public List<string> triggerAreaList = new() {
+  readonly public List<string> triggerAreaList = new()
+  {
     "SmallShark",
     "BigShark",
     "GoldFish",
     "AngelFish",
+    "Flub",
+    "Eel",
+    "MantaRay",
     "Squid",
-    "CoinFish" 
+    "CoinFish"
   };
 
-  readonly public List<string> playAreaList = new() {
+  readonly public List<string> playAreaList = new()
+  {
     "Prey",
-    "Predator" 
+    "Predator",
+    "Starfish"
   };
 
-  readonly public Dictionary<string, int> multiplyerCap = new() {
+  readonly public List<string> spawnList = new()
+  {
+    "Treasure"
+  };
+
+  readonly public Dictionary<string, int> multiplyerCap = new()
+  {
     { "SmallShark", 5 },
     { "GoldFish", 20 },
     { "AngelFish", 15 },
+    { "Eel", 15 },
+    { "MantaRay", 15 },
+    { "Flub", 15 },
     { "Jelly", 8 },
     { "Bird", 8 },
     { "Starfish", 1 },
@@ -56,12 +73,13 @@ public class EnemyList : ScriptableObject
   };
 
   //Fishname : scaleModifier  USED FOR SKELETON
-  readonly public Dictionary<string, float> scaleModifier = new() {
-    { "SmallShark", -1.5f }, 
-    { "BigShark", -1.5f }, 
-    { "GoldFish", 1f }, 
-    { "AngelFish", 2f }, 
-    { "CoinFish", 1f } 
+  readonly public Dictionary<string, float> scaleModifier = new()
+  {
+    { "SmallShark", -1.5f },
+    { "BigShark", -1.5f },
+    { "GoldFish", 1f },
+    { "AngelFish", 2f },
+    { "CoinFish", 1f }
   };
 }
 

@@ -12,6 +12,7 @@ TagManager:
   - Starfish
   - CoinFIsh
   - Special
+  - Treasure
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 1
+    locked: 0
+  - name: Treasure
+    uniqueID: 1999884749
     locked: 0
   - name: Skeleton
     uniqueID: 4

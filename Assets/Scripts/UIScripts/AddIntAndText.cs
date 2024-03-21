@@ -11,6 +11,7 @@ public class AddIntAndText : MonoBehaviour
     SCORE,
     HIGHSCORE,
     COINS,
+    GEMS,
     XP,
     TOTAL_COINS,
     TOTAL_GEMS,
@@ -33,6 +34,9 @@ public class AddIntAndText : MonoBehaviour
     {
       case Stat.COINS:
         text.text = string.Format(str, GameManager.coins);
+        break;
+      case Stat.GEMS:
+        text.text = string.Format(str, GameManager.gems);
         break;
       case Stat.XP:
         text.text = string.Format(str, GameManager.score / 100);

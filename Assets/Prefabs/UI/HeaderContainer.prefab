@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 361922011478016545}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -69,7 +68,7 @@ MonoBehaviour:
   m_text: Diamonds
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eec5fac94aeac884abc9260f875b071b, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 15959a6f07452464cabf2bfa885c86b4, type: 2}
+  m_sharedMaterial: {fileID: 658464841323681958, guid: eec5fac94aeac884abc9260f875b071b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -165,7 +164,6 @@ RectTransform:
   m_Children:
   - {fileID: 361922011478016545}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -203,7 +201,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 361922011478016545}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -231,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3254902, g: 0.20000002, b: 0.56078434, a: 1}
+  m_Color: {r: 0.16941082, g: 0.72697973, b: 0.764151, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -281,7 +278,6 @@ RectTransform:
   - {fileID: 361922011117845544}
   - {fileID: 361922010270461043}
   m_Father: {fileID: 361922010887209091}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

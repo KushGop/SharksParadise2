@@ -12,6 +12,7 @@ public enum MissionName
   coinFishesEaten,
   bigSharksEaten,
   starfishesCollected,
+  treasureCollected,
   fishnetsBroken,
   multiplyerMax,
   bigSharkDodges

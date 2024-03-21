@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MissionCoin : MonoBehaviour
 {
-  [SerializeField] private SpriteRenderer sprite;
+  [SerializeField] private Image sprite;
   [SerializeField] private CircleCollider2D collider2d;
   private Color newColor = new Color32(255, 255, 255, 255);
   private Color startColor = new Color32(255, 255, 255, 0);

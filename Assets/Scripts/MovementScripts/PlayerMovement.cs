@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -56,6 +57,11 @@ public class PlayerMovement : MonoBehaviour
   private float refillSpeed;
   private float refillDelay;
   private float powerTime;
+
+  [Header("Powers")]
+  [SerializeField] private SpriteRenderer playerSprite;
+  [SerializeField] private SpriteRenderer boostSprite;
+  [SerializeField] private TextMeshProUGUI textColor;
 
   //Reset start position
   void Awake()
@@ -286,6 +292,7 @@ public class PlayerMovement : MonoBehaviour
   private void JumpActions()
   {
     GameManager.dodgeHelper.Clear();
+    //slomo
     Time.timeScale = 1f;
     spriteRenderer.sortingLayerName = spriteRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
     trails.GetComponent<TrailScript>().changeParent();
@@ -323,7 +330,6 @@ public class PlayerMovement : MonoBehaviour
   #region Power
   public void TriggerPower()
   {
-    // PowerAnimation();
     StartCoroutine(PowerEvent(Random.Range(0, 3)));
   }
   public void TriggerPower(int i)
@@ -333,20 +339,20 @@ public class PlayerMovement : MonoBehaviour
 
   IEnumerator PowerEvent(int power)
   {
+    GameManager.powerEvent(power);
     switch (power)
     {
       case 0://Invincible
-        Debug.Log("Invincible");
         isInvincible = true;
         UpdateEnemies("Prey");
-        StartCoroutine(Invincible());
+        StartCoroutine(SpriteRotateColors(powerTime, playerSprite));
         break;
       case 1://Double Points
-        Debug.Log("Double Points");
         scoreHandler.starfishMultiplyer = 2;
+        StartCoroutine(TextRotateColors(powerTime, textColor));
         break;
       case 2://Unlimited Boost
-        Debug.Log("Unlimited Boost");
+        StartCoroutine(SpriteRotateColors(powerTime, boostSprite));
         isUnlimitedBoost = true;
         break;
     }
@@ -354,16 +360,13 @@ public class PlayerMovement : MonoBehaviour
     switch (power)
     {
       case 0://Invincible
-        Debug.Log("Invincible End");
         isInvincible = false;
         UpdateEnemies("Predator");
         break;
       case 1://Double Points
-        Debug.Log("Double Points End");
         scoreHandler.starfishMultiplyer = 1;
         break;
       case 2://Unlimited Boost
-        Debug.Log("Unlimited Boost End");
         isUnlimitedBoost = false;
         break;
     }
@@ -379,26 +382,40 @@ public class PlayerMovement : MonoBehaviour
       }
     }
   }
-  IEnumerator Invincible()
+
+  #region RotateColors
+  IEnumerator SpriteRotateColors(float waitTime, SpriteRenderer sprite)
   {
     i = 0;
-    float waitTime = 10f;
     float timePassed = 0f;
-    Color color = spriteRenderer.color;
+    Color startColor = sprite.color;
     StartCoroutine(ColorDelay());
     while (timePassed < waitTime)
     {
-      spriteRenderer.color = Color.Lerp(spriteRenderer.color, colors[i % 6], waitTime * Time.deltaTime);
+      sprite.color = Color.Lerp(sprite.color, colors[i % 6], waitTime * Time.deltaTime);
       timePassed += Time.deltaTime;
       yield return null;
     }
     StopCoroutine(ColorDelay());
-    spriteRenderer.color = color;
+    sprite.color = startColor;
     yield return null;
   }
-  public bool GetIsInvincible()
+
+  IEnumerator TextRotateColors(float waitTime, TextMeshProUGUI sprite)
   {
-    return isInvincible;
+    i = 0;
+    float timePassed = 0f;
+    Color startColor = sprite.color;
+    StartCoroutine(ColorDelay());
+    while (timePassed < waitTime)
+    {
+      sprite.color = Color.Lerp(sprite.color, colors[i % 6], waitTime * Time.deltaTime);
+      timePassed += Time.deltaTime;
+      yield return null;
+    }
+    StopCoroutine(ColorDelay());
+    sprite.color = startColor;
+    yield return null;
   }
   IEnumerator ColorDelay()
   {
@@ -406,6 +423,16 @@ public class PlayerMovement : MonoBehaviour
     i++;
     StartCoroutine(ColorDelay());
   }
+  #endregion
+  public bool GetIsInvincible()
+  {
+    return isInvincible;
+  }
+  public void SetIsInvincible(bool i)
+  {
+    isInvincible = i;
+  }
+
   #endregion
 
   //Indicator

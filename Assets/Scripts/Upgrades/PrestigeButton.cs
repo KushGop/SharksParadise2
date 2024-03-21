@@ -13,6 +13,7 @@ public class PrestigeButton : MonoBehaviour
   private void Start()
   {
     UpgradesManager.updateCosts += ChangeButton;
+    UpgradesManager.prestige += Disable;
     Disable();
     ChangeButton();
   }
@@ -46,11 +47,6 @@ public class PrestigeButton : MonoBehaviour
 
   public void ActivateButton()
   {
-    print("ACTIVATE PRESTIGE");
-    UpgradesManager.activateReward(UpgradesManager.rewards[RewardType.prestige].Item1, UpgradesManager.rewards[RewardType.prestige].Item2);
-    UpgradesManager.upgradesData.upgrades[UpgradeList.prestigeCount]++;
-    UpgradesManager.prestige();
-    Disable();
-    DataPersistenceManager.instance.SaveGame();
+    UpgradesManager.tryPrestige();
   }
 }

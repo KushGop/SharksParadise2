@@ -16,7 +16,8 @@ public class EatingHandler : MonoBehaviour
   private string fishType, fishName;
   private Transform otherTransform;
   private Identifier otherIdentifier;
-  [SerializeField] private CoinCounter coinCounter;
+  [SerializeField] private CurrencyCounter coinCounter;
+  [SerializeField] private CurrencyCounter gemCounter;
   [SerializeField] private GameObject deathScreen;
 
 
@@ -75,7 +76,7 @@ public class EatingHandler : MonoBehaviour
               MissionData.IncrementMission(MissionName.bigSharksEaten);
             }
             InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
-            otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
+            otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
             break;
           case "Food":
             InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
@@ -83,7 +84,7 @@ public class EatingHandler : MonoBehaviour
             break;
           case "Starfish":
             playerMovement.TriggerPower();
-            Destroy(other.gameObject);
+            otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
             MissionData.IncrementMission(MissionName.starfishesCollected);
             break;
         }
@@ -103,7 +104,7 @@ public class EatingHandler : MonoBehaviour
       Vector3 pos = otherTransform.position;
       if (fishName == "Bird")
       {
-        otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
+        otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
         EatEvent(fishName, otherIdentifier.value, pos);
         MissionData.IncrementMission(MissionName.birdsEaten);
       }
@@ -113,24 +114,24 @@ public class EatingHandler : MonoBehaviour
         EatEvent(fishName, otherIdentifier.value, pos);
       }
       //Slo-mo
-      else if (fishType == "Predator")
-      {
-        Time.timeScale = 0.6f;
-      }
+      //else if (fishType == "Predator")
+      //{
+      //  Time.timeScale = 0.6f;
+      //}
 
     }
   }
-  private void OnTriggerExit2D(Collider2D other)
-  {
-    //Slo-mo
-    otherTransform = other.transform;
-    otherIdentifier = otherTransform.GetComponent<Identifier>();
-    fishName = otherIdentifier.fishName;
-    if (fishType == "Predator" && playerMovement.GetIsJump())
-    {
-      Time.timeScale = 1f;
-    }
-  }
+  //private void OnTriggerExit2D(Collider2D other)
+  //{
+  //  //Slo-mo
+  //  otherTransform = other.transform;
+  //  otherIdentifier = otherTransform.GetComponent<Identifier>();
+  //  fishName = otherIdentifier.fishName;
+  //  if (fishType == "Predator" && playerMovement.GetIsJump())
+  //  {
+  //    Time.timeScale = 1f;
+  //  }
+  //}
   private void OnTriggerEnter2D(Collider2D other)
   {
     otherTransform = other.transform;
@@ -150,15 +151,15 @@ public class EatingHandler : MonoBehaviour
         if (!playerMovement.GetIsJump())
         {
           other.enabled = false;
+          playerMovement.Ink();
+          MissionData.IncrementMission(MissionName.timesInked);
         }
-        playerMovement.Ink();
-        MissionData.IncrementMission(MissionName.timesInked);
         break;
       case "Coin":
         if (!playerMovement.GetIsJump())
         {
           other.transform.GetComponent<CoinScript>().Collected();
-          coinCounter.AddCoin(1);
+          coinCounter.AddCurrency(Currency.Coin, 1);
           MissionData.IncrementMission(MissionName.coinsCollected);
         }
         break;
@@ -168,8 +169,17 @@ public class EatingHandler : MonoBehaviour
           //SloMo
           dodgeSound.Play();
           GameManager.dodgeHelper.Add(otherIdentifier.id);
-          Time.timeScale = 0.6f;
+          //Time.timeScale = 0.6f;
           MissionData.IncrementMission(MissionName.bigSharkDodges);
+        }
+        break;
+      case "Treasure":
+        if (!playerMovement.GetIsJump())
+        {
+          print("treasure!");
+          other.transform.GetComponent<Treasure>().Collected();
+          coinCounter.AddCurrency(Currency.Coin, 100);
+          gemCounter.AddCurrency(Currency.Gem, 1);
         }
         break;
     }

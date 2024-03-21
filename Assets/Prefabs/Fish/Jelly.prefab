@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 667742972956974229}
   - component: {fileID: 8272433217730604369}
   - component: {fileID: 5958852437556675930}
-  - component: {fileID: 5984320410391580190}
   m_Layer: 8
   m_Name: Jelly
   m_TagString: Prey
@@ -207,21 +206,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.16}
   serializedVersion: 2
   m_Radius: 0.61
---- !u!114 &5984320410391580190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030828680735082641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fishName: Jelly
-  fishType: Prey
-  value: 35
 --- !u!1 &3910238172743578002
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +299,7 @@ MonoBehaviour:
   fishName: Jelly
   fishType: Stun
   value: 0
+  id: 0
 --- !u!1001 &1473393235197045997
 PrefabInstance:
   m_ObjectHideFlags: 0
