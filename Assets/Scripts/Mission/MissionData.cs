@@ -28,10 +28,10 @@ public static class MissionData
     { new(0, MissionName.timesInked, 2, "Get inked {0} times") },
     { new(1, MissionName.birdsEaten, 5, "Eat {0} birds") },
     { new(2, MissionName.timesStung, 2, "Get stung {0} times") },
-    { new(3, MissionName.coinsCollected, 25, "Collect {0} coins") },
-    { new(4, MissionName.bigSharksEaten, 3, "Eat {0} big sharks") },
+    { new(3, MissionName.coinsCollected, 15, "Collect {0} coins") },
+    { new(4, MissionName.bigSharksEaten, 2, "Eat {0} big sharks") },
     { new(5, MissionName.starfishesCollected, 1, "Collect {0} starfish") },
-    { new(6, MissionName.multiplyerMax, 5, "Get a {0} combo") },
+    { new(6, MissionName.multiplyerMax, 4, "Get a {0}* combo") },
     { new(7, MissionName.treasureCollected, 1, "Collect {0} treasure chests") },
   };
 
