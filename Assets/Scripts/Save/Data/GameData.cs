@@ -18,10 +18,12 @@ public class GameData
   // the game starts with when there's no data to load
   public GameData()
   {
+
     totalCoins = 0;
     totalGems = 0;
     totalTokens = 0;
-    missionList = new Mission[3];
+        
+        missionList = new Mission[3];
     missionListName = new();
     upgradesData = new();
     for (int i = 0; i < 3; i++)

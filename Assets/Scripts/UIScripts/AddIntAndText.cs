@@ -26,6 +26,7 @@ public class AddIntAndText : MonoBehaviour
   {
     SetText();
     UpgradesManager.updateCosts += SetText;
+    
   }
 
   private void SetText()
