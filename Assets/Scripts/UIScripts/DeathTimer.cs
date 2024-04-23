@@ -58,15 +58,15 @@ public class DeathTimer : MonoBehaviour
     if (completed)
     {
       ContinueGame();
-      // coins += 100;
     }
   }
   public void ContinueGame()
   {
     StopAllCoroutines();
     availableCoins.text = GameManager.coins.ToString();
-    transform.parent.gameObject.SetActive(false);
     playerMovement.SetIsInvincible(true);
+    transform.parent.gameObject.SetActive(false);
+
     playercollider.enabled = true;
     playerMovement.TriggerPower(0);
     Time.timeScale = 1;
@@ -76,7 +76,7 @@ public class DeathTimer : MonoBehaviour
   {
     playerSprite.color = new Color(0, 0, 0, 0);
     playerColor.color = new Color(0, 0, 0, 0);
-    API.ShowInterstitial();
+    //API.ShowInterstitial();
     exitGame.ExitGameSequence();
     changeScene.ChangeSceneTo("Score");
   }

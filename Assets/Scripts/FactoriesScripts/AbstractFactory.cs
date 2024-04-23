@@ -71,16 +71,12 @@ public class AbstractFactory : MonoBehaviour
   //When enemy is eaten or is too far from the player, it is relocated on the map
   public virtual void UpdateObject(Transform o)
   {
-    if (o.CompareTag("Treasure"))
-      print("updateTreasure");
     UpdateOrigin();
     o.SetPositionAndRotation(SetPosition(), SetRotation());
   }
 
   public virtual void SpawnObject(Transform o)
   {
-    if (o.CompareTag("Treasure"))
-      print("spawnTreasure");
     //UpdateObject(o);
     if (isSpecial)
       StartCoroutine(DelaySpawn(o));

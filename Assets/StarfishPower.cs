@@ -16,7 +16,7 @@ public class StarfishPower : MonoBehaviour
   private void DisplayPower(int i)
   {
     text.enabled = true;
-    text.color = new Color(0, 0, 0, 255);
+    text.color = new Color(255, 255, 255, 255);
     text.text = GameManager.powers[i];
     StartCoroutine(Display());
   }
@@ -29,7 +29,7 @@ public class StarfishPower : MonoBehaviour
     for (float i = waitTime; i >= 0; i -= Time.deltaTime)
     {
       // set color with i as alpha
-      text.color = new Color(0, 0, 0, i);
+      text.color = new Color(255, 255, 255, i);
       yield return null;
     }
     text.enabled = false;

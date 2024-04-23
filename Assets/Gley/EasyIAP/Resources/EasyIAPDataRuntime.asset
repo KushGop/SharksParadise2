@@ -22,15 +22,159 @@ MonoBehaviour:
   useForMac: 0
   useForWindows: 0
   shopProducts:
-  - productName: StarterPack
-    productType: 0
-    idGooglePlay: starter_pack
+  - productName: StarterPackage
+    productType: 1
+    idGooglePlay: starter_package
     idAmazon: 
-    idIOS: starter_pack
+    idIOS: starter_package
     idMac: 
     idWindows: 
     value: 0
-    localizedPriceString: '-'
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: CircleOfJewels
+    productType: 0
+    idGooglePlay: gems_5
+    idAmazon: 
+    idIOS: gems_5
+    idMac: 
+    idWindows: 
+    value: 5
+    localizedPriceString: 0
     price: 0
-    isoCurrencyCode: 
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: SingleDiamond
+    productType: 0
+    idGooglePlay: one_diamond
+    idAmazon: 
+    idIOS: one_diamond
+    idMac: 
+    idWindows: 
+    value: 1
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: BejeweledCrown
+    productType: 0
+    idGooglePlay: fifteen_diamond
+    idAmazon: 
+    idIOS: fifteen_diamond
+    idMac: 
+    idWindows: 
+    value: 15
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: IcedOutShark
+    productType: 0
+    idGooglePlay: thirty_diamond
+    idAmazon: 
+    idIOS: thirty_diamond
+    idMac: 
+    idWindows: 
+    value: 30
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: LoneHeart
+    productType: 0
+    idGooglePlay: lives_1
+    idAmazon: 
+    idIOS: lives_1
+    idMac: 
+    idWindows: 
+    value: 1
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: SchoolOfHearts
+    productType: 0
+    idGooglePlay: five_lives
+    idAmazon: 
+    idIOS: five_lives
+    idMac: 
+    idWindows: 
+    value: 5
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: TrayOfLives
+    productType: 0
+    idGooglePlay: fifteen_lives
+    idAmazon: 
+    idIOS: fifteen_lives
+    idMac: 
+    idWindows: 
+    value: 15
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: BagOfLove
+    productType: 0
+    idGooglePlay: thirty_lives
+    idAmazon: 
+    idIOS: thirty_lives
+    idMac: 
+    idWindows: 
+    value: 30
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: SpareChange
+    productType: 0
+    idGooglePlay: coins_100
+    idAmazon: 
+    idIOS: coins_100
+    idMac: 
+    idWindows: 
+    value: 100
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: StackOfCoins
+    productType: 0
+    idGooglePlay: coins_1000
+    idAmazon: 
+    idIOS: coins_1000
+    idMac: 
+    idWindows: 
+    value: 1000
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: SuitcaseOfCoins
+    productType: 0
+    idGooglePlay: coins_5000
+    idAmazon: 
+    idIOS: coins_5000
+    idMac: 
+    idWindows: 
+    value: 5000
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
+    receipt: 
+  - productName: PotOfGold
+    productType: 0
+    idGooglePlay: coin_10000
+    idAmazon: 
+    idIOS: coin_10000
+    idMac: 
+    idWindows: 
+    value: 10000
+    localizedPriceString: $0.01
+    price: 0.01
+    isoCurrencyCode: USD
     receipt: 

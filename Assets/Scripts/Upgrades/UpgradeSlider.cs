@@ -24,6 +24,11 @@ public class UpgradeSlider : MonoBehaviour
     UpgradesManager.prestige += Reset;
     SetDescription();
   }
+  private void OnDestroy()
+  {
+    UpgradesManager.updateCosts -= UpdateVisuals;
+    UpgradesManager.prestige -= Reset;
+  }
 
   private void SetDescription()
   {

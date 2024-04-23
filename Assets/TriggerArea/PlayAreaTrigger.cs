@@ -12,7 +12,7 @@ public class PlayAreaTrigger : MonoBehaviour
     else if (list.spawnList.Contains(other.tag))
       if (other.CompareTag("Treasure"))
       {
-        if (other.transform.GetComponent<Treasure>().isCollected)
+        if (!other.transform.GetComponent<Treasure>().isCollected)
         {
           other.transform.parent.GetComponent<AbstractFactory>().UpdateObject(other.transform);
         }
