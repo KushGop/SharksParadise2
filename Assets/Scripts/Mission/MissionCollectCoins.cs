@@ -10,7 +10,7 @@ public class MissionCollectCoins : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D collision)
   {
-    ding.Play();
+    ding.PlayOneShot(ding.clip);
     coinCountUI.text = (int.Parse(coinCountUI.text) + 10).ToString();
     Destroy(collision.gameObject);
   }

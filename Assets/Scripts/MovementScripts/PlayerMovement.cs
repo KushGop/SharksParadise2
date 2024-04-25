@@ -60,7 +60,8 @@ public class PlayerMovement : MonoBehaviour
 
   [Header("Powers")]
   [SerializeField] private SpriteRenderer playerSprite;
-  [SerializeField] private SpriteRenderer boostSprite;
+  [SerializeField] private SpriteRenderer boostSpriteBottom;
+  [SerializeField] private SpriteRenderer boostSpriteTop;
   [SerializeField] private TextMeshProUGUI textColor;
 
   //Reset start position
@@ -352,7 +353,8 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(TextRotateColors(powerTime, textColor));
         break;
       case 2://Unlimited Boost
-        StartCoroutine(SpriteRotateColors(powerTime, boostSprite));
+        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteBottom));
+        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteTop));
         isUnlimitedBoost = true;
         break;
     }

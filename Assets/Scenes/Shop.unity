@@ -3664,6 +3664,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarterPackContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 4957424471080243059, guid: 3224117df8d11c54a8a99c6fe73ce0f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6171142154228521594, guid: 3224117df8d11c54a8a99c6fe73ce0f2, type: 3}
       propertyPath: m_text
       value: '1 prestige coin

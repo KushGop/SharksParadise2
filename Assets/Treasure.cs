@@ -6,6 +6,7 @@ public class Treasure : MonoBehaviour
 {
   [SerializeField] private Sprite openChest;
   [SerializeField] private SpriteRenderer chest;
+  [SerializeField] private AudioSource crateOpen;
 
   [SerializeField] private Collider2D collider2d;
   private Color newColor = new Color32(255, 255, 255, 0);
@@ -17,6 +18,7 @@ public class Treasure : MonoBehaviour
     isCollected = true;
     chest.sprite = openChest;
     collider2d.enabled = false;
+    crateOpen.Play();
     StartCoroutine(FadeAway());
   }
 

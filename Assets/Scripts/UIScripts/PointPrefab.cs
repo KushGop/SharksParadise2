@@ -2,33 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointPrefab : MonoBehaviour
 {
 
-  private TextMeshProUGUI text;
-  public Color newColor;
-  public float fadeTime = 0.1f;
-  public float upDistance = 0.2f;
+  [SerializeField] private TextMeshProUGUI text;
+  [SerializeField] private Image bubble;
+  [SerializeField] private CanvasGroup group;
+  private float fadeTime = 2.3f;
+  private float upDistance = 0.2f;
+
 
   // Start is called before the first frame update
   void Start()
   {
-    text = transform.GetComponent<TextMeshProUGUI>();
+    //text = transform.GetComponent<TextMeshProUGUI>();
     // Debug.Log(text.text);
     StartCoroutine(FadeOut());
   }
-  //note the change from 'void' to 'IEnumerator'
+
+  public void SetText(string t)
+  {
+    text.text = t;
+  }
+  public void SetBubbleColor(Color c)
+  {
+    bubble.color = c;
+  }
+
   IEnumerator FadeOut()
   {
-    //ugly while, Update would be ideal
-    while (text.color.a > 0.01)
+    float elaspedTime = 0f;
+    while (elaspedTime <= fadeTime)
     {
-      text.color = Color.Lerp(text.color, newColor, fadeTime * Time.deltaTime);
-      transform.position = Vector3.Lerp(transform.position,transform.position+(Vector3.up*upDistance),Time.deltaTime*fadeTime);
+      elaspedTime += Time.deltaTime;
+      group.alpha = Mathf.Lerp(1, 0, elaspedTime / fadeTime);
+      transform.position = Vector3.Lerp(transform.position, transform.position + (Vector3.up * upDistance), elaspedTime / fadeTime);
       yield return null;
     }
-    //code after fading is finished
     Destroy(gameObject);
   }
 }
