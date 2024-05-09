@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
   public PolygonCollider2D col;
   public PlayerStats stats;
   public SpriteRenderer color;
+  public SpriteRenderer glow0;
+  public SpriteRenderer glow1;
+  public SpriteRenderer glow2;
   public Transform splash;
   public Transform splashOffset;
   public Slider energySlider;
@@ -60,8 +63,10 @@ public class PlayerMovement : MonoBehaviour
 
   [Header("Powers")]
   [SerializeField] private SpriteRenderer playerSprite;
-  [SerializeField] private SpriteRenderer boostSpriteBottom;
-  [SerializeField] private SpriteRenderer boostSpriteTop;
+  [SerializeField] private SpriteRenderer boostSpriteBottomLeft;
+  [SerializeField] private SpriteRenderer boostSpriteBottomRight;
+  [SerializeField] private SpriteRenderer boostSpriteTopLeft;
+  [SerializeField] private SpriteRenderer boostSpriteTopRight;
   [SerializeField] private TextMeshProUGUI textColor;
 
   //Reset start position
@@ -98,7 +103,12 @@ public class PlayerMovement : MonoBehaviour
     spriteRenderer = transform.GetComponent<SpriteRenderer>();
     isInvincible = false;
     isUnlimitedBoost = false;
-
+    Color c = Color.green;
+    color.color = c;
+    c.a = 0.35f;
+    glow0.color = c;
+    glow1.color = c;
+    glow2.color = c;
 
 
 
@@ -112,6 +122,13 @@ public class PlayerMovement : MonoBehaviour
     playerInput.OnBoostPressed += BoostOn;
     playerInput.OnBoostReleased += BoostOff;
     playerInput.JumpPlayer += PlayerJump;
+  }
+  private void OnDestroy()
+  {
+    joystickInput.OnMove -= MovePlayer;
+    playerInput.OnBoostPressed -= BoostOn;
+    playerInput.OnBoostReleased -= BoostOff;
+    playerInput.JumpPlayer -= PlayerJump;
   }
 
   //Position, boost (UI, Refill, Drain)
@@ -340,12 +357,12 @@ public class PlayerMovement : MonoBehaviour
 
   IEnumerator PowerEvent(int power)
   {
-    GameManager.powerEvent(power);
+    GameManager.eventText(GameManager.powers[power], 3f);
     switch (power)
     {
       case 0://Invincible
         isInvincible = true;
-        UpdateEnemies("Prey");
+        //UpdateEnemies("Prey");
         StartCoroutine(SpriteRotateColors(powerTime, playerSprite));
         break;
       case 1://Double Points
@@ -353,17 +370,20 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(TextRotateColors(powerTime, textColor));
         break;
       case 2://Unlimited Boost
-        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteBottom));
-        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteTop));
+        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteBottomLeft));
+        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteBottomRight));
+        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteTopLeft));
+        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteTopRight));
         isUnlimitedBoost = true;
         break;
     }
-    yield return new WaitForSeconds(powerTime);
+    yield return new WaitForSeconds(powerTime + 0.1f);
+    print("Power end");
     switch (power)
     {
       case 0://Invincible
         isInvincible = false;
-        UpdateEnemies("Predator");
+        //UpdateEnemies("Predator");
         break;
       case 1://Double Points
         scoreHandler.starfishMultiplyer = 1;
@@ -374,16 +394,16 @@ public class PlayerMovement : MonoBehaviour
     }
   }
 
-  private void UpdateEnemies(string fishType)
-  {
-    foreach (GameObject enemy in enemies)
-    {
-      foreach (Transform e in enemy.transform)
-      {
-        e.GetComponent<Identifier>().fishType = fishType;
-      }
-    }
-  }
+  //private void UpdateEnemies(string fishType)
+  //{
+  //  foreach (GameObject enemy in enemies)
+  //  {
+  //    foreach (Transform e in enemy.transform)
+  //    {
+  //      e.GetComponent<Identifier>().fishType = fishType;
+  //    }
+  //  }
+  //}
 
   #region RotateColors
   IEnumerator SpriteRotateColors(float waitTime, SpriteRenderer sprite)
@@ -392,13 +412,21 @@ public class PlayerMovement : MonoBehaviour
     float timePassed = 0f;
     Color startColor = sprite.color;
     StartCoroutine(ColorDelay());
-    while (timePassed < waitTime)
+    while (timePassed < waitTime - 3)
     {
       sprite.color = Color.Lerp(sprite.color, colors[i % 6], waitTime * Time.deltaTime);
       timePassed += Time.deltaTime;
       yield return null;
     }
     StopCoroutine(ColorDelay());
+    for (int j = 0; j < 5; j++)
+    {
+      sprite.color = startColor;
+      yield return new WaitForSeconds(0.3f);
+      sprite.color = Color.red;
+      yield return new WaitForSeconds(0.3f);
+    }
+
     sprite.color = startColor;
     yield return null;
   }
@@ -409,13 +437,21 @@ public class PlayerMovement : MonoBehaviour
     float timePassed = 0f;
     Color startColor = sprite.color;
     StartCoroutine(ColorDelay());
-    while (timePassed < waitTime)
+    while (timePassed < waitTime - 3)
     {
       sprite.color = Color.Lerp(sprite.color, colors[i % 6], waitTime * Time.deltaTime);
       timePassed += Time.deltaTime;
       yield return null;
     }
     StopCoroutine(ColorDelay());
+    for (int j = 0; j < 5; j++)
+    {
+      sprite.color = startColor;
+      yield return new WaitForSeconds(0.3f);
+      sprite.color = Color.red;
+      yield return new WaitForSeconds(0.3f);
+    }
+
     sprite.color = startColor;
     yield return null;
   }
@@ -443,11 +479,21 @@ public class PlayerMovement : MonoBehaviour
     enemyCount = val ? enemyCount + 1 : enemyCount - 1;
     if (enemyCount == 0)
     {
-      color.color = Color.yellow;
+      Color c = Color.green;
+      color.color = c;
+      c.a = 0.35f;
+      glow0.color = c;
+      glow1.color = c;
+      glow2.color = c;
     }
     else if (enemyCount == 1)
     {
-      color.color = Color.red;
+      Color c = Color.red;
+      color.color = c;
+      c.a = 0.35f;
+      glow0.color = c;
+      glow1.color = c;
+      glow2.color = c;
     }
   }
 

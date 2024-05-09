@@ -10,6 +10,7 @@ public class GameData
   public int totalGems;
   public int totalTokens;
   public int highscore;
+  public int control;
   public Mission[] missionList;
   public List<MissionName> missionListName;
   public UpgradesData upgradesData;
@@ -22,8 +23,9 @@ public class GameData
     totalCoins = 0;
     totalGems = 0;
     totalTokens = 0;
-        
-        missionList = new Mission[3];
+    control = 0;
+
+    missionList = new Mission[3];
     missionListName = new();
     upgradesData = new();
     for (int i = 0; i < 3; i++)

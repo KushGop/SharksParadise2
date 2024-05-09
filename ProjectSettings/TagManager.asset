@@ -80,8 +80,20 @@ TagManager:
   - name: Jump
     uniqueID: 1383205115
     locked: 0
+  - name: Night
+    uniqueID: 3973107331
+    locked: 0
+  - name: Glow
+    uniqueID: 3609842009
+    locked: 0
   - name: Bird
     uniqueID: 5
+    locked: 0
+  - name: BirdNight
+    uniqueID: 3666584785
+    locked: 0
+  - name: BirdGlow
+    uniqueID: 698201931
     locked: 0
   - name: InkOverlay
     uniqueID: 2080521781

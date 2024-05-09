@@ -14,7 +14,9 @@ public class EnemyList : ScriptableObject
     "Starfish",
     "Food",
     "Squid",
-    "CoinFish"
+    "CoinFish",
+    "LightFish",
+    "BadLight"
   };
 
   readonly Dictionary<string, int> pointDictionary = new()
@@ -40,7 +42,9 @@ public class EnemyList : ScriptableObject
     "Eel",
     "MantaRay",
     "Squid",
-    "CoinFish"
+    "CoinFish",
+    "LightFish",
+    "BadLight"
   };
 
   readonly public List<string> playAreaList = new()
@@ -69,7 +73,9 @@ public class EnemyList : ScriptableObject
     { "SharkNet", 50 },
     { "Squid", 5 },
     { "CoinFish", 0 },
-    { "BigShark", 10 }
+    { "BigShark", 3 },
+    { "LightFish", 3 },
+    { "BadLight", 5 }
   };
 
   //Fishname : scaleModifier  USED FOR SKELETON
@@ -79,7 +85,9 @@ public class EnemyList : ScriptableObject
     { "BigShark", -1.5f },
     { "GoldFish", 1f },
     { "AngelFish", 2f },
-    { "CoinFish", 1f }
+    { "CoinFish", 1f },
+    { "LightFish", -3f },
+    { "BadLight", -4f }
   };
 }
 

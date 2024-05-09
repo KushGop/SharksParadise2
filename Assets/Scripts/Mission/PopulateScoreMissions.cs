@@ -20,6 +20,7 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
     }
     names = data.missionListName;
     GameManager.totalCoins = GameManager.coins + data.totalCoins;
+    GameManager.totalGems = GameManager.gems + data.totalGems;
     for (int i = 0; i < 3; i++)
     {
       missionItem = Instantiate(missionPrefab, transform);
@@ -55,6 +56,7 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
 
   public void SaveData(GameData data)
   {
+    data.totalGems = GameManager.totalGems;
     for (int i = 0; i < 3; i++)
     {
       if (data.missionList[i].isComplete)

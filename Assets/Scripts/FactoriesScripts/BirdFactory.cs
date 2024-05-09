@@ -6,16 +6,16 @@ public class BirdFactory : AbstractFactory
 {
   protected override void SetPreferences()
   {
-    sortingGroup.sortingLayerName = "Bird";
+    //sortingGroup.sortingLayerName = "Bird";
     newEnemy.transform.name = "Bird";
     newEnemy.transform.tag = "Prey";
     newEnemy.transform.localScale = new Vector3(-1, 1, 1) * (player.playerSize / 100);
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Bird";    
-    identifier.fishType = "Prey";    
-    identifier.value = 20;
+    identifier.fishName = "Bird";
+    identifier.fishType = "Prey";
+    identifier.value = value + Random.Range(lower, upper);
 
   }
-  
+
 }

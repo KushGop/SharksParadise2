@@ -14,7 +14,7 @@ public class EelFactory : AbstractFactory
 
     identifier.fishName = "Eel";
     identifier.fishType = "Prey";
-    identifier.value = 10 + Random.Range(1, 11);
+    identifier.value = value + Random.Range(lower, upper);
 
   }
 }

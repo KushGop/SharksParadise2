@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JellyFactory : AbstractFactory
 {
-    protected override void SetPreferences()
+  protected override void SetPreferences()
   {
     newEnemy.transform.name = "Jelly";
     newEnemy.transform.tag = "Prey";
@@ -12,8 +12,8 @@ public class JellyFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Jelly";    
-    identifier.fishType = "Prey";    
-    identifier.value = 20 +  Random.Range(1,9);
+    identifier.fishName = "Jelly";
+    identifier.fishType = "Prey";
+    identifier.value = value + Random.Range(lower, upper);
   }
 }

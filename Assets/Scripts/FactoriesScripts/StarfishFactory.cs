@@ -19,7 +19,7 @@ public class StarfishFactory : AbstractFactory
 
     identifier.fishName = "Starfish";
     identifier.fishType = "Starfish";
-    identifier.value = 0;
+    identifier.value = value;
 
   }
 }

@@ -20,6 +20,9 @@ public class UpgradesData
     upgrades.Add(UpgradeList.refillSpeed, 0);
     upgrades.Add(UpgradeList.refillDelay, 0);
 
+
+    //Prestige button
+    upgrades.Add(UpgradeList.prestigeCount, 0);
     //Don't reset on prestige
     //Gem Upgrades
     upgrades.Add(UpgradeList.treasureFrequency, 0);
@@ -40,7 +43,6 @@ public class UpgradesData
      * or prestige token
      */
 
-    upgrades.Add(UpgradeList.prestigeCount, 0);
     upgrades.Add(UpgradeList.greatCoinFishFrequency, 0);
     upgrades.Add(UpgradeList.greatStarfishFrequency, 0);
     upgrades.Add(UpgradeList.greatTreasureFrequency, 0);

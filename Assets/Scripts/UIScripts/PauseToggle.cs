@@ -35,5 +35,6 @@ public class PauseToggle : MonoBehaviour
   private void resumeGame()
   {
     Time.timeScale = 1;
+    DataPersistenceManager.instance.SaveGame();
   }
 }

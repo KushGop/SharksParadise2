@@ -19,6 +19,12 @@ public class AbstractFactory : MonoBehaviour
   protected Identifier identifier;
   protected SortingGroup sortingGroup;
 
+  [Header("Point stats")]
+  [SerializeField] protected int value;
+  [SerializeField] protected int lower;
+  [SerializeField] protected int upper;
+
+  [Space]
   //for special cases, coin fish, starfish, boat, etc.
   protected bool isSpecial = false;
   protected float spawnDelayTime;
@@ -42,8 +48,8 @@ public class AbstractFactory : MonoBehaviour
   {
     UpdateOrigin();
     newEnemy = Instantiate(enemy, SetPosition(), SetRotation(), transform);
-    sortingGroup = newEnemy.AddComponent<SortingGroup>();
-    sortingGroup.sortingLayerName = "Enemy";
+    //sortingGroup = newEnemy.AddComponent<SortingGroup>();
+    //sortingGroup.sortingLayerName = "Enemy";
     SetPreferences();
   }
 
@@ -94,6 +100,14 @@ public class AbstractFactory : MonoBehaviour
   //Set unique preferences
   protected virtual void SetPreferences()
   {
+  }
+  protected void IncreaseNumEnemy()
+  {
+    if (numEnemies < 10)
+    {
+      AddEnemy();
+      numEnemies++;
+    }
   }
 
 }

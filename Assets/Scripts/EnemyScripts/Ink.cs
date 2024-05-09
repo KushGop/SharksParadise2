@@ -42,7 +42,7 @@ public class Ink : MonoBehaviour
     float waitTime = 3f;
     while (sprite.color.a > 0.01)
     {
-      sprite.color = Color.Lerp(sprite.color, newColor, waitTime*Time.deltaTime);
+      sprite.color = Color.Lerp(sprite.color, newColor, waitTime * Time.deltaTime);
 
       yield return null;
     }

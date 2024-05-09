@@ -14,7 +14,7 @@ public class FlubFactory : AbstractFactory
 
     identifier.fishName = "Flub";
     identifier.fishType = "Prey";
-    identifier.value = 10 + Random.Range(1, 11);
+    identifier.value = value + Random.Range(lower, upper);
 
   }
 }

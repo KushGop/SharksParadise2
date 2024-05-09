@@ -36,7 +36,7 @@ public class CurrencyCounter : MonoBehaviour
         GameManager.gems += value;
         count.text = GameManager.gems.ToString();
       }
-      count.color = Color.black;
+      count.color = Color.white;
       icon.color = Color.white;
       seperator.color = Color.white;
       StartCoroutine(FadeOut());
@@ -47,13 +47,15 @@ public class CurrencyCounter : MonoBehaviour
   {
     yield return new WaitForSeconds(3f);
     float waitTime = 3f;
-
-    for (float i = waitTime; i >= 0; i -= Time.deltaTime)
+    float i;
+    Color c = new Color(255, 255, 255, 1);
+    for (i = waitTime; i >= 0; i -= Time.deltaTime)
     {
       // set color with i as alpha
-      count.color = new Color(0, 0, 0, i);
-      icon.color = new Color(255, 255, 255, i);
-      seperator.color = new Color(255, 255, 255, i);
+      c.a = i;
+      count.color = c;
+      icon.color = c;
+      seperator.color = c;
       yield return null;
     }
   }

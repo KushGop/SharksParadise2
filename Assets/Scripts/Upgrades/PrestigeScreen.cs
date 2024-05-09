@@ -11,6 +11,10 @@ public class PrestigeScreen : MonoBehaviour
     children.SetActive(false);
     UpgradesManager.tryPrestige += SetActive;
   }
+  private void OnDestroy()
+  {
+    UpgradesManager.tryPrestige -= SetActive;
+  }
 
   private void SetActive()
   {

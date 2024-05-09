@@ -8,14 +8,13 @@ public class SmallSharkFactory : AbstractFactory
   {
     newEnemy.transform.name = "SmallShark";
     newEnemy.transform.tag = "Prey";
-    newEnemy.transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.yellow;
-    newEnemy.transform.localScale = new Vector3(-1, 1, 1) * Random.Range(player.playerSize / 100 - sizeOffset, player.playerSize / 100);  
-    
+    newEnemy.transform.localScale = new Vector3(-1, 1, 1) * Random.Range(player.playerSize / 100 - sizeOffset, player.playerSize / 100);
+
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "SmallShark";    
-    identifier.fishType = "Prey";    
-    identifier.value =  50 +  Random.Range(1,9);
+    identifier.fishName = "SmallShark";
+    identifier.fishType = "Prey";
+    identifier.value = value + Random.Range(lower, upper);
 
   }
 

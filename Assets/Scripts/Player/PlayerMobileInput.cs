@@ -18,6 +18,10 @@ public class PlayerMobileInput : MonoBehaviour, IAgentInput
   {
     joystick.OnMove += Move;
   }
+  private void OnDestroy()
+  {
+    joystick.OnMove -= Move;
+  }
 
 
   //ONLY FOR TESTING WITH KEYBOARD
@@ -31,7 +35,8 @@ public class PlayerMobileInput : MonoBehaviour, IAgentInput
     {
       BoostReleased();
     }
-    if (Input.GetKeyDown(KeyCode.LeftShift)){
+    if (Input.GetKeyDown(KeyCode.LeftShift))
+    {
       JumpPressed();
     }
   }
@@ -41,7 +46,7 @@ public class PlayerMobileInput : MonoBehaviour, IAgentInput
   {
     MovementVector = input;
     OnMovement?.Invoke(MovementVector);
-    }
+  }
 
   public void BoostPressed()
   {
@@ -53,7 +58,8 @@ public class PlayerMobileInput : MonoBehaviour, IAgentInput
     OnBoostReleased?.Invoke();
   }
 
-  public void JumpPressed(){
+  public void JumpPressed()
+  {
     JumpPlayer?.Invoke();
   }
 

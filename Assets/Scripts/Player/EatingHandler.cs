@@ -54,41 +54,51 @@ public class EatingHandler : MonoBehaviour
 
     if (!playerMovement.GetIsJump())
     {
+      Vector3 pos = other.transform.position;
       if (fishType == "Predator")
       {
-        Debug.Log("Death");
-        Time.timeScale = 0;
-        transform.GetComponent<PolygonCollider2D>().enabled = false;
-        deathScreen.SetActive(true);
+        print("IsInvincible: " + playerMovement.GetIsInvincible());
+        if (playerMovement.GetIsInvincible())
+        {
+          MissionData.IncrementMission(MissionName.bigSharksEaten);
+          InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
+          otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
+          EatEvent(fishName, otherIdentifier.value, pos);
+        }
+        else
+        {
+          Debug.Log("Death");
+          Time.timeScale = 0;
+          transform.GetComponent<PolygonCollider2D>().enabled = false;
+          deathScreen.SetActive(true);
+        }
       }
       else if (fishType == "Object")
       {
       }
       else
       {
-        Vector3 pos = other.transform.position;
-
         switch (fishType)
         {
           case "Prey":
-            if (fishName == "BigShark")
-            {
-              MissionData.IncrementMission(MissionName.bigSharksEaten);
-            }
+            if (fishName == "CoinFish")
+              coinCounter.AddCurrency(Currency.Coin, 20);
             InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
             otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
+            EatEvent(fishName, otherIdentifier.value, pos);
             break;
           case "Food":
             InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
             Destroy(other.gameObject);
+            EatEvent(fishName, otherIdentifier.value, pos);
             break;
           case "Starfish":
             playerMovement.TriggerPower();
             otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
             MissionData.IncrementMission(MissionName.starfishesCollected);
+            munchSounds.playMunch();
             break;
         }
-        EatEvent(fishName, otherIdentifier.value, pos);
       }
     }
   }
@@ -141,15 +151,18 @@ public class EatingHandler : MonoBehaviour
     switch (fishType)
     {
       case "Stun":
-        if (!playerMovement.GetIsJump())
+        if (!playerMovement.GetIsJump() && !playerMovement.GetIsInvincible())
         {
+          GameManager.eventText("Stung", 1f);
+          GameManager.stung();
           playerMovement.Stun();
           MissionData.IncrementMission(MissionName.timesStung);
         }
         break;
       case "Ink":
-        if (!playerMovement.GetIsJump())
+        if (!playerMovement.GetIsJump() && !playerMovement.GetIsInvincible())
         {
+          GameManager.eventText("Inked", 1f);
           other.enabled = false;
           playerMovement.Ink();
           MissionData.IncrementMission(MissionName.timesInked);
@@ -177,6 +190,7 @@ public class EatingHandler : MonoBehaviour
         if (!playerMovement.GetIsJump())
         {
           print("treasure!");
+          MissionData.IncrementMission(MissionName.treasureCollected);
           other.transform.GetComponent<Treasure>().Collected();
           coinCounter.AddCurrency(Currency.Coin, 100);
           gemCounter.AddCurrency(Currency.Gem, 1);

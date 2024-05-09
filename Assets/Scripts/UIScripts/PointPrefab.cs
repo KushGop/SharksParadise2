@@ -10,8 +10,7 @@ public class PointPrefab : MonoBehaviour
   [SerializeField] private TextMeshProUGUI text;
   [SerializeField] private Image bubble;
   [SerializeField] private CanvasGroup group;
-  private float fadeTime = 2.3f;
-  private float upDistance = 0.2f;
+  private float fadeTime = 1f;
 
 
   // Start is called before the first frame update
@@ -36,9 +35,12 @@ public class PointPrefab : MonoBehaviour
     float elaspedTime = 0f;
     while (elaspedTime <= fadeTime)
     {
-      elaspedTime += Time.deltaTime;
-      group.alpha = Mathf.Lerp(1, 0, elaspedTime / fadeTime);
-      transform.position = Vector3.Lerp(transform.position, transform.position + (Vector3.up * upDistance), elaspedTime / fadeTime);
+      if (Time.timeScale != 0)
+      {
+        elaspedTime += Time.deltaTime;
+        group.alpha = Mathf.Lerp(1, 0, elaspedTime / fadeTime);
+        //transform.position = Vector3.Lerp(transform.position, transform.position + (Vector3.up * upDistance), elaspedTime / fadeTime);
+      }
       yield return null;
     }
     Destroy(gameObject);

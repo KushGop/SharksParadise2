@@ -27,7 +27,7 @@ public class BlinkScript : MonoBehaviour
       for (float i = 1; i >= 0; i -= Time.deltaTime)
       {
         // set color with i as alpha
-        text.color = new Color(0, 0, 0, i);
+        text.color = new Color(255, 255, 255, i);
         yield return null;
       }
     }
@@ -38,7 +38,7 @@ public class BlinkScript : MonoBehaviour
       for (float i = 0; i <= 1; i += Time.deltaTime)
       {
         // set color with i as alpha
-        text.color = new Color(0, 0, 0, i);
+        text.color = new Color(255, 255, 255, i);
         yield return null;
       }
     }

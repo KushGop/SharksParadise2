@@ -17,6 +17,11 @@ public class PrestigeButton : MonoBehaviour
     Disable();
     ChangeButton();
   }
+  private void OnDestroy()
+  {
+    UpgradesManager.updateCosts -= ChangeButton;
+    UpgradesManager.prestige -= Disable;
+  }
 
   public void ChangeButton()
   {

@@ -62,13 +62,16 @@ public class DeathTimer : MonoBehaviour
   }
   public void ContinueGame()
   {
-    StopAllCoroutines();
-    availableCoins.text = GameManager.coins.ToString();
     playerMovement.SetIsInvincible(true);
-    transform.parent.gameObject.SetActive(false);
-
-    playercollider.enabled = true;
+    StopAllCoroutines();
     playerMovement.TriggerPower(0);
+
+
+
+    availableCoins.text = GameManager.coins.ToString();
+    transform.parent.gameObject.SetActive(false);
+    playercollider.enabled = true;
+
     Time.timeScale = 1;
   }
 

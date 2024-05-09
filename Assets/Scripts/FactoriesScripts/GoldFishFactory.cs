@@ -14,7 +14,7 @@ public class GoldFishFactory : AbstractFactory
 
     identifier.fishName = "GoldFish";
     identifier.fishType = "Prey";
-    identifier.value = 10 + Random.Range(1, 11);
+    identifier.value = value + Random.Range(lower, upper);
 
   }
 }

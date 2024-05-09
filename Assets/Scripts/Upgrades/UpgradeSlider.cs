@@ -54,16 +54,16 @@ public class UpgradeSlider : MonoBehaviour
         des = "Decrease refill delay";
         break;
       case 10:
-        des = "Slightly Increase treasure spawn Rate";
+        des = "Increase treasure spawn Rate";
         break;
       case 11:
-        des = "Slightly Increase starfish spawn rate";
+        des = "Increase starfish spawn rate";
         break;
       case 12:
         des = "Increase warning radius";
         break;
       case 13:
-        des = "Slightly Increase coin fish fequency";
+        des = "Increase coin fish frequency";
         break;
       case 14:
         des = "Increase power up time";
@@ -78,7 +78,7 @@ public class UpgradeSlider : MonoBehaviour
         des = "greatly Increase treasure spawn Rate";
         break;
       case 23:
-        des = "greatly Increase coin fish fequency";
+        des = "greatly Increase coin fish frequency";
         break;
     }
     description.text = des;

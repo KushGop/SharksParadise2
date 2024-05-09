@@ -12,6 +12,10 @@ public class SpawnMission : MonoBehaviour
     MissionManager.MissionCompletionDelegate += CompleteMission;
     StartCoroutine(StartSequence());
   }
+  private void OnDestroy()
+  {
+    MissionManager.MissionCompletionDelegate -= CompleteMission;
+  }
 
   private IEnumerator StartSequence()
   {

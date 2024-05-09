@@ -14,15 +14,13 @@ public class PopulateUpgradeSlider : MonoBehaviour
   {
     foreach (KeyValuePair<UpgradeList, int> pair in UpgradesManager.upgradesData.upgrades)
     {
-      if ((ushort)pair.Key != 20)
-      {
-        InstatiateSlider(pair);
-      }
-      else
+      if ((ushort)pair.Key == 20) continue;
+      if ((ushort)pair.Key == 10)
       {
         GameObject pButton = Instantiate(prestigeButton, transform);
         Instantiate(empty, transform);
       }
+      InstatiateSlider(pair);
     }
     void InstatiateSlider(KeyValuePair<UpgradeList, int> pair)
     {
