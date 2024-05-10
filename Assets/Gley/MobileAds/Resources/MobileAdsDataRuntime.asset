@@ -52,39 +52,39 @@ MonoBehaviour:
       debugGeography: 0
     directedForChildren: 0
   iOSAdvertiser:
-    advertiser: 0
+    advertiser: 20
     platformSettings:
-      platform: 0
-      enabled: 0
+      platform: 1
+      enabled: 1
       appId:
-        id: 
-        displayName: 
-        required: 0
+        id: ca-app-pub-7719471920386543~1622398738
+        displayName: App ID
+        required: 1
       idBanner:
-        id: 
-        displayName: 
-        required: 0
+        id: ca-app-pub-7719471920386543/2903690811
+        displayName: Banner ID
+        required: 1
       idMRec:
         id: 
-        displayName: 
-        required: 0
+        displayName: MRec ID
+        required: 1
       idInterstitial:
-        id: 
-        displayName: 
-        required: 0
+        id: ca-app-pub-7719471920386543/5529854152
+        displayName: Interstitial ID
+        required: 1
       idRewarded:
-        id: 
-        displayName: 
-        required: 0
+        id: ca-app-pub-7719471920386543/5663368484
+        displayName: Rewarded Video ID
+        required: 1
       idRewardedInterstitial:
         id: 
-        displayName: 
-        required: 0
+        displayName: Rewarded Interstitial ID
+        required: 1
       idOpenApp:
         id: 
-        displayName: 
-        required: 0
-      testMode: 0
+        displayName: App Open ID
+        required: 1
+      testMode: 1
       testDevice: 
       debugGeography: 0
     directedForChildren: 0
