@@ -9,26 +9,27 @@ public class ExtraLiveButton : MonoBehaviour
 
   [SerializeField] private Button button;
   [SerializeField] private TextMeshProUGUI buttonText;
-  [SerializeField] private TextMeshProUGUI coinText;
+  //[SerializeField] private TextMeshProUGUI coinText;
+  //[SerializeField] private CanvasGroup group;
+  [SerializeField] private CurrencyCounter coins;
   [SerializeField] private DeathTimer timer;
   private int reviveCost = 100;
   private int reviveCount = 1;
 
   private void Start()
   {
-    reviveCost = 100;
-    reviveCount = 1;
+    reviveCost = 50;
+    reviveCount = 2;
   }
 
   private void OnEnable()
   {
-    print(reviveCost);
-    print(reviveCount);
-    buttonText.text = "Use " + (reviveCost * reviveCount).ToString() + " coins";
-    if (GameManager.totalCoins + GameManager.coins >= reviveCost * reviveCount)
+    reviveCost *= reviveCount;
+    buttonText.text = "Use " + (reviveCost).ToString() + " coins";
+    coins.group.alpha = 1;
+    coins.count.text = (GameManager.totalCoins + GameManager.coins).ToString();
+    if (GameManager.totalCoins + GameManager.coins >= reviveCost)
     {
-      //TODO - show total coins
-      //coinText.text = (GameManager.totalCoins + GameManager.coins).ToString();
       button.interactable = true;
     }
     else
@@ -39,15 +40,14 @@ public class ExtraLiveButton : MonoBehaviour
 
   public void UseExtraLife()
   {
-    GameManager.totalCoins -= reviveCost * reviveCount;
+    int value = 0;
+    GameManager.totalCoins -= reviveCost;
     if (GameManager.totalCoins < 0)
     {
-      GameManager.coins -= Mathf.Abs(GameManager.totalCoins);
+      value = Mathf.Abs(GameManager.totalCoins);
       GameManager.totalCoins = 0;
     }
-    //SaveSystem.SaveData(new(GameManager.totalCoins, GameManager.score));
-    coinText.text = GameManager.coins.ToString();
+    coins.AddCurrency(Currency.Coin, -value);
     timer.ContinueGame();
-    reviveCount++;
   }
 }

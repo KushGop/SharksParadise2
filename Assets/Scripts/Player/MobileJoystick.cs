@@ -16,7 +16,7 @@ public class MobileJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IP
   public event Action<Vector2> OnMove;
   public float offsetDivider;
   private Vector2 pivotPoint;
-  private Vector3 origin,test;
+  private Vector3 origin, test;
 
   private void Update()
   {

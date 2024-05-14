@@ -5,9 +5,13 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+  [Header("Controls")]
+  [SerializeField] private ControlToggle controlManager;
+  private Control controlRight;
+  private Control controlLeft;
+  [Space]
   //class variables
   [Header("Objects")]
-  public MobileJoystick joystickInput;
   public PlayerMobileInput playerInput;
   public Rigidbody2D rb2d;
   public Animator anim;
@@ -63,10 +67,6 @@ public class PlayerMovement : MonoBehaviour
 
   [Header("Powers")]
   [SerializeField] private SpriteRenderer playerSprite;
-  [SerializeField] private SpriteRenderer boostSpriteBottomLeft;
-  [SerializeField] private SpriteRenderer boostSpriteBottomRight;
-  [SerializeField] private SpriteRenderer boostSpriteTopLeft;
-  [SerializeField] private SpriteRenderer boostSpriteTopRight;
   [SerializeField] private TextMeshProUGUI textColor;
 
   //Reset start position
@@ -80,9 +80,9 @@ public class PlayerMovement : MonoBehaviour
     //upgrades
     baseSpeed = 5 + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
     boostSpeed = 2 + (UpgradesManager.upgradesData.upgrades[UpgradeList.boostSpeed] * 0.1f);
-    boostCost = 5 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
+    boostCost = 10 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
     jumpCost = 10 - (UpgradesManager.upgradesData.upgrades[UpgradeList.jumpCost] * 0.1f);
-    refillSpeed = 40 + (UpgradesManager.upgradesData.upgrades[UpgradeList.refillSpeed] * 0.1f);
+    refillSpeed = 30 + (UpgradesManager.upgradesData.upgrades[UpgradeList.refillSpeed] * 0.1f);
     refillDelay = 2 - (UpgradesManager.upgradesData.upgrades[UpgradeList.refillDelay] * 0.1f);
     powerTime = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.powerTime] * 0.1f);
 
@@ -111,21 +111,24 @@ public class PlayerMovement : MonoBehaviour
     glow2.color = c;
 
 
-
+    controlRight = controlManager.controlRight;
+    controlLeft = controlManager.controlLeft;
 
     colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
 
 
 
     //events
-    joystickInput.OnMove += MovePlayer;
+    controlLeft.mobileJoystick.OnMove += MovePlayer;
+    controlRight.mobileJoystick.OnMove += MovePlayer;
     playerInput.OnBoostPressed += BoostOn;
     playerInput.OnBoostReleased += BoostOff;
     playerInput.JumpPlayer += PlayerJump;
   }
   private void OnDestroy()
   {
-    joystickInput.OnMove -= MovePlayer;
+    controlLeft.mobileJoystick.OnMove -= MovePlayer;
+    controlRight.mobileJoystick.OnMove -= MovePlayer;
     playerInput.OnBoostPressed -= BoostOn;
     playerInput.OnBoostReleased -= BoostOff;
     playerInput.JumpPlayer -= PlayerJump;
@@ -142,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
       {
         energyAmount = 0;
         BoostOff();
+        playerInput.BoostReleased();
       }
     }
     else
@@ -370,10 +374,10 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(TextRotateColors(powerTime, textColor));
         break;
       case 2://Unlimited Boost
-        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteBottomLeft));
-        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteBottomRight));
-        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteTopLeft));
-        StartCoroutine(SpriteRotateColors(powerTime, boostSpriteTopRight));
+        StartCoroutine(SpriteRotateColors(powerTime, controlLeft.boostSpriteBottom));
+        StartCoroutine(SpriteRotateColors(powerTime, controlLeft.boostSpriteTop));
+        StartCoroutine(SpriteRotateColors(powerTime, controlRight.boostSpriteTop));
+        StartCoroutine(SpriteRotateColors(powerTime, controlRight.boostSpriteBottom));
         isUnlimitedBoost = true;
         break;
     }

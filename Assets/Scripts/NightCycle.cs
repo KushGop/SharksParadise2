@@ -27,12 +27,12 @@ public class NightCycle : MonoBehaviour
 
     //night
     GameManager.switchToNight();
-    StartCoroutine(FadeNight(0, 1));
+    StartCoroutine(FadeNight(0, 0.9f));
     yield return new WaitForSeconds(dayTime);
     //day
     GameManager.day++;
     GameManager.switchToDay();
-    StartCoroutine(FadeNight(1, 0));
+    StartCoroutine(FadeNight(0.9f, 0));
     StartCoroutine(CycleDays());
   }
   IEnumerator FadeNight(float start, float end)

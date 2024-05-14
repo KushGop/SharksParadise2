@@ -8,7 +8,7 @@ public class CurrencyCounter : MonoBehaviour
 {
   public TextMeshProUGUI count;
   public Image icon, seperator;
-  private Color newColor = Color.clear;
+  public CanvasGroup group;
   public Currency c;
 
   // Start is called before the first frame update
@@ -36,9 +36,7 @@ public class CurrencyCounter : MonoBehaviour
         GameManager.gems += value;
         count.text = GameManager.gems.ToString();
       }
-      count.color = Color.white;
-      icon.color = Color.white;
-      seperator.color = Color.white;
+      group.alpha = 1;
       StartCoroutine(FadeOut());
     }
   }
@@ -48,15 +46,12 @@ public class CurrencyCounter : MonoBehaviour
     yield return new WaitForSeconds(3f);
     float waitTime = 3f;
     float i;
-    Color c = new Color(255, 255, 255, 1);
     for (i = waitTime; i >= 0; i -= Time.deltaTime)
     {
       // set color with i as alpha
-      c.a = i;
-      count.color = c;
-      icon.color = c;
-      seperator.color = c;
+      group.alpha = i / waitTime;
       yield return null;
     }
+    group.alpha = 0;
   }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ControlToggle : MonoBehaviour
 {
-  [SerializeField] GameObject left;
-  [SerializeField] GameObject right;
+  public Control controlLeft;
+  public Control controlRight;
 
   void Start()
   {
@@ -22,13 +22,13 @@ public class ControlToggle : MonoBehaviour
   {
     if (GameManager.control == 0)
     {
-      right.SetActive(true);
-      left.SetActive(false);
+      controlRight.control.SetActive(true);
+      controlLeft.control.SetActive(false);
     }
     else if (GameManager.control == 1)
     {
-      right.SetActive(false);
-      left.SetActive(true);
+      controlLeft.control.SetActive(true);
+      controlRight.control.SetActive(false);
     }
   }
 }

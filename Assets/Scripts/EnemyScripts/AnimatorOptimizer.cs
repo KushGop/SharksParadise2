@@ -9,19 +9,19 @@ public class AnimatorOptimizer : MonoBehaviour
   public Animator animator;
   // private float speed;
 
-  private void Start() {
+  private void Start()
+  {
     // speed = animator.speed;
-    // spriteRenderer.enabled = false;
+    //spriteRenderer.enabled = false;
     animator.enabled = false;
   }
 
   private void OnBecameVisible()
   {
-    // spriteRenderer.enabled = true;
     animator.enabled = true;
   }
-  private void OnBecameInvisible() {
-    // spriteRenderer.enabled = false;
+  private void OnBecameInvisible()
+  {
     animator.enabled = false;
   }
 }

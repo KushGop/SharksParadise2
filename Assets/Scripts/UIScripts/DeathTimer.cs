@@ -8,7 +8,7 @@ public class DeathTimer : MonoBehaviour
 {
 
   [SerializeField] private TextMeshProUGUI count;
-  [SerializeField] private TextMeshProUGUI availableCoins;
+  //[SerializeField] private TextMeshProUGUI availableCoins;
   [SerializeField] private ChangeScene changeScene;
   [SerializeField] private ExitGame exitGame;
   [SerializeField] private PolygonCollider2D playercollider;
@@ -26,7 +26,6 @@ public class DeathTimer : MonoBehaviour
   private void OnEnable()
   {
     count.text = countdownTime.ToString();
-    availableCoins.text = (GameManager.coins + GameManager.totalCoins).ToString();
     startTime = countdownTime;
     StartCoroutine(CountDown());
   }
@@ -66,9 +65,6 @@ public class DeathTimer : MonoBehaviour
     StopAllCoroutines();
     playerMovement.TriggerPower(0);
 
-
-
-    availableCoins.text = GameManager.coins.ToString();
     transform.parent.gameObject.SetActive(false);
     playercollider.enabled = true;
 

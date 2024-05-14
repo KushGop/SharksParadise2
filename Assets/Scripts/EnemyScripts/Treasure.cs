@@ -16,6 +16,7 @@ public class Treasure : MonoBehaviour
   private void OnEnable()
   {
     chest.color = Color.white;
+    collider2d.enabled = true;
     chest.sprite = closedChest;
   }
 
