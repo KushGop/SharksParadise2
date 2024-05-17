@@ -6,9 +6,18 @@ using TMPro;
 
 public class PurchaseButton : MonoBehaviour, IDataPersistence
 {
+  private enum ShopType
+  {
+    COIN,
+    DIAMOND,
+    PRESTIGE,
+    STARTER
+  }
+
   [SerializeField] ShopProductNames productName;
   [SerializeField] TextMeshProUGUI priceText;
-  bool removeAds;
+  [SerializeField] private ShopType shopType;
+  //bool removeAds;
 
   private void Start()
   {
@@ -59,7 +68,7 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
       //since all consumable products reward the same coin, a simple type check is enough 
       if (product.productType == ProductType.NonConsumable)
       {
-        if (product.productName == "StarterPack")
+        if (shopType == ShopType.STARTER)
         {
           Debug.Log("PackCoins " + GameManager.totalCoins);
 
@@ -71,16 +80,17 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
       }
       else if (product.productType == ProductType.Consumable)
       {
-        string[] consumable = product.productName.Split("_");
-        switch (consumable[0])
+        //string[] consumable = product.productName.Split("_");
+        //print(consumable);
+        switch (shopType)
         {
-          case "coins":
+          case ShopType.COIN:
             AddCoin(product.value);
             break;
-          case "gems":
+          case ShopType.DIAMOND:
             AddGem(product.value);
             break;
-          case "lives":
+          case ShopType.PRESTIGE:
             break;
         }
       }
@@ -89,11 +99,15 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
       UpgradesManager.updateCosts(); //update ui
       Debug.Log("After purchase PackCoins " + GameManager.totalCoins);
 
-      if (product.productName == "RemoveAds")
-      {
-        removeAds = true;
-        //disable ads here
-      }
+      //if (product.productName == "RemoveAds")
+      //{
+      //  removeAds = true;
+      //  //disable ads here
+      //}
+    }
+    else if (status == IAPOperationStatus.Fail)
+    {
+      print("Purchase Failed");
     }
   }
 
@@ -106,11 +120,11 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
   {
     if (status == IAPOperationStatus.Success)
     {
-      if (product.productName == "RemoveAds")
-      {
-        removeAds = true;
-        //disable ads here
-      }
+      //if (product.productName == "RemoveAds")
+      //{
+      //  removeAds = true;
+      //  //disable ads here
+      //}
     }
     else
     {

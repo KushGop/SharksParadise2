@@ -10,14 +10,31 @@ public class NightCycle : MonoBehaviour
 
   [SerializeField] CanvasGroup group0;
   [SerializeField] CanvasGroup group1;
-
+  [SerializeField] bool tut;
   void Start()
   {
     fadeTime = 3f;
     group0.alpha = 0;
     group1.alpha = 0;
+    GameManager.switchToNight += FadeIn;
+    GameManager.switchToDay += FadeOut;
     dayTime = GameManager.dayCycleTime;
-    StartCoroutine(CycleDays());
+    if (!tut)
+      StartCoroutine(CycleDays());
+  }
+  private void OnDestroy()
+  {
+    GameManager.switchToNight -= FadeIn;
+    GameManager.switchToDay -= FadeOut;
+  }
+
+  public void FadeIn()
+  {
+    StartCoroutine(FadeNight(0, 0.9f));
+  }
+  public void FadeOut()
+  {
+    StartCoroutine(FadeNight(0.9f, 0));
   }
 
   IEnumerator CycleDays()
@@ -27,12 +44,10 @@ public class NightCycle : MonoBehaviour
 
     //night
     GameManager.switchToNight();
-    StartCoroutine(FadeNight(0, 0.9f));
     yield return new WaitForSeconds(dayTime);
     //day
     GameManager.day++;
     GameManager.switchToDay();
-    StartCoroutine(FadeNight(0.9f, 0));
     StartCoroutine(CycleDays());
   }
   IEnumerator FadeNight(float start, float end)

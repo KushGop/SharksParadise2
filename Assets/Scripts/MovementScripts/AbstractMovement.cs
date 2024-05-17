@@ -23,17 +23,18 @@ public class AbstractMovement : MonoBehaviour
   //FIX UPDATE, EXPENSIVE FOR NO REASON, LINE 28 & 29
   protected virtual void Update()
   {
+    Move();
     if (isTriggered)
     {
-      Move();
+      //Move();
       Vector3 relativePos = fishType == "Predator" ? player.playerPosition - transform.position : transform.position - player.playerPosition;
       float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
       RotateEnemy(angle);
     }
-    else
-    {
-      Move();
-    }
+    //else
+    //{
+
+    //}
   }
 
   protected virtual void Move()

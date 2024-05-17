@@ -5,7 +5,7 @@ using UnityEngine;
 public class StarfishScript : MonoBehaviour
 {
 
-  [SerializeField] private Color[] colors;
+  private Color[] colors;
   private int i;
   [SerializeField] SpriteRenderer sprite;
   [SerializeField] SpriteRenderer glow;
@@ -13,6 +13,7 @@ public class StarfishScript : MonoBehaviour
 
   private void Start()
   {
+    colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
     StartCoroutine(SpriteRotateColors());
   }
 
@@ -33,7 +34,7 @@ public class StarfishScript : MonoBehaviour
 
   IEnumerator ColorDelay()
   {
-    yield return new WaitForSeconds(0.2f);
+    yield return new WaitForSeconds(0.3f);
     i++;
     StartCoroutine(ColorDelay());
   }

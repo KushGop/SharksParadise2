@@ -12,7 +12,7 @@ public static class GameManager
   public static Mission[] missionList = new Mission[3];
   public static List<int> dodgeHelper = new();
 
-  public static readonly float dayCycleTime = 30f;
+  public static readonly float dayCycleTime = 40f;
   public static int day = 1;
 
   public delegate void Power(string text, float waitTime);

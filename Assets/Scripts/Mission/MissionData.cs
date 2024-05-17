@@ -42,11 +42,14 @@ public static class MissionData
 
   public static void IncrementMission(MissionName name)
   {
-    missionDictionary[name]++;
-    //Debug.Log("Mission Name:" + name + "  Count: " + missionDictionary[name]);
-    if (missionDictionary.ContainsKey(name))
+    if (!TutorialManager.isInTutorial)
     {
-      MissionDelegate(name, missionDictionary[name]);
+      missionDictionary[name]++;
+      //Debug.Log("Mission Name:" + name + "  Count: " + missionDictionary[name]);
+      if (missionDictionary.ContainsKey(name))
+      {
+        MissionDelegate(name, missionDictionary[name]);
+      }
     }
   }
 

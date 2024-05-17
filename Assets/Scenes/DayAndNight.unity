@@ -189,6 +189,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1880935543}
+  - {fileID: 1199328430}
   m_Father: {fileID: 185188434}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -241,6 +242,9 @@ MonoBehaviour:
   enemy: {fileID: 6771334235839270525, guid: 1e30f0e00b95796468e43ce144aa530f, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!4 &82633939
 Transform:
   m_ObjectHideFlags: 0
@@ -305,6 +309,9 @@ MonoBehaviour:
   enemy: {fileID: 1482236928047527574, guid: 3adbaec163161f94ca264e3b22b33ce9, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!210 &86949371
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -314,7 +321,7 @@ SortingGroup:
   m_GameObject: {fileID: 86949367}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &87551339
@@ -359,7 +366,7 @@ SortingGroup:
   m_GameObject: {fileID: 87551339}
   m_Enabled: 1
   m_SortingLayerID: 1999884749
-  m_SortingLayer: -18
+  m_SortingLayer: -20
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &87551342
@@ -378,6 +385,9 @@ MonoBehaviour:
   enemy: {fileID: 674566900302869769, guid: ae6a29904c6b1e24589a1cad26004ce7, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!1 &93105436
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +727,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -321859965
-  m_SortingLayer: -11
+  m_SortingLayer: -10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3e6900f09267ddd4a85f8c75e97b802b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1668,6 +1678,7 @@ MonoBehaviour:
   count: {fileID: 2052490119}
   icon: {fileID: 1389603974}
   seperator: {fileID: 2043590585}
+  group: {fileID: 0}
   c: 0
 --- !u!1 &399573230
 GameObject:
@@ -2054,6 +2065,9 @@ MonoBehaviour:
   enemy: {fileID: 2188907405217074925, guid: 05b78dce4d1d7ec4ebdfae1c2e811a30, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!1 &446411411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,6 +2901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 325987892}
+  displayText: 0
 --- !u!1 &542869042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,6 +2936,9 @@ MonoBehaviour:
   enemy: {fileID: 738650125920437243, guid: 613ff47e2dbebd742bea32c2da7c6dd7, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!4 &542869044
 Transform:
   m_ObjectHideFlags: 0
@@ -2945,7 +2963,7 @@ SortingGroup:
   m_GameObject: {fileID: 542869042}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &547693351
@@ -3232,7 +3250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: {fileID: 556231751}
-  availableCoins: {fileID: 2052490119}
   changeScene: {fileID: 556231755}
   exitGame: {fileID: 556231754}
   playercollider: {fileID: 2132061366}
@@ -3412,7 +3429,7 @@ SortingGroup:
   m_GameObject: {fileID: 577731971}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &577731974
@@ -3431,6 +3448,9 @@ MonoBehaviour:
   enemy: {fileID: 883634014959979343, guid: 855960f961d362b4e904c679d6703fd6, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!1 &616964674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3541,6 +3561,9 @@ MonoBehaviour:
   enemy: {fileID: 6912446743301761095, guid: adc064e2d2f2d034982b919f16ba68a5, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!4 &620397763
 Transform:
   m_ObjectHideFlags: 0
@@ -3565,7 +3588,7 @@ SortingGroup:
   m_GameObject: {fileID: 620397761}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1001 &621121466
@@ -4765,7 +4788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 830953157}
   buttonText: {fileID: 153032370}
-  coinText: {fileID: 2052490119}
+  coins: {fileID: 0}
   timer: {fileID: 556231753}
 --- !u!1 &841421013
 GameObject:
@@ -4816,6 +4839,9 @@ MonoBehaviour:
   enemy: {fileID: 738650125920437243, guid: 613ff47e2dbebd742bea32c2da7c6dd7, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 1.3
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!210 &841421016
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -4825,7 +4851,7 @@ SortingGroup:
   m_GameObject: {fileID: 841421013}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &859693831
@@ -5100,7 +5126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37884072d8d9dc648b2b867646fcf004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 446411413}
+  joystickLeft: {fileID: 0}
+  joystickRight: {fileID: 0}
 --- !u!4 &892508279
 Transform:
   m_ObjectHideFlags: 0
@@ -5169,6 +5196,9 @@ MonoBehaviour:
   enemy: {fileID: 4925372311823117165, guid: f14da7beebbc98845b4984eca59265f5, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!1 &1004477411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5657,6 +5687,9 @@ MonoBehaviour:
   enemy: {fileID: 1509352139439049057, guid: 60e95dda025b02c4aa88665c14cb7503, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!210 &1050867882
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -5666,7 +5699,7 @@ SortingGroup:
   m_GameObject: {fileID: 1050867879}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &1061275908
@@ -6384,6 +6417,103 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1199328429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199328430}
+  - component: {fileID: 1199328433}
+  - component: {fileID: 1199328432}
+  - component: {fileID: 1199328431}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1199328430
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199328429}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 76931659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1199328431
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199328429}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f698516d40234644b676288befd3988, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1199328432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199328429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 63558926e62104e41bf198676158c33b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1199328433
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199328429}
+  m_CullTransparentMesh: 1
 --- !u!1 &1207264365
 GameObject:
   m_ObjectHideFlags: 0
@@ -7969,6 +8099,9 @@ MonoBehaviour:
   enemy: {fileID: 3359531363661896676, guid: dc1b0c2bfd3cbc448b350ba2e85debba, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!210 &1430311813
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -7978,7 +8111,7 @@ SortingGroup:
   m_GameObject: {fileID: 1430311810}
   m_Enabled: 1
   m_SortingLayerID: 5
-  m_SortingLayer: -6
+  m_SortingLayer: -8
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &1459522620
@@ -8068,7 +8201,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 3
-  m_SortingLayer: -13
+  m_SortingLayer: -15
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8527f22283622004e9835925d36dfcde, type: 3}
   m_Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
@@ -8093,7 +8226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd48b6413ec8594497dd6f066925e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystickInput: {fileID: 446411413}
+  controlManager: {fileID: 0}
   playerInput: {fileID: 892508278}
   rb2d: {fileID: 1459522631}
   anim: {fileID: 1459522625}
@@ -8118,8 +8251,6 @@ MonoBehaviour:
   inkOverlayParent: {fileID: 1061275908}
   inkFactory: {fileID: 5410903097102001049, guid: fc46902e88c8d2c4ab616a32804e4441, type: 3}
   playerSprite: {fileID: 1459522622}
-  boostSpriteBottom: {fileID: 0}
-  boostSpriteTop: {fileID: 0}
   textColor: {fileID: 2093371294}
 --- !u!95 &1459522625
 Animator:
@@ -8808,7 +8939,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -321859965
-  m_SortingLayer: -11
+  m_SortingLayer: -10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7cdb694036b24d94e93c89250a820c71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9064,6 +9195,9 @@ MonoBehaviour:
   enemy: {fileID: 1718593785410570617, guid: e8e948dfe67186541ae3814dfcb01911, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!210 &1634614511
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -9073,7 +9207,7 @@ SortingGroup:
   m_GameObject: {fileID: 1634614508}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &1644642917
@@ -9289,7 +9423,7 @@ SortingGroup:
   m_GameObject: {fileID: 1678700830}
   m_Enabled: 1
   m_SortingLayerID: 7
-  m_SortingLayer: -12
+  m_SortingLayer: -14
   m_SortingOrder: -2
   m_SortAtRoot: 0
 --- !u!212 &1678700832
@@ -9408,6 +9542,9 @@ MonoBehaviour:
   enemy: {fileID: 3030828680735082641, guid: edd2e86017d844a46a366de1f9521137, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!210 &1679016352
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -9417,7 +9554,7 @@ SortingGroup:
   m_GameObject: {fileID: 1679016349}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &1689025054
@@ -9769,6 +9906,7 @@ MonoBehaviour:
   count: {fileID: 754262899}
   icon: {fileID: 530666464}
   seperator: {fileID: 1820236679}
+  group: {fileID: 0}
   c: 2
 --- !u!1 &1820236677
 GameObject:
@@ -10231,6 +10369,9 @@ MonoBehaviour:
   enemy: {fileID: 1771635871766758695, guid: a1b5df266cc15414dbafd46344f41fb1, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
+  value: 0
+  lower: 0
+  upper: 0
 --- !u!210 &1877208358
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -10240,7 +10381,7 @@ SortingGroup:
   m_GameObject: {fileID: 1877208355}
   m_Enabled: 1
   m_SortingLayerID: 2
-  m_SortingLayer: -14
+  m_SortingLayer: -16
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &1880935542
@@ -10658,7 +10799,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 3
-  m_SortingLayer: -13
+  m_SortingLayer: -15
   m_SortingOrder: -1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.123398006, g: 0.5566038, b: 0.15687266, a: 1}

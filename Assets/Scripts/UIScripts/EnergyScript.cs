@@ -13,6 +13,7 @@ public class EnergyScript : MonoBehaviour
   private void Start()
   {
     yPos = transform.localPosition.y;
+    //yScale = 1.55f;
   }
 
   // Update is called once per frame

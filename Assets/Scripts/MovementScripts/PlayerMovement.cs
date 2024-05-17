@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
   public SpriteRenderer glow2;
   public Transform splash;
   public Transform splashOffset;
-  public Slider energySlider;
   public Transform newPoints;
   public MunchSounds sounds;
   public AudioSource splashSound;
@@ -92,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     isBoost = false;
     size = 100;
     energyAmount = 100;
-    energySlider.value = energyAmount;
+    //energySlider.value = energyAmount;
     transform.position = Vector3.zero;
     stats.playerSize = size;
     stats.playerScript = transform;
@@ -134,6 +133,22 @@ public class PlayerMovement : MonoBehaviour
     playerInput.JumpPlayer -= PlayerJump;
   }
 
+  #region Tutorial
+  public void EnableEnergy()
+  {
+    boostCost = 10;
+    jumpCost = 10;
+  }
+  public void DisableEnergy()
+  {
+    boostCost = 0;
+    jumpCost = 0;
+    speed = 5;
+    refillSpeed = 30;
+    refillDelay = 2;
+  }
+  #endregion
+
   //Position, boost (UI, Refill, Drain)
   private void Update()
   {
@@ -152,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
     {
       RefillEnergy();
     }
-    energySlider.value = energyAmount;
+    //energySlider.value = energyAmount;
     stats.energy = energyAmount;
   }
   #region Movement
@@ -191,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
       BoostOn();
     }
     col.isTrigger = false;
+    EnemyCounter(0);
     color.enabled = true;
   }
   #endregion
@@ -256,7 +272,7 @@ public class PlayerMovement : MonoBehaviour
   //Jump
   private void PlayerJump()
   {
-    if (!isStun && energyAmount >= 10 && !isJump)
+    if (!isStun && energyAmount >= jumpCost && !isJump)
     {
       //Boost routine
       energyAmount -= jumpCost;
@@ -267,7 +283,7 @@ public class PlayerMovement : MonoBehaviour
       //Splash routine
       splashSound.Play();
       SplashAnim();
-      StartCoroutine(SplashDelay(1.5f));
+      StartCoroutine(SplashDelay(1f));
       col.isTrigger = true;
       anim.SetTrigger("JumpTrigger");
     }
@@ -284,6 +300,7 @@ public class PlayerMovement : MonoBehaviour
   {
     yield return null;
     isJump = true;
+    EnemyCounter(0);
     color.enabled = false;
   }
 
@@ -295,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
   private void SplashAnim()
   {
     JumpActions();
-    splash.SetPositionAndRotation(isBoost ? splashOffset.position : stats.playerPosition, transform.rotation);
+    splash.SetPositionAndRotation(splashOffset.position, transform.rotation);
     splash.GetComponent<Animator>().Play("Base Layer.Splash", 0, 0);
   }
 
@@ -374,10 +391,8 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(TextRotateColors(powerTime, textColor));
         break;
       case 2://Unlimited Boost
-        StartCoroutine(SpriteRotateColors(powerTime, controlLeft.boostSpriteBottom));
-        StartCoroutine(SpriteRotateColors(powerTime, controlLeft.boostSpriteTop));
-        StartCoroutine(SpriteRotateColors(powerTime, controlRight.boostSpriteTop));
-        StartCoroutine(SpriteRotateColors(powerTime, controlRight.boostSpriteBottom));
+        StartCoroutine(ImageRotateColors(powerTime, controlLeft.boostSprite));
+        StartCoroutine(ImageRotateColors(powerTime, controlRight.boostSprite));
         isUnlimitedBoost = true;
         break;
     }
@@ -410,6 +425,30 @@ public class PlayerMovement : MonoBehaviour
   //}
 
   #region RotateColors
+  IEnumerator ImageRotateColors(float waitTime, Image sprite)
+  {
+    i = 0;
+    float timePassed = 0f;
+    Color startColor = sprite.color;
+    StartCoroutine(ColorDelay());
+    while (timePassed < waitTime - 3)
+    {
+      sprite.color = Color.Lerp(sprite.color, colors[i % 6], waitTime * Time.deltaTime);
+      timePassed += Time.deltaTime;
+      yield return null;
+    }
+    StopCoroutine(ColorDelay());
+    for (int j = 0; j < 5; j++)
+    {
+      sprite.color = startColor;
+      yield return new WaitForSeconds(0.3f);
+      sprite.color = Color.red;
+      yield return new WaitForSeconds(0.3f);
+    }
+
+    sprite.color = startColor;
+    yield return null;
+  }
   IEnumerator SpriteRotateColors(float waitTime, SpriteRenderer sprite)
   {
     i = 0;
@@ -478,10 +517,10 @@ public class PlayerMovement : MonoBehaviour
   #endregion
 
   //Indicator
-  public void EnemyCounter(bool val)
+  public void EnemyCounter(int val)
   {
-    enemyCount = val ? enemyCount + 1 : enemyCount - 1;
-    if (enemyCount == 0)
+    enemyCount += val;
+    if (enemyCount == 0 || isJump)
     {
       Color c = Color.green;
       color.color = c;
@@ -490,7 +529,7 @@ public class PlayerMovement : MonoBehaviour
       glow1.color = c;
       glow2.color = c;
     }
-    else if (enemyCount == 1)
+    else if (enemyCount >= 1)
     {
       Color c = Color.red;
       color.color = c;

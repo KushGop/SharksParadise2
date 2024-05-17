@@ -9,6 +9,14 @@ public class NewPoints : MonoBehaviour
   private GameObject newPoint;
   public Color[] colors;
 
+  private void OnEnable()
+  {
+    foreach (Transform t in transform)
+    {
+      Destroy(t.gameObject);
+    }
+  }
+
   public void OnNewPoint(int value)
   {
     newPoint = Instantiate(pointPrefab, transform);

@@ -44,7 +44,10 @@ public class EnemyList : ScriptableObject
     "Squid",
     "CoinFish",
     "LightFish",
-    "BadLight"
+    "BadLight",
+    "TutorialFish",
+    "TutorialBird",
+    "TutorialPredator",
   };
 
   readonly public List<string> playAreaList = new()
@@ -75,7 +78,10 @@ public class EnemyList : ScriptableObject
     { "CoinFish", 0 },
     { "BigShark", 3 },
     { "LightFish", 3 },
-    { "BadLight", 5 }
+    { "BadLight", 5 },
+    { "TutorialFish", 5 },
+    { "TutorialBird", 5 },
+    { "TutorialPredator", 1 },
   };
 
   //Fishname : scaleModifier  USED FOR SKELETON

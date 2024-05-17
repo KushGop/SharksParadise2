@@ -11,14 +11,32 @@ public class Orbit : MonoBehaviour
   {
     day = Quaternion.Euler(0, 0, -180);
     night = Quaternion.Euler(0, 0, -360);
-    cycleTime = GameManager.dayCycleTime;
+    if (!TutorialManager.isInTutorial)
+    {
+      cycleTime = GameManager.dayCycleTime;
+      StartCoroutine(Cycle());
+    }
+  }
+  private void OnEnable()
+  {
+    if (TutorialManager.isInTutorial)
+      TutorialManager.night += StartOrbit;
+  }
+  private void OnDestroy()
+  {
+    if (TutorialManager.isInTutorial)
+      TutorialManager.night -= StartOrbit;
+  }
+
+  private void StartOrbit()
+  {
+    cycleTime = 6f;
     StartCoroutine(Cycle());
   }
 
   IEnumerator Cycle()
   {
     float elapsedTime = 0f;
-    print("cycle sun");
     while (elapsedTime < cycleTime)
     {
       transform.rotation = Quaternion.Slerp(Quaternion.identity, day, elapsedTime / cycleTime);
@@ -26,13 +44,13 @@ public class Orbit : MonoBehaviour
       yield return null;
     }
     elapsedTime = 0f;
-    print("cycle night");
     while (elapsedTime < cycleTime)
     {
       transform.rotation = Quaternion.Slerp(day, night, elapsedTime / cycleTime);
       elapsedTime += Time.deltaTime;
       yield return null;
     }
-    StartCoroutine(Cycle());
+    if (!TutorialManager.isInTutorial)
+      StartCoroutine(Cycle());
   }
 }

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3558312620906911038}
+  - component: {fileID: 4978786582101316956}
   - component: {fileID: 2048582339560262807}
-  - component: {fileID: 1936481177175654671}
   - component: {fileID: 1281710938228736056}
   m_Layer: 8
   m_Name: Sprite
@@ -35,6 +35,20 @@ Transform:
   - {fileID: 3917343752682645719}
   m_Father: {fileID: 7433205950961401352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4978786582101316956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115112747434697277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9d81f8f288dbb428d5780d365ffd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2048582339560262807}
+  animator: {fileID: 7419594831023072120}
 --- !u!212 &2048582339560262807
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,27 +101,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1936481177175654671
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6115112747434697277}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9650aa833d7819a47b0b433e970264c7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!210 &1281710938228736056
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -132,6 +125,7 @@ GameObject:
   - component: {fileID: 7162920212406753005}
   - component: {fileID: 270334751780048869}
   - component: {fileID: 8654206482725393974}
+  - component: {fileID: 7419594831023072120}
   m_Layer: 8
   m_Name: BadLightFish
   m_TagString: Predator
@@ -260,6 +254,27 @@ PolygonCollider2D:
       - {x: 3.7279243, y: 0.79665804}
       - {x: 3.0911844, y: 0.3716988}
   m_UseDelaunayMesh: 0
+--- !u!95 &7419594831023072120
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277694954682331125}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9650aa833d7819a47b0b433e970264c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8713486673395237991
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3917343752682645719}
+  - component: {fileID: 4281986253892119934}
   - component: {fileID: 4999370672076771348}
   - component: {fileID: 3332016560769949288}
   m_Layer: 8
@@ -293,6 +309,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3558312620906911038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4281986253892119934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713486673395237991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9d81f8f288dbb428d5780d365ffd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4999370672076771348}
+  animator: {fileID: 3332016560769949288}
 --- !u!212 &4999370672076771348
 SpriteRenderer:
   m_ObjectHideFlags: 0

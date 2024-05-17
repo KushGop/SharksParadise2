@@ -37,13 +37,23 @@ public class EatingHandler : MonoBehaviour
     {
       if (fishType == "Predator")
       {
+        if (TutorialManager.isInTutorial)
+        {
+          TutorialManager.death();
+          return;
+        }
         Debug.Log("Death");
         Time.timeScale = 0;
         transform.GetComponent<PolygonCollider2D>().enabled = false;
         deathScreen.SetActive(true);
       }
+      else if (fishType == "TutorialPredator")
+      {
+      }
     }
   }
+
+  bool eatFish = false;
 
   private void OnCollisionEnter2D(Collision2D other)
   {
@@ -55,54 +65,61 @@ public class EatingHandler : MonoBehaviour
     if (!playerMovement.GetIsJump())
     {
       Vector3 pos = other.transform.position;
-      if (fishType == "Predator")
+      switch (fishType)
       {
-        print("IsInvincible: " + playerMovement.GetIsInvincible());
-        if (playerMovement.GetIsInvincible())
-        {
-          MissionData.IncrementMission(MissionName.bigSharksEaten);
+        case "Predator":
+          print("IsInvincible: " + playerMovement.GetIsInvincible());
+          if (playerMovement.GetIsInvincible())
+          {
+            MissionData.IncrementMission(MissionName.bigSharksEaten);
+            InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value0) ? value0 : 0));
+            otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
+            EatEvent(fishName, otherIdentifier.value, pos);
+          }
+          else
+          {
+            if (TutorialManager.isInTutorial)
+            {
+              TutorialManager.death();
+
+              return;
+            }
+            Debug.Log("Death");
+            Time.timeScale = 0;
+            transform.GetComponent<PolygonCollider2D>().enabled = false;
+            deathScreen.SetActive(true);
+          }
+          break;
+        case "Object":
+          break;
+        case "Prey":
+          if (fishName == "CoinFish")
+            coinCounter.AddCurrency(Currency.Coin, 20);
           InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
           otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
           EatEvent(fishName, otherIdentifier.value, pos);
-        }
-        else
-        {
-          Debug.Log("Death");
-          Time.timeScale = 0;
-          transform.GetComponent<PolygonCollider2D>().enabled = false;
-          deathScreen.SetActive(true);
-        }
-      }
-      else if (fishType == "Object")
-      {
-      }
-      else
-      {
-        switch (fishType)
-        {
-          case "Prey":
-            if (fishName == "CoinFish")
-              coinCounter.AddCurrency(Currency.Coin, 20);
-            InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
-            otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
-            EatEvent(fishName, otherIdentifier.value, pos);
-            break;
-          case "Food":
-            InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
-            Destroy(other.gameObject);
-            EatEvent(fishName, otherIdentifier.value, pos);
-            break;
-          case "Starfish":
-            playerMovement.TriggerPower();
-            otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
-            MissionData.IncrementMission(MissionName.starfishesCollected);
-            munchSounds.playMunch();
-            break;
-        }
+          if (TutorialManager.isInTutorial && !eatFish)
+          {
+            TutorialManager.eatFish?.Invoke();
+            eatFish = true;
+          }
+          break;
+        case "Food":
+          InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
+          Destroy(other.gameObject);
+          EatEvent(fishName, otherIdentifier.value, pos);
+          break;
+        case "Starfish":
+          playerMovement.TriggerPower();
+          otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
+          MissionData.IncrementMission(MissionName.starfishesCollected);
+          munchSounds.playMunch();
+          break;
       }
     }
   }
 
+  bool eatBird = false;
   private void OnTriggerStay2D(Collider2D other)
   {
     otherTransform = other.transform;
@@ -112,17 +129,28 @@ public class EatingHandler : MonoBehaviour
     if (playerMovement.GetIsJump())
     {
       Vector3 pos = otherTransform.position;
-      if (fishName == "Bird")
+      switch (fishName)
       {
-        otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
-        EatEvent(fishName, otherIdentifier.value, pos);
-        MissionData.IncrementMission(MissionName.birdsEaten);
+        case "Bird":
+          otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
+          EatEvent(fishName, otherIdentifier.value, pos);
+          if (TutorialManager.isInTutorial && !eatBird)
+          {
+            TutorialManager.eatBird?.Invoke();
+            eatBird = true;
+            return;
+          }
+          MissionData.IncrementMission(MissionName.birdsEaten);
+          break;
+        case "People":
+          Destroy(other.gameObject);
+          EatEvent(fishName, otherIdentifier.value, pos);
+          break;
+        case "TutorialBird":
+          TutorialManager.eatBird();
+          break;
       }
-      else if (fishName == "People")
-      {
-        Destroy(other.gameObject);
-        EatEvent(fishName, otherIdentifier.value, pos);
-      }
+
       //Slo-mo
       //else if (fishType == "Predator")
       //{
