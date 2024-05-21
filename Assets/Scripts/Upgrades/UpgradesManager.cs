@@ -21,7 +21,7 @@ public static class UpgradesManager
 
   public static Dictionary<RewardType, (RewardList[], int[])> rewards = new()
   {
-    { RewardType.fullUpgrade, (new[] { RewardList.gems, RewardList.coins }, new[] { 10, 500 }) },
-    { RewardType.prestige, (new[] { RewardList.token, RewardList.gems }, new[] { 1, 30 }) },
+    { RewardType.fullUpgrade, (new[] { RewardList.gems, RewardList.coins }, new[] { 3, 500 }) },
+    { RewardType.prestige, (new[] { RewardList.token, RewardList.gems }, new[] { 1, 10 }) },
   };
 }

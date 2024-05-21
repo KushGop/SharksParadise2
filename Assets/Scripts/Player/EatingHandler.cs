@@ -230,6 +230,7 @@ public class EatingHandler : MonoBehaviour
 
   private void EatEvent(string fishName, int value, Vector3 pos)
   {
+    playerMovement.AddEnergy();
     scoreHandler.UpdateMultiplyer(fishName, pos);
     scoreHandler.UpdateLastFish(fishName);
     scoreHandler.AddPoints(value);

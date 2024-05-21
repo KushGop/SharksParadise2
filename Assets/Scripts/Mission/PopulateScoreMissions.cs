@@ -10,8 +10,14 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
   private Mission newMission;
   private List<MissionName> names;
 
+  private void Awake()
+  {
+    GameManager.missionFirstPass = true;
+  }
+
   public void LoadData(GameData data)
   {
+    print("LoadPopMission");
     if (transform.childCount > 0)
     {
       Destroy(transform.GetChild(0).gameObject);
@@ -43,7 +49,7 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
           else
           {
             names.Remove(MissionManager.GetMission(i).missionName);
-            MissionManager.missions[i].SetMission(newMission.isComplete, newMission.indexInMissionList, i, newMission.missionName, newMission.count, newMission.text);
+            MissionManager.missions[i].SetMission(newMission.isComplete, newMission.indexInMissionList, i, newMission.missionName, newMission.count, newMission.text, newMission.gamesPlayed);
             names.Add(newMission.missionName);
             break;
           }
@@ -56,6 +62,7 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
 
   public void SaveData(GameData data)
   {
+    print("SavePopMission");
     data.totalGems = GameManager.totalGems;
     for (int i = 0; i < 3; i++)
     {
@@ -69,7 +76,15 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
         data.missionList[i] = MissionManager.missions[i];
         data.missionListName.Add(MissionManager.missions[i].missionName);
       }
+      if (GameManager.missionFirstPass)
+      {
+        print("Increment");
+        data.missionList[i].IncrementGamesPlayed();
+        MissionManager.missions[i].gamesPlayed++;
+        print("Games Played after save: " + MissionManager.missions[i].gamesPlayed);
+      }
     }
+    GameManager.missionFirstPass = false;
     data.totalCoins += GameManager.coins;
     if (data.highscore < GameManager.score)
     {

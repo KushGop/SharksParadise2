@@ -14,12 +14,13 @@ public class GameData
   public Mission[] missionList;
   public List<MissionName> missionListName;
   public UpgradesData upgradesData;
+  public bool playedTutorial;
 
   // the values defined in this constructor will be the default values
   // the game starts with when there's no data to load
   public GameData()
   {
-
+    playedTutorial = false;
     totalCoins = 0;
     totalGems = 0;
     totalTokens = 0;

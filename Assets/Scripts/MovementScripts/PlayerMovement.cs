@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     //upgrades
     baseSpeed = 5 + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
     boostSpeed = 2 + (UpgradesManager.upgradesData.upgrades[UpgradeList.boostSpeed] * 0.1f);
-    boostCost = 10 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
+    boostCost = 20 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
     jumpCost = 10 - (UpgradesManager.upgradesData.upgrades[UpgradeList.jumpCost] * 0.1f);
     refillSpeed = 30 + (UpgradesManager.upgradesData.upgrades[UpgradeList.refillSpeed] * 0.1f);
     refillDelay = 2 - (UpgradesManager.upgradesData.upgrades[UpgradeList.refillDelay] * 0.1f);
@@ -265,6 +265,14 @@ public class PlayerMovement : MonoBehaviour
     {
       energyAmount += Time.deltaTime * refillSpeed;
     }
+  }
+  public void AddEnergy()
+  {
+    if (energyAmount + 20 > 100)
+      energyAmount = 100;
+    else
+      energyAmount += 20;
+
   }
   #endregion
 

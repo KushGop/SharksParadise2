@@ -47,9 +47,12 @@ public class DeathTimer : MonoBehaviour
   }
   public void ReviveAd()
   {
-    StopAllCoroutines();
-    Time.timeScale = 0;
-    API.ShowRewardedVideo(CompleteMethod);
+    if (API.IsRewardedVideoAvailable())
+    {
+      StopAllCoroutines();
+      Time.timeScale = 0;
+      API.ShowRewardedVideo(CompleteMethod);
+    }
   }
 
   private void CompleteMethod(bool completed)
@@ -57,6 +60,11 @@ public class DeathTimer : MonoBehaviour
     if (completed)
     {
       ContinueGame();
+    }
+    else
+    {
+      Time.timeScale = 1;
+      StartCoroutine(CountDown());
     }
   }
   public void ContinueGame()

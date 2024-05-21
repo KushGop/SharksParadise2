@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutorialSequence : MonoBehaviour
 {
@@ -122,7 +123,6 @@ public class TutorialSequence : MonoBehaviour
     "Welcome to sharks paradise!",
     "This is a little tutorial to help you get started.",
     "Feel free to skip at anytime!",
-    "If you ever feel lost you can find the tutorial in the settings!",
     "Lets get started!"
     },
     TutorialManager.joystick
@@ -260,10 +260,23 @@ public class TutorialSequence : MonoBehaviour
     TutorialManager.endSeq
     ));
   }
+
+  public void SkipSequence()
+  {
+    StopAllCoroutines();
+    StartCoroutine(TextIteratorOnePart(new string[] {
+    "It seems like you're ready to go out for a swim!",
+    "You can come back to the tutorial anytime",
+    "Remember to have fun in..."
+    },
+    TutorialManager.title
+    ));
+  }
+
   public void EndSequence()
   {
     StartCoroutine(TextIteratorOnePart(new string[] {
-    "It seems like youre ready to go out for a swim!",
+    "It seems like you're ready to go out for a swim!",
     "Remember to have fun in..."
     },
     TutorialManager.title
@@ -272,7 +285,9 @@ public class TutorialSequence : MonoBehaviour
 
   public void TitleScreen()
   {
-    tutorialText.text = "Sharks paradise";
+    GameManager.playedTutorial = true;
+    DataPersistenceManager.instance.SaveGame();
+    SceneManager.LoadScene("MainMenu");
   }
 
   #endregion

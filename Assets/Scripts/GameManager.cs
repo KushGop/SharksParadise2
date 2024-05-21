@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class GameManager
 {
+  public static bool playedTutorial;
+  public static bool hasBeenInit = false;
+  public static bool missionFirstPass;
   public static int score, highscore, xp, coins, gems, totalCoins, totalXP, totalGems, totalTokens;
   public static string lastFish;
   public static int multiplyer, multiplyerCap;

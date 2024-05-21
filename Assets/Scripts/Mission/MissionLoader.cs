@@ -6,17 +6,21 @@ public class MissionLoader : MonoBehaviour, IDataPersistence
 {
   public void LoadData(GameData data)
   {
-    DataPersistenceManager.instance.SaveGame();
-
-    print("LoadMission");
-
-    for (int i = 0; i < 3; i++)
+    if (!GameManager.hasBeenInit)
     {
-      MissionManager.missions[i] = data.missionList[i];
-      print("data mission: " + data.missionList[i].text);
-      print("manager mission: " + MissionManager.missions[i].text);
+      DataPersistenceManager.instance.SaveGame();
+
+      print("LoadMission");
+
+      for (int i = 0; i < 3; i++)
+      {
+        MissionManager.missions[i] = data.missionList[i];
+        print("data mission: " + data.missionList[i].text);
+        print("manager mission: " + MissionManager.missions[i].text);
+      }
+      MissionManager.SubscribeToCompletion();
+      GameManager.hasBeenInit = true;
     }
-    MissionManager.SubscribeToCompletion();
   }
 
   public void SaveData(GameData data)
@@ -28,7 +32,7 @@ public class MissionLoader : MonoBehaviour, IDataPersistence
         print("empty");
         Mission m = MissionData.GetRandomMission();
         m = CheckForDuplicates(m, ref data.missionListName);
-        data.missionList[i].SetMission(m.isComplete, m.indexInMissionList, i, m.missionName, m.count, m.text);
+        data.missionList[i].SetMission(m.isComplete, m.indexInMissionList, i, m.missionName, m.count, m.text, m.gamesPlayed);
       }
     }
 

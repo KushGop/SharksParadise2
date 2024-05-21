@@ -15,6 +15,7 @@ public class Mission
   public bool isClaimed;
   public int count;
   public string text;
+  public int gamesPlayed;
 
   public Mission(int iInML, MissionName name, int baseCount, string txt)
   {
@@ -24,6 +25,7 @@ public class Mission
     count = baseCount;
     text = txt;
     isClaimed = false;
+    gamesPlayed = 0;
   }
   public Mission()
   {
@@ -34,11 +36,12 @@ public class Mission
     level = -1;
     count = -1;
     text = "NA";
+    gamesPlayed = 0;
     MissionData.MissionDelegate += CompleteMission;
   }
 
 
-  public void SetMission(bool isComplete, int iInML, int iInM, MissionName name, int baseCount, string txt)
+  public void SetMission(bool isComplete, int iInML, int iInM, MissionName name, int baseCount, string txt, int gamesPlayed)
   {
     level = Random.Range(1, 4);
     coins = level * 100;
@@ -49,10 +52,15 @@ public class Mission
     this.isComplete = isComplete;
     count = baseCount * level;
     text = string.Format(txt, count);
+    this.gamesPlayed = gamesPlayed;
     if (isComplete)
     {
       MissionData.MissionDelegate -= CompleteMission;
     }
+  }
+  public void IncrementGamesPlayed()
+  {
+    gamesPlayed++;
   }
 
   public void CompleteMission(MissionName name, int count)
