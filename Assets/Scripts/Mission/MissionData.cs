@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class MissionData
 {
   public static readonly int missionCount = 7;
   public delegate void MissionEvent(MissionName name, int count);
+
+
   public static MissionEvent MissionDelegate;
 
-  public static Dictionary<MissionName, int> missionDictionary = new()
+  internal static Dictionary<MissionName, int> missionDictionary = new()
   {
     { MissionName.timesInked, 0 },
     { MissionName.birdsEaten, 0 },
@@ -23,7 +26,7 @@ public static class MissionData
     { MissionName.bigSharkDodges, 0 }
   };
 
-  public static readonly List<Mission> allMissions = new()
+  internal static readonly List<Mission> allMissions = new()
   {
     { new(0, MissionName.timesInked, 2, "Get inked {0} times") },
     { new(1, MissionName.birdsEaten, 5, "Eat {0} birds") },
@@ -35,12 +38,12 @@ public static class MissionData
     { new(7, MissionName.treasureCollected, 1, "Collect {0} treasure chests") },
   };
 
-  public static Mission GetRandomMission()
+  internal static Mission GetRandomMission()
   {
     return allMissions[Random.Range(0, allMissions.Count)];
   }
 
-  public static void IncrementMission(MissionName name)
+  internal static void IncrementMission(MissionName name)
   {
     if (!TutorialManager.isInTutorial)
     {
@@ -50,6 +53,14 @@ public static class MissionData
       {
         MissionDelegate(name, missionDictionary[name]);
       }
+    }
+  }
+
+  internal static void ResestMissions()
+  {
+    foreach (MissionName name in missionDictionary.Keys.ToList())
+    {
+      missionDictionary[name] = 0;
     }
   }
 

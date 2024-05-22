@@ -13,14 +13,12 @@ public class PauseToggle : MonoBehaviour
   {
     if (optionsMenu.activeSelf)
     {
-      Debug.Log("resume");
       optionsMenu.SetActive(false);
       icon.SetActive(true);
       resumeGame();
     }
     else
     {
-      Debug.Log("option");
       optionsMenu.SetActive(true);
       icon.SetActive(false);
       pauseGame();

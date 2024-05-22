@@ -9,6 +9,7 @@ public class SpawnMission : MonoBehaviour
 
   private void Start()
   {
+    MissionData.ResestMissions();
     MissionManager.MissionCompletionDelegate += CompleteMission;
     StartCoroutine(StartSequence());
   }

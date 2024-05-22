@@ -78,10 +78,8 @@ public class PopulateScoreMissions : MonoBehaviour, IDataPersistence
       }
       if (GameManager.missionFirstPass)
       {
-        print("Increment");
         data.missionList[i].IncrementGamesPlayed();
         MissionManager.missions[i].gamesPlayed++;
-        print("Games Played after save: " + MissionManager.missions[i].gamesPlayed);
       }
     }
     GameManager.missionFirstPass = false;

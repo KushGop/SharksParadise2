@@ -16,7 +16,7 @@ public class SkipMission : MonoBehaviour
   private void Start()
   {
     index = scoreMission.getMissionIndex();
-    print("Games played: " + MissionManager.missions[index].gamesPlayed);
+
     if (MissionManager.missions[index].gamesPlayed >= 3)
     {
       if (API.IsRewardedVideoAvailable())
