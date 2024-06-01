@@ -17,5 +17,19 @@ public class NonConsumable : MonoBehaviour
     {
       gameObject.SetActive(false);
     }
+    UpgradesManager.updateCosts += UpdateScreen;
+  }
+
+  private void OnDestroy()
+  {
+    UpgradesManager.updateCosts -= UpdateScreen;
+  }
+
+  private void UpdateScreen()
+  {
+    if (API.IsActive(nonConsumable))
+    {
+      gameObject.SetActive(false);
+    }
   }
 }

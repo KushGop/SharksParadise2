@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af6f08b732e00140ab2362ae378e2ec, type: 3}
   m_Name: GameServicesDataRuntime
   m_EditorClassIdentifier: 
-  useForAndroid: 0
-  useForIos: 0
+  useForAndroid: 1
+  useForIos: 1
   usePlaymaker: 0
-  googleAppId: 
-  allGameAchievements: []
-  allGameLeaderboards: []
+  googleAppId: 411863635839
+  allGameAchievements:
+  - name: SharksParadise
+    idGoogle: CgkI_67xp_4LEAIQAQ
+    idIos: sharks_paradise
+    achivementComplete: 0
+  allGameLeaderboards:
+  - name: Highscores
+    idGoogle: CgkI_67xp_4LEAIQAg
+    idIos: highscore
   useUVS: 0

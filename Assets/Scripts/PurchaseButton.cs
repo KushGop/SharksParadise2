@@ -39,11 +39,16 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
   {
     GameManager.totalGems += value;
   }
+  public void AddPrestige(int value)
+  {
+    GameManager.totalTokens += value;
+  }
 
   public void SaveData(GameData data)
   {
     data.totalCoins = GameManager.totalCoins;
     data.totalGems = GameManager.totalGems;
+    data.totalTokens = GameManager.totalTokens;
   }
 
   public void BuyStarterPack()
@@ -74,7 +79,7 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
 
           AddCoin(5000);
           AddGem(15);
-
+          AddPrestige(1);
 
         }
       }

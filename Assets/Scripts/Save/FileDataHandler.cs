@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 public class FileDataHandler
 {
   private string dataDirPath = "";
   private string dataFileName = "";
   private bool useEncryption = false;
-  private readonly string encryptionCodeWord = "word";
+  private readonly string encryptionCodeWord = "7q98rwe4fd5";
   private readonly string backupExtension = ".bak";
+  private byte[] key;
+  private byte[] iv;
 
   public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
   {
     this.dataDirPath = dataDirPath;
     this.dataFileName = dataFileName;
     this.useEncryption = useEncryption;
+    key = new byte[32];
+    iv = new byte[16];
   }
 
   public GameData Load(string profileId, bool allowRestoreFromBackup = true)
@@ -47,7 +53,14 @@ public class FileDataHandler
         // optionally decrypt the data
         if (useEncryption)
         {
-          dataToLoad = EncryptDecrypt(dataToLoad);
+          try
+          {
+            dataToLoad = Decrypt(Convert.FromBase64String(dataToLoad), key, iv);
+          }
+          catch (FormatException)
+          {
+            dataToLoad = EncryptDecrypt(dataToLoad);
+          }
         }
 
         // deserialize the data from Json back into the C# object
@@ -101,7 +114,8 @@ public class FileDataHandler
       // optionally encrypt the data
       if (useEncryption)
       {
-        dataToStore = EncryptDecrypt(dataToStore);
+        dataToStore = Convert.ToBase64String(Encrypt(dataToStore, key, iv));
+        //dataToStore = EncryptDecrypt(dataToStore);
       }
 
       // write the serialized data to the file
@@ -245,6 +259,50 @@ public class FileDataHandler
     }
     return modifiedData;
   }
+
+  public static byte[] Encrypt(string plaintext, byte[] key, byte[] iv)
+  {
+    using (Aes aesAlg = Aes.Create())
+    {
+      aesAlg.Key = key;
+      aesAlg.IV = iv;
+      ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+      byte[] encryptedBytes;
+      using (var msEncrypt = new MemoryStream())
+      {
+        using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+        {
+          byte[] plainBytes = Encoding.UTF8.GetBytes(plaintext);
+          csEncrypt.Write(plainBytes, 0, plainBytes.Length);
+        }
+        encryptedBytes = msEncrypt.ToArray();
+      }
+      return encryptedBytes;
+    }
+  }
+  public static string Decrypt(byte[] ciphertext, byte[] key, byte[] iv)
+  {
+    using (Aes aesAlg = Aes.Create())
+    {
+      aesAlg.Key = key;
+      aesAlg.IV = iv;
+      ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+      byte[] decryptedBytes;
+      using (var msDecrypt = new MemoryStream(ciphertext))
+      {
+        using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+        {
+          using (var msPlain = new MemoryStream())
+          {
+            csDecrypt.CopyTo(msPlain);
+            decryptedBytes = msPlain.ToArray();
+          }
+        }
+      }
+      return Encoding.UTF8.GetString(decryptedBytes);
+    }
+  }
+
 
   private bool AttemptRollback(string fullPath)
   {

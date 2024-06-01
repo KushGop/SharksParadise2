@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/NeutralScreen.unity
+    guid: 1ea2188523348834b82ee004cee5bdda
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 98a223c87d58f2f40875223849c2d22a
   - enabled: 1
@@ -23,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialGame.unity
     guid: 41f7ebf34280def42bbfc9bf1f8f7559
+  - enabled: 0
+    path: Assets/Scenes/TestLeaderboard.unity
+    guid: 2b8310bcf127e0547b680bdae3e3ce90
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: a64ed03507f2e1049920e39d44649c83, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6cbf345ce90cc95439b6fba642889a33, type: 2}

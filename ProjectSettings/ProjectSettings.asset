@@ -143,7 +143,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0.12
+  bundleVersion: 1.1.0
   preloadedAssets:
   - {fileID: 11400000, guid: a64ed03507f2e1049920e39d44649c83, type: 2}
   - {fileID: 3845062588515643338, guid: 6cbf345ce90cc95439b6fba642889a33, type: 2}
@@ -179,7 +179,7 @@ PlayerSettings:
     iPhone: 7
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 12
+  AndroidBundleVersionCode: 18
   AndroidMinSdkVersion: 26
   AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
@@ -297,7 +297,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: ea833eb5139acf34682206a199b63f2e, type: 3}
+      m_Icon: {fileID: 2800000, guid: c07423dfc794ed64ba945e763e616dac, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -805,10 +805,10 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: GLEY_ADMOB;GLEY_PATCH_ADMOB;GLEY_IAP_GOOGLEPLAY
+    Android: GLEY_ADMOB;GLEY_PATCH_ADMOB;GLEY_IAP_GOOGLEPLAY;GLEY_GAMESERVICES_ANDROID
     Standalone: 
     Windows Store Apps: 
-    iPhone: GLEY_IAP_IOS;GLEY_ADMOB;GLEY_PATCH_ADMOB
+    iPhone: GLEY_IAP_IOS;GLEY_ADMOB;GLEY_PATCH_ADMOB;GLEY_GAMESERVICES_IOS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

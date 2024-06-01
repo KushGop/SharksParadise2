@@ -15,6 +15,7 @@ public class GameData
   public List<MissionName> missionListName;
   public UpgradesData upgradesData;
   public bool playedTutorial;
+  public int age;
 
   // the values defined in this constructor will be the default values
   // the game starts with when there's no data to load
@@ -25,7 +26,7 @@ public class GameData
     totalGems = 0;
     totalTokens = 0;
     control = 0;
-
+    age = 0;
     missionList = new Mission[3];
     missionListName = new();
     upgradesData = new();

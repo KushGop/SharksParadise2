@@ -14,7 +14,7 @@ public class DropDownMenu : MonoBehaviour
     isIn = false;
     defaultPos = children.localPosition;
     hiddenPos = defaultPos;
-    hiddenPos.x -= 500;
+    hiddenPos.x -= distance;
     children.localPosition = hiddenPos;
   }
 

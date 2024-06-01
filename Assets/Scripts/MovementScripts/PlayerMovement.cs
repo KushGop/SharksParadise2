@@ -64,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
   private float refillDelay;
   private float powerTime;
 
+  private float fishEnergy;
+
   [Header("Powers")]
   [SerializeField] private SpriteRenderer playerSprite;
   [SerializeField] private TextMeshProUGUI textColor;
@@ -79,11 +81,13 @@ public class PlayerMovement : MonoBehaviour
     //upgrades
     baseSpeed = 5 + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
     boostSpeed = 2 + (UpgradesManager.upgradesData.upgrades[UpgradeList.boostSpeed] * 0.1f);
-    boostCost = 20 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
-    jumpCost = 10 - (UpgradesManager.upgradesData.upgrades[UpgradeList.jumpCost] * 0.1f);
+    boostCost = 15 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
+    jumpCost = 15 - (UpgradesManager.upgradesData.upgrades[UpgradeList.jumpCost] * 0.1f);
     refillSpeed = 30 + (UpgradesManager.upgradesData.upgrades[UpgradeList.refillSpeed] * 0.1f);
     refillDelay = 2 - (UpgradesManager.upgradesData.upgrades[UpgradeList.refillDelay] * 0.1f);
     powerTime = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.powerTime] * 0.1f);
+
+    fishEnergy = 10;
 
     //setup
     speed = baseSpeed;
@@ -268,10 +272,10 @@ public class PlayerMovement : MonoBehaviour
   }
   public void AddEnergy()
   {
-    if (energyAmount + 20 > 100)
+    if (energyAmount + fishEnergy > 100)
       energyAmount = 100;
     else
-      energyAmount += 20;
+      energyAmount += fishEnergy;
 
   }
   #endregion
@@ -392,13 +396,17 @@ public class PlayerMovement : MonoBehaviour
       case 0://Invincible
         isInvincible = true;
         //UpdateEnemies("Prey");
+        StopCoroutine("SpriteRotateColors");
         StartCoroutine(SpriteRotateColors(powerTime, playerSprite));
         break;
       case 1://Double Points
         scoreHandler.starfishMultiplyer = 2;
+        StopCoroutine("TextRotateColors");
         StartCoroutine(TextRotateColors(powerTime, textColor));
         break;
       case 2://Unlimited Boost
+        StopCoroutine("ImageRotateColors");
+        StopCoroutine("ImageRotateColors");
         StartCoroutine(ImageRotateColors(powerTime, controlLeft.boostSprite));
         StartCoroutine(ImageRotateColors(powerTime, controlRight.boostSprite));
         isUnlimitedBoost = true;
