@@ -7,16 +7,7 @@ public class JellyMovement : AbstractMovement
   [SerializeField] private Animator shock;
   [SerializeField] private AudioSource shockSound;
 
-  private new void Start()
-  {
-    GameManager.stung += Shock;
-  }
-  private void OnDestroy()
-  {
-    GameManager.stung -= Shock;
-  }
-
-  private void Shock()
+  internal void Shock()
   {
     shock.SetTrigger("PlayShock");
     shockSound.Play();

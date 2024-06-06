@@ -182,7 +182,7 @@ public class EatingHandler : MonoBehaviour
         if (!playerMovement.GetIsJump() && !playerMovement.GetIsInvincible())
         {
           GameManager.eventText("Stung", 1f);
-          GameManager.stung();
+          other.transform.GetComponent<JellyMovement>().Shock();
           playerMovement.Stun();
           MissionData.IncrementMission(MissionName.timesStung);
         }

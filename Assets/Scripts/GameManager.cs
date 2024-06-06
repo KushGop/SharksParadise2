@@ -30,7 +30,6 @@ public static class GameManager
   public delegate void NormalEvent();
   public static NormalEvent switchToNight;
   public static NormalEvent switchToDay;
-  public static NormalEvent stung;
 
   public static NormalEvent disappear;
 }
