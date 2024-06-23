@@ -30,7 +30,7 @@ public class Orbit : MonoBehaviour
 
   private void StartOrbit()
   {
-    cycleTime = 6f;
+    cycleTime = 8f;
     StartCoroutine(Cycle());
   }
 

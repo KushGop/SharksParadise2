@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+
 public static class MissionData
 {
   public static readonly int missionCount = 7;
@@ -10,6 +12,14 @@ public static class MissionData
 
 
   public static MissionEvent MissionDelegate;
+
+  /**
+   * When adding a new mission: 
+   * add mission enum in MissionNames.cs
+   * add in missionDictionary below
+   * add in allMissions below with base value regarding difficulty, ie. 1 --> 1,2,3  5 --> 5,10,15
+   * make mission icon art and add it to Mission Icons Scriptable Object found in Assets/Scripts/Missions
+   */
 
   internal static Dictionary<MissionName, int> missionDictionary = new()
   {
@@ -23,7 +33,8 @@ public static class MissionData
     { MissionName.starfishesCollected, 0 },
     { MissionName.fishnetsBroken, 0 },
     { MissionName.multiplyerMax, 0 },
-    { MissionName.bigSharkDodges, 0 }
+    { MissionName.bigSharkDodges, 0 },
+    { MissionName.nightsSurvived, 0 }
   };
 
   internal static readonly List<Mission> allMissions = new()
@@ -36,6 +47,7 @@ public static class MissionData
     { new(5, MissionName.starfishesCollected, 1, "Collect {0} starfish") },
     { new(6, MissionName.multiplyerMax, 4, "Get a {0}* combo") },
     { new(7, MissionName.treasureCollected, 1, "Collect {0} treasure chests") },
+    { new(8, MissionName.nightsSurvived, 1, "Survive {0} nights") },
   };
 
   internal static Mission GetRandomMission()

@@ -9831,7 +9831,6 @@ Transform:
   m_Children:
   - {fileID: 528627130}
   - {fileID: 279540194}
-  - {fileID: 2022151502}
   - {fileID: 2007442863}
   - {fileID: 833150686}
   - {fileID: 1440187398}
@@ -10983,7 +10982,7 @@ MonoBehaviour:
   fishSpawn: {fileID: 2007442862}
   birdSpawn: {fileID: 279540193}
   score: {fileID: 2093371288}
-  jellySpawn: {fileID: 2022151501}
+  jellySpawn: {fileID: 0}
   squidSpawn: {fileID: 648449390}
   coinSpawn: {fileID: 833150685}
   coinText: {fileID: 376123398}
@@ -12299,77 +12298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numEnemies: 200
   enemy: {fileID: 1482236928047527574, guid: 57d47080e28221148aa9b1c6d6ecc682, type: 3}
-  player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
-  sizeOffset: 0
-  value: 0
-  lower: 0
-  upper: 0
---- !u!1 &2022151501
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2022151502}
-  - component: {fileID: 2022151503}
-  - component: {fileID: 2022151504}
-  m_Layer: 0
-  m_Name: JellyFactory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2022151502
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022151501}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1664950443}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2022151503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022151501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55496cd2f87ce7f4a92758995fd29923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numEnemies: 25
-  enemy: {fileID: 3030828680735082641, guid: 6fd58027cff68334ab3d2b609b65a57d, type: 3}
-  player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
-  sizeOffset: 0
-  value: 25
-  lower: 0
-  upper: 10
---- !u!114 &2022151504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022151501}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0980ead83efe89046b9eee68c9e712e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numEnemies: 25
-  enemy: {fileID: 3030828680735082641, guid: adda1bb10cebdc840af32d294a8d58f3, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   value: 0

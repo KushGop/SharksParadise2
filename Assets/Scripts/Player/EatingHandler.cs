@@ -49,6 +49,7 @@ public class EatingHandler : MonoBehaviour
       }
       else if (fishType == "TutorialPredator")
       {
+        transform.Translate(Vector3.zero);
       }
     }
   }

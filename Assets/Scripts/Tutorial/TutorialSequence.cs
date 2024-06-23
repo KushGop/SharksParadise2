@@ -15,7 +15,7 @@ public class TutorialSequence : MonoBehaviour
   [SerializeField] private GameObject fishSpawn;
   [SerializeField] private GameObject birdSpawn;
   [SerializeField] private GameObject score;
-  [SerializeField] private GameObject jellySpawn;
+  //[SerializeField] private GameObject jellySpawn;
   [SerializeField] private GameObject squidSpawn;
   [SerializeField] private GameObject coinSpawn;
   [SerializeField] private GameObject coinText;
@@ -25,7 +25,7 @@ public class TutorialSequence : MonoBehaviour
   [SerializeField] private GameObject bigSpawn;
   [SerializeField] private TextMeshProUGUI tutorialText;
   [SerializeField] private PlayerMovement playerMovement;
-  private readonly float tutorialDelayTime = 3f;
+  private readonly float tutorialDelayTime = 4f;
 
   #region Setup
   void Start()
@@ -39,7 +39,7 @@ public class TutorialSequence : MonoBehaviour
     TutorialManager.fish += FishSequence;
     TutorialManager.bird += BirdSequence;
     TutorialManager.score += ScoreSequence;
-    TutorialManager.jelly += JellySequence;
+    //TutorialManager.jelly += JellySequence;
     TutorialManager.coinFish += CoinSequence;
     TutorialManager.nightIcon += NightIconSequence;
     TutorialManager.dayNight += NightSequence;
@@ -63,7 +63,7 @@ public class TutorialSequence : MonoBehaviour
     TutorialManager.fish -= FishSequence;
     TutorialManager.bird -= BirdSequence;
     TutorialManager.score -= ScoreSequence;
-    TutorialManager.jelly -= JellySequence;
+    //TutorialManager.jelly -= JellySequence;
     TutorialManager.coinFish -= CoinSequence;
     TutorialManager.nightIcon -= NightIconSequence;
     TutorialManager.dayNight -= NightSequence;
@@ -203,19 +203,19 @@ public class TutorialSequence : MonoBehaviour
     "Using boost or jump will drain your energy",
     "You can catch fish to fill it up"
     },
-    TutorialManager.jelly
-    ));
-  }
-  public void JellySequence()
-  {
-    jellySpawn.SetActive(true);
-    StartCoroutine(TextIteratorOnePart(new string[] {
-    "Careful! Some fish are more defensive than others!",
-    "Higher risk gives higher scores!"
-    },
     TutorialManager.coinFish
     ));
   }
+  //public void JellySequence()
+  //{
+  //  jellySpawn.SetActive(true);
+  //  StartCoroutine(TextIteratorOnePart(new string[] {
+  //  "Careful! Some fish are more defensive than others!",
+  //  "Higher risk gives higher scores!"
+  //  },
+  //  TutorialManager.coinFish
+  //  ));
+  //}
   public void CoinSequence()
   {
     coinSpawn.SetActive(true);

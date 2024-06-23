@@ -15,5 +15,6 @@ public enum MissionName
   treasureCollected,
   fishnetsBroken,
   multiplyerMax,
-  bigSharkDodges
+  bigSharkDodges,
+  nightsSurvived
 }

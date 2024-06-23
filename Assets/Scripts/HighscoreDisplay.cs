@@ -16,6 +16,11 @@ public class HighscoreDisplay : MonoBehaviour
       text.text = "Best | " + GameManager.highscore;
   }
 
+  private void OnEnable()
+  {
+    done = false;
+  }
+
   void Update()
   {
     if (!done)
