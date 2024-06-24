@@ -21,6 +21,7 @@ public class ScoreMission : MonoBehaviour
   [SerializeField] private float s;
   private Vector3 pos = Vector3.zero;
   [SerializeField] private GameObject coinPrefab;
+    [SerializeField] private GameObject adButton;
 
   private void Start()
   {
@@ -58,8 +59,9 @@ public class ScoreMission : MonoBehaviour
 
   private void CompleteMissionAnimation()
   {
-    //Scratch out mission and play sound
-    //Spawn 10,20,30 coins based on its value
+        //Scratch out mission and play sound
+        //Spawn 10,20,30 coins based on its value
+        adButton.SetActive(false);
     int numCoins = coins / 10;
     for (int i = 0; i < numCoins; i++)
     {
@@ -90,6 +92,7 @@ public class ScoreMission : MonoBehaviour
     }
     // fade from transparent to opaque
     SetMission(mission);
+        adButton.SetActive(true);
     // loop over 1 second
     for (float i = 0; i <= 1; i += Time.deltaTime)
     {

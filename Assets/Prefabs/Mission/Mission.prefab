@@ -245,12 +245,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23
+  m_fontSize: 22.95
   m_fontSizeBase: 23
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 2
+  m_fontSizeMax: 23
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -558,6 +558,7 @@ MonoBehaviour:
   r: 1
   s: 0
   coinPrefab: {fileID: 7521303957644674938, guid: 1c8b8304c9c453a49824b38f7715c32e, type: 3}
+  adButton: {fileID: 8117770553716458718}
 --- !u!222 &9134824374796541107
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -952,7 +953,7 @@ GameObject:
   - component: {fileID: 565150264225692568}
   - component: {fileID: 6707329327887821964}
   m_Layer: 5
-  m_Name: ClaimSkip
+  m_Name: AdButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
