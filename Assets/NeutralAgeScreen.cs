@@ -28,12 +28,12 @@ public class NeutralAgeScreen : MonoBehaviour
     {
       >= 18 => new RequestConfiguration
       {
-        MaxAdContentRating = MaxAdContentRating.MA,
+        MaxAdContentRating = MaxAdContentRating.PG,
         TagForChildDirectedTreatment = TagForChildDirectedTreatment.False
       },
       >= 12 => new RequestConfiguration
       {
-        MaxAdContentRating = MaxAdContentRating.T,
+        MaxAdContentRating = MaxAdContentRating.PG,
         TagForChildDirectedTreatment = TagForChildDirectedTreatment.True
       },
       >= 7 => new RequestConfiguration
