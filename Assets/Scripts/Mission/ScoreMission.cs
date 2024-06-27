@@ -11,6 +11,7 @@ public class ScoreMission : MonoBehaviour
   [SerializeField] private Image icon;
   [SerializeField] private CanvasGroup canvasGroup;
   [SerializeField] private MissionIcons_ScritableObject icons;
+  [SerializeField] private Transform coinOrigin;
   protected Vector3 origin;
   private Mission mission;
   private int index;
@@ -21,11 +22,11 @@ public class ScoreMission : MonoBehaviour
   [SerializeField] private float s;
   private Vector3 pos = Vector3.zero;
   [SerializeField] private GameObject coinPrefab;
-    [SerializeField] private GameObject adButton;
+  [SerializeField] private GameObject adButton;
 
   private void Start()
   {
-    origin = icon.transform.position;
+    origin = coinOrigin.position;
     //Check if mission is complete
     if (isComplete)
     {
@@ -59,9 +60,9 @@ public class ScoreMission : MonoBehaviour
 
   private void CompleteMissionAnimation()
   {
-        //Scratch out mission and play sound
-        //Spawn 10,20,30 coins based on its value
-        adButton.SetActive(false);
+    //Scratch out mission and play sound
+    //Spawn 10,20,30 coins based on its value
+    adButton.SetActive(false);
     int numCoins = coins / 10;
     for (int i = 0; i < numCoins; i++)
     {
@@ -92,7 +93,7 @@ public class ScoreMission : MonoBehaviour
     }
     // fade from transparent to opaque
     SetMission(mission);
-        adButton.SetActive(true);
+    adButton.SetActive(true);
     // loop over 1 second
     for (float i = 0; i <= 1; i += Time.deltaTime)
     {

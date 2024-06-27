@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Gley.GameServices;
 
 public class NeutralAgeScreenLoader : MonoBehaviour, IDataPersistence
 {
@@ -13,6 +14,7 @@ public class NeutralAgeScreenLoader : MonoBehaviour, IDataPersistence
   {
     if (data.age != 0)
     {
+      API.LogIn();
       screen.SetAge(data.age);
       SceneManager.LoadScene("MainMenu");
     }

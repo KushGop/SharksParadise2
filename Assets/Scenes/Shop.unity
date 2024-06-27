@@ -1178,9 +1178,9 @@ RectTransform:
   - {fileID: 1540382918}
   - {fileID: 2020507148}
   - {fileID: 112021786}
-  - {fileID: 1283433197}
-  - {fileID: 1105538435}
   - {fileID: 1711458618}
+  - {fileID: 1105538435}
+  - {fileID: 1283433197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1919,7 +1919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2416,10 +2416,6 @@ PrefabInstance:
     - target: {fileID: 231856958484219293, guid: 3232e922004c93242b979c23d956dc41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4357156538909453663, guid: 3232e922004c93242b979c23d956dc41, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8000488570070618831, guid: 3232e922004c93242b979c23d956dc41, type: 3}
       propertyPath: m_Name
