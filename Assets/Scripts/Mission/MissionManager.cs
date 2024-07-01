@@ -45,7 +45,7 @@ public static class MissionManager
     //    AddCoins(missions[i].coins);
     //    missions[i] = null;
     //  }
-    //}
+    //} 
   }
 
   public static void ResetMission(MissionName missionName)

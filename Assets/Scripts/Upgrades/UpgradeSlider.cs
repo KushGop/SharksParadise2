@@ -111,7 +111,7 @@ public class UpgradeSlider : MonoBehaviour
       Debug.Log("Does not contain upgrade key: " + key.ToString());
     }
     slider.value = UpgradesManager.upgradesData.upgrades[key];
-    if (slider.value == 10)
+    if (slider.value >= 10)
     {
       UpgradesManager.activateReward(UpgradesManager.rewards[RewardType.fullUpgrade].Item1, UpgradesManager.rewards[RewardType.fullUpgrade].Item2);
     }
@@ -166,7 +166,7 @@ public class UpgradeSlider : MonoBehaviour
   private void UpdateCost()
   {
     //check if complete
-    if (slider.value == 10)
+    if (slider.value >= 10)
     {
       costText.text = "";
       coinIcon.color = new(0, 0, 0, 0);
@@ -234,7 +234,7 @@ public class UpgradeSlider : MonoBehaviour
     }
     else
     {
-      return Mathf.CeilToInt(RecursiveGemCost(baseCost, n - 1) * 1.2f);
+      return Mathf.CeilToInt(RecursiveGemCost(baseCost, n - 1) * 1.4f);
     }
   }
   #endregion

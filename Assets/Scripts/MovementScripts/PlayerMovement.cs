@@ -469,7 +469,7 @@ public class PlayerMovement : MonoBehaviour
   {
     i = 0;
     float timePassed = 0f;
-    Color startColor = sprite.color;
+    Color startColor = Color.white;
     StartCoroutine(ColorDelay());
     while (timePassed < waitTime - 3)
     {

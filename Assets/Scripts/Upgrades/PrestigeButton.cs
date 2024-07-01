@@ -29,7 +29,7 @@ public class PrestigeButton : MonoBehaviour
     {
       if ((ushort)pair.Key < 10)
       {
-        if (pair.Value != 10)
+        if (pair.Value < 10)
         {
           Disable();
           return;
