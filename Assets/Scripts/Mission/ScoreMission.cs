@@ -64,6 +64,7 @@ public class ScoreMission : MonoBehaviour
     //Spawn 10,20,30 coins based on its value
     adButton.SetActive(false);
     int numCoins = coins / 10;
+    GameManager.missionCoins = coins;
     for (int i = 0; i < numCoins; i++)
     {
       Instantiate(coinPrefab, SetPosition(), SetRotation(), transform);

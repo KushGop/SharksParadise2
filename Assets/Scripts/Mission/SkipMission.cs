@@ -41,6 +41,7 @@ public class SkipMission : MonoBehaviour
 
   public void SkipMissionButton()
   {
+    UpgradesManager.updateCosts();
     API.ShowRewardedVideo(CompleteMethod);
   }
   private void CompleteMethod(bool completed)

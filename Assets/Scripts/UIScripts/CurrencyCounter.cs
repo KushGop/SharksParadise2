@@ -11,18 +11,31 @@ public class CurrencyCounter : MonoBehaviour
   public CanvasGroup group;
   public Currency c;
 
+  [SerializeField] GameObject addOrigin;
+  [SerializeField] GameObject pointPrefab;
+
   // Start is called before the first frame update
   void Start()
   {
+    GameManager.TurnCoinsOn += TurnOn;
+    GameManager.TurnCoinsOff += TurnOff;
     if (c == Currency.Coin)
       count.text = GameManager.coins.ToString();
     else if (c == Currency.Gem)
       count.text = GameManager.gems.ToString();
     StartCoroutine(FadeOut());
   }
+  private void OnDestroy()
+  {
+    GameManager.TurnCoinsOn -= TurnOn;
+    GameManager.TurnCoinsOff -= TurnOff;
+  }
 
   public void AddCurrency(Currency currency, int value)
   {
+    GameObject newPoint = Instantiate(pointPrefab, addOrigin.transform);
+    newPoint.transform.GetComponent<PointPrefab>().SetText("+" + value.ToString());
+    newPoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     if (currency == c)
     {
       StopAllCoroutines();
@@ -53,5 +66,23 @@ public class CurrencyCounter : MonoBehaviour
       yield return null;
     }
     group.alpha = 0;
+  }
+
+  private void TurnOn()
+  {
+    StopAllCoroutines();
+    group.alpha = 1;
+    if (c == Currency.Coin)
+      count.text = (GameManager.totalCoins + GameManager.coins).ToString();
+    else if (c == Currency.Gem)
+      count.text = (GameManager.totalGems + GameManager.gems).ToString();
+  }
+  private void TurnOff()
+  {
+    if (c == Currency.Coin)
+      count.text = GameManager.coins.ToString();
+    else if (c == Currency.Gem)
+      count.text = GameManager.gems.ToString();
+    StartCoroutine(FadeOut());
   }
 }

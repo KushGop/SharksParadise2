@@ -27,6 +27,7 @@ public class DeathTimer : MonoBehaviour
   {
     count.text = countdownTime.ToString();
     startTime = countdownTime;
+    GameManager.TurnCoinsOn();
     StartCoroutine(CountDown());
   }
 
@@ -77,12 +78,13 @@ public class DeathTimer : MonoBehaviour
     playercollider.enabled = true;
 
     Time.timeScale = 1;
+    GameManager.TurnCoinsOff();
   }
 
   public void GiveUp()
   {
     playerSprite.color = new Color(0, 0, 0, 0);
-        colors.SetActive(false);
+    colors.SetActive(false);
     //API.ShowInterstitial();
     exitGame.ExitGameSequence();
     changeScene.ChangeSceneTo("Score");

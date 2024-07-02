@@ -26,8 +26,6 @@ public class ExtraLiveButton : MonoBehaviour
   {
     reviveCost *= reviveCount;
     buttonText.text = "Use " + (reviveCost).ToString() + " coins";
-    coins.group.alpha = 1;
-    coins.count.text = (GameManager.totalCoins + GameManager.coins).ToString();
     if (GameManager.totalCoins + GameManager.coins >= reviveCost)
     {
       button.interactable = true;

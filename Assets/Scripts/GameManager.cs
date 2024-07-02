@@ -7,7 +7,7 @@ public static class GameManager
   public static bool playedTutorial;
   public static bool hasBeenInit = false;
   public static bool missionFirstPass;
-  public static int score, highscore, xp, coins, gems, totalCoins, totalXP, totalGems, totalTokens;
+  public static int score, highscore, xp, coins, gems, totalCoins, totalXP, totalGems, totalTokens, missionCoins;
   public static string lastFish;
   public static int multiplyer, multiplyerCap;
   public static int control; // 0 = right, 1 = left
@@ -30,6 +30,7 @@ public static class GameManager
   public delegate void NormalEvent();
   public static NormalEvent switchToNight;
   public static NormalEvent switchToDay;
-
+  public static NormalEvent TurnCoinsOn;
+  public static NormalEvent TurnCoinsOff;
   public static NormalEvent disappear;
 }

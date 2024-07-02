@@ -200,6 +200,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3457035}
   m_CullTransparentMesh: 1
+--- !u!1 &3790451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2805330205971391413, guid: 4ecc0e4739bf55d4d93c983d78771d1f, type: 3}
+  m_PrefabInstance: {fileID: 928084618}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &31517160
 GameObject:
   m_ObjectHideFlags: 0
@@ -4149,6 +4154,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4832278834036903364, guid: 4ecc0e4739bf55d4d93c983d78771d1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 928084622}
+    - targetCorrespondingSourceObject: {fileID: 2805330205971391413, guid: 4ecc0e4739bf55d4d93c983d78771d1f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 928084626}
   m_SourcePrefab: {fileID: 100100000, guid: 4ecc0e4739bf55d4d93c983d78771d1f, type: 3}
 --- !u!224 &928084619 stripped
 RectTransform:
@@ -4165,7 +4173,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1621860786333841035, guid: 4ecc0e4739bf55d4d93c983d78771d1f, type: 3}
   m_PrefabInstance: {fileID: 928084618}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3790451}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -4353,6 +4361,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 329.24, y: 75}
   m_EdgeRadius: 0
+--- !u!114 &928084626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3790451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a728e17d9f7639d4db437cff2fe31e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinCount: {fileID: 928084621}
 --- !u!1001 &969132369
 PrefabInstance:
   m_ObjectHideFlags: 0
