@@ -70,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] private SpriteRenderer playerSprite;
   [SerializeField] private TextMeshProUGUI textColor;
 
+  [SerializeField] GameObject RedCirclePrefab;
+  [SerializeField] Transform RedCircleOrigin;
+
   //Reset start position
   void Awake()
   {
@@ -535,6 +538,10 @@ public class PlayerMovement : MonoBehaviour
   //Indicator
   public void EnemyCounter(int val)
   {
+    if (val == 1)
+    {
+      Instantiate(RedCirclePrefab, RedCircleOrigin);
+    }
     enemyCount += val;
     if (enemyCount == 0 || isJump)
     {
