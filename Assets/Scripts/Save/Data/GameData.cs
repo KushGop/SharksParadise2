@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Gley.EasyIAP;
 
 [System.Serializable]
 public class GameData
@@ -16,11 +17,13 @@ public class GameData
   public UpgradesData upgradesData;
   public bool playedTutorial;
   public int age;
+  public ShopProductNames hat;
 
   // the values defined in this constructor will be the default values
   // the game starts with when there's no data to load
   public GameData()
   {
+    hat = ShopProductNames.NoHat;
     playedTutorial = false;
     totalCoins = 0;
     totalGems = 0;

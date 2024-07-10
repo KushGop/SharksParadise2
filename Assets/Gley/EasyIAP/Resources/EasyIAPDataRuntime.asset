@@ -178,3 +178,171 @@ MonoBehaviour:
     price: 0.01
     isoCurrencyCode: USD
     receipt: 
+  - productName: Buck
+    productType: 1
+    idGooglePlay: hat_buck
+    idAmazon: 
+    idIOS: hat_buck
+    idMac: 
+    idWindows: 
+    value: 0
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Crown
+    productType: 1
+    idGooglePlay: hat_crown
+    idAmazon: 
+    idIOS: hat_crown
+    idMac: 
+    idWindows: 
+    value: 1
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Flower
+    productType: 1
+    idGooglePlay: hat_flower
+    idAmazon: 
+    idIOS: hat_flower
+    idMac: 
+    idWindows: 
+    value: 2
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Freckles
+    productType: 1
+    idGooglePlay: hat_freckles
+    idAmazon: 
+    idIOS: hat_freckles
+    idMac: 
+    idWindows: 
+    value: 3
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Goggles
+    productType: 1
+    idGooglePlay: hat_goggles
+    idAmazon: 
+    idIOS: hat_goggles
+    idMac: 
+    idWindows: 
+    value: 4
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Indy
+    productType: 1
+    idGooglePlay: hat_iron
+    idAmazon: 
+    idIOS: hat_iron
+    idMac: 
+    idWindows: 
+    value: 5
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: OneP
+    productType: 1
+    idGooglePlay: hat_one
+    idAmazon: 
+    idIOS: hat_one
+    idMac: 
+    idWindows: 
+    value: 6
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Party
+    productType: 1
+    idGooglePlay: hat_party
+    idAmazon: 
+    idIOS: hat_party
+    idMac: 
+    idWindows: 
+    value: 7
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Scar
+    productType: 1
+    idGooglePlay: hat_scar
+    idAmazon: 
+    idIOS: hat_scar
+    idMac: 
+    idWindows: 
+    value: 8
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Smile
+    productType: 1
+    idGooglePlay: hat_smile
+    idAmazon: 
+    idIOS: hat_smile
+    idMac: 
+    idWindows: 
+    value: 9
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Spider
+    productType: 1
+    idGooglePlay: hat_spider
+    idAmazon: 
+    idIOS: hat_spider
+    idMac: 
+    idWindows: 
+    value: 10
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Uwu
+    productType: 1
+    idGooglePlay: hat_uwu
+    idAmazon: 
+    idIOS: hat_uwu
+    idMac: 
+    idWindows: 
+    value: 11
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: Iron
+    productType: 1
+    idGooglePlay: hat_iron
+    idAmazon: 
+    idIOS: hat_iron
+    idMac: 
+    idWindows: 
+    value: 12
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 
+  - productName: NoHat
+    productType: 1
+    idGooglePlay: hat_none
+    idAmazon: 
+    idIOS: hat_none
+    idMac: 
+    idWindows: 
+    value: -1
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 

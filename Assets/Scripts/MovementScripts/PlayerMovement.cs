@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
   public PlayerMobileInput playerInput;
   public Rigidbody2D rb2d;
   public Animator anim;
+  public Animator hatAnim;
   public PolygonCollider2D col;
   public PlayerStats stats;
   public SpriteRenderer color;
@@ -73,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] GameObject RedCirclePrefab;
   [SerializeField] Transform RedCircleOrigin;
 
+  [Header("Hat")]
+  [SerializeField] HatLoader hatLoader;
+  [SerializeField] Closet_ScritableObject hats;
+  SpriteRenderer hatRenderer;
+
   //Reset start position
   void Awake()
   {
@@ -122,7 +128,10 @@ public class PlayerMovement : MonoBehaviour
 
     colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
 
-
+    //hat
+    GameObject hat = Instantiate(hats.hatDictionary[hatLoader.GetHat()], transform);
+    hatRenderer = hat.GetComponent<SpriteRenderer>();
+    hatAnim = hat.GetComponent<Animator>();
 
     //events
     controlLeft.mobileJoystick.OnMove += MovePlayer;
@@ -237,7 +246,8 @@ public class PlayerMovement : MonoBehaviour
     if (!isJump && energyAmount > 0)
     {
       speed = baseSpeed * boostSpeed;
-      anim.speed = 1.5f;
+      anim.SetBool("Boost", true);
+      //anim.speed = 1.5f;
       isBoost = true;
     }
 
@@ -250,7 +260,8 @@ public class PlayerMovement : MonoBehaviour
     if (!isJump)
     {
       speed = baseSpeed;
-      anim.speed = 1;
+      //anim.speed = 1;
+      anim.SetBool("Boost", false);
       isBoost = false;
     }
   }
@@ -301,6 +312,7 @@ public class PlayerMovement : MonoBehaviour
       StartCoroutine(SplashDelay(1f));
       col.isTrigger = true;
       anim.SetTrigger("JumpTrigger");
+      hatAnim.SetTrigger("JumpTrigger");
     }
 
   }
@@ -308,7 +320,7 @@ public class PlayerMovement : MonoBehaviour
   public void AnimJump()
   {
     speed = baseSpeed * boostSpeed;
-    anim.speed = 1.5f;
+    //anim.speed = 1f;
     StartCoroutine(FrameDelay());
   }
   private IEnumerator FrameDelay()
@@ -337,7 +349,7 @@ public class PlayerMovement : MonoBehaviour
     if (!isBoost)
     {
       speed = baseSpeed;
-      anim.speed = 1f;
+      //anim.speed = 1.5f;
     }
     SplashAnim();
     diveSound.Play();
@@ -349,6 +361,7 @@ public class PlayerMovement : MonoBehaviour
     //slomo
     Time.timeScale = 1f;
     spriteRenderer.sortingLayerName = spriteRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
+    hatRenderer.sortingLayerName = hatRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
     trails.GetComponent<TrailScript>().changeParent();
   }
   #endregion
