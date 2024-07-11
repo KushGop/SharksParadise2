@@ -240,9 +240,9 @@ MonoBehaviour:
     receipt: 
   - productName: Indy
     productType: 1
-    idGooglePlay: hat_iron
+    idGooglePlay: hat_indy
     idAmazon: 
-    idIOS: hat_iron
+    idIOS: hat_indy
     idMac: 
     idWindows: 
     value: 5
