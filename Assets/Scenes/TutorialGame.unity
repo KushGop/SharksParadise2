@@ -2271,6 +2271,8 @@ MonoBehaviour:
   seperator: {fileID: 2043590585}
   group: {fileID: 376123401}
   c: 0
+  addOrigin: {fileID: 0}
+  pointPrefab: {fileID: 0}
 --- !u!225 &376123401
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5642,6 +5644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 892508279}
   - component: {fileID: 892508278}
+  - component: {fileID: 892508280}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5680,6 +5683,18 @@ Transform:
   - {fileID: 517122220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &892508280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892508277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a61494d765207946aa1a72ec961a50d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &958719737
 GameObject:
   m_ObjectHideFlags: 0
@@ -6962,6 +6977,37 @@ MonoBehaviour:
   value: 250
   lower: 0
   upper: 0
+--- !u!1 &1154072334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154072335}
+  m_Layer: 0
+  m_Name: RedCircle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1154072335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154072334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.97, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1459522621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1172994954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8259,6 +8305,7 @@ Transform:
   - {fileID: 1034382490}
   - {fileID: 2132061363}
   - {fileID: 1131305817}
+  - {fileID: 1154072335}
   m_Father: {fileID: 892508279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1459522622
@@ -8329,6 +8376,7 @@ MonoBehaviour:
   playerInput: {fileID: 892508278}
   rb2d: {fileID: 1459522631}
   anim: {fileID: 1459522625}
+  hatAnim: {fileID: 0}
   col: {fileID: 2132061366}
   stats: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   color: {fileID: 2000852979}
@@ -8350,6 +8398,10 @@ MonoBehaviour:
   inkFactory: {fileID: 5410903097102001049, guid: fc46902e88c8d2c4ab616a32804e4441, type: 3}
   playerSprite: {fileID: 1459522622}
   textColor: {fileID: 2093371294}
+  RedCirclePrefab: {fileID: 8450146836238731185, guid: 2492bc83a3fa3bc4da9ed9f9b05bb923, type: 3}
+  RedCircleOrigin: {fileID: 1154072335}
+  hatLoader: {fileID: 892508280}
+  hats: {fileID: 11400000, guid: ee15a72afad5d1343ae237278023c957, type: 2}
 --- !u!95 &1459522625
 Animator:
   serializedVersion: 5
@@ -10801,6 +10853,8 @@ MonoBehaviour:
   seperator: {fileID: 1820236679}
   group: {fileID: 1764297869}
   c: 2
+  addOrigin: {fileID: 0}
+  pointPrefab: {fileID: 0}
 --- !u!225 &1764297869
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10982,7 +11036,6 @@ MonoBehaviour:
   fishSpawn: {fileID: 2007442862}
   birdSpawn: {fileID: 279540193}
   score: {fileID: 2093371288}
-  jellySpawn: {fileID: 0}
   squidSpawn: {fileID: 648449390}
   coinSpawn: {fileID: 833150685}
   coinText: {fileID: 376123398}
