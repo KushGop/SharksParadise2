@@ -15,6 +15,11 @@ public class FadeSprite : MonoBehaviour
     fadeTime = 3f;
     GameManager.switchToDay += FadeOut;
   }
+  private void OnDestroy()
+  {
+    GameManager.switchToDay -= FadeOut;
+    
+  }
 
   void FadeOut()
   {
