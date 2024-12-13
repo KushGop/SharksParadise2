@@ -38,8 +38,8 @@ namespace GooglePlayGames {
 
         public const string ApplicationId = "411863635839"; // Filled in automatically
         public const string IosClientId = "__IOS_CLIENTID__"; // Filled in automatically
-        public const string WebClientId = ""; // Filled in automatically
-        public const string NearbyConnectionServiceId = "";
+        public const string WebClientId = "411863635839-gpcfjao4f03j4tcfna4fe0u7vt98tpdg.apps.googleusercontent.com"; // Filled in automatically
+        public const string NearbyConnectionServiceId = "com.LeaflessGames.com.unity.template.mobile2D";
 
         public static bool ApplicationIdInitialized() {
             return !string.IsNullOrEmpty(ApplicationId) && !ApplicationId.Equals(ToEscapedToken(UnescapedApplicationId));

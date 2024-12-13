@@ -143,7 +143,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.2.4
+  bundleVersion: 1.2.5
   preloadedAssets:
   - {fileID: 11400000, guid: a64ed03507f2e1049920e39d44649c83, type: 2}
   - {fileID: 3845062588515643338, guid: 6cbf345ce90cc95439b6fba642889a33, type: 2}
@@ -179,7 +179,7 @@ PlayerSettings:
     iPhone: 1
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 29
+  AndroidBundleVersionCode: 30
   AndroidMinSdkVersion: 26
   AndroidTargetSdkVersion: 34
   AndroidPreferredInstallLocation: 1
@@ -273,7 +273,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: Keystore/sharksP.keystore'
+  AndroidKeystoreName: '{inproject}: Keystore/sharksP1.keystore'
   AndroidKeyaliasName: sharksparadise
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0

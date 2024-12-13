@@ -18,7 +18,7 @@ MonoBehaviour:
   googleAppId: 411863635839
   allGameAchievements:
   - name: SharksParadise
-    idGoogle: CgkI_67xp_4LEAIQAQ
+    idGoogle: CgkI_67xp_4LEAIQAw
     idIos: sharks_paradise
     achivementComplete: 0
   allGameLeaderboards:
