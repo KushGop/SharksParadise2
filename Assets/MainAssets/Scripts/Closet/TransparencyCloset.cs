@@ -21,7 +21,7 @@ public class TransparencyCloset : MonoBehaviour
   void Update()
   {
     //print(Mathf.Cos(Mathf.Abs((transform.position.x - 1170) / distance)));
-    colorRef.a = Mathf.Cos(Mathf.Abs((transform.position.x - 1170) / distance));
+    colorRef.a = Mathf.Cos(Mathf.Abs((transform.position.x - 800) / distance));
     image.color = colorRef;
   }
 }

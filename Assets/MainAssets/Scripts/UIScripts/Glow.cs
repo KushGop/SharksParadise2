@@ -11,9 +11,9 @@ public class Glow : MonoBehaviour
   void Start()
   {
     //fadeTime = 3f;
-    c = glow.color;
+    //c = glow.color;
     c.a = .35f;
-    glow.color = c;
+    //glow.color = c;
   }
   //  GameManager.switchToNight += TurnOnGlow;
   //  GameManager.switchToDay += TurnOffGlow;

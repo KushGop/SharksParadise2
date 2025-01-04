@@ -30,7 +30,7 @@ public class BackgroundFollow : MonoBehaviour
     {
       sprites[i] = spriteParent.transform.GetChild(i).gameObject;
     }
-    halfDimension = 25f;
+    halfDimension = 25f / 2;
     centerSprite = sprites[4];
     centerPosition = centerSprite.transform.position;
     //load background sprites
@@ -95,19 +95,19 @@ public class BackgroundFollow : MonoBehaviour
         }
         break;
       case "right":
-        for (int i = 0; i < 9; i+=3)
+        for (int i = 0; i < 9; i += 3)
         {
-          spritesHold[i] = sprites[i+1];
-          spritesHold[i+1] = sprites[i+2];
-          spritesHold[i+2] = sprites[i];
+          spritesHold[i] = sprites[i + 1];
+          spritesHold[i + 1] = sprites[i + 2];
+          spritesHold[i + 2] = sprites[i];
         }
         break;
       case "left":
-        for (int i = 0; i < 9; i+=3)
+        for (int i = 0; i < 9; i += 3)
         {
-          spritesHold[i] = sprites[i+2];
-          spritesHold[i+1] = sprites[i];
-          spritesHold[i+2] = sprites[i+1];
+          spritesHold[i] = sprites[i + 2];
+          spritesHold[i + 1] = sprites[i];
+          spritesHold[i + 2] = sprites[i + 1];
         }
         break;
     }

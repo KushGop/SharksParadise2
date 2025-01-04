@@ -6,7 +6,7 @@ public class CameraScript : MonoBehaviour
 {
   [SerializeField] private Transform player;
   public PlayerStats stats;
-  public PlayerMobileInput playerInput;
+  public MobileJoystick joystick;
   public float smoothSpeed;
   public Vector3 offset, playerPos;
   public float offsetSmoothing;
@@ -19,11 +19,11 @@ public class CameraScript : MonoBehaviour
   {
     QualitySettings.vSyncCount = 0;
 
-    currentSize = 7.5f;
+    currentSize = Camera.main.orthographicSize;
     transform.position = Vector3.zero;
 
-    playerInput.OnBoostPressed += CameraBoostOn;
-    playerInput.OnBoostReleased += CameraBoostOff;
+    joystick.OnBoostPressed += CameraBoostOn;
+    joystick.OnBoostReleased += CameraBoostOff;
   }
 
   //Lerps behind player

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TutorialJoystick : MonoBehaviour, IPointerDownHandler
+public class TutorialJoystick : MonoBehaviour, IDragHandler
 {
 
-  public void OnPointerDown(PointerEventData eventData)
+  public void OnDrag(PointerEventData eventData)
   {
-    TutorialManager.moved();
-    Destroy(this);
+    if (TutorialManager.shouldMove)
+    {
+      TutorialManager.moved();
+      Destroy(this);
+    }
   }
 }

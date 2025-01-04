@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class CurrencyCounter : MonoBehaviour
 {
   public TextMeshProUGUI count;
-  public Image icon, seperator;
+  //public Image icon, seperator;
   public CanvasGroup group;
   public Currency c;
 
   [SerializeField] GameObject addOrigin;
   [SerializeField] GameObject pointPrefab;
+  [SerializeField] Transform player;
+  [SerializeField] Vector3 buff;
 
   // Start is called before the first frame update
   void Start()
@@ -33,7 +35,7 @@ public class CurrencyCounter : MonoBehaviour
 
   public void AddCurrency(Currency currency, int value)
   {
-    GameObject newPoint = Instantiate(pointPrefab, addOrigin.transform);
+    GameObject newPoint = Instantiate(pointPrefab, Camera.main.WorldToScreenPoint(player.position) + buff, Quaternion.identity, addOrigin.transform);
     newPoint.transform.GetComponent<PointPrefab>().SetText("+" + value.ToString());
     newPoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     if (currency == c)

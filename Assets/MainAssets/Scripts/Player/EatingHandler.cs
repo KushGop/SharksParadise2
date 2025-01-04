@@ -42,11 +42,7 @@ public class EatingHandler : MonoBehaviour
           TutorialManager.death();
           return;
         }
-        Debug.Log("Death");
-        Time.timeScale = 0;
-        GameManager.pause();
-        transform.GetComponent<PolygonCollider2D>().enabled = false;
-        deathScreen.SetActive(true);
+        Death();
       }
       else if (fishType == "TutorialPredator")
       {
@@ -56,6 +52,17 @@ public class EatingHandler : MonoBehaviour
   }
 
   bool eatFish = false;
+
+
+  private void Death()
+  {
+    Debug.Log("Death");
+    Time.timeScale = 0;
+    GameManager.pause();
+    transform.GetComponent<PolygonCollider2D>().enabled = false;
+    deathScreen.SetActive(true);
+  }
+
 
   private void OnCollisionEnter2D(Collision2D other)
   {
@@ -86,11 +93,7 @@ public class EatingHandler : MonoBehaviour
 
               return;
             }
-            Debug.Log("Death");
-            Time.timeScale = 0;
-            GameManager.pause();
-            transform.GetComponent<PolygonCollider2D>().enabled = false;
-            deathScreen.SetActive(true);
+            Death();
           }
           break;
         case "Object":

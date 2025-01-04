@@ -7,17 +7,20 @@ public class FirstAchievement : MonoBehaviour
 {
   void Start()
   {
-    if (!API.IsComplete(AchievementNames.SharksParadise) && API.IsLoggedIn())
+    if (API.IsLoggedIn())
     {
-      API.SubmitAchievement(AchievementNames.SharksParadise);
-    }
-    API.GetPlayerScore(LeaderboardNames.Highscores, e =>
-    {
-      if (GameManager.highscore > e)
+      if (!API.IsComplete(AchievementNames.SharksParadise))
       {
-        API.SubmitScore(GameManager.highscore, LeaderboardNames.Highscores);
+        API.SubmitAchievement(AchievementNames.SharksParadise);
       }
-    });
+      API.GetPlayerScore(LeaderboardNames.Highscores, e =>
+      {
+        if (GameManager.highscore > e)
+        {
+          API.SubmitScore(GameManager.highscore, LeaderboardNames.Highscores);
+        }
+      });
+    }
   }
 
   public void DisplayLeaderboard()

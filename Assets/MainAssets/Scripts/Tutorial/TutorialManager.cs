@@ -34,6 +34,7 @@ public static class TutorialManager
   public static TutNextEvent eatBird;
   public static TutNextEvent death;
 
-  public static readonly float tutorialDelayTime = 3f;
+  public static readonly float tutorialDelayTime = 1f;
   public static bool isInTutorial = false;
+  public static bool shouldMove = false;
 }

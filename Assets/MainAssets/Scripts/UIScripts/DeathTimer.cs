@@ -14,6 +14,7 @@ public class DeathTimer : MonoBehaviour
   [SerializeField] private PolygonCollider2D playercollider;
   [SerializeField] private SpriteRenderer playerSprite;
   [SerializeField] private GameObject colors;
+  [SerializeField] private GameObject shock;
   [SerializeField] private PlayerMovement playerMovement;
   [SerializeField] private int countdownTime = 3;
   private int startTime;
@@ -84,8 +85,11 @@ public class DeathTimer : MonoBehaviour
 
   public void GiveUp()
   {
+    Gley.GameServices.API.SubmitScore(Mathf.Max(GameManager.highscore, GameManager.score), Gley.GameServices.LeaderboardNames.Highscores);
+
     playerSprite.color = new Color(0, 0, 0, 0);
     colors.SetActive(false);
+    shock.SetActive(false);
     //API.ShowInterstitial();
     exitGame.ExitGameSequence();
     changeScene.ChangeSceneTo("Score");

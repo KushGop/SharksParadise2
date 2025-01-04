@@ -8,6 +8,9 @@ public class NewPoints : MonoBehaviour
   public GameObject pointPrefab;
   private GameObject newPoint;
   public Color[] colors;
+  [SerializeField] Transform newPointOrigin;
+  [SerializeField] Transform player;
+  [SerializeField] Vector3 buff;
 
   private void OnEnable()
   {
@@ -19,13 +22,13 @@ public class NewPoints : MonoBehaviour
 
   public void OnNewPoint(int value)
   {
-    newPoint = Instantiate(pointPrefab, transform);
+    newPoint = Instantiate(pointPrefab, Camera.main.WorldToScreenPoint(player.position) + buff, Quaternion.identity, newPointOrigin);
     newPoint.transform.GetComponent<PointPrefab>().SetText("+" + value);
   }
 
   public void OnMultiply(int value, Vector3 pos)
   {
-    newPoint = Instantiate(pointPrefab, transform);
+    newPoint = Instantiate(pointPrefab, Camera.main.WorldToScreenPoint(player.position) + buff, Quaternion.identity, newPointOrigin);
     //newPoint.transform.Translate(pos);
     newPoint.transform.GetComponent<PointPrefab>().SetText("*" + value);
     newPoint.transform.GetComponent<PointPrefab>().SetBubbleColor(colors[value % colors.Length]);

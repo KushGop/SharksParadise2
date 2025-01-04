@@ -5,12 +5,20 @@ using TMPro;
 
 public class LeaderboardItem : MonoBehaviour
 {
-  [SerializeField] TextMeshProUGUI user;
-  [SerializeField] TextMeshProUGUI score;
+  [SerializeField] private TextMeshProUGUI scoreText;
+  [SerializeField] private TextMeshProUGUI idText;
+  [SerializeField] private TextMeshProUGUI rankText;
 
-  internal void SetLeaderboardItem(string username, long value)
+  private void Start()
   {
-    user.text = username;
-    score.text = value.ToString();
+    scoreText.text = "-";
+    idText.text = "-";
+    rankText.text = "-";
+  }
+  public void SetScore(LeaderboardUserData s)
+  {
+    rankText.text = s.rank;
+    idText.text = s.id;
+    scoreText.text = s.value;
   }
 }

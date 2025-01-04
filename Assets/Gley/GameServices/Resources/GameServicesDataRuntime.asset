@@ -25,4 +25,7 @@ MonoBehaviour:
   - name: Highscores
     idGoogle: CgkI_67xp_4LEAIQAg
     idIos: highscore
+  - name: HighscoreTest
+    idGoogle: CgkI_67xp_4LEAIQBA
+    idIos: highscore_test
   useUVS: 0

@@ -6,6 +6,7 @@ public class LoadUpgrades : MonoBehaviour, IDataPersistence
 {
   public void LoadData(GameData data)
   {
+    print("load upgrades");
     UpgradesManager.upgradesData = data.upgradesData;
   }
 

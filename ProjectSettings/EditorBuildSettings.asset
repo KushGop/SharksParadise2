@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainAssets/Scenes/TutorialGame.unity
     guid: 41f7ebf34280def42bbfc9bf1f8f7559
-  - enabled: 0
+  - enabled: 1
     path: Assets/MainAssets/Scenes/Test/TestLeaderboard.unity
     guid: 2b8310bcf127e0547b680bdae3e3ce90
   - enabled: 0

@@ -9,7 +9,7 @@ public class ExitGame : MonoBehaviour
 
   public void ExitGameSequence()
   {
-    //Time.timeScale = 1;
+    GameManager.unpauseBackground();
     playerCollider.enabled = false;
   }
 }

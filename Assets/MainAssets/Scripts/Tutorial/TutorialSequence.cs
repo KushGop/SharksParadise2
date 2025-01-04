@@ -25,6 +25,7 @@ public class TutorialSequence : MonoBehaviour
   [SerializeField] private GameObject bigSpawn;
   [SerializeField] private TextMeshProUGUI tutorialText;
   [SerializeField] private PlayerMovement playerMovement;
+  [SerializeField] private TutorialMobileJoystick tutJoystick;
   private readonly float tutorialDelayTime = 4f;
 
   #region Setup
@@ -45,14 +46,14 @@ public class TutorialSequence : MonoBehaviour
     TutorialManager.dayNight += NightSequence;
     TutorialManager.bigShark += BigSharkSequence;
     TutorialManager.endSeq += EndSequence;
-    TutorialManager.title += TitleScreen;
-    TutorialManager.moved += triggerEvent;
-    TutorialManager.boostPressed += triggerEvent;
-    TutorialManager.jumpPressed += triggerEvent;
-    TutorialManager.eatFish += triggerEvent;
-    TutorialManager.eatBird += triggerEvent;
-    TutorialManager.death += triggerEvent;
-    StartSequence();
+    TutorialManager.title += TitleScreenComplete;
+    TutorialManager.moved += TriggerEvent;
+    TutorialManager.boostPressed += TriggerEvent;
+    TutorialManager.jumpPressed += TriggerEvent;
+    TutorialManager.eatFish += TriggerEvent;
+    TutorialManager.eatBird += TriggerEvent;
+    TutorialManager.death += TriggerEvent;
+    JoystickSequence();
   }
   void OnDestroy()
   {
@@ -69,25 +70,25 @@ public class TutorialSequence : MonoBehaviour
     TutorialManager.dayNight -= NightSequence;
     TutorialManager.bigShark -= BigSharkSequence;
     TutorialManager.endSeq -= EndSequence;
-    TutorialManager.title -= TitleScreen;
+    TutorialManager.title -= TitleScreenComplete;
     TutorialManager.isInTutorial = false;
   }
 
   private void OnDisable()
   {
 
-    TutorialManager.moved -= triggerEvent;
-    TutorialManager.boostPressed -= triggerEvent;
-    TutorialManager.jumpPressed -= triggerEvent;
-    TutorialManager.eatFish -= triggerEvent;
-    TutorialManager.eatBird -= triggerEvent;
-    TutorialManager.death -= triggerEvent;
+    TutorialManager.moved -= TriggerEvent;
+    TutorialManager.boostPressed -= TriggerEvent;
+    TutorialManager.jumpPressed -= TriggerEvent;
+    TutorialManager.eatFish -= TriggerEvent;
+    TutorialManager.eatBird -= TriggerEvent;
+    TutorialManager.death -= TriggerEvent;
   }
   #endregion
 
   #region StateMachine
   bool trigger = false;
-  private void triggerEvent()
+  private void TriggerEvent()
   {
     trigger = true;
   }
@@ -98,7 +99,7 @@ public class TutorialSequence : MonoBehaviour
     //yield return new WaitForSeconds(tutorialDelayTime);
     trigger = false;
     yield return new WaitUntil(() => trigger);
-    unityEvent -= triggerEvent;
+    unityEvent -= TriggerEvent;
     tutorialText.text = texts[1];
     yield return new WaitForSeconds(tutorialDelayTime);
 
@@ -121,8 +122,7 @@ public class TutorialSequence : MonoBehaviour
   {
     StartCoroutine(TextIteratorOnePart(new string[] {
     "Welcome to sharks paradise!",
-    "This is a little tutorial to help you get started.",
-    "Feel free to skip at anytime!",
+    "Feel free to skip this tutorial at anytime!",
     "Lets get started!"
     },
     TutorialManager.joystick
@@ -131,20 +131,22 @@ public class TutorialSequence : MonoBehaviour
   public void JoystickSequence()
   {
     joystick.SetActive(true);
+    boost.SetActive(true);
     playerMovement.DisableEnergy();
+    TutorialManager.shouldMove = true;
     StartCoroutine(TextIteratorTwoPart(new string[] {
     "Use the joystick to swim around!",
     "Use this to chase or run away from other fish!"
     },
     TutorialManager.moved,
-    TutorialManager.boost
+    TutorialManager.fish
     ));
   }
   public void BoostSequence()
   {
-    boost.SetActive(true);
+    tutJoystick.SetBoostDistance();
     StartCoroutine(TextIteratorTwoPart(new string[] {
-    "Hold the boost button to swim faster!",
+    "Drag the joystick further to boost!",
     "Use boost to catch smaller fish or swim away from bigger sharks!"
     },
     TutorialManager.boostPressed,
@@ -165,8 +167,9 @@ public class TutorialSequence : MonoBehaviour
   public void JumpSequence()
   {
     jump.SetActive(true);
+    tutJoystick.SetJumpDistance();
     StartCoroutine(TextIteratorTwoPart(new string[] {
-    "Tap jump to jump out of the ocean!",
+    "Drag the joystick even more to jump!",
     "You can use this to catch birds or jump over bigger sharks!"
     },
     TutorialManager.jumpPressed,
@@ -198,7 +201,7 @@ public class TutorialSequence : MonoBehaviour
   public void EnergySequence()
   {
     playerMovement.EnableEnergy();
-    energyBar.SetActive(true);
+    //energyBar.SetActive(true);
     StartCoroutine(TextIteratorOnePart(new string[] {
     "Using boost or jump will drain your energy",
     "You can catch fish to fill it up"
@@ -283,10 +286,14 @@ public class TutorialSequence : MonoBehaviour
     ));
   }
 
-  public void TitleScreen()
+  public void TitleScreenComplete()
   {
     GameManager.playedTutorial = true;
     DataPersistenceManager.instance.SaveGame();
+    SceneManager.LoadScene("MainMenu");
+  }
+  public void TitleScreenIncomplete()
+  {
     SceneManager.LoadScene("MainMenu");
   }
 

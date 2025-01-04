@@ -5,14 +5,20 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+  [Header("Shock")]
+  [SerializeField] GameObject shockParent;
+  [SerializeField] Animator[] shocks;
+
   [Header("Controls")]
   [SerializeField] private ControlToggle controlManager;
-  private Control controlRight;
-  private Control controlLeft;
+  [SerializeField] private MobileJoystick joystick;
+  [SerializeField] private Image boostJoystick;
+  [SerializeField] private Image jumpJoystick;
+  //private Control controlRight;
+  //private Control controlLeft;
   [Space]
   //class variables
   [Header("Objects")]
-  public PlayerMobileInput playerInput;
   public Rigidbody2D rb2d;
   public Animator anim;
   public Animator hatAnim;
@@ -33,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
   public Transform trails;
   public AudioSource boostSound;
   private Color[] colors;
-  public GameObject[] enemies;
   public GameObject inkOverlayParent;
   public GameObject inkFactory;
 
@@ -88,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
   private void Start()
   {
     //upgrades
-    baseSpeed = 5 + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
+    baseSpeed = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
     boostSpeed = 2 + (UpgradesManager.upgradesData.upgrades[UpgradeList.boostSpeed] * 0.1f);
     boostCost = 15 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
     jumpCost = 15 - (UpgradesManager.upgradesData.upgrades[UpgradeList.jumpCost] * 0.1f);
@@ -122,9 +127,11 @@ public class PlayerMovement : MonoBehaviour
     glow1.color = c;
     glow2.color = c;
 
-
-    controlRight = controlManager.controlRight;
-    controlLeft = controlManager.controlLeft;
+    shockParent.SetActive(false);
+    foreach (Animator s in shocks)
+      s.speed = 0;
+    //controlRight = controlManager.controlRight;
+    //controlLeft = controlManager.controlLeft;
 
     colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
 
@@ -134,19 +141,21 @@ public class PlayerMovement : MonoBehaviour
     hatAnim = hat.GetComponent<Animator>();
 
     //events
-    controlLeft.mobileJoystick.OnMove += MovePlayer;
-    controlRight.mobileJoystick.OnMove += MovePlayer;
-    playerInput.OnBoostPressed += BoostOn;
-    playerInput.OnBoostReleased += BoostOff;
-    playerInput.JumpPlayer += PlayerJump;
+    //controlLeft.mobileJoystick.OnMove += MovePlayer;
+    //controlRight.mobileJoystick.OnMove += MovePlayer;
+    joystick.OnMove += MovePlayer;
+    joystick.OnBoostPressed += BoostOn;
+    joystick.OnBoostReleased += BoostOff;
+    joystick.JumpPlayer += PlayerJump;
   }
   private void OnDestroy()
   {
-    controlLeft.mobileJoystick.OnMove -= MovePlayer;
-    controlRight.mobileJoystick.OnMove -= MovePlayer;
-    playerInput.OnBoostPressed -= BoostOn;
-    playerInput.OnBoostReleased -= BoostOff;
-    playerInput.JumpPlayer -= PlayerJump;
+    //controlLeft.mobileJoystick.OnMove -= MovePlayer;
+    //controlRight.mobileJoystick.OnMove -= MovePlayer;
+    joystick.OnMove -= MovePlayer;
+    joystick.OnBoostPressed -= BoostOn;
+    joystick.OnBoostReleased -= BoostOff;
+    joystick.JumpPlayer -= PlayerJump;
   }
 
   #region Tutorial
@@ -159,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
   {
     boostCost = 0;
     jumpCost = 0;
-    speed = 5;
+    speed = 10;
     refillSpeed = 30;
     refillDelay = 2;
   }
@@ -168,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
   //Position, boost (UI, Refill, Drain)
   private void Update()
   {
+    boostJoystick.fillAmount = energyAmount / 100;
     stats.playerPosition = transform.position;
     if (boostButtonPressed && !isUnlimitedBoost)
     {
@@ -176,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
       {
         energyAmount = 0;
         BoostOff();
-        playerInput.BoostReleased();
+        joystick.BoostReleased();
       }
     }
     else
@@ -319,7 +329,8 @@ public class PlayerMovement : MonoBehaviour
   //called from animation state fro right timing
   public void AnimJump()
   {
-    speed = baseSpeed * boostSpeed;
+    //speed = baseSpeed;
+    //speed = baseSpeed * boostSpeed;
     //anim.speed = 1f;
     StartCoroutine(FrameDelay());
   }
@@ -373,13 +384,21 @@ public class PlayerMovement : MonoBehaviour
     if (!isInvincible)
     {
       isStun = true;
+      shockParent.SetActive(true);
+      foreach (Animator s in shocks)
+      {
+        s.speed = 1;
+        s.SetFloat("Offset", Random.value * 3);
+        s.Play("PlayerShock");
+      }
       if (isBoost)
       {
         BoostOff();
       }
-      playerInput.OnBoostPressed -= BoostOn;
-      playerInput.OnBoostReleased -= BoostOff;
-      playerInput.JumpPlayer -= PlayerJump;
+      joystick.OnBoostPressed -= BoostOn;
+      joystick.OnBoostReleased -= BoostOff;
+      joystick.JumpPlayer -= PlayerJump;
+      StopCoroutine(StunDelay());
       StartCoroutine(StunDelay());
     }
 
@@ -388,9 +407,12 @@ public class PlayerMovement : MonoBehaviour
   {
     yield return new WaitForSeconds(2f);
     isStun = false;
-    playerInput.OnBoostPressed += BoostOn;
-    playerInput.OnBoostReleased += BoostOff;
-    playerInput.JumpPlayer += PlayerJump;
+    joystick.OnBoostPressed += BoostOn;
+    joystick.OnBoostReleased += BoostOff;
+    joystick.JumpPlayer += PlayerJump;
+    shockParent.SetActive(false);
+    foreach (Animator s in shocks)
+      s.speed = 0;
   }
   #endregion
 
@@ -423,8 +445,8 @@ public class PlayerMovement : MonoBehaviour
       case 2://Unlimited Boost
         StopCoroutine("ImageRotateColors");
         StopCoroutine("ImageRotateColors");
-        StartCoroutine(ImageRotateColors(powerTime, controlLeft.boostSprite));
-        StartCoroutine(ImageRotateColors(powerTime, controlRight.boostSprite));
+        StartCoroutine(ImageRotateColors(powerTime, boostJoystick));
+        //StartCoroutine(ImageRotateColors(powerTime, controlRight.boostSprite));
         isUnlimitedBoost = true;
         break;
     }

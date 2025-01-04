@@ -62,6 +62,9 @@ TagManager:
   - name: Ink
     uniqueID: 2360626397
     locked: 0
+  - name: UnderGlow
+    uniqueID: 3246890191
+    locked: 0
   - name: Enemy
     uniqueID: 2
     locked: 0

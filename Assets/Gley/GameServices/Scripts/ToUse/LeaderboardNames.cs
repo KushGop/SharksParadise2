@@ -4,6 +4,7 @@ namespace Gley.GameServices
 	public enum LeaderboardNames
 	{
 		Highscores,
+		HighscoreTest,
 	}
 }
 #endif

@@ -7,7 +7,7 @@ public class PlayerMobileInput : MonoBehaviour, IAgentInput
 {
   public Vector2 MovementVector { get; private set; }
 
-  [SerializeField] MobileJoystick joystickLeft;
+  //[SerializeField] MobileJoystick joystickLeft;
   [SerializeField] MobileJoystick joystickRight;
 
   public event Action<Vector2> OnMovement;
@@ -17,13 +17,13 @@ public class PlayerMobileInput : MonoBehaviour, IAgentInput
 
   private void Start()
   {
-    joystickLeft.OnMove += Move;
+    //joystickLeft.OnMove += Move;
     joystickRight.OnMove += Move;
   }
   private void OnDestroy()
   {
     joystickRight.OnMove -= Move;
-    joystickLeft.OnMove -= Move;
+    //joystickLeft.OnMove -= Move;
   }
 
 
