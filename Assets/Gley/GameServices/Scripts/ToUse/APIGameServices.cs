@@ -78,13 +78,9 @@ namespace Gley.GameServices
       GameServicesManager.Instance.ShowSpecificLeaderboard(leaderboardName);
     }
 
-    public static void GetTopThree(LeaderboardNames leaderboardName, UnityAction<LeaderboardUserData[]> completeMethod)
+    public static void GetPlayerCenter(LeaderboardNames leaderboardName, bool isPlayerCenter, int rows, UnityAction<LeaderboardUserData[]> completeMethod)
     {
-      GameServicesManager.Instance.GetTopThree(leaderboardName, completeMethod);
-    }
-    public static void GetPlayerCenter(LeaderboardNames leaderboardName, int rows, UnityAction<LeaderboardUserData[]> completeMethod)
-    {
-      GameServicesManager.Instance.GetPlayerCenter(leaderboardName, rows, completeMethod);
+      GameServicesManager.Instance.LoadLeaderboardScores(leaderboardName, isPlayerCenter, rows, completeMethod);
     }
     public static void LoadUsers(string[] userIds, int rows, UnityAction<string[]> completeMethod)
     {

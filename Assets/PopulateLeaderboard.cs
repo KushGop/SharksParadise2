@@ -7,7 +7,7 @@ using TMPro;
 
 public class PopulateLeaderboard : MonoBehaviour
 {
-  [SerializeField] private bool isTopThree;
+  [SerializeField] private bool isPlayerCenter;
   [SerializeField] private LeaderboardInit leaderboardInit;
 
   bool loaded;
@@ -20,7 +20,7 @@ public class PopulateLeaderboard : MonoBehaviour
   private void Start()
   {
     loaded = false;
-    rows = isTopThree ? 3 : 7;
+    rows = isPlayerCenter ? 11 : 3;
     usernames = new string[rows];
     action1 += SetScore;
     action2 += GetUsers;
@@ -33,16 +33,13 @@ public class PopulateLeaderboard : MonoBehaviour
 
   public void GetResults()
   {
-    if (isTopThree)
-      API.GetTopThree(LeaderboardNames.Highscores, action1);
-    else
-      API.GetPlayerCenter(LeaderboardNames.Highscores, rows, action1);
+    API.GetPlayerCenter(LeaderboardNames.Highscores, isPlayerCenter, rows, action1);
   }
 
   private void GetUsers(string[] ids)
   {
     usernames = ids;
-    for (int i = 0; i < rows; i++)
+    for (int i = 0; i < ids.Length; i++)
     {
       scores[i].id = usernames[i];
       transform.GetChild(i).GetComponent<LeaderboardItem>().SetScore(scores[i]);
@@ -53,7 +50,7 @@ public class PopulateLeaderboard : MonoBehaviour
   private void SetScore(LeaderboardUserData[] s)
   {
     scores = s;
-    string[] ids = new string[rows];
+    string[] ids = new string[s.Length];
     for (int i = 0; i < s.Length; i++)
     {
       ids[i] = s[i].id;
@@ -63,8 +60,9 @@ public class PopulateLeaderboard : MonoBehaviour
 
   IEnumerator Loading()
   {
-    yield return new WaitUntil(() => loaded);
-    leaderboardInit.DoneLoading(isTopThree);
+    while (!loaded) yield return null;
+
+    leaderboardInit.DoneLoading(isPlayerCenter);
   }
 
 }

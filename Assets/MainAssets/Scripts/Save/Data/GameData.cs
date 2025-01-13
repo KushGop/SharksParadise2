@@ -18,6 +18,7 @@ public class GameData
   public bool playedTutorial;
   public int age;
   public ShopProductNames hat;
+  public AquariumData aquarium;
 
   // the values defined in this constructor will be the default values
   // the game starts with when there's no data to load
@@ -33,6 +34,7 @@ public class GameData
     missionList = new Mission[3];
     missionListName = new();
     upgradesData = new();
+    aquarium = new();
     for (int i = 0; i < 3; i++)
     {
       missionList[i] = new();

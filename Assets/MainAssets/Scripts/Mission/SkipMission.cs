@@ -23,6 +23,18 @@ public class SkipMission : MonoBehaviour
 
     if (MissionManager.missions[index].gamesPlayed >= 3)
     {
+      if (API.IsRewardedVideoAvailable())
+      {
+        button.interactable = true;
+        ad.enabled = true;
+        text.text = "Watch ad to skip";
+      }
+      else
+      {
+        button.interactable = false;
+        text.text = "Ad not available";
+      }
+      /*
       text.text = "skip";
       switch (MissionManager.missions[index].coins)
       {
@@ -44,31 +56,20 @@ public class SkipMission : MonoBehaviour
       }
       //check if they have enough to purchase
       button.interactable = MissionManager.missions[index].coins / 100 <= GameManager.totalGems;
+      */
       group.alpha = button.interactable ? 1 : 0.5f;
     }
     else
     {
+      /*
       button.interactable = false;
       d1.enabled = false;
       d2.enabled = false;
       d3.enabled = false;
-      //ad.enabled = false;
+      */
+      ad.enabled = false;
       text.text = "Play more to skip";
     }
-    /* vvvv ads vvvvvvvv
-    if (API.IsRewardedVideoAvailable())
-    {
-      button.interactable = true;
-      ad.enabled = true;
-      text.text = "Watch ad to skip";
-    }
-    else
-    {
-      button.interactable = false;
-      text.text = "Ad not available";
-    }
-  }
-  */
 
   }
 

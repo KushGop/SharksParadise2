@@ -4347,8 +4347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf1ec01a20f54d4d97a039208841212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostJoystickCanvas: {fileID: 0}
-  jumpJoystickCanvas: {fileID: 0}
+  boostJoystickCanvas: {fileID: 1909784681}
+  jumpJoystickCanvas: {fileID: 1501481846}
   joystick: {fileID: 1876694377}
   panel: {fileID: 748567102}
   offsetDivider: 1.6
@@ -6935,7 +6935,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -500, y: -60.000122}
+  m_AnchoredPosition: {x: -499.99997, y: -60.000122}
   m_SizeDelta: {x: -1000, y: -120.000015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294594365
@@ -8612,6 +8612,7 @@ GameObject:
   - component: {fileID: 1501481843}
   - component: {fileID: 1501481845}
   - component: {fileID: 1501481844}
+  - component: {fileID: 1501481846}
   m_Layer: 5
   m_Name: Joystick_Jump
   m_TagString: Untagged
@@ -8676,6 +8677,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501481842}
   m_CullTransparentMesh: 1
+--- !u!225 &1501481846
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501481842}
+  m_Enabled: 1
+  m_Alpha: 0.5
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1526034442
 GameObject:
   m_ObjectHideFlags: 0
@@ -10832,6 +10845,7 @@ GameObject:
   - component: {fileID: 1909784678}
   - component: {fileID: 1909784680}
   - component: {fileID: 1909784679}
+  - component: {fileID: 1909784681}
   m_Layer: 5
   m_Name: Joystick_Boost
   m_TagString: Untagged
@@ -10896,6 +10910,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909784677}
   m_CullTransparentMesh: 1
+--- !u!225 &1909784681
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909784677}
+  m_Enabled: 1
+  m_Alpha: 0.5
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1955226370
 GameObject:
   m_ObjectHideFlags: 0
@@ -11357,7 +11383,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1776059911}
         m_TargetAssemblyTypeName: TutorialSequence, Assembly-CSharp
-        m_MethodName: TitleScreenIncomplete
+        m_MethodName: TitleScreenComplete
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

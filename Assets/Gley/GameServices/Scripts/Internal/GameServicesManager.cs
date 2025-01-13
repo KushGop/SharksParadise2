@@ -133,22 +133,9 @@ namespace Gley.GameServices.Internal
       leaderboardManager.ShowSingleLeaderboard(leaderboardName);
     }
 
-    public void GetTopThree(LeaderboardNames leaderboardName, UnityAction<LeaderboardUserData[]> CompleteMethod)
+    public void LoadLeaderboardScores(LeaderboardNames leaderboardName, bool isPlayerCenter, int rows, UnityAction<LeaderboardUserData[]> CompleteMethod)
     {
-      leaderboardManager.GetTopThree(leaderboardName,
-          (LeaderboardUserData[] score) =>
-          {
-            if (CompleteMethod != null)
-            {
-              CompleteMethod(score);
-            }
-          }
-          );
-    }
-
-    public void GetPlayerCenter(LeaderboardNames leaderboardName, int rows, UnityAction<LeaderboardUserData[]> CompleteMethod)
-    {
-      leaderboardManager.GetPlayerCenter(leaderboardName, rows,
+      leaderboardManager.LoadLeaderboardScores(leaderboardName, isPlayerCenter, rows,
           (LeaderboardUserData[] score) =>
           {
             if (CompleteMethod != null)

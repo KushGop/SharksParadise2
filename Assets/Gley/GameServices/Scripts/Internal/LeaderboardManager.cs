@@ -97,73 +97,38 @@ namespace Gley.GameServices.Internal
 #endif
     }
 
-    public void GetTopThree(LeaderboardNames leaderboardName, UnityAction<LeaderboardUserData[]> CompleteMethod)
+
+    public void LoadLeaderboardScores(LeaderboardNames leaderboardName, bool isPlayerCenter, int rows, UnityAction<LeaderboardUserData[]> CompleteMethod)
     {
 #if GLEY_GAMESERVICES_ANDROID
       string leaderboardId = gameLeaderboards.FirstOrDefault(cond => cond.name == leaderboardName.ToString()).idGoogle;
       ((GooglePlayGames.PlayGamesPlatform)Social.Active).LoadScores(
-          leaderboardId,
-          LeaderboardStart.TopScores,
-          3,
-          LeaderboardCollection.Public,
-          LeaderboardTimeSpan.AllTime,
-          (LeaderboardScoreData data) =>
+        leaderboardId,
+        isPlayerCenter ? LeaderboardStart.PlayerCentered : LeaderboardStart.TopScores,
+        rows,
+        LeaderboardCollection.Public,
+        LeaderboardTimeSpan.AllTime,
+        (LeaderboardScoreData data) =>
+        {
+          LeaderboardUserData[] leaderboard = new LeaderboardUserData[data.Scores.Length];
+          if (CompleteMethod != null)
           {
-            LeaderboardUserData[] leaderboard = new LeaderboardUserData[3];
-            if (CompleteMethod != null)
+            for (int i = 0; i < data.Scores.Length; i++)
             {
-              for (int i = 0; i < 3; i++)
+              try
               {
-                try
-                {
-                  leaderboard[i] = new(data.Scores[i].rank.ToString(), data.Scores[i].userID, data.Scores[i].value.ToString());
-                }
-                catch
-                {
-                  leaderboard[i] = new("-", "-", "-");
-                }
+                leaderboard[i] = new(data.Scores[i].rank.ToString(), data.Scores[i].userID, data.Scores[i].value.ToString());
               }
-              CompleteMethod(leaderboard);
-            }
-          }
-      );
-#endif
-#if GLEY_GAMESERVICES_IOS
-
-
-#endif
-    }
-
-    public void GetPlayerCenter(LeaderboardNames leaderboardName, int rows, UnityAction<LeaderboardUserData[]> CompleteMethod)
-    {
-#if GLEY_GAMESERVICES_ANDROID
-      string leaderboardId = gameLeaderboards.FirstOrDefault(cond => cond.name == leaderboardName.ToString()).idGoogle;
-      ((GooglePlayGames.PlayGamesPlatform)Social.Active).LoadScores(
-          leaderboardId,
-          LeaderboardStart.PlayerCentered,
-          rows,
-          LeaderboardCollection.Public,
-          LeaderboardTimeSpan.AllTime,
-          (LeaderboardScoreData data) =>
-          {
-            LeaderboardUserData[] leaderboard = new LeaderboardUserData[3];
-            if (CompleteMethod != null)
-            {
-              for (int i = 0; i < rows; i++)
+              catch
               {
-                try
-                {
-                  leaderboard[i] = new(data.Scores[i].rank.ToString(), data.Scores[i].userID, data.Scores[i].value.ToString());
-                }
-                catch
-                {
-                  leaderboard[i] = new("-", "-", "-");
-                }
+                leaderboard[i] = new("-", "-", "-");
               }
-              CompleteMethod(leaderboard);
             }
+            CompleteMethod(leaderboard);
           }
-      );
+        }
+    );
+
 #endif
 #if GLEY_GAMESERVICES_IOS
 
@@ -322,5 +287,6 @@ namespace Gley.GameServices.Internal
             });
 #endif
     }
+
   }
 }

@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainAssets/Scenes/Test/TestLeaderboard.unity
     guid: 2b8310bcf127e0547b680bdae3e3ce90
+  - enabled: 1
+    path: Assets/MainAssets/Scenes/Aquarium.unity
+    guid: f8fabfbff872c6d4dbaf4e1423a70c36
   - enabled: 0
     path: Assets/Gley/EasyIAP/Example/Scenes/EasyIAPTest.unity
     guid: a8d4152eb7b5c774aac7b8804fa83573

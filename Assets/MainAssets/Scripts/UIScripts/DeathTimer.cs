@@ -90,8 +90,11 @@ public class DeathTimer : MonoBehaviour
     playerSprite.color = new Color(0, 0, 0, 0);
     colors.SetActive(false);
     shock.SetActive(false);
-    //API.ShowInterstitial();
-    exitGame.ExitGameSequence();
-    changeScene.ChangeSceneTo("Score");
+    API.ShowInterstitial(() =>
+    {
+      exitGame.ExitGameSequence();
+      changeScene.ChangeSceneTo("Score");
+    });
+
   }
 }
