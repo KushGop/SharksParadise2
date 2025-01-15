@@ -10,10 +10,10 @@ public class SpikeFactory : AbstractFactory
     newEnemy.transform.tag = "Prey";
     newEnemy.transform.localScale = new Vector3(-1, 1, 1) * Random.Range(player.playerSize / 100 - sizeOffset, player.playerSize / 100);
 
-    
-    newEnemy.transform.GetComponent<Identifier>().fishName = "Spike";    
-    newEnemy.transform.GetComponent<Identifier>().fishType = "Prey";    
+
+    newEnemy.transform.GetComponent<Identifier>().fishName = Fishes.STARFISH;
+    newEnemy.transform.GetComponent<Identifier>().fishType = FishType.PREY;
     newEnemy.transform.GetComponent<Identifier>().value = 30;
   }
-  
+
 }

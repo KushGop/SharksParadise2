@@ -12,8 +12,8 @@ public class BirdFactory : AbstractFactory
     newEnemy.transform.localScale = new Vector3(-1, 1, 1) * (player.playerSize / 100);
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Bird";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.SEAGULL;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

@@ -12,8 +12,8 @@ public class SmallSharkFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "SmallShark";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.SHARK_S;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

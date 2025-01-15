@@ -591,10 +591,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 3981916203307366443, guid: 002645d7eb837b941baa0693207860ab, type: 3}
-      propertyPath: fishName
-      value: Fish
-      objectReference: {fileID: 0}
     - target: {fileID: 4800720061925153837, guid: 002645d7eb837b941baa0693207860ab, type: 3}
       propertyPath: m_Radius
       value: 2

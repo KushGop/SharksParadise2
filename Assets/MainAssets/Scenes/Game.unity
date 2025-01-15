@@ -7716,8 +7716,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: Player
-  fishType: Trigger
+  fishName: 0
+  fishType: 0
   value: 0
   id: 0
 --- !u!1 &1034382489
@@ -10773,8 +10773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: 
-  fishType: Player
+  fishName: 0
+  fishType: 0
   value: 0
   id: 0
 --- !u!82 &1459522633
@@ -12429,8 +12429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: Player
-  fishType: Trigger
+  fishName: 0
+  fishType: 0
   value: 0
   id: 0
 --- !u!1 &1706113802
@@ -13674,8 +13674,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: Player
-  fishType: Trigger
+  fishName: 0
+  fishType: 0
   value: 0
   id: 0
 --- !u!1 &1955226370
@@ -15801,8 +15801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: Player
-  fishType: Collider
+  fishName: 0
+  fishType: 0
   value: 0
   id: 0
 --- !u!82 &2132061368

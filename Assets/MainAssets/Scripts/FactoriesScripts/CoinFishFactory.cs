@@ -17,8 +17,8 @@ public class CoinFishFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "CoinFish";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.COIN;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

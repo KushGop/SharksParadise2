@@ -12,8 +12,8 @@ public class EelFactory : AbstractFactory
     newEnemy.transform.localScale = new Vector3(-0.25f, 0.25f, 0.25f) * Random.Range(player.playerSize / 100 - sizeOffset, player.playerSize / 100);
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Eel";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.EEL;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

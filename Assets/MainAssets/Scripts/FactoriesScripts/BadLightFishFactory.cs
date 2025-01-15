@@ -37,8 +37,8 @@ public class BadLightFishFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "BadLight";
-    identifier.fishType = "Predator";
+    identifier.fishName = Fishes.CUCUMBER;
+    identifier.fishType = FishType.PREDATOR;
     identifier.value = value;
     identifier.id = i;
   }

@@ -15,11 +15,11 @@ public class ScoreHandler : MonoBehaviour
     GameManager.multiplyer = 1;
   }
 
-  public void UpdateLastFish(string fishName)
+  public void UpdateLastFish(Fishes fishName)
   {
     GameManager.lastFish = fishName;
   }
-  public void UpdateMultiplyer(string fishName, Vector3 pos)
+  public void UpdateMultiplyer(Fishes fishName, Vector3 pos)
   {
     if (fishName == GameManager.lastFish || starfishMultiplyer > 1)
     {

@@ -37,8 +37,8 @@ public class LightFishFactory : AbstractFactory
     newEnemy.transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f) * Random.Range(player.playerSize / 100 - sizeOffset, player.playerSize / 100);
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "LightFish";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.CRAWLER;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

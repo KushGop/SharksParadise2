@@ -12,8 +12,8 @@ public class JellyFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Jelly";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.JELLY;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
   }
 }

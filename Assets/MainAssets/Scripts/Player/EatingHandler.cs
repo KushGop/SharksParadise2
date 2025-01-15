@@ -13,7 +13,8 @@ public class EatingHandler : MonoBehaviour
   public AudioSource dodgeSound;
   private GameObject newSkeleton;
   public EnemyList enemyList;
-  private string fishType, fishName;
+  private Fishes fishName;
+  private FishType fishType;
   private Transform otherTransform;
   private Identifier otherIdentifier;
   [SerializeField] private CurrencyCounter coinCounter;
@@ -23,7 +24,7 @@ public class EatingHandler : MonoBehaviour
 
   private void Start()
   {
-    GameManager.lastFish = "null";
+    GameManager.lastFish = Fishes.TREASURE;
     deathScreen.SetActive(false);
   }
 
@@ -35,18 +36,15 @@ public class EatingHandler : MonoBehaviour
 
     if (!playerMovement.GetIsJump())
     {
-      if (fishType == "Predator")
+      if (fishType == FishType.PREDATOR)
       {
         if (TutorialManager.isInTutorial)
         {
+          //transform.Translate(Vector3.zero);
           TutorialManager.death();
           return;
         }
         Death();
-      }
-      else if (fishType == "TutorialPredator")
-      {
-        transform.Translate(Vector3.zero);
       }
     }
   }
@@ -76,7 +74,7 @@ public class EatingHandler : MonoBehaviour
       Vector3 pos = other.transform.position;
       switch (fishType)
       {
-        case "Predator":
+        case FishType.PREDATOR:
           print("IsInvincible: " + playerMovement.GetIsInvincible());
           if (playerMovement.GetIsInvincible())
           {
@@ -96,10 +94,10 @@ public class EatingHandler : MonoBehaviour
             Death();
           }
           break;
-        case "Object":
+        case FishType.OBJECT:
           break;
-        case "Prey":
-          if (fishName == "CoinFish")
+        case FishType.PREY:
+          if (fishName == Fishes.COIN)
             coinCounter.AddCurrency(Currency.Coin, 20);
           InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
           otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
@@ -110,12 +108,12 @@ public class EatingHandler : MonoBehaviour
             eatFish = true;
           }
           break;
-        case "Food":
+        case FishType.FOOD:
           InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
           Destroy(other.gameObject);
           EatEvent(fishName, otherIdentifier.value, pos);
           break;
-        case "Starfish":
+        case FishType.STARFISH:
           playerMovement.TriggerPower();
           otherTransform.parent.GetComponent<AbstractFactory>().SpawnObject(otherTransform);
           MissionData.IncrementMission(MissionName.starfishesCollected);
@@ -137,7 +135,7 @@ public class EatingHandler : MonoBehaviour
       Vector3 pos = otherTransform.position;
       switch (fishName)
       {
-        case "Bird":
+        case Fishes.SEAGULL:
           otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
           EatEvent(fishName, otherIdentifier.value, pos);
           if (TutorialManager.isInTutorial && !eatBird)
@@ -148,13 +146,10 @@ public class EatingHandler : MonoBehaviour
           }
           MissionData.IncrementMission(MissionName.birdsEaten);
           break;
-        case "People":
-          Destroy(other.gameObject);
-          EatEvent(fishName, otherIdentifier.value, pos);
-          break;
-        case "TutorialBird":
-          TutorialManager.eatBird();
-          break;
+          //case "People":
+          //  Destroy(other.gameObject);
+          //  EatEvent(fishName, otherIdentifier.value, pos);
+          //  break;
       }
 
       //Slo-mo
@@ -184,7 +179,7 @@ public class EatingHandler : MonoBehaviour
     fishName = otherIdentifier.fishName;
     switch (fishType)
     {
-      case "Stun":
+      case FishType.STUN:
         if (!playerMovement.GetIsJump() && !playerMovement.GetIsInvincible())
         {
           GameManager.eventText("Stung", 1f);
@@ -193,7 +188,7 @@ public class EatingHandler : MonoBehaviour
           MissionData.IncrementMission(MissionName.timesStung);
         }
         break;
-      case "Ink":
+      case FishType.INK:
         if (!playerMovement.GetIsJump() && !playerMovement.GetIsInvincible())
         {
           GameManager.eventText("Inked", 1f);
@@ -202,7 +197,7 @@ public class EatingHandler : MonoBehaviour
           MissionData.IncrementMission(MissionName.timesInked);
         }
         break;
-      case "Coin":
+      case FishType.COIN:
         if (!playerMovement.GetIsJump())
         {
           other.transform.GetComponent<CoinScript>().Collected();
@@ -210,7 +205,7 @@ public class EatingHandler : MonoBehaviour
           MissionData.IncrementMission(MissionName.coinsCollected);
         }
         break;
-      case "Predator":
+      case FishType.PREDATOR:
         if (playerMovement.GetIsJump() && !GameManager.dodgeHelper.Contains(otherIdentifier.id))
         {
           //SloMo
@@ -220,7 +215,7 @@ public class EatingHandler : MonoBehaviour
           MissionData.IncrementMission(MissionName.bigSharkDodges);
         }
         break;
-      case "Treasure":
+      case FishType.TREASURE:
         if (!playerMovement.GetIsJump())
         {
           print("treasure!");
@@ -234,7 +229,7 @@ public class EatingHandler : MonoBehaviour
 
   }
 
-  private void EatEvent(string fishName, int value, Vector3 pos)
+  private void EatEvent(Fishes fishName, int value, Vector3 pos)
   {
     playerMovement.AddEnergy();
     scoreHandler.UpdateMultiplyer(fishName, pos);

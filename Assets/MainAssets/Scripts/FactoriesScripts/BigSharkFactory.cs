@@ -21,8 +21,8 @@ public class BigSharkFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "BigShark";
-    identifier.fishType = "Predator";
+    identifier.fishName = Fishes.SHARK_L;
+    identifier.fishType = FishType.PREDATOR;
     identifier.value = value + Random.Range(lower, upper);
     identifier.id = i;
   }

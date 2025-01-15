@@ -13,8 +13,8 @@ public class AngelFishFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "AngelFish";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.ANGEL;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

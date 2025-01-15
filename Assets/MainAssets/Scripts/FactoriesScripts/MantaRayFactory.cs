@@ -12,8 +12,8 @@ public class MantaRayFactory : AbstractFactory
     newEnemy.transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f) * Random.Range(player.playerSize / 100 - sizeOffset, player.playerSize / 100);
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "MantaRay";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.MANTA;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

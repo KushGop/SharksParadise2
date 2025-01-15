@@ -17,8 +17,8 @@ public class StarfishFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Starfish";
-    identifier.fishType = "Starfish";
+    identifier.fishName = Fishes.STARFISH;
+    identifier.fishType = FishType.STARFISH;
     identifier.value = value;
 
   }

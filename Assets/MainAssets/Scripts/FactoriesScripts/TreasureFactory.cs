@@ -17,8 +17,8 @@ public class TreasureFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Treasure";
-    identifier.fishType = "Treasure";
+    identifier.fishName = Fishes.TREASURE;
+    identifier.fishType = FishType.TREASURE;
     identifier.value = 0;
 
   }

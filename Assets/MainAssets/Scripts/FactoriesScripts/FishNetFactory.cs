@@ -8,7 +8,7 @@ public class FishNetFactory : AbstractFactory
   public float newS;
   public Transform boatOrigin;
   public float x, y;
-  
+
   protected override void UpdateOrigin()
   {
     origin = boatOrigin.position;
@@ -21,11 +21,11 @@ public class FishNetFactory : AbstractFactory
     newEnemy.transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.yellow;
     newEnemy.transform.localScale = new Vector3(-1, 1, 1) * 0.2f;
     newEnemy.transform.GetChild(0).gameObject.SetActive(false);
-    
+
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "SharkNet";    
-    identifier.fishType = "Object";    
+    identifier.fishName = Fishes.STARFISH;
+    identifier.fishType = FishType.OBJECT;
     identifier.value = 5;
 
     newEnemy.transform.GetComponent<AbstractMovement>().enabled = false;
@@ -40,11 +40,12 @@ public class FishNetFactory : AbstractFactory
   }
 
   //Activate script when sharks are released from the net
-  public void ActivateChildren(){
+  public void ActivateChildren()
+  {
     foreach (Transform e in transform)
     {
       e.GetComponent<AbstractMovement>().enabled = true;
-      e.GetComponent<Identifier>().fishType = "Food";
+      e.GetComponent<Identifier>().fishType = FishType.FOOD;
       e.GetChild(0).gameObject.SetActive(true);
     }
   }

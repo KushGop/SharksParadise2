@@ -12,8 +12,8 @@ public class FlubFactory : AbstractFactory
     newEnemy.transform.localScale = new Vector3(-0.2f, 0.2f, 0.2f) * Random.Range(player.playerSize / 100 - sizeOffset, player.playerSize / 100);
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Flub";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.FLUB;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

@@ -3,6 +3,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FishType
+{
+  PREY,
+  PREDATOR,
+  STARFISH,
+  FOOD,
+  OBJECT,
+  STUN,
+  INK,
+  COIN,
+  TREASURE,
+  SENSOR
+}
+
 public enum Fishes
 {
   CLOWN,
@@ -18,7 +32,8 @@ public enum Fishes
   SEAGULL,
   CUCUMBER,
   SHARK_L,
-  STARFISH
+  STARFISH,
+  TREASURE
 }
 public enum Rarity
 {
@@ -73,6 +88,7 @@ public class AquariumData
     //special
     { Fishes.COIN, Rarity.SPECIAL },
     { Fishes.STARFISH, Rarity.SPECIAL },
+    { Fishes.TREASURE, Rarity.SPECIAL },
   };
 
   public AquariumData()

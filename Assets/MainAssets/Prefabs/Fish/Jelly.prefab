@@ -301,8 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: Jelly
-  fishType: Stun
+  fishName: 14
+  fishType: 5
   value: 0
   id: 0
 --- !u!1 &5650331908524237214
@@ -448,10 +448,6 @@ PrefabInstance:
     - target: {fileID: 3493382064651575820, guid: 002645d7eb837b941baa0693207860ab, type: 3}
       propertyPath: m_Layer
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3981916203307366443, guid: 002645d7eb837b941baa0693207860ab, type: 3}
-      propertyPath: fishName
-      value: Jelly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

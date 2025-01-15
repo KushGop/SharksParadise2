@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Identifier : MonoBehaviour
 {
-  public string fishName, fishType;
+  public Fishes fishName;
+  public FishType fishType;
   public int value, id;
 
-  public Identifier(string name, string type, int val)
+  public Identifier(Fishes name, FishType type, int val)
   {
     fishName = name;
     fishType = type;

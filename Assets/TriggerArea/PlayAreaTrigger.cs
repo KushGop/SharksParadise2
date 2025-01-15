@@ -7,17 +7,31 @@ public class PlayAreaTrigger : MonoBehaviour
   public EnemyList list;
   private void OnTriggerExit2D(Collider2D other)
   {
-    if (list.playAreaList.Contains(other.tag))
-      other.transform.parent.GetComponent<AbstractFactory>().UpdateObject(other.transform);
-    else if (list.spawnList.Contains(other.tag))
-      if (other.CompareTag("Treasure"))
+    if (other.TryGetComponent(out Identifier id))
+    {
+      if (list.playAreaList.Contains(id.fishType))
       {
-        if (!other.transform.GetComponent<Treasure>().isCollected)
+        if (other.transform.parent.TryGetComponent<AbstractFactory>(out AbstractFactory a))
         {
-          other.transform.parent.GetComponent<AbstractFactory>().UpdateObject(other.transform);
+          a.UpdateObject(other.transform);
+        }
+        else
+        {
+          print(other.name);
+          Debug.Log(id.fishType + " " + id.fishName, other);
         }
       }
-      else
-        Destroy(other.gameObject);
+
+      else if (list.spawnList.Contains(id.fishType))
+        if (id.fishType == FishType.TREASURE)
+        {
+          if (!other.transform.GetComponent<Treasure>().isCollected)
+          {
+            other.transform.parent.GetComponent<AbstractFactory>().UpdateObject(other.transform);
+          }
+        }
+        else
+          Destroy(other.gameObject);
+    }
   }
 }

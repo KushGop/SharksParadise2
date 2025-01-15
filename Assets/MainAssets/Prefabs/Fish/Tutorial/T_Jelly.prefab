@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e89e9d217b9c414cb75ca18e0a42145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: TutorialFish
+  fishName: Fish
   fishType: Prey
   value: 35
   id: 0

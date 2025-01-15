@@ -4,96 +4,63 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "EnemyList", menuName = "Sharks Paradise/EnemyList", order = 0)]
 public class EnemyList : ScriptableObject
 {
-  readonly List<string> fullList = new()
+
+  readonly public List<Fishes> triggerAreaList = new()
   {
-    "SmallShark",
-    "BigShark",
-    "GoldFish",
-    "AngelFish",
-    "Jellyfish",
-    "Starfish",
-    "Food",
-    "Squid",
-    "CoinFish",
-    "LightFish",
-    "BadLight"
+    Fishes.SHARK_L,
+    Fishes.SHARK_S,
+    Fishes.CLOWN,
+    Fishes.ANGEL,
+    Fishes.FLUB,
+    Fishes.EEL,
+    Fishes.MANTA,
+    Fishes.SQUID,
+    Fishes.COIN,
+    Fishes.CRAWLER,
+    Fishes.CUCUMBER
   };
 
-  readonly Dictionary<string, int> pointDictionary = new()
+  readonly public List<FishType> playAreaList = new()
   {
-    { "SmallShark", 100 },
-    { "BigShark", 1000 },
-    { "GoldFish", 10 },
-    { "AngelFish", 15 },
-    { "Jellyfish", 50 },
-    { "Starfish", 0 },
-    { "Food", 5 },
-    { "Squid", 150 },
-    { "CoinFish", 0 }
+    FishType.PREY,
+    FishType.PREDATOR,
+    FishType.STARFISH
   };
 
-  readonly public List<string> triggerAreaList = new()
+  readonly public List<FishType> spawnList = new()
   {
-    "SmallShark",
-    "BigShark",
-    "GoldFish",
-    "AngelFish",
-    "Flub",
-    "Eel",
-    "MantaRay",
-    "Squid",
-    "CoinFish",
-    "LightFish",
-    "BadLight",
-    "TutorialFish",
-    "TutorialBird",
-    "TutorialPredator",
+    FishType.TREASURE
   };
 
-  readonly public List<string> playAreaList = new()
+  readonly public Dictionary<Fishes, int> multiplyerCap = new()
   {
-    "Prey",
-    "Predator",
-    "Starfish"
-  };
-
-  readonly public List<string> spawnList = new()
-  {
-    "Treasure"
-  };
-
-  readonly public Dictionary<string, int> multiplyerCap = new()
-  {
-    { "SmallShark", 5 },
-    { "GoldFish", 20 },
-    { "AngelFish", 15 },
-    { "Eel", 15 },
-    { "MantaRay", 15 },
-    { "Flub", 15 },
-    { "Jelly", 8 },
-    { "Bird", 8 },
-    { "Starfish", 1 },
-    { "SharkNet", 50 },
-    { "Squid", 5 },
-    { "CoinFish", 0 },
-    { "BigShark", 3 },
-    { "LightFish", 3 },
-    { "BadLight", 5 },
-    { "TutorialFish", 5 },
-    { "TutorialBird", 5 },
-    { "TutorialPredator", 1 },
+    { Fishes.SHARK_S, 5 },
+    { Fishes.CLOWN, 20 },
+    { Fishes.ANGEL, 15 },
+    { Fishes.EEL, 15 },
+    { Fishes.MANTA, 15 },
+    { Fishes.FLUB, 15 },
+    { Fishes.JELLY, 8 },
+    { Fishes.SEAGULL, 8 },
+    { Fishes.STARFISH, 1 },
+    //{ "SharkNet", 50 },
+    { Fishes.SQUID, 5 },
+    { Fishes.COIN, 0 },
+    { Fishes.SHARK_L, 3 },
+    { Fishes.CRAWLER, 3 },
+    { Fishes.CUCUMBER, 5 },
   };
 
   //Fishname : scaleModifier  USED FOR SKELETON
-  readonly public Dictionary<string, float> scaleModifier = new()
+  readonly public Dictionary<Fishes, float> scaleModifier = new()
   {
-    { "SmallShark", -1.5f },
-    { "BigShark", -1.5f },
-    { "GoldFish", 1f },
-    { "AngelFish", 2f },
-    { "CoinFish", 1f },
-    { "LightFish", -3f },
-    { "BadLight", -4f }
+    { Fishes.SHARK_S, -1.5f },
+    { Fishes.SHARK_L, -1.5f },
+    { Fishes.CLOWN, 1f },
+    { Fishes.ANGEL, 2f },
+    { Fishes.COIN, 1f },
+    { Fishes.CRAWLER, -3f },
+    { Fishes.CUCUMBER, -4f }
   };
 }
 

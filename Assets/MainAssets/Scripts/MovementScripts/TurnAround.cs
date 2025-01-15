@@ -4,40 +4,31 @@ using UnityEngine;
 
 public class TurnAround : MonoBehaviour
 {
-  public List<string> objectToDetect;
-  private string fishName, objectName;
+  public List<FishType> objectToDetect;
+  private Identifier fish, otherFish;
   private JellyMovement jelly;
   private AbstractMovement movement;
 
   private void Start()
   {
-    fishName = transform.GetComponentInParent<Identifier>().fishName;
-    switch (fishName)
-    {
-      case "Jelly":
-        jelly = transform.GetComponentInParent<JellyMovement>();
-        break;
-      case "Fish":
-        movement = transform.GetComponentInParent<AbstractMovement>();
-        break;
-    }
+    fish = transform.GetComponentInParent<Identifier>();
+    if (fish.fishName == Fishes.JELLY)
+      jelly = transform.GetComponentInParent<JellyMovement>();
+    else if (fish.fishType == FishType.SENSOR)
+      movement = transform.GetComponentInParent<AbstractMovement>();
   }
 
   private void OnTriggerStay2D(Collider2D other)
   {
-    objectName = other.transform.GetComponent<Identifier>().fishName;
-    if (objectToDetect.Contains(objectName))
+    otherFish = other.transform.GetComponent<Identifier>();
+    if (objectToDetect.Contains(otherFish.fishType))
     {
-      switch (fishName)
-      {
-        case "Jelly":
-          jelly.RotateEnemy(180);
-          break;
-        case "Fish":
-          if (!movement.getTrigger())
-            movement.RotateEnemy(180);
-          break;
-      }
+      if (fish.fishName == Fishes.JELLY)
+        jelly.RotateEnemy(180);
+      else if (fish.fishType == FishType.SENSOR)
+        if (!movement.getTrigger())
+          movement.RotateEnemy(180);
     }
   }
 }
+

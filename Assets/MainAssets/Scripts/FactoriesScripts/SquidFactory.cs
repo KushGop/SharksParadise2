@@ -13,8 +13,8 @@ public class SquidFactory : AbstractFactory
 
     identifier = newEnemy.AddComponent<Identifier>();
 
-    identifier.fishName = "Squid";
-    identifier.fishType = "Prey";
+    identifier.fishName = Fishes.SQUID;
+    identifier.fishType = FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
 
   }

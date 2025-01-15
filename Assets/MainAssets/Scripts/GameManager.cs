@@ -8,7 +8,7 @@ public static class GameManager
   public static bool hasBeenInit = false;
   public static bool missionFirstPass;
   public static int score, highscore, xp, coins, gems, totalCoins, totalXP, totalGems, totalTokens, missionCoins;
-  public static string lastFish;
+  public static Fishes lastFish;
   public static int multiplyer, multiplyerCap;
   public static int control; // 0 = right, 1 = left
   public static Transform position;
