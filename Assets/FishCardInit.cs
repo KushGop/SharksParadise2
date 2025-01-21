@@ -2,32 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishCardInit : MonoBehaviour, IDataPersistence
+public class FishCardInit : MonoBehaviour
 {
+
   [SerializeField] GameObject fishCard;
   [SerializeField] Transform common;
   [SerializeField] Transform uncommon;
   [SerializeField] Transform rare;
   [SerializeField] Transform special;
 
-  public void LoadData(GameData data)
+  public void Start()
   {
-    print("Load aquarium");
-    AquariumManager.aquariumData = data.aquarium;
-
     //init
-    foreach (FishCard_S s in AquariumManager.aquariumData.fishCards)
+    foreach (Fishes s in AquariumManager.aquariumData.fishCards.Keys)
     {
-      GameObject go = Instantiate(fishCard, GetTransform(s.rarity));
-      go.GetComponent<FishCard>().CardInit(s);
+      GameObject go = Instantiate(fishCard, GetTransform(AquariumManager.aquariumData.fishCards[s].rarity));
+      go.GetComponent<FishCard>().CardInit(s, AquariumManager.aquariumData.fishCards[s]);
     }
 
-  }
-
-  public void SaveData(GameData data)
-  {
-    print("Save aquarium");
-    data.aquarium = AquariumManager.aquariumData;
   }
 
   private Transform GetTransform(Rarity r)
