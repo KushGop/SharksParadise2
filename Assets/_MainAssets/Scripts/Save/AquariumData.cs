@@ -48,22 +48,14 @@ public enum Rarity
 public struct FishCard_S
 {
   public int count;
-  public int baseCount;
-  public int multiplyer;
-  public int value;
-  public int increaseCost;
-  public int upgradeCost;
+  public int level;
   public Rarity rarity;
 
-  public FishCard_S(Rarity r, int c, int b, int m, int v, int i, int u)
+  public FishCard_S(Rarity r, int c, int l)
   {
     rarity = r;
     count = c;
-    baseCount = b;
-    multiplyer = m;
-    value = v;
-    increaseCost = i;
-    upgradeCost = u;
+    level = l;
   }
 }
 [System.Serializable]
@@ -103,16 +95,16 @@ public class AquariumData
       switch (fishRarity[f])
       {
         case Rarity.COMMON:
-          fishCards.Add(f, new(Rarity.COMMON, 0, 250, 1, 100, 100, 5));
+          fishCards.Add(f, new(Rarity.COMMON, 0, 0));
           break;
         case Rarity.UNCOMMON:
-          fishCards.Add(f, new(Rarity.UNCOMMON, 0, 50, 1, 250, 500, 10));
+          fishCards.Add(f, new(Rarity.UNCOMMON, 0, 0));
           break;
         case Rarity.RARE:
-          fishCards.Add(f, new(Rarity.RARE, 0, 10, 1, 500, 1500, 15));
+          fishCards.Add(f, new(Rarity.RARE, 0, 0));
           break;
         case Rarity.SPECIAL:
-          fishCards.Add(f, new(Rarity.SPECIAL, 0, 5, 1, 1000, 2500, 20));
+          fishCards.Add(f, new(Rarity.SPECIAL, 0, 0));
           break;
       }
     }

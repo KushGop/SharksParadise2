@@ -12,7 +12,6 @@ public class EatingHandler : MonoBehaviour
   public Transform skeletonParent;
   public AudioSource dodgeSound;
   private GameObject newSkeleton;
-  public EnemyList enemyList;
   private Fishes fishName;
   private FishType fishType;
   private Transform otherTransform;
@@ -79,7 +78,7 @@ public class EatingHandler : MonoBehaviour
           {
             MissionData.IncrementMission(MissionName.bigSharksEaten);
             AquariumManager.IncrementFish(fishName);
-            InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value0) ? value0 : 0));
+            InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (EnemyList.scaleModifier.TryGetValue(fishName, out float value0) ? value0 : 0));
             otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
             EatEvent(fishName, otherIdentifier.value, pos);
           }
@@ -99,7 +98,7 @@ public class EatingHandler : MonoBehaviour
         case FishType.PREY:
           if (fishName == Fishes.COIN)
             coinCounter.AddCurrency(Currency.Coin, 20);
-          InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
+          InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (EnemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
           otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
           EatEvent(fishName, otherIdentifier.value, pos);
           if (TutorialManager.isInTutorial && !eatFish)
@@ -111,7 +110,7 @@ public class EatingHandler : MonoBehaviour
           AquariumManager.IncrementFish(fishName);
           break;
         case FishType.FOOD:
-          InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (enemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
+          InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (EnemyList.scaleModifier.TryGetValue(fishName, out value) ? value : 0));
           Destroy(other.gameObject);
           EatEvent(fishName, otherIdentifier.value, pos);
           break;

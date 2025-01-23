@@ -12,10 +12,11 @@ public class FishCard : MonoBehaviour
   [SerializeField] TextMeshProUGUI multiplyer;
   [SerializeField] TextMeshProUGUI value;
   [SerializeField] TextMeshProUGUI increase;
-  [SerializeField] TextMeshProUGUI cost;
   [SerializeField] Transform fishImage;
   [SerializeField] Aquarium_SO images;
   [SerializeField] Button button;
+  [SerializeField] Image bubble;
+  [SerializeField] Colors_SO colors;
   bool canUpgade;
 
 
@@ -28,49 +29,76 @@ public class FishCard : MonoBehaviour
   {
     fishS = cardData;
     fish = f;
-
-    if (cardData.count >= cardData.baseCount)
+    bubble.color = colors.colors[fishS.level];
+    if (cardData.count >= EnemyList.rarityCount[cardData.rarity][cardData.level])
     {
-      count.text = cardData.baseCount.ToString() + "/" + cardData.baseCount.ToString();
-      increase.text = "upgrade";
-      button.enabled = (GameManager.totalGems >= fishS.upgradeCost);
-      cost.text = "<sprite name=\"Gem\"*" + cardData.upgradeCost.ToString();
+      count.text = EnemyList.rarityCount[cardData.rarity][cardData.level].ToString() + "/" + EnemyList.rarityCount[cardData.rarity][cardData.level].ToString();
+      //button.enabled = (GameManager.totalGems >= EnemyList.rarityGemCost[cardData.rarity][cardData.level]);
+      increase.text = "upgrade <sprite name=\"Gem\">*" + EnemyList.rarityGemCost[cardData.rarity][cardData.level].ToString();
       canUpgade = true;
     }
     else
     {
-      count.text = cardData.count.ToString() + "/" + cardData.baseCount.ToString();
-      increase.text = "add 1";
-      button.enabled = (GameManager.totalCoins >= fishS.increaseCost);
-      cost.text = "<sprite name=\"Coin\"> *" + cardData.increaseCost.ToString();
+      count.text = cardData.count.ToString() + "/" + (EnemyList.rarityCount[cardData.rarity][cardData.level]).ToString();
+      //button.enabled = (GameManager.totalCoins >= EnemyList.rarityCoinCost[cardData.rarity]);
+      increase.text = "add 1 <sprite name=\"Coin\"> *" + EnemyList.rarityCoinCost[cardData.rarity].ToString();
       canUpgade = false;
     }
 
-    multiplyer.text = cardData.multiplyer.ToString() + "*";
-    value.text = cardData.value.ToString() + " points";
+    multiplyer.text = "lvl\n" + (cardData.level + 1).ToString();
+    value.text = f switch
+    {
+      Fishes.COIN => EnemyList.specialFish[f][cardData.level].ToString() + "* coin value",
+      Fishes.TREASURE => EnemyList.specialFish[f][cardData.level].ToString() + "* treasure value",
+      Fishes.STARFISH => EnemyList.specialFish[f][cardData.level].ToString() + " seconds",
+      _ => EnemyList.rarityPoint[cardData.rarity][cardData.level].ToString() + " points",
+    };
     Instantiate(images.images[fish], fishImage);
+  }
+
+  public void TryUpgrade()
+  {
+    if (canUpgade)
+    {
+      AquariumManager.HoldCard(this);
+      AquariumManager.tryUpgrade();
+      AquariumManager.upgradeCard(fish, fishS);
+    }
+    else
+    {
+      UpgradeFish();
+    }
   }
 
   public void UpgradeFish()
   {
     if (canUpgade)
     {
-      if (GameManager.totalGems >= fishS.upgradeCost)
+      if (GameManager.totalGems >= EnemyList.rarityGemCost[fishS.rarity][fishS.level])
       {
-        GameManager.totalGems -= fishS.upgradeCost;
-        fishS.multiplyer++;
+        GameManager.totalGems -= EnemyList.rarityGemCost[fishS.rarity][fishS.level];
+        fishS.level++;
         fishS.count = 0;
-        fishS.baseCount *= 2;
         canUpgade = false;
+      }
+      else
+      {
+        AquariumManager.funds();
+        return;
       }
     }
     else
     {
       //add one to count
-      if (GameManager.totalCoins >= fishS.increaseCost)
+      if (GameManager.totalCoins >= EnemyList.rarityCoinCost[fishS.rarity])
       {
-        GameManager.totalCoins -= fishS.increaseCost;
+        GameManager.totalCoins -= EnemyList.rarityCoinCost[fishS.rarity];
         fishS.count += 1;
+      }
+      else
+      {
+        AquariumManager.funds();
+        return;
       }
     }
     UpgradesManager.updateCosts();

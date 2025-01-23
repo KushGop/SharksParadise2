@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class TriggerArea : MonoBehaviour
 {
-  public EnemyList list;
 
   private void OnTriggerEnter2D(Collider2D other)
   {
     if (other.TryGetComponent(out Identifier id))
     {
-      if (list.triggerAreaList.Contains(id.fishName))
+      if (EnemyList.triggerAreaList.Contains(id.fishName))
       {
         if (other.TryGetComponent(out AbstractMovement a))
           a.TriggerAI(true);
@@ -21,7 +20,7 @@ public class TriggerArea : MonoBehaviour
   {
     if (other.TryGetComponent(out Identifier id))
     {
-      if (list.triggerAreaList.Contains(id.fishName))
+      if (EnemyList.triggerAreaList.Contains(id.fishName))
       {
         if (other.TryGetComponent(out AbstractMovement a))
           a.TriggerAI(false);

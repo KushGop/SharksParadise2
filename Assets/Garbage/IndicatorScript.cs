@@ -5,16 +5,21 @@ using UnityEngine;
 //Indicator attached to predator shark
 public class IndicatorScript : MonoBehaviour
 {
+  Transform target, player;
+  float scale;
 
-  private float angle;
-  public float radius;
-  public PlayerStats stats;
-  private Vector3 playerPosition;
-  private Vector3 indicatorPosition = Vector3.zero;
-
-  private void Start()
+  private void LateUpdate()
   {
-    transform.GetComponent<SpriteRenderer>().enabled = false;
+    scale = Mathf.Abs(Vector3.Distance(target.position, player.position)) / 12;
+    transform.localScale = Vector3.one * scale;
+    transform.right = target.position - player.position;
+    //transform.localRotation = Quaternion.Euler(0, 0, transform.localRotation.z + 90);
+  }
+
+  public void PointToward(Transform obj, Transform player)
+  {
+    target = obj;
+    this.player = player;
   }
 
   // private void OnTriggerStay2D(Collider2D other)

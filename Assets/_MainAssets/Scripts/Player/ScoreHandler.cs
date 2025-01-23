@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ScoreHandler : MonoBehaviour
 {
-  public EnemyList enemyList;
   public Transform newPoints;
   public Transform multiplyerText;
   public float multiplyerTimer = 0f;
@@ -25,7 +24,7 @@ public class ScoreHandler : MonoBehaviour
     if (fishName == GameManager.lastFish || starfishMultiplyer > 1)
     {
       MissionData.IncrementMission(MissionName.multiplyerMax);
-      if (GameManager.multiplyer < enemyList.multiplyerCap[fishName] && fishName == GameManager.lastFish)
+      if (GameManager.multiplyer < EnemyList.multiplyerCap[fishName] && fishName == GameManager.lastFish)
       {
         GameManager.multiplyer++;
       }

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -79,9 +80,14 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] GameObject speedPower;
   [SerializeField] GameObject multiplyerPower;
   Coroutine invisEvent, speedEvent, multiEvent;
-
+  [Header("Arrows")]
   [SerializeField] GameObject RedCirclePrefab;
+  [SerializeField] GameObject RedArrowPrefab;
+  [SerializeField] GameObject TreasureArrowPrefab;
+  [SerializeField] GameObject StarfishArrowPrefab;
   [SerializeField] Transform RedCircleOrigin;
+  [SerializeField] Transform ArrowOrigin;
+  Dictionary<Transform, GameObject> arrows;
 
   [Header("Hat")]
   [SerializeField] HatLoader hatLoader;
@@ -157,6 +163,8 @@ public class PlayerMovement : MonoBehaviour
     multiplyerPower.SetActive(false);
     speedPower.SetActive(false);
 
+    //arrow
+    arrows = new();
   }
   private void OnDestroy()
   {
@@ -579,13 +587,42 @@ public class PlayerMovement : MonoBehaviour
 
   #endregion
 
+
   //Indicator
-  public void EnemyCounter(int val)
+  public void Indicator(int val, FishType type, Transform t)
   {
     if (val == 1)
     {
-      Instantiate(RedCirclePrefab, RedCircleOrigin);
+      switch (type)
+      {
+        case FishType.PREDATOR:
+          //red circle indicator
+          Instantiate(RedCirclePrefab, RedCircleOrigin);
+          //red arrow indicator
+          arrows.Add(t, Instantiate(RedArrowPrefab, ArrowOrigin));
+          break;
+        case FishType.STARFISH:
+          arrows.Add(t, Instantiate(StarfishArrowPrefab, ArrowOrigin));
+          break;
+        case FishType.TREASURE:
+          arrows.Add(t, Instantiate(TreasureArrowPrefab, ArrowOrigin));
+          break;
+      }
+      if (arrows.ContainsKey(t))
+      {
+        arrows[t].GetComponent<IndicatorScript>().PointToward(t, transform);
+      }
     }
+    else if (val == -1)
+    {
+      Destroy(arrows[t]);
+      arrows.Remove(t);
+    }
+    EnemyCounter(val);
+  }
+
+  public void EnemyCounter(int val)
+  {
     enemyCount += val;
     if (enemyCount == 0 || isJump)
     {

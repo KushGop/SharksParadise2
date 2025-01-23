@@ -4300,6 +4300,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 530666462}
   m_CullTransparentMesh: 1
+--- !u!1 &531135970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 531135971}
+  - component: {fileID: 531135972}
+  m_Layer: 5
+  m_Name: Arrows
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &531135971
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531135970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1644642918}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &531135972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531135970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3c9ea7d29e22e4b9c1fa3a5e4e56a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1459522621}
 --- !u!1 &533259645
 GameObject:
   m_ObjectHideFlags: 0
@@ -11819,7 +11868,11 @@ MonoBehaviour:
   speedPower: {fileID: 8020919565235305772}
   multiplyerPower: {fileID: 7891901936401610328}
   RedCirclePrefab: {fileID: 8450146836238731185, guid: 2492bc83a3fa3bc4da9ed9f9b05bb923, type: 3}
+  RedArrowPrefab: {fileID: 7881948659023930626, guid: bc6a9fe53cb6a894ab9b858045b2bcdd, type: 3}
+  TreasureArrowPrefab: {fileID: 7881948659023930626, guid: bc6a9fe53cb6a894ab9b858045b2bcdd, type: 3}
+  StarfishArrowPrefab: {fileID: 7881948659023930626, guid: bc6a9fe53cb6a894ab9b858045b2bcdd, type: 3}
   RedCircleOrigin: {fileID: 944147622}
+  ArrowOrigin: {fileID: 531135971}
   hatLoader: {fileID: 2071201768}
   hats: {fileID: 11400000, guid: ee15a72afad5d1343ae237278023c957, type: 2}
 --- !u!95 &1459522625
@@ -13081,6 +13134,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 531135971}
   - {fileID: 1860830836}
   - {fileID: 1971600594}
   - {fileID: 1526034443}
