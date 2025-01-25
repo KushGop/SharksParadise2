@@ -102,6 +102,11 @@ public class PlayerMovement : MonoBehaviour
 
   private void Start()
   {
+    //aquarium
+    /*
+     *coin fish, starfish, treasure 
+     */
+
     //upgrades
     baseSpeed = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
     boostSpeed = 2 + (UpgradesManager.upgradesData.upgrades[UpgradeList.boostSpeed] * 0.1f);

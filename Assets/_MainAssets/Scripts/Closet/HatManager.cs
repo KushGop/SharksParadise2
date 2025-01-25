@@ -6,7 +6,8 @@ using Gley.EasyIAP;
 public static class HatManager
 {
   public delegate void NormalEvent();
-  public static NormalEvent ClearSelected;
+  public static NormalEvent ClearChoice;
+  public static NormalEvent ClearSelection;
 
   public static ShopProductNames selectedHat;
 }

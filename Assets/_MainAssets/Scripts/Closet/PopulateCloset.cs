@@ -2,35 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Gley.EasyIAP;
+using UnityEngine.UI;
 
 public class PopulateCloset : MonoBehaviour
 {
   [SerializeField] Closet_ScritableObject hats;
-  [SerializeField] GameObject hatPrefab;
+  [SerializeField] ClosetManager closetManager;
   [SerializeField] HatLoader hatLoader;
-  [SerializeField] SnapToItem snap;
+  //[SerializeField] SnapToItem snap;
   private ShopProductNames hatSelected;
 
   private void Start()
   {
     hatSelected = hatLoader.GetHat();
     GameObject newHat;
-    int i = 0;
     foreach (ShopProductNames hat in hats.hatDictionary.Keys)
     {
-      if (hat == hatSelected)
-        snap.SetCurrentItem(i);
 
-      newHat = Instantiate(hatPrefab, transform);
-      Sprite s = hats.hatDictionary[hat].GetComponent<SpriteRenderer>().sprite;
-      newHat.GetComponent<HatScript>().SetValues(
+      newHat = Instantiate(hats.hatDictionary[hat], transform);
+      HatScript hs = newHat.GetComponent<HatScript>();
+      hs.SetValues(
         hat,
         API.GetLocalizedPriceString(hat),
         hat != ShopProductNames.NoHat ? API.IsActive(hat) : true,
         hat == hatSelected,
-        s
+        closetManager
         );
-      i++;
+      if (hat == hatSelected)
+      {
+        closetManager.SelectHat(hs);
+      }
     }
   }
 }

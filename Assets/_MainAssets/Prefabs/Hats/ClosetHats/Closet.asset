@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25148e081c2e1654bb3438200a409f29, type: 3}
+  m_Name: Closet
+  m_EditorClassIdentifier: 
+  hatDictionary:
+    _serializedList:
+    - Key: 26
+      Value: {fileID: 1338319115443442166, guid: a91dc8a78beea6f4ca50fc43e9dbaab9, type: 3}
+    - Key: 22
+      Value: {fileID: 1234835382049743461, guid: 1dd0f2cd05239544c9c292420721bf5b, type: 3}
+    - Key: 24
+      Value: {fileID: 4636755169741211958, guid: 695e18318af56a444b898316e3ab86bd, type: 3}
+    - Key: 13
+      Value: {fileID: 2414771148143888082, guid: 281860f3a99649640be55548db86d0c4, type: 3}
+    - Key: 16
+      Value: {fileID: 8071264850358292649, guid: b9347bb417ffb1949ae30bccf6ed7bf9, type: 3}
+    - Key: 21
+      Value: {fileID: 501418042193479965, guid: fb7c7827596802e448811e62d0512f50, type: 3}
+    - Key: 20
+      Value: {fileID: 7226832392910212444, guid: 582fbe3acae51ca4bacfdd24d95fa477, type: 3}
+    - Key: 17
+      Value: {fileID: 6301363574255524748, guid: cc020bc0a468a374eb358b9fbe710b94, type: 3}
+    - Key: 18
+      Value: {fileID: 1226340233482328550, guid: 5a7734e9f7ba8f045af74eb65950d94b, type: 3}
+    - Key: 19
+      Value: {fileID: 1599051702635756099, guid: 232ede05b0d37e248922928dc34aa86d, type: 3}
+    - Key: 14
+      Value: {fileID: 5658580105947341234, guid: 30f8fc531b81a0e44b1a021c99e75f9b, type: 3}
+    - Key: 15
+      Value: {fileID: 1711479471608327785, guid: 9b6847ad098809f42bfd9edb07e29b62, type: 3}

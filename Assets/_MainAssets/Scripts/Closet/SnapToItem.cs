@@ -97,7 +97,7 @@ public class SnapToItem : MonoBehaviour
   {
     if (hs.isUnlocked)
     {
-      HatManager.ClearSelected();
+      HatManager.ClearChoice();
       closetTransform.GetChild(currentIndex).GetComponent<HatScript>().isSelected = true;
       loader.SetHat(hs.hatName);
       DataPersistenceManager.instance.SaveGame();
