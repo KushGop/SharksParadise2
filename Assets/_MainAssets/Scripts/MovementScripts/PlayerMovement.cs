@@ -56,8 +56,8 @@ public class PlayerMovement : MonoBehaviour
   private bool boostButtonPressed;
   private float energyAmount;
   private int enemyCount;
-  private IEnumerator boostCoroutine;
-  private bool canRefill;
+  //private IEnumerator boostCoroutine;
+  //private bool canRefill;
   private bool isOverBoat;
   private bool isInvincible, isSpeedBoost;
   private int i = 0;
@@ -65,10 +65,10 @@ public class PlayerMovement : MonoBehaviour
   //upgrades
   private float baseSpeed;
   private float boostSpeed;
-  private float boostCost;
-  private float jumpCost;
-  private float refillSpeed;
-  private float refillDelay;
+  //private float boostCost;
+  //private float jumpCost;
+  //private float refillSpeed;
+  //private float refillDelay;
   private float powerTime;
 
   private float fishEnergy;
@@ -108,13 +108,14 @@ public class PlayerMovement : MonoBehaviour
      */
 
     //upgrades
-    baseSpeed = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
-    boostSpeed = 2 + (UpgradesManager.upgradesData.upgrades[UpgradeList.boostSpeed] * 0.1f);
-    boostCost = 15 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
-    jumpCost = 15 - (UpgradesManager.upgradesData.upgrades[UpgradeList.jumpCost] * 0.1f);
-    refillSpeed = 30 + (UpgradesManager.upgradesData.upgrades[UpgradeList.refillSpeed] * 0.1f);
-    refillDelay = 2 - (UpgradesManager.upgradesData.upgrades[UpgradeList.refillDelay] * 0.1f);
-    powerTime = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.powerTime] * 0.1f);
+    baseSpeed = 10;// + (UpgradesManager.upgradesData.upgrades[UpgradeList.baseSpeed] * 0.1f);
+    boostSpeed = 2;// + (UpgradesManager.upgradesData.upgrades[UpgradeList.boostSpeed] * 0.1f);
+    //boostCost = 15 - (UpgradesManager.upgradesData.upgrades[UpgradeList.boostCost] * 0.1f);
+    //jumpCost = 15 - (UpgradesManager.upgradesData.upgrades[UpgradeList.jumpCost] * 0.1f);
+    //refillSpeed = 30 + (UpgradesManager.upgradesData.upgrades[UpgradeList.refillSpeed] * 0.1f);
+    //refillDelay = 2 - (UpgradesManager.upgradesData.upgrades[UpgradeList.refillDelay] * 0.1f);
+    //powerTime = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.powerTime] * 0.1f);
+    powerTime = 10 + EnemyList.specialFish[Fishes.STARFISH][(AquariumManager.aquariumData.fishCards[Fishes.STARFISH].level)];
 
     fishEnergy = 10;
 
@@ -131,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
     stats.playerPosition = Vector3.zero;
     isJump = false;
     enemyCount = 0;
-    boostCoroutine = RefillEnergyTimer();
+    //boostCoroutine = RefillEnergyTimer();
     spriteRenderer = transform.GetComponent<SpriteRenderer>();
     isInvincible = false;
     isSpeedBoost = false;
@@ -182,42 +183,42 @@ public class PlayerMovement : MonoBehaviour
   }
 
   #region Tutorial
-  public void EnableEnergy()
-  {
-    boostCost = 10;
-    jumpCost = 10;
-  }
-  public void DisableEnergy()
-  {
-    boostCost = 0;
-    jumpCost = 0;
-    speed = 10;
-    refillSpeed = 30;
-    refillDelay = 2;
-  }
+  //public void EnableEnergy()
+  //{
+  //  boostCost = 10;
+  //  jumpCost = 10;
+  //}
+  //public void DisableEnergy()
+  //{
+  //  boostCost = 0;
+  //  jumpCost = 0;
+  //  speed = 10;
+  //  refillSpeed = 30;
+  //  refillDelay = 2;
+  //}
   #endregion
 
   //Position, boost (UI, Refill, Drain)
   private void Update()
   {
-    boostJoystick.fillAmount = energyAmount / 100;
+    //boostJoystick.fillAmount = energyAmount / 100;
     stats.playerPosition = transform.position;
-    if (boostButtonPressed && !isSpeedBoost)
-    {
-      DrainEnergySlider();
-      if (energyAmount < 0)
-      {
-        energyAmount = 0;
-        BoostOff();
-        joystick.BoostReleased();
-      }
-    }
-    else
-    {
-      RefillEnergy();
-    }
+    //if (boostButtonPressed && !isSpeedBoost)
+    //{
+    //  DrainEnergySlider();
+    //  if (energyAmount < 0)
+    //  {
+    //    energyAmount = 0;
+    //    BoostOff();
+    //    joystick.BoostReleased();
+    //  }
+    //}
+    //else
+    //{
+    //  RefillEnergy();
+    //}
     //energySlider.value = energyAmount;
-    stats.energy = energyAmount;
+    //stats.energy = energyAmount;
   }
   #region Movement
   //Move Player
@@ -274,9 +275,9 @@ public class PlayerMovement : MonoBehaviour
   {
     boostSound.Play();
     boostButtonPressed = true;
-    canRefill = false;
-    StopCoroutine(boostCoroutine);
-    if (!isJump && energyAmount > 0)
+    //canRefill = false;
+    //StopCoroutine(boostCoroutine);
+    if (!isJump/* && energyAmount > 0*/)
     {
       speed = baseSpeed * boostSpeed;
       anim.SetBool("Boost", true);
@@ -288,8 +289,8 @@ public class PlayerMovement : MonoBehaviour
   private void BoostOff()
   {
     boostButtonPressed = false;
-    boostCoroutine = RefillEnergyTimer();
-    StartCoroutine(boostCoroutine);
+    //boostCoroutine = RefillEnergyTimer();
+    //StartCoroutine(boostCoroutine);
     if (!isJump)
     {
       speed = baseSpeed;
@@ -298,25 +299,25 @@ public class PlayerMovement : MonoBehaviour
       isBoost = false;
     }
   }
-  private void DrainEnergySlider()
-  {
-    if (energyAmount > 0)
-    {
-      energyAmount -= Time.deltaTime * boostCost;
-    }
-  }
-  IEnumerator RefillEnergyTimer()
-  {
-    yield return new WaitForSeconds(refillDelay);
-    canRefill = true;
-  }
-  private void RefillEnergy()
-  {
-    if (energyAmount < 100 && canRefill)
-    {
-      energyAmount += Time.deltaTime * refillSpeed;
-    }
-  }
+  //private void DrainEnergySlider()
+  //{
+  //  if (energyAmount > 0)
+  //  {
+  //    energyAmount -= Time.deltaTime * boostCost;
+  //  }
+  //}
+  //IEnumerator RefillEnergyTimer()
+  //{
+  //  yield return new WaitForSeconds(refillDelay);
+  //  canRefill = true;
+  //}
+  //private void RefillEnergy()
+  //{
+  //  if (energyAmount < 100 && canRefill)
+  //  {
+  //    energyAmount += Time.deltaTime * refillSpeed;
+  //  }
+  //}
   public void AddEnergy()
   {
     if (energyAmount + fishEnergy > 100)
@@ -331,13 +332,13 @@ public class PlayerMovement : MonoBehaviour
   //Jump
   private void PlayerJump()
   {
-    if (!isStun && energyAmount >= jumpCost && !isJump)
+    if (!isStun /*&& energyAmount >= jumpCost*/ && !isJump)
     {
       //Boost routine
-      energyAmount -= jumpCost;
-      StartCoroutine(boostCoroutine);
-      canRefill = false;
-      StopCoroutine(boostCoroutine);
+      //energyAmount -= jumpCost;
+      //StartCoroutine(boostCoroutine);
+      //canRefill = false;
+      //StopCoroutine(boostCoroutine);
 
       //Splash routine
       splashSound.Play();

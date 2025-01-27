@@ -132,7 +132,7 @@ public class TutorialSequence : MonoBehaviour
   {
     joystick.SetActive(true);
     boost.SetActive(true);
-    playerMovement.DisableEnergy();
+    //playerMovement.DisableEnergy();
     TutorialManager.shouldMove = true;
     StartCoroutine(TextIteratorTwoPart(new string[] {
     "Use the joystick to swim around!",
@@ -200,7 +200,7 @@ public class TutorialSequence : MonoBehaviour
 
   public void EnergySequence()
   {
-    playerMovement.EnableEnergy();
+    //playerMovement.EnableEnergy();
     //energyBar.SetActive(true);
     StartCoroutine(TextIteratorOnePart(new string[] {
     "Using boost or jump will drain your energy",

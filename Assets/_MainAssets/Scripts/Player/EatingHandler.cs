@@ -97,7 +97,7 @@ public class EatingHandler : MonoBehaviour
           break;
         case FishType.PREY:
           if (fishName == Fishes.COIN)
-            coinCounter.AddCurrency(Currency.Coin, 20);
+            coinCounter.AddCurrency(Currency.Coin, 20 * EnemyList.specialFish[Fishes.COIN][(AquariumManager.aquariumData.fishCards[Fishes.COIN].level)]);
           InstatiateSkeleton(pos, otherTransform.rotation, otherTransform.localScale * (EnemyList.scaleModifier.TryGetValue(fishName, out float value) ? value : 0));
           otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
           EatEvent(fishName, otherIdentifier.value, pos);
@@ -204,7 +204,7 @@ public class EatingHandler : MonoBehaviour
         if (!playerMovement.GetIsJump())
         {
           other.transform.GetComponent<CoinScript>().Collected();
-          coinCounter.AddCurrency(Currency.Coin, 1);
+          coinCounter.AddCurrency(Currency.Coin, 1 * EnemyList.specialFish[Fishes.COIN][(AquariumManager.aquariumData.fishCards[Fishes.COIN].level)]);
           MissionData.IncrementMission(MissionName.coinsCollected);
         }
         break;
@@ -224,8 +224,8 @@ public class EatingHandler : MonoBehaviour
           print("treasure!");
           MissionData.IncrementMission(MissionName.treasureCollected);
           other.transform.GetComponent<Treasure>().Collected();
-          coinCounter.AddCurrency(Currency.Coin, 100);
-          gemCounter.AddCurrency(Currency.Gem, 1);
+          coinCounter.AddCurrency(Currency.Coin, 100 * EnemyList.specialFish[Fishes.TREASURE][(AquariumManager.aquariumData.fishCards[Fishes.TREASURE].level)]);
+          gemCounter.AddCurrency(Currency.Gem, 1 * EnemyList.specialFish[Fishes.TREASURE][(AquariumManager.aquariumData.fishCards[Fishes.TREASURE].level)]);
           AquariumManager.IncrementFish(Fishes.TREASURE);
         }
         break;
@@ -235,7 +235,7 @@ public class EatingHandler : MonoBehaviour
 
   private void EatEvent(Fishes fishName, int value, Vector3 pos)
   {
-    playerMovement.AddEnergy();
+    //playerMovement.AddEnergy();
     scoreHandler.UpdateMultiplyer(fishName, pos);
     scoreHandler.UpdateLastFish(fishName);
     scoreHandler.AddPoints(value);

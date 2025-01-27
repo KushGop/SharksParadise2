@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7724578242343144655, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 32709
+      objectReference: {fileID: 0}
     - target: {fileID: 7747458756178005974, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
       propertyPath: m_Name
       value: Treasure
@@ -108,7 +112,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3684188796458643095, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+    - {fileID: 8960983592441587074, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+    - {fileID: 7724578242343144655, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1501240300436449203, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
     m_AddedGameObjects: []

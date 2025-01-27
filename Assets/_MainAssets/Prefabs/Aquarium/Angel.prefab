@@ -9,9 +9,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 918974374477732865, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 918974374477732865, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 918974374477732865, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 918974374477732865, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -21.7
       objectReference: {fileID: 0}
+    - target: {fileID: 918974374477732865, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684188796458643095, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 58e61bd217d173f4aa98f32ae87a229c, type: 2}
     - target: {fileID: 4731400974692858760, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
       propertyPath: m_Sprite
       value: 

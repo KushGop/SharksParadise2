@@ -16,6 +16,7 @@ public class FishCard : MonoBehaviour
   [SerializeField] Aquarium_SO images;
   [SerializeField] Button button;
   [SerializeField] Image bubble;
+  [SerializeField] Image baseImg;
   [SerializeField] Colors_SO colors;
   bool canUpgade;
 
@@ -30,6 +31,7 @@ public class FishCard : MonoBehaviour
     fishS = cardData;
     fish = f;
     bubble.color = colors.colors[fishS.level];
+    baseImg.color = bubble.color;
     if (cardData.count >= EnemyList.rarityCount[cardData.rarity][cardData.level])
     {
       count.text = EnemyList.rarityCount[cardData.rarity][cardData.level].ToString() + "/" + EnemyList.rarityCount[cardData.rarity][cardData.level].ToString();

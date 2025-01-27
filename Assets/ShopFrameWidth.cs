@@ -5,8 +5,13 @@ using UnityEngine;
 public class ShopFrameWidth : MonoBehaviour
 {
   [SerializeField] RectTransform rect;
-  public float xVal, distance;
+  private float xVal, distance;
 
+  private void Start()
+  {
+    xVal = Screen.width / 2;
+    distance = 400;
+  }
 
   private void Update()
   {
