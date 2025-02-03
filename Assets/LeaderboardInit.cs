@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using GooglePlayGames.Android;
+//using GooglePlayGames.Android;
 using Gley.GameServices;
 using TMPro;
 

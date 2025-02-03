@@ -1055,6 +1055,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Shop
       objectReference: {fileID: 0}
+    - target: {fileID: 2127040935171231070, guid: 3aa6ebd30ce159b468ac7b3270d4561c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Aquarium
+      objectReference: {fileID: 0}
     - target: {fileID: 3072696762630798016, guid: 3aa6ebd30ce159b468ac7b3270d4561c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1139,6 +1143,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4508072739634140606, guid: 3aa6ebd30ce159b468ac7b3270d4561c, type: 3}
+      propertyPath: m_Name
+      value: Aquarium
+      objectReference: {fileID: 0}
     - target: {fileID: 5182742526115387305, guid: 3aa6ebd30ce159b468ac7b3270d4561c, type: 3}
       propertyPath: sound
       value: 
@@ -1159,6 +1167,14 @@ PrefabInstance:
       propertyPath: bubbles
       value: 
       objectReference: {fileID: 577843625}
+    - target: {fileID: 6973746629054786892, guid: 3aa6ebd30ce159b468ac7b3270d4561c, type: 3}
+      propertyPath: m_text
+      value: Aquarium
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973746629054786892, guid: 3aa6ebd30ce159b468ac7b3270d4561c, type: 3}
+      propertyPath: m_fontSize
+      value: 38.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7952277534160080601, guid: 3aa6ebd30ce159b468ac7b3270d4561c, type: 3}
       propertyPath: sound
       value: 

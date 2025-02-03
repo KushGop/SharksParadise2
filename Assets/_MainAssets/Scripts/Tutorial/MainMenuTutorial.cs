@@ -10,13 +10,13 @@ public class MainMenuTutorial : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    if (GameManager.playedTutorial)
-    {
+    //if (GameManager.playedTutorial)
+    //{
       button.onClick.AddListener(delegate () { cs.ChangeSceneTo("Game"); });
-    }
-    else
-    {
-      button.onClick.AddListener(delegate () { cs.ChangeSceneTo("TutorialGame"); });
-    }
+    //}
+    //else
+    //{
+    //  button.onClick.AddListener(delegate () { cs.ChangeSceneTo("TutorialGame"); });
+    //}
   }
 }

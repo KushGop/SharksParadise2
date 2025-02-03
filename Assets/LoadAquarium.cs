@@ -9,10 +9,10 @@ public class LoadAquarium : MonoBehaviour, IDataPersistence
     print("load aquarium");
 
     AquariumManager.aquariumData = data.aquarium;
-    foreach (Fishes f in AquariumManager.aquariumData.fishCards.Keys)
-    {
-      print(f + ": " + AquariumManager.aquariumData.fishCards[f].count);
-    }
+    //foreach (Fishes f in AquariumManager.aquariumData.fishCards.Keys)
+    //{
+    //  print(f + ": " + AquariumManager.aquariumData.fishCards[f].count);
+    //}
   }
 
   public void SaveData(GameData data)

@@ -131,10 +131,36 @@ namespace Gley.GameServices.Internal
 
 #endif
 #if GLEY_GAMESERVICES_IOS
-
+    ILeaderboard Leaderboard = Social.CreateLeaderboard();
+    Leaderboard.id = gameLeaderboards.FirstOrDefault(cond => cond.name == leaderboardName.ToString()).idIos;
+    Leaderboard.timeScope = TimeScope.AllTime;
+    Leaderboard.LoadScores(success =>
+    {
+        if (success)
+        {
+            rows = Mathf.Min(rows, Leaderboard.scores.Length);
+            LeaderboardUserData[] leaderboard = new LeaderboardUserData[rows];
+            if (CompleteMethod != null)
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    try
+                    {
+                        leaderboard[i] = new(Leaderboard.scores[i].rank.ToString(), Leaderboard.scores[i].userID, Leaderboard.scores[i].value.ToString());
+                    }
+                    catch
+                    {
+                        leaderboard[i] = new("-", "-", "-");
+                    }
+                }
+                CompleteMethod(leaderboard);
+            }
+        }
+        
+    });
 
 #endif
-    }
+        }
 
     public void LoadUsers(string[] userIds, int rows, UnityAction<string[]> CompleteMethod)
     {
@@ -164,7 +190,25 @@ namespace Gley.GameServices.Internal
 
 #endif
 #if GLEY_GAMESERVICES_IOS
-
+        Social.LoadUsers(userIds, (users)=>
+        {
+            if(users != null)
+            {
+                string[] leaderboard = new string[rows];
+                for (int i = 0; i < rows; i++)
+                {
+                    try
+                    {
+                        leaderboard[i] = users[i].userName;
+                    }
+                    catch
+                    {
+                        leaderboard[i] = "-";
+                    }
+                }
+                CompleteMethod(leaderboard);
+            }
+        });
 
 #endif
     }
