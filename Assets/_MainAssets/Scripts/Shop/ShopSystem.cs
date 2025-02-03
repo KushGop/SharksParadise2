@@ -20,6 +20,7 @@ public class ShopSystem : MonoBehaviour
     {
       //text.text = "Shop init";
       print("shop initialized");
+      Gley.MobileAds.API.RemoveAds(API.IsActive(ShopProductNames.RemoveAds));
     }
     else
     {

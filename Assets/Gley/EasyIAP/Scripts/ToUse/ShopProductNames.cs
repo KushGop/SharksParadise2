@@ -29,5 +29,6 @@ namespace Gley.EasyIAP
 		Uwu,
 		Iron,
 		NoHat,
+		RemoveAds,
 	}
 }

@@ -346,3 +346,15 @@ MonoBehaviour:
     price: 0
     isoCurrencyCode: 
     receipt: 
+  - productName: RemoveAds
+    productType: 1
+    idGooglePlay: remove_ads
+    idAmazon: 
+    idIOS: remove_ads
+    idMac: 
+    idWindows: 
+    value: 0
+    localizedPriceString: '-'
+    price: 0
+    isoCurrencyCode: 
+    receipt: 

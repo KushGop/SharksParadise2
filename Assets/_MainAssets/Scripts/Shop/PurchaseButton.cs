@@ -11,7 +11,8 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
     COIN,
     DIAMOND,
     PRESTIGE,
-    STARTER
+    STARTER,
+    REMOVE_ADS
   }
 
   [SerializeField] ShopProductNames productName;
@@ -55,6 +56,10 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
   {
     API.BuyProduct(ShopProductNames.StarterPackage, ProductBought);
   }
+  public void BuyRemoveAds()
+  {
+    API.BuyProduct(ShopProductNames.RemoveAds, ProductBought);
+  }
 
   public void BuyConsumable()
   {
@@ -79,8 +84,12 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
 
           AddCoin(5000);
           AddGem(15);
-          AddPrestige(1);
-
+          //AddPrestige(1);
+        }
+        else if (shopType == ShopType.REMOVE_ADS)
+        {
+          Gley.MobileAds.API.RemoveAds(true);
+          print("Ads removed");
         }
       }
       else if (product.productType == ProductType.Consumable)
@@ -102,7 +111,6 @@ public class PurchaseButton : MonoBehaviour, IDataPersistence
 
       DataPersistenceManager.instance.SaveGame(); //saves data
       UpgradesManager.updateCosts(); //update ui
-      Debug.Log("After purchase PackCoins " + GameManager.totalCoins);
 
       //if (product.productName == "RemoveAds")
       //{

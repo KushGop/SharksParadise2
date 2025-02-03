@@ -10,12 +10,10 @@ public class SkipMission : MonoBehaviour
   [SerializeField] ScoreMission scoreMission;
   [SerializeField] TextMeshProUGUI text;
   [SerializeField] Button button;
-  [SerializeField] Image ad;
-  [SerializeField] Image d1;
-  [SerializeField] Image d2;
-  [SerializeField] Image d3;
   [SerializeField] CanvasGroup group;
+  [SerializeField] bool isAd;
   private int index;
+  private int value;
 
   private void Start()
   {
@@ -23,54 +21,25 @@ public class SkipMission : MonoBehaviour
 
     if (MissionManager.missions[index].gamesPlayed >= 3)
     {
-      if (API.IsRewardedVideoAvailable())
+      if (isAd)
       {
-        button.interactable = true;
-        ad.enabled = true;
-        text.text = "Watch ad to skip";
+        button.interactable = API.IsRewardedVideoAvailable();
+        text.text = "Watch ad";
       }
       else
       {
-        button.interactable = false;
-        text.text = "Ad not available";
+        value = (MissionManager.missions[index].coins / 100) * 5;
+        text.text = string.Format("skip *{0} <sprite name=\"Gem\">", value);
+        //check if they have enough to purchase
+        button.interactable = value <= GameManager.totalGems;
       }
-      /*
-      text.text = "skip";
-      switch (MissionManager.missions[index].coins)
-      {
-        case 100:
-          d1.enabled = true;
-          d2.enabled = false;
-          d3.enabled = false;
-          break;
-        case 200:
-          d1.enabled = false;
-          d2.enabled = true;
-          d3.enabled = true;
-          break;
-        case 300:
-          d1.enabled = true;
-          d2.enabled = true;
-          d3.enabled = true;
-          break;
-      }
-      //check if they have enough to purchase
-      button.interactable = MissionManager.missions[index].coins / 100 <= GameManager.totalGems;
-      */
-      group.alpha = button.interactable ? 1 : 0.5f;
     }
     else
     {
-      /*
       button.interactable = false;
-      d1.enabled = false;
-      d2.enabled = false;
-      d3.enabled = false;
-      */
-      ad.enabled = false;
-      text.text = "Play more to skip";
+      text.text = "Play more";
     }
-
+    group.alpha = button.interactable ? 1 : 0.5f;
   }
 
   public void SkipMissionGem()
@@ -78,7 +47,7 @@ public class SkipMission : MonoBehaviour
     button.interactable = false;
     int temp = GameManager.gems;
     GameManager.gems = 0;
-    GameManager.gems -= MissionManager.missions[index].coins / 100;
+    GameManager.gems -= value;
     CompleteMethod(true);
     GameManager.gems = temp;
     UpgradesManager.updateCosts();

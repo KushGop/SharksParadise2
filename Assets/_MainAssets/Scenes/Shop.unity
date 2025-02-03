@@ -3959,6 +3959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarterPackContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 6171142154228521594, guid: 3224117df8d11c54a8a99c6fe73ce0f2, type: 3}
+      propertyPath: m_fontSize
+      value: 37.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7548944768069474113, guid: 3224117df8d11c54a8a99c6fe73ce0f2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 7.5

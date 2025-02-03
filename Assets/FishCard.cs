@@ -55,6 +55,9 @@ public class FishCard : MonoBehaviour
       Fishes.STARFISH => EnemyList.specialFish[f][cardData.level].ToString() + " seconds",
       _ => EnemyList.rarityPoint[cardData.rarity][cardData.level].ToString() + " points",
     };
+    //clear fish image
+    foreach (Transform t in fishImage.transform)
+      Destroy(t.gameObject);
     Instantiate(images.images[fish], fishImage);
   }
 

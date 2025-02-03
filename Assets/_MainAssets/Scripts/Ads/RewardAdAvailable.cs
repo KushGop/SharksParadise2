@@ -7,20 +7,33 @@ using Gley.MobileAds;
 
 public class RewardAdAvailable : MonoBehaviour
 {
-  [SerializeField] Button button;
-    [SerializeField] TextMeshProUGUI adText;
+  //[SerializeField] TextMeshProUGUI adText;
+  [SerializeField] GameObject alternative;
+  [SerializeField] GameObject adButton;
 
+  private void Start()
+  {
+    UpgradesManager.updateCosts += SetButtons;
+  }
+  private void OnDestroy()
+  {
+    UpgradesManager.updateCosts -= SetButtons;
+  }
   private void OnEnable()
   {
-    if (!API.IsRewardedVideoAvailable())
+    SetButtons();
+  }
+  private void SetButtons()
+  {
+    if (API.CanShowAds())
     {
-            adText.text = "ad not available";
-      button.interactable = false;
+      adButton.SetActive(true);
+      alternative.SetActive(false);
     }
     else
     {
-            adText.text = "Watch ad";
-            button.interactable = true;
+      adButton.SetActive(false);
+      alternative.SetActive(true);
     }
   }
 }
