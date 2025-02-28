@@ -73,12 +73,12 @@ public class DeathTimer : MonoBehaviour
   {
     playerMovement.SetIsInvincible(true);
     StopAllCoroutines();
-    playerMovement.TriggerPower(0);
+    playerMovement.TriggerPower(-1);
 
     transform.parent.gameObject.SetActive(false);
     playercollider.enabled = true;
 
-    Time.timeScale = 1;
+    Time.timeScale = 0.25f;
     GameManager.TurnCoinsOff();
     GameManager.unpause();
   }

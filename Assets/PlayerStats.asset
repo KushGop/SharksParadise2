@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPosition: {x: 0, y: 0, z: 0}
   playerSize: 100
-  r: 100
-  s: 20
+  r: 50
+  s: 25
+  energy: 0
+  playerScript: {fileID: 0}
+  points: 0

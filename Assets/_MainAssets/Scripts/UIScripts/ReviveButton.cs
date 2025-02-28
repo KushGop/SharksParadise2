@@ -14,7 +14,7 @@ public class ReviveButton : MonoBehaviour
   [SerializeField] private CurrencyCounter counter;
   [SerializeReference] private int Total;
   [SerializeReference] private int BaseTotal;
-  private string text;
+  private string icon;
 
   void Awake()
   {
@@ -22,19 +22,19 @@ public class ReviveButton : MonoBehaviour
     {
       Total = GameManager.totalCoins;
       BaseTotal = GameManager.coins;
-      text = " coins";
+      icon = "<sprite name=\"Coin\">";
     }
     else if (currency == Currency.Gem)
     {
       Total = GameManager.totalGems;
       BaseTotal = GameManager.gems;
-      text = " gems";
+      icon = "<sprite name=\"Gem\">";
     }
   }
 
   private void OnEnable()
   {
-    buttonText.text = (reviveCost).ToString() + text;
+    buttonText.text = icon + (reviveCost).ToString();
     if (Total + BaseTotal >= reviveCost)
     {
       button.interactable = true;

@@ -9,6 +9,7 @@ public class MobileJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 {
   [SerializeField] private CanvasGroup boostJoystickCanvas;
   [SerializeField] private CanvasGroup jumpJoystickCanvas;
+  [SerializeField] private Transform joystickOuter;
 
   public RectTransform joystick;
   public RectTransform panel;
@@ -34,9 +35,15 @@ public class MobileJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
   private bool isBoosting = false, hasJumped = false;
   private float actionDistance;
 
+  private void Start()
+  {
+    unitValue = new();
+  }
+
   private void Update()
   {
     OnMove?.Invoke(unitValue);
+    joystickOuter.localRotation = Quaternion.Euler(0, 0, Mathf.Atan2(-unitValue.x, unitValue.y) * Mathf.Rad2Deg);
   }
 
   public virtual void BoostReleased()

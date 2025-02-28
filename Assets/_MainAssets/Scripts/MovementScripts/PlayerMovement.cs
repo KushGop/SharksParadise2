@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
+  [Header("Extra Life")]
+  [SerializeField] Animator extraLife;
+
   [Header("Shock")]
   [SerializeField] GameObject shockParent;
   [SerializeField] Animator[] shocks;
@@ -36,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
   public AudioSource splashSound;
   public AudioSource diveSound;
   public ScoreHandler scoreHandler;
-  private SpriteRenderer spriteRenderer;
   public Transform trails;
   public AudioSource boostSound;
   private Color[] colors;
@@ -133,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
     isJump = false;
     enemyCount = 0;
     //boostCoroutine = RefillEnergyTimer();
-    spriteRenderer = transform.GetComponent<SpriteRenderer>();
     isInvincible = false;
     isSpeedBoost = false;
     Color c = Color.green;
@@ -148,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
       s.speed = 0;
     //controlRight = controlManager.controlRight;
     //controlLeft = controlManager.controlLeft;
+
 
     colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
 
@@ -395,7 +397,7 @@ public class PlayerMovement : MonoBehaviour
     GameManager.dodgeHelper.Clear();
     //slomo
     Time.timeScale = 1f;
-    spriteRenderer.sortingLayerName = spriteRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
+    playerSprite.sortingLayerName = playerSprite.sortingLayerName == "Jump" ? "Player" : "Jump";
     hatRenderer.sortingLayerName = hatRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
     trails.GetComponent<TrailScript>().changeParent();
   }
@@ -450,6 +452,12 @@ public class PlayerMovement : MonoBehaviour
     GameManager.eventText(GameManager.powers[i], 3f);
     switch (i)
     {
+      case -1:
+        //Extra life
+        rb2d.velocity = new();
+        PlayerJump();
+        extraLife.SetTrigger("Shield");
+        goto case 0;
       case 0:
         //Invincible
         if (invisEvent != null) StopCoroutine(invisEvent);

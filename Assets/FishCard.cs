@@ -8,6 +8,7 @@ public class FishCard : MonoBehaviour
 {
   Fishes fish;
   FishCard_S fishS;
+  GameObject fishImageObject;
   [SerializeField] TextMeshProUGUI count;
   [SerializeField] TextMeshProUGUI multiplyer;
   [SerializeField] TextMeshProUGUI value;
@@ -15,7 +16,7 @@ public class FishCard : MonoBehaviour
   [SerializeField] Transform fishImage;
   [SerializeField] Aquarium_SO images;
   [SerializeField] Button button;
-  [SerializeField] Image bubble;
+  //[SerializeField] Image bubble;
   [SerializeField] Image baseImg;
   [SerializeField] Colors_SO colors;
   bool canUpgade;
@@ -30,35 +31,39 @@ public class FishCard : MonoBehaviour
   {
     fishS = cardData;
     fish = f;
-    bubble.color = colors.colors[fishS.level];
-    baseImg.color = bubble.color;
+    //bubble.color = colors.colors[fishS.level];
+    //baseImg.color = bubble.color;
     if (cardData.count >= EnemyList.rarityCount[cardData.rarity][cardData.level])
     {
-      count.text = EnemyList.rarityCount[cardData.rarity][cardData.level].ToString() + "/" + EnemyList.rarityCount[cardData.rarity][cardData.level].ToString();
+      count.text = EnemyList.rarityCount[cardData.rarity][cardData.level].ToString() + "\n" + EnemyList.rarityCount[cardData.rarity][cardData.level].ToString();
       //button.enabled = (GameManager.totalGems >= EnemyList.rarityGemCost[cardData.rarity][cardData.level]);
       increase.text = "upgrade <sprite name=\"Gem\">*" + EnemyList.rarityGemCost[cardData.rarity][cardData.level].ToString();
       canUpgade = true;
     }
     else
     {
-      count.text = cardData.count.ToString() + "/" + (EnemyList.rarityCount[cardData.rarity][cardData.level]).ToString();
+      count.text = cardData.count.ToString() + "\n" + (EnemyList.rarityCount[cardData.rarity][cardData.level]).ToString();
       //button.enabled = (GameManager.totalCoins >= EnemyList.rarityCoinCost[cardData.rarity]);
       increase.text = "add 1 <sprite name=\"Coin\"> *" + EnemyList.rarityCoinCost[cardData.rarity].ToString();
       canUpgade = false;
     }
 
-    multiplyer.text = "lvl\n" + (cardData.level + 1).ToString();
+    multiplyer.text = "level " + (cardData.level + 1).ToString();
     value.text = f switch
     {
-      Fishes.COIN => EnemyList.specialFish[f][cardData.level].ToString() + "* coin value",
-      Fishes.TREASURE => EnemyList.specialFish[f][cardData.level].ToString() + "* treasure value",
+      Fishes.COIN => EnemyList.specialFish[f][cardData.level].ToString() + "* value",
+      Fishes.TREASURE => EnemyList.specialFish[f][cardData.level].ToString() + "* value",
       Fishes.STARFISH => EnemyList.specialFish[f][cardData.level].ToString() + " seconds",
       _ => EnemyList.rarityPoint[cardData.rarity][cardData.level].ToString() + " points",
     };
     //clear fish image
     foreach (Transform t in fishImage.transform)
       Destroy(t.gameObject);
-    Instantiate(images.images[fish], fishImage);
+    fishImageObject = Instantiate(images.images[fish], fishImage);
+    if (f != Fishes.TREASURE && f != Fishes.STARFISH)
+      fishImageObject.transform.localPosition = 0.4f * 210 * Vector3.down;
+    else
+      fishImage.GetComponent<Rotate>().enabled = false;
   }
 
   public void TryUpgrade()

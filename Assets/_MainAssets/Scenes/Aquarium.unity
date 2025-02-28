@@ -3111,7 +3111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55877fcdada9754bbe6593713a4e46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishCard: {fileID: 2792976372229890592, guid: b23f3cf3b1ede774aae5b4bec294388c, type: 3}
+  fishCard: {fileID: 4957115975512609451, guid: c8b9c7df2d35d9741bc6d9dbee2ec1b9, type: 3}
   common: {fileID: 1197782793}
   uncommon: {fileID: 988684864}
   rare: {fileID: 1136059730}
