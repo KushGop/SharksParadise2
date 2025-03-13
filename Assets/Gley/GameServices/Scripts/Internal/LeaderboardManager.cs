@@ -160,7 +160,7 @@ namespace Gley.GameServices.Internal
     });
 
 #endif
-        }
+    }
 
     public void LoadUsers(string[] userIds, int rows, UnityAction<string[]> CompleteMethod)
     {

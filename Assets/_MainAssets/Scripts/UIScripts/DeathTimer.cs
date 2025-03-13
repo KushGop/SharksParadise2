@@ -71,6 +71,7 @@ public class DeathTimer : MonoBehaviour
   }
   public void ContinueGame()
   {
+    GameManager.isAlive = true;
     playerMovement.SetIsInvincible(true);
     StopAllCoroutines();
     playerMovement.TriggerPower(-1);
@@ -92,16 +93,32 @@ public class DeathTimer : MonoBehaviour
     shock.SetActive(false);
     if (API.CanShowAds())
     {
-      API.ShowInterstitial(() =>
-          {
-            exitGame.ExitGameSequence();
-            changeScene.ChangeSceneTo("Score");
-          });
+      if (GameManager.adCount == 2)
+      {
+        GameManager.adCount = 0;
+        API.ShowInterstitial(() =>
+                  {
+                    ExitGame();
+                  });
+      }
+      else
+      {
+        GameManager.adCount++;
+        ExitGame();
+      }
+
     }
     else
+    {
+      ExitGame();
+    }
+
+    void ExitGame()
     {
       exitGame.ExitGameSequence();
       changeScene.ChangeSceneTo("Score");
     }
   }
+
+
 }

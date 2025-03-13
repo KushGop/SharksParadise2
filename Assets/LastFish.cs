@@ -10,9 +10,10 @@ public class LastFish : MonoBehaviour
   [SerializeField] TextMeshProUGUI multiText;
   [SerializeField] Image bubble;
   [SerializeField] Colors_SO colors;
-
+  int multi;
   private void Awake()
   {
+    multi = 0;
     multiText.text = "*" + 0;
     bubble.gameObject.SetActive(false);
     GameManager.fishEaten += FishEaten;
@@ -30,8 +31,9 @@ public class LastFish : MonoBehaviour
     {
       Destroy(transform.GetChild(0).gameObject);
     }
-    multiText.text = "*" + GameManager.multiplyer;
-    bubble.color = GameManager.multiplyer == 1 ? Color.white : colors.colors[GameManager.multiplyer % colors.colors.Length];
+    multi = GameManager.multiplyer * (GameManager.isMultiActive ? 2 : 1);
+    multiText.text = "*" + multi;
+    bubble.color = multi == 1 ? Color.white : colors.colors[multi % colors.colors.Length];
     UpdateChildenAlpha();
   }
 

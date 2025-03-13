@@ -10,11 +10,13 @@ using System.Linq;
 
 public class PopulateLeaderboard : MonoBehaviour
 {
+
+#if GLEY_GAMESERVICES_IOS
     // Import the native Objective-C function
     [DllImport("__Internal")]
     private static extern void _loadLeaderboardScores(string leaderboardID, int rowCount, string gameObjectName, bool isCentered);
-
-    [SerializeField] private bool isPlayerCenter;
+#endif
+  [SerializeField] private bool isPlayerCenter;
   [SerializeField] private LeaderboardInit leaderboardInit;
 
   bool loaded;
@@ -23,12 +25,12 @@ public class PopulateLeaderboard : MonoBehaviour
   UnityAction<LeaderboardUserData[]> action1;
   UnityAction<string[]> action2;
   private string[] usernames;
-    private int index = 0;
+  private int index = 0;
 
   private void Start()
   {
 
-        index = 0;
+    index = 0;
     loaded = false;
     rows = isPlayerCenter ? 11 : 3;
     usernames = new string[rows];
@@ -42,7 +44,7 @@ public class PopulateLeaderboard : MonoBehaviour
   }
 
   public void GetResults()
-    {
+  {
 #if GLEY_GAMESERVICES_ANDROID
     API.GetPlayerCenter(LeaderboardNames.Highscores, isPlayerCenter, rows, action1);
 #endif
@@ -63,23 +65,23 @@ public class PopulateLeaderboard : MonoBehaviour
         }
         
 #endif
-    }
+  }
 
-    IEnumerator Loading()
-    {
-        while (!loaded) yield return null;
+  IEnumerator Loading()
+  {
+    while (!loaded) yield return null;
 
-        leaderboardInit.DoneLoading(isPlayerCenter);
-    }
+    leaderboardInit.DoneLoading(isPlayerCenter);
+  }
 
-    #region Android
-    private void GetUsers(string[] ids)
-    {
-        usernames = ids;
-        GetUser();
-    }
-    private void GetUser()
-    {
+  #region Android
+  private void GetUsers(string[] ids)
+  {
+    usernames = ids;
+    GetUser();
+  }
+  private void GetUser()
+  {
     for (int i = 0; i < usernames.Length; i++)
     {
       scores[i].id = usernames[i];
@@ -96,39 +98,39 @@ public class PopulateLeaderboard : MonoBehaviour
     {
       ids[i] = s[i].id;
     }
-        API.LoadUsers(ids, s.Length, action2);
-    }
+    API.LoadUsers(ids, s.Length, action2);
+  }
 
-   
+
 
   public void OnUsernameReceived(string username)
-    {
-        usernames[index] = username;
-        index++;
-    }
+  {
+    usernames[index] = username;
+    index++;
+  }
 
-    #endregion
-    #region iOS
-    public void OnLeaderboardLoaded(string leaderboardData)
+  #endregion
+  #region iOS
+  public void OnLeaderboardLoaded(string leaderboardData)
+  {
+    // leaderboardData will be a string of the format: "rank,playerName,score;rank,playerName,score;..."
+    string[] leaderboardEntries = leaderboardData.Split(';');
+    scores = new LeaderboardUserData[leaderboardEntries.Length - 1];
+    for (int i = 0; i < leaderboardEntries.Length - 1; i++)
     {
-        // leaderboardData will be a string of the format: "rank,playerName,score;rank,playerName,score;..."
-        string[] leaderboardEntries = leaderboardData.Split(';');
-        scores = new LeaderboardUserData[leaderboardEntries.Length-1];
-        for (int i = 0; i < leaderboardEntries.Length-1; i++)
-        {
-            string[] entry = leaderboardEntries[i].Split(',');
-            if (entry.Length == 3)
-            {
-                scores[i] = new LeaderboardUserData(entry[0], entry[1], entry[2]);
-            }
-            else
-            {
-                scores[i] = new LeaderboardUserData("-", "-", "-");
-            }
+      string[] entry = leaderboardEntries[i].Split(',');
+      if (entry.Length == 3)
+      {
+        scores[i] = new LeaderboardUserData(entry[0], entry[1], entry[2]);
+      }
+      else
+      {
+        scores[i] = new LeaderboardUserData("-", "-", "-");
+      }
 
-            transform.GetChild(i).GetComponent<LeaderboardItem>().SetScore(scores[i]);
-        }
-        loaded = true;
+      transform.GetChild(i).GetComponent<LeaderboardItem>().SetScore(scores[i]);
     }
-    #endregion
+    loaded = true;
+  }
+  #endregion
 }

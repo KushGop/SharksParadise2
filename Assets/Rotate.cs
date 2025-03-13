@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
+
+  [SerializeField] float speed = 90;
+
   private void Start()
   {
     transform.localRotation = Quaternion.Euler(0, 0, transform.localRotation.eulerAngles.z + Random.Range(0, 360));
@@ -11,6 +14,6 @@ public class Rotate : MonoBehaviour
 
   void Update()
   {
-    transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(0, 0, transform.localRotation.eulerAngles.z + 1), 90 * Time.deltaTime);
+    transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(0, 0, transform.localRotation.eulerAngles.z + (1 * speed)), Time.deltaTime);
   }
 }

@@ -22,10 +22,13 @@ public class CameraScript : MonoBehaviour
     currentSize = Camera.main.orthographicSize;
     transform.position = Vector3.zero;
 
-    joystick.OnBoostPressed += CameraBoostOn;
-    joystick.OnBoostReleased += CameraBoostOff;
+    joystick.JumpPlayer += CameraZoomOut;
   }
 
+  private void OnDisable()
+  {
+    joystick.JumpPlayer -= CameraZoomOut;
+  }
   //Lerps behind player
   void FixedUpdate()
   {
@@ -40,27 +43,13 @@ public class CameraScript : MonoBehaviour
   // }
 
   //Camera zooms out on boost
-  private void CameraBoostOn()
+  private void CameraZoomOut()
   {
-    if (stats.energy != 0)
-    {
-      StartCoroutine(BoostHelper(currentSize, currentSize + boostOffset, boostLerpTime));
-      isBig = true;
-    }
-  }
-
-  //Zooms back in 
-  private void CameraBoostOff()
-  {
-    if (isBig)
-    {
-      StartCoroutine(BoostHelper(currentSize + boostOffset, currentSize, boostLerpTime));
-      isBig = false;
-    }
+    StartCoroutine(JumpHelper(currentSize, currentSize + boostOffset, boostLerpTime));
   }
 
   //Helper to adjust camera size
-  IEnumerator BoostHelper(float oldSize, float newSize, float time)
+  IEnumerator JumpHelper(float oldSize, float newSize, float time)
   {
     float elapsed = 0;
     while (elapsed <= time)
@@ -69,6 +58,15 @@ public class CameraScript : MonoBehaviour
       float t = Mathf.Clamp01(elapsed / time);
 
       Camera.main.orthographicSize = Mathf.Lerp(oldSize, newSize, t);
+      yield return null;
+    }
+    elapsed = 0;
+    while (elapsed <= time)
+    {
+      elapsed += Time.deltaTime;
+      float t = Mathf.Clamp01(elapsed / time);
+
+      Camera.main.orthographicSize = Mathf.Lerp(newSize, oldSize, t);
       yield return null;
     }
 

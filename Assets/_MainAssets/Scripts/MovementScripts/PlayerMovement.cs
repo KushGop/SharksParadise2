@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
   //private float jumpCost;
   //private float refillSpeed;
   //private float refillDelay;
-  private float powerTime;
 
   private float fishEnergy;
 
@@ -81,6 +80,10 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] GameObject invinsiblePower;
   [SerializeField] GameObject speedPower;
   [SerializeField] GameObject multiplyerPower;
+  [SerializeField] GameObject invinsibleBarr;
+  [SerializeField] GameObject speedBarr;
+  [SerializeField] GameObject multiBarr;
+  [SerializeField] Sprite[] barrs;
   Coroutine invisEvent, speedEvent, multiEvent;
   [Header("Arrows")]
   [SerializeField] GameObject RedCirclePrefab;
@@ -92,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
   Dictionary<Transform, GameObject> arrows;
 
   [Header("Hat")]
+  [SerializeField] Transform hatParent;
   [SerializeField] HatLoader hatLoader;
   [SerializeField] Closet_ScritableObject hats;
   SpriteRenderer hatRenderer;
@@ -117,7 +121,10 @@ public class PlayerMovement : MonoBehaviour
     //refillSpeed = 30 + (UpgradesManager.upgradesData.upgrades[UpgradeList.refillSpeed] * 0.1f);
     //refillDelay = 2 - (UpgradesManager.upgradesData.upgrades[UpgradeList.refillDelay] * 0.1f);
     //powerTime = 10 + (UpgradesManager.upgradesData.upgrades[UpgradeList.powerTime] * 0.1f);
-    powerTime = 10 + EnemyList.specialFish[Fishes.STARFISH][(AquariumManager.aquariumData.fishCards[Fishes.STARFISH].level)];
+    GameManager.starfishPowerTime = 10 + EnemyList.specialFish[Fishes.STARFISH][(AquariumManager.aquariumData.fishCards[Fishes.STARFISH].level)];
+    GameManager.coinfishMulti = 1 + EnemyList.specialFish[Fishes.COIN][(AquariumManager.aquariumData.fishCards[Fishes.COIN].level)];
+    GameManager.treasureMulti = 1 + EnemyList.specialFish[Fishes.TREASURE][(AquariumManager.aquariumData.fishCards[Fishes.TREASURE].level)];
+    GameManager.isMultiActive = false;
 
     fishEnergy = 10;
 
@@ -154,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
     colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
 
     //hat
-    GameObject hat = Instantiate(hats.hatDictionary[hatLoader.GetHat()], transform);
+    GameObject hat = Instantiate(hats.hatDictionary[hatLoader.GetHat()], hatParent);
     hatRenderer = hat.GetComponent<SpriteRenderer>();
     hatAnim = hat.GetComponent<Animator>();
 
@@ -170,57 +177,27 @@ public class PlayerMovement : MonoBehaviour
     invinsiblePower.SetActive(false);
     multiplyerPower.SetActive(false);
     speedPower.SetActive(false);
-
+    invinsibleBarr.SetActive(false);
+    multiBarr.SetActive(false);
+    speedBarr.SetActive(false);
+    UpdateBarriers();
     //arrow
     arrows = new();
+
+    GameManager.isAlive = true;
   }
   private void OnDestroy()
   {
-    //controlLeft.mobileJoystick.OnMove -= MovePlayer;
-    //controlRight.mobileJoystick.OnMove -= MovePlayer;
     joystick.OnMove -= MovePlayer;
     joystick.OnBoostPressed -= BoostOn;
     joystick.OnBoostReleased -= BoostOff;
     joystick.JumpPlayer -= PlayerJump;
   }
 
-  #region Tutorial
-  //public void EnableEnergy()
-  //{
-  //  boostCost = 10;
-  //  jumpCost = 10;
-  //}
-  //public void DisableEnergy()
-  //{
-  //  boostCost = 0;
-  //  jumpCost = 0;
-  //  speed = 10;
-  //  refillSpeed = 30;
-  //  refillDelay = 2;
-  //}
-  #endregion
-
   //Position, boost (UI, Refill, Drain)
   private void Update()
   {
-    //boostJoystick.fillAmount = energyAmount / 100;
     stats.playerPosition = transform.position;
-    //if (boostButtonPressed && !isSpeedBoost)
-    //{
-    //  DrainEnergySlider();
-    //  if (energyAmount < 0)
-    //  {
-    //    energyAmount = 0;
-    //    BoostOff();
-    //    joystick.BoostReleased();
-    //  }
-    //}
-    //else
-    //{
-    //  RefillEnergy();
-    //}
-    //energySlider.value = energyAmount;
-    //stats.energy = energyAmount;
   }
   #region Movement
   //Move Player
@@ -237,25 +214,22 @@ public class PlayerMovement : MonoBehaviour
   public static float Angle(Vector2 vector2)
   {
     if (vector2.x < 0)
-    {
       return 360 - (Mathf.Atan2(vector2.x, vector2.y) * Mathf.Rad2Deg * -1);
-    }
     else
-    {
       return Mathf.Atan2(vector2.x, vector2.y) * Mathf.Rad2Deg;
-    }
   }
+
   //called from animation state for right timing
   public void AnimSwim()
   {
     isJump = false;
-    if (!boostButtonPressed)
+    if (boostButtonPressed)
     {
-      BoostOff();
+      BoostOn();
     }
     else
     {
-      BoostOn();
+      BoostOff();
     }
     col.isTrigger = false;
     EnemyCounter(0);
@@ -277,13 +251,10 @@ public class PlayerMovement : MonoBehaviour
   {
     boostSound.Play();
     boostButtonPressed = true;
-    //canRefill = false;
-    //StopCoroutine(boostCoroutine);
-    if (!isJump/* && energyAmount > 0*/)
+    if (!isJump)
     {
       speed = baseSpeed * boostSpeed;
       anim.SetBool("Boost", true);
-      //anim.speed = 1.5f;
       isBoost = true;
     }
 
@@ -291,35 +262,13 @@ public class PlayerMovement : MonoBehaviour
   private void BoostOff()
   {
     boostButtonPressed = false;
-    //boostCoroutine = RefillEnergyTimer();
-    //StartCoroutine(boostCoroutine);
     if (!isJump)
     {
       speed = baseSpeed;
-      //anim.speed = 1;
       anim.SetBool("Boost", false);
       isBoost = false;
     }
   }
-  //private void DrainEnergySlider()
-  //{
-  //  if (energyAmount > 0)
-  //  {
-  //    energyAmount -= Time.deltaTime * boostCost;
-  //  }
-  //}
-  //IEnumerator RefillEnergyTimer()
-  //{
-  //  yield return new WaitForSeconds(refillDelay);
-  //  canRefill = true;
-  //}
-  //private void RefillEnergy()
-  //{
-  //  if (energyAmount < 100 && canRefill)
-  //  {
-  //    energyAmount += Time.deltaTime * refillSpeed;
-  //  }
-  //}
   public void AddEnergy()
   {
     if (energyAmount + fishEnergy > 100)
@@ -334,30 +283,19 @@ public class PlayerMovement : MonoBehaviour
   //Jump
   private void PlayerJump()
   {
-    if (!isStun /*&& energyAmount >= jumpCost*/ && !isJump)
-    {
-      //Boost routine
-      //energyAmount -= jumpCost;
-      //StartCoroutine(boostCoroutine);
-      //canRefill = false;
-      //StopCoroutine(boostCoroutine);
-
-      //Splash routine
-      splashSound.Play();
-      SplashAnim();
-      StartCoroutine(SplashDelay(1f));
-      col.isTrigger = true;
-      anim.SetTrigger("JumpTrigger");
-      hatAnim.SetTrigger("JumpTrigger");
-    }
+    if (isStun || isJump || !GameManager.isAlive)
+      return;
+    //Splash routine
+    splashSound.Play();
+    StartCoroutine(SplashDelay(1f));
+    col.isTrigger = true;
+    anim.SetTrigger("JumpTrigger");
+    hatAnim.SetTrigger("JumpTrigger");
 
   }
   //called from animation state fro right timing
   public void AnimJump()
   {
-    //speed = baseSpeed;
-    //speed = baseSpeed * boostSpeed;
-    //anim.speed = 1f;
     StartCoroutine(FrameDelay());
   }
   private IEnumerator FrameDelay()
@@ -377,7 +315,7 @@ public class PlayerMovement : MonoBehaviour
   {
     JumpActions();
     splash.SetPositionAndRotation(splashOffset.position, transform.rotation);
-    splash.GetComponent<Animator>().Play("Base Layer.Splash", 0, 0);
+    splash.GetComponent<Animator>().SetTrigger("Splash");
   }
 
   IEnumerator SplashDelay(float wait)
@@ -386,7 +324,6 @@ public class PlayerMovement : MonoBehaviour
     if (!isBoost)
     {
       speed = baseSpeed;
-      //anim.speed = 1.5f;
     }
     SplashAnim();
     diveSound.Play();
@@ -460,28 +397,34 @@ public class PlayerMovement : MonoBehaviour
         goto case 0;
       case 0:
         //Invincible
+        if (isInvincible == true && i != -1) { TriggerPower(Random.Range(0, 3)); return; }
         if (invisEvent != null) StopCoroutine(invisEvent);
-        invisEvent = StartCoroutine(DrainPower(powerTime, invinsiblePower.transform.GetChild(0).GetComponent<Slider>(), invinsiblePower, 0));
+        invisEvent = StartCoroutine(DrainPower(GameManager.starfishPowerTime, invinsiblePower.transform.GetChild(0).GetComponent<Slider>(), invinsiblePower, invinsibleBarr, 0));
         isInvincible = true;
         break;
       case 1:
         //Double Points
+        if (GameManager.isMultiActive == true) { TriggerPower(Random.Range(0, 3)); return; }
         if (multiEvent != null) StopCoroutine(multiEvent);
-        multiEvent = StartCoroutine(DrainPower(powerTime, multiplyerPower.transform.GetChild(0).GetComponent<Slider>(), multiplyerPower, 1));
+        multiEvent = StartCoroutine(DrainPower(GameManager.starfishPowerTime, multiplyerPower.transform.GetChild(0).GetComponent<Slider>(), multiplyerPower, multiBarr, 1));
+        GameManager.isMultiActive = true;
         scoreHandler.starfishMultiplyer = 2;
         break;
       case 2:
         //Unlimited Boost
+        if (isSpeedBoost == true) { TriggerPower(Random.Range(0, 3)); return; }
         if (speedEvent != null) StopCoroutine(speedEvent);
-        speedEvent = StartCoroutine(DrainPower(powerTime, speedPower.transform.GetChild(0).GetComponent<Slider>(), speedPower, 2));
+        speedEvent = StartCoroutine(DrainPower(GameManager.starfishPowerTime, speedPower.transform.GetChild(0).GetComponent<Slider>(), speedPower, speedBarr, 2));
         isSpeedBoost = true;
         break;
     }
   }
 
-  IEnumerator DrainPower(float waitTime, Slider slider, GameObject power, int i)
+  IEnumerator DrainPower(float waitTime, Slider slider, GameObject power, GameObject barr, int i)
   {
     power.SetActive(true);
+    barr.SetActive(true);
+    UpdateBarriers();
     //IEnumerator image = ImageRotateColors(waitTime, power.transform.GetComponent<Image>());
     //StartCoroutine();
     float timePassed = 0f;
@@ -493,17 +436,33 @@ public class PlayerMovement : MonoBehaviour
       yield return null;
     }
     power.SetActive(false);
+    barr.SetActive(false);
+    UpdateBarriers();
     switch (i)
     {
       case 0://Invincible
         isInvincible = false;
         break;
       case 1://Double Points
+        GameManager.isMultiActive = false;
         scoreHandler.starfishMultiplyer = 1;
         break;
       case 2://Unlimited Boost
         isSpeedBoost = false;
         break;
+    }
+  }
+
+  void UpdateBarriers()
+  {
+    int i = 0;
+    foreach (Transform barr in multiBarr.transform.parent)
+    {
+      if (barr.gameObject.activeSelf)
+      {
+        barr.GetComponent<SpriteRenderer>().sprite = barrs[i];
+        i++;
+      }
     }
   }
 

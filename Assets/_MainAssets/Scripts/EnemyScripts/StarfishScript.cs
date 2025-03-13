@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class StarfishScript : MonoBehaviour
 {
-
-  private Color[] colors;
-  private int i;
+  [SerializeField] Colors_SO colors;
+  private int i, size;
   [SerializeField] SpriteRenderer sprite;
   [SerializeField] SpriteRenderer glow;
   [SerializeField] float speed;
 
   private void Start()
   {
-    colors = new Color[] { Color.cyan, Color.blue, Color.magenta, Color.red, Color.yellow, Color.green };
+    size = colors.colors.Length;
     StartCoroutine(SpriteRotateColors());
   }
 
@@ -25,8 +24,8 @@ public class StarfishScript : MonoBehaviour
     StartCoroutine(ColorDelay());
     while (true)
     {
-      sprite.color = Color.Lerp(sprite.color, colors[i % 6], speed * Time.deltaTime);
-      glow.color = Color.Lerp(glow.color, colors[i % 6], speed * Time.deltaTime);
+      sprite.color = Color.Lerp(sprite.color, colors.colors[i % size], speed * Time.deltaTime);
+      glow.color = Color.Lerp(glow.color, colors.colors[i % size], speed * Time.deltaTime);
       timePassed += Time.deltaTime;
       yield return null;
     }

@@ -21,7 +21,7 @@ public class ScoreHandler : MonoBehaviour
   }
   public void UpdateMultiplyer(Fishes fishName, Vector3 pos)
   {
-    if (fishName == GameManager.lastFish || starfishMultiplyer > 1)
+    if (fishName == GameManager.lastFish)
     {
       MissionData.IncrementMission(MissionName.multiplyerMax);
       if (GameManager.multiplyer < EnemyList.multiplyerCap[fishName] && fishName == GameManager.lastFish)
@@ -34,6 +34,10 @@ public class ScoreHandler : MonoBehaviour
     else
     {
       GameManager.multiplyer = 1;
+      if (starfishMultiplyer == 2)
+      {
+        multiplyerText.GetComponent<NewPoints>().OnMultiply(GameManager.multiplyer * starfishMultiplyer, pos);
+      }
       MissionManager.ResetMission(MissionName.multiplyerMax);
       MissionData.IncrementMission(MissionName.multiplyerMax);
     }

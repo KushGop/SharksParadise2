@@ -15,8 +15,13 @@ public class HowToPlay : MonoBehaviour
   private void OnEnable()
   {
     slideNum = 0;
-    navValue.text = "0/" + slides.childCount;
+    navValue.text = "1/" + slides.childCount;
     slides.GetChild(0).gameObject.SetActive(true);
+    slides.GetChild(1).gameObject.SetActive(false);
+    slides.GetChild(2).gameObject.SetActive(false);
+
+    left.interactable = false;
+    right.interactable = true;
   }
 
   public void NavLeft()
@@ -25,7 +30,7 @@ public class HowToPlay : MonoBehaviour
     slides.GetChild(--slideNum).gameObject.SetActive(true);
     navValue.text = (slideNum + 1) + "/" + slides.childCount;
     right.interactable = true;
-    if (slideNum <= 1)
+    if (slideNum == 0)
     {
       left.interactable = false;
       slideNum = 0;

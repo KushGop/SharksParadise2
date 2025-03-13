@@ -381,6 +381,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6656721000304472607, guid: 565d2cacac841334596dcaa826c60d7a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656721000304472607, guid: 565d2cacac841334596dcaa826c60d7a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7325909976216773770, guid: 565d2cacac841334596dcaa826c60d7a, type: 3}
       propertyPath: m_Name
       value: Water

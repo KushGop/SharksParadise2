@@ -23,11 +23,11 @@ public class BirdMovement : AbstractMovement
     GameManager.switchToDay -= TurnOffGlow;
   }
 
-  private void TurnOnGlow()
+  protected void TurnOnGlow()
   {
     StartCoroutine(FadeGlowIn());
   }
-  private void TurnOffGlow()
+  protected void TurnOffGlow()
   {
     StartCoroutine(FadeGlowOut());
   }

@@ -16,6 +16,7 @@ public class NightCycle : MonoBehaviour
     fadeTime = 3f;
     group0.alpha = 0;
     group1.alpha = 0;
+    GameManager.day = 1;
     GameManager.switchToNight += FadeIn;
     GameManager.switchToDay += FadeOut;
     dayTime = GameManager.dayCycleTime;
@@ -47,6 +48,7 @@ public class NightCycle : MonoBehaviour
     yield return new WaitForSeconds(dayTime);
     //day
     GameManager.day++;
+    MissionData.IncrementMission(MissionName.nightsSurvived);
     GameManager.switchToDay();
     StartCoroutine(CycleDays());
   }

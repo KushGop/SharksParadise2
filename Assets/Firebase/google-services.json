@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "306737603976",
+    "project_id": "sharksparadise-db286",
+    "storage_bucket": "sharksparadise-db286.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306737603976:android:b558e1541b371b70ddc63d",
+        "android_client_info": {
+          "package_name": "com.LeaflessGames.com.unity.template.mobile2D"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2V14OzfhzsiM6JzDyhtj8vxakRi-2b2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

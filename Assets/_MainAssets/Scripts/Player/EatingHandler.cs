@@ -53,6 +53,7 @@ public class EatingHandler : MonoBehaviour
 
   private void Death()
   {
+    GameManager.isAlive = false;
     Debug.Log("Death");
     Time.timeScale = 0;
     GameManager.pause();
@@ -148,6 +149,7 @@ public class EatingHandler : MonoBehaviour
           }
           MissionData.IncrementMission(MissionName.birdsEaten);
           AquariumManager.IncrementFish(Fishes.SEAGULL);
+          GameManager.IncrementBirdMeter();
           break;
           //case "People":
           //  Destroy(other.gameObject);
