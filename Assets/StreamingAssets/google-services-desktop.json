@@ -1,26 +1,44 @@
 {
   "project_info": {
-    "project_number": "306737603976",
-    "project_id": "sharksparadise-db286",
-    "storage_bucket": "sharksparadise-db286.firebasestorage.app"
+    "project_number": "411863635839",
+    "project_id": "sharksparadise-402320",
+    "storage_bucket": "sharksparadise-402320.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:306737603976:android:b558e1541b371b70ddc63d",
+        "mobilesdk_app_id": "1:411863635839:android:c65944af085ae30d786c4a",
         "android_client_info": {
           "package_name": "com.LeaflessGames.com.unity.template.mobile2D"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "411863635839-gpcfjao4f03j4tcfna4fe0u7vt98tpdg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.LeaflessGames.com.unity.template.mobile2D",
+            "certificate_hash": "157e1cce003d48f5addb808ef4b6624101c10968"
+          }
+        },
+        {
+          "client_id": "411863635839-frcum38iigcu5qiuf5il5vqlfo0h265c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyD2V14OzfhzsiM6JzDyhtj8vxakRi-2b2U"
+          "current_key": "AIzaSyD0Md2KbfPG9QNNq8T-gtGsCvcK8hJ95tY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411863635839-frcum38iigcu5qiuf5il5vqlfo0h265c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

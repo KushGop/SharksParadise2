@@ -7,6 +7,7 @@ public class AnimatorOptimizer : MonoBehaviour
 
   public SpriteRenderer spriteRenderer;
   public Animator animator;
+  public Animation anim;
   // private float speed;
 
   private void Start()
@@ -14,6 +15,7 @@ public class AnimatorOptimizer : MonoBehaviour
     // speed = animator.speed;
     //spriteRenderer.enabled = false;
     animator.enabled = false;
+    anim.animateOnlyIfVisible = true;
   }
 
   private void OnBecameVisible()

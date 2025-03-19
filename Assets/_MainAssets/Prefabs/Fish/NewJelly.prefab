@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7521910139860367229}
-  - component: {fileID: -1464317012093414947}
   - component: {fileID: 703912492651482695}
-  - component: {fileID: 5542269692712824020}
   - component: {fileID: 667742972956974229}
   - component: {fileID: 8272433217730604369}
   - component: {fileID: 1175149167115043251}
+  - component: {fileID: 2612971941540109149}
   m_Layer: 8
   m_Name: NewJelly
   m_TagString: Prey
@@ -43,20 +42,6 @@ Transform:
   - {fileID: 831995610670157934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1464317012093414947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030828680735082641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d9d81f8f288dbb428d5780d365ffd89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 703912492651482695}
-  animator: {fileID: 5542269692712824020}
 --- !u!212 &703912492651482695
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -109,27 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5542269692712824020
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030828680735082641}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c37a7c01b3dfae74982eecfd3280eca5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &667742972956974229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +112,7 @@ MonoBehaviour:
   rotationSpeed: 10
   idleRot: 0
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
-  shock: {fileID: 4626496694846290572}
+  shock: {fileID: 5552528724548449369}
   shockSound: {fileID: 9192531268303048267}
 --- !u!50 &8272433217730604369
 Rigidbody2D:
@@ -212,6 +176,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.26}
   m_Size: {x: 1.26, y: 0.97}
   m_Direction: 1
+--- !u!95 &2612971941540109149
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030828680735082641}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c37a7c01b3dfae74982eecfd3280eca5, type: 2}
+  m_CullingMode: 2
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3910238172743578002
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,9 +453,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2061621992117369026, guid: a57ffab1b5241ba4c92a8af93c1f0be2, type: 3}
   m_PrefabInstance: {fileID: 151978591274329185}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &4626496694846290572 stripped
+--- !u!95 &5552528724548449369 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 4769155335322214125, guid: a57ffab1b5241ba4c92a8af93c1f0be2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5698571739123028024, guid: a57ffab1b5241ba4c92a8af93c1f0be2, type: 3}
   m_PrefabInstance: {fileID: 151978591274329185}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &9192531268303048267 stripped

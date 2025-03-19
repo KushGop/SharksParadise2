@@ -16,6 +16,7 @@ public class FishCardInit : MonoBehaviour
     //init
     foreach (Fishes s in AquariumManager.aquariumData.fishCards.Keys)
     {
+      if (AquariumManager.aquariumData.fishCards[s].rarity == Rarity.OTHER) continue;
       GameObject go = Instantiate(fishCard, GetTransform(AquariumManager.aquariumData.fishCards[s].rarity));
       go.GetComponent<FishCard>().CardInit(s, AquariumManager.aquariumData.fishCards[s]);
     }

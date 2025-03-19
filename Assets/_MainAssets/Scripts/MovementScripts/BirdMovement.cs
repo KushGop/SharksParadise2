@@ -32,6 +32,11 @@ public class BirdMovement : AbstractMovement
     StartCoroutine(FadeGlowOut());
   }
 
+  public void QuickNightSet()
+  {
+    sprite.color = nightColor;
+  }
+
   IEnumerator FadeGlowIn()
   {
     float elaspedTime = 0f;

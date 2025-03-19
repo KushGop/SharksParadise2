@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4925372311823117166}
   - component: {fileID: 4925372311823117167}
-  - component: {fileID: 4925372311823117164}
   - component: {fileID: -4546942036166475957}
   - component: {fileID: -6014347343409939021}
   - component: {fileID: -4798018495248223301}
+  - component: {fileID: 8979755867097701473}
   m_Layer: 8
   m_Name: CoinFish
   m_TagString: Prey
@@ -90,27 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4925372311823117164
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4925372311823117165}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d921480ba4e44de42bca07f807f08f2b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-4546942036166475957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +108,6 @@ MonoBehaviour:
   rotationSpeed: 15
   idleRot: 0.74
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
-  Coin: {fileID: 3751636209727910014, guid: c11d01c1699ac5a4080b48005a517114, type: 3}
   sprite: {fileID: 4925372311823117167}
 --- !u!50 &-6014347343409939021
 Rigidbody2D:
@@ -193,6 +171,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.08, y: 0}
   m_Size: {x: 1.4, y: 0.75}
   m_Direction: 1
+--- !u!95 &8979755867097701473
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925372311823117165}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d921480ba4e44de42bca07f807f08f2b, type: 2}
+  m_CullingMode: 2
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3320749686989037803
 PrefabInstance:
   m_ObjectHideFlags: 0

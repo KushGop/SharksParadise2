@@ -7,6 +7,10 @@ public class Login : MonoBehaviour
 {
   void Start()
   {
+    TryLogIn();
+  }
+  public void TryLogIn()
+  {
     if (!API.IsLoggedIn())
       API.LogIn();
   }

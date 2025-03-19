@@ -11,14 +11,28 @@ public class AbstractMovement : MonoBehaviour
   protected bool isTriggered, isActive;
   public float rotationSpeed, idleRot;
   public PlayerStats player;
-  protected FishType fishType;
+  private bool hasBeenTriggered;
+  //private IEnumerator CoinsRoutine;
+  private FishType fishType;
+  private Identifier id;
+  //private Coroutine rush;
 
   protected void Start()
   {
+    //CoinsRoutine = Coins();
     isTriggered = false;
     isActive = true;
-    fishType = transform.GetComponent<Identifier>().fishType;
+    id = transform.GetComponent<Identifier>();
+    fishType = id.fishType;
+    GameManager.StopGoldRush += StopGoldRush;
     //Move();
+  }
+
+
+
+  private void OnDestroy()
+  {
+    GameManager.StopGoldRush -= StopGoldRush;
   }
 
   //If player is near, swim towards the player
@@ -53,11 +67,40 @@ public class AbstractMovement : MonoBehaviour
   public virtual void TriggerAI(bool trigger)
   {
     isTriggered = trigger;
+    if (trigger)
+    {
+      if (GameManager.isGoldRush && !hasBeenTriggered)
+      {
+        if (EnemyList.goldRushList.Contains(id.fishName))
+        {
+          hasBeenTriggered = true;
+          StartCoroutine(Coins());
+        }
+      }
+    }
+    else
+    {
+      hasBeenTriggered = false;
+      StopAllCoroutines();
+    }
   }
-  public bool getTrigger()
+  public bool GetTrigger()
   {
     return isTriggered;
   }
+
+  private void StopGoldRush()
+  {
+    StopAllCoroutines();
+  }
+
+  protected IEnumerator Coins()
+  {
+    Instantiate(GameManager.coinPrefab, transform.position, transform.rotation, GameManager.coinParent);
+    yield return new WaitForSeconds(0.2f);
+    StartCoroutine(Coins());
+  }
+
   //Go through boat
   protected virtual void OnCollisionEnter2D(Collision2D other)
   {

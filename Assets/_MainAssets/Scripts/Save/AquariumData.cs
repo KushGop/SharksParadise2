@@ -14,7 +14,8 @@ public enum FishType
   INK,
   COIN,
   TREASURE,
-  SENSOR
+  SENSOR,
+  BUBBLE
 }
 
 public enum Fishes
@@ -33,7 +34,8 @@ public enum Fishes
   CUCUMBER,
   SHARK_L,
   STARFISH,
-  TREASURE
+  TREASURE,
+  BUBBLE
 }
 public enum Rarity
 {
@@ -42,6 +44,7 @@ public enum Rarity
   RARE,
   LEGENDARY,
   SPECIAL,
+  OTHER
 }
 
 [System.Serializable]
@@ -84,6 +87,8 @@ public class AquariumData
     { Fishes.COIN, Rarity.SPECIAL },
     { Fishes.STARFISH, Rarity.SPECIAL },
     { Fishes.TREASURE, Rarity.SPECIAL },
+    //other
+    { Fishes.BUBBLE, Rarity.OTHER },
   };
 
   public AquariumData()

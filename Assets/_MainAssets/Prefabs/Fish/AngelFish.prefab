@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1482236928047527573}
-  - component: {fileID: 4801981910822743142}
   - component: {fileID: 1482236928047527572}
-  - component: {fileID: 1482236928047527575}
   - component: {fileID: 1482236928047527571}
   - component: {fileID: 1482236928047527570}
   - component: {fileID: 5369484321672010751}
+  - component: {fileID: 5915321857010963218}
   m_Layer: 8
   m_Name: AngelFish
   m_TagString: Prey
@@ -40,20 +39,6 @@ Transform:
   - {fileID: 4177599385596948903}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4801981910822743142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482236928047527574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d9d81f8f288dbb428d5780d365ffd89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1482236928047527572}
-  animator: {fileID: 1482236928047527575}
 --- !u!212 &1482236928047527572
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 2
   m_SortingLayer: -16
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: f49e712641935cb4da77c10595e5fefc, type: 3}
+  m_Sprite: {fileID: 1520017135, guid: ab7bd3494070c49468a90890206d0cfb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,27 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1482236928047527575
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482236928047527574}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 58e61bd217d173f4aa98f32ae87a229c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &1482236928047527571
 Rigidbody2D:
   serializedVersion: 4
@@ -207,6 +171,27 @@ MonoBehaviour:
   rotationSpeed: 15
   idleRot: 0.74
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
+--- !u!95 &5915321857010963218
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482236928047527574}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58e61bd217d173f4aa98f32ae87a229c, type: 2}
+  m_CullingMode: 2
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1634707323256729923
 PrefabInstance:
   m_ObjectHideFlags: 0

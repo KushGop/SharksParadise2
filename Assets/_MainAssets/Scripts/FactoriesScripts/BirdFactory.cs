@@ -26,12 +26,17 @@ public class BirdFactory : AbstractFactory
     identifier.fishName = Fishes.SEAGULL;
     identifier.fishType = isFrenzy ? FishType.FOOD : FishType.PREY;
     identifier.value = value + Random.Range(lower, upper);
+
+    if (isFrenzy && GameManager.isNight)
+    {
+      newEnemy.GetComponent<BirdMovement>().QuickNightSet();
+    }
   }
 
   void BirdFrenzy()
   {
     isFrenzy = true;
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 60; i++)
     {
       AddEnemy();
     }

@@ -79,7 +79,7 @@ public class DeathTimer : MonoBehaviour
     transform.parent.gameObject.SetActive(false);
     playercollider.enabled = true;
 
-    Time.timeScale = 0.25f;
+    //Time.timeScale = 0.25f;
     GameManager.TurnCoinsOff();
     GameManager.unpause();
   }

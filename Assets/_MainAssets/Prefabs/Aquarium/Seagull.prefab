@@ -32,6 +32,30 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e969fe5540a633d4585a04d3b02557da, type: 3}
+    - target: {fileID: 7724578242343144655, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_Size.x
+      value: 3.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724578242343144655, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_Size.y
+      value: 2.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724578242343144655, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e969fe5540a633d4585a04d3b02557da, type: 3}
+    - target: {fileID: 7724578242343144655, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724578242343144655, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724578242343144655, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7747458756178005974, guid: 86c5e0b6c91f88148918326c55a349c1, type: 3}
       propertyPath: m_Name
       value: Seagull

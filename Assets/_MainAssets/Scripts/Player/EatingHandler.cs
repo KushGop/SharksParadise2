@@ -126,7 +126,6 @@ public class EatingHandler : MonoBehaviour
     }
   }
 
-  bool eatBird = false;
   private void OnTriggerStay2D(Collider2D other)
   {
     otherTransform = other.transform;
@@ -141,15 +140,20 @@ public class EatingHandler : MonoBehaviour
         case Fishes.SEAGULL:
           otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
           EatEvent(fishName, otherIdentifier.value, pos);
-          if (TutorialManager.isInTutorial && !eatBird)
-          {
-            TutorialManager.eatBird?.Invoke();
-            eatBird = true;
-            return;
-          }
+          //if (TutorialManager.isInTutorial && !eatBird)
+          //{
+          //  TutorialManager.eatBird?.Invoke();
+          //  eatBird = true;
+          //  return;
+          //}
           MissionData.IncrementMission(MissionName.birdsEaten);
           AquariumManager.IncrementFish(Fishes.SEAGULL);
           GameManager.IncrementBirdMeter();
+          break;
+        case Fishes.BUBBLE:
+          otherTransform.parent.GetComponent<AbstractFactory>().UpdateObject(otherTransform);
+          coinCounter.AddCurrency(Currency.Coin, otherIdentifier.value);
+          GameManager.IncrementGoldMeter();
           break;
           //case "People":
           //  Destroy(other.gameObject);
@@ -242,6 +246,7 @@ public class EatingHandler : MonoBehaviour
     scoreHandler.UpdateLastFish(fishName);
     scoreHandler.AddPoints(value);
     munchSounds.playMunch();
+    GameManager.UpdateScore();
   }
 
   private void InstatiateSkeleton(Vector3 position, Quaternion rotation, Vector3 scale)

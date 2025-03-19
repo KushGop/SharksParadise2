@@ -6,11 +6,8 @@ public class BadLightFishMovement : AbstractMovement
 {
   [SerializeField] Collider2D col;
 
-  protected new void Start()
+  public void Awake()
   {
-    isTriggered = false;
-    isActive = true;
-    fishType = transform.GetComponent<Identifier>().fishType;
     GameManager.switchToDay += LateDestroy;
   }
 

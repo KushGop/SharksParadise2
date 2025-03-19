@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 738650125920437246}
-  - component: {fileID: 9179984593465489244}
   - component: {fileID: 738650125920437247}
-  - component: {fileID: 738650125920437240}
   - component: {fileID: 738650125920437241}
   - component: {fileID: 738650125920437245}
   - component: {fileID: 1242517098243370492}
+  - component: {fileID: 2001941220861763302}
   m_Layer: 8
   m_Name: SharkBig
   m_TagString: Predator
@@ -42,20 +41,6 @@ Transform:
   - {fileID: 1914793129361123851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &9179984593465489244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 738650125920437243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d9d81f8f288dbb428d5780d365ffd89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 738650125920437247}
-  animator: {fileID: 738650125920437240}
 --- !u!212 &738650125920437247
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -108,27 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &738650125920437240
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 738650125920437243}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 62d0fd7c92c2f694fa9c878db07c2607, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &738650125920437241
 Rigidbody2D:
   serializedVersion: 4
@@ -227,6 +191,27 @@ PolygonCollider2D:
       - {x: -0.45329213, y: -0.4606116}
       - {x: 0.45055056, y: 0.0070946775}
   m_UseDelaunayMesh: 0
+--- !u!95 &2001941220861763302
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738650125920437243}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 62d0fd7c92c2f694fa9c878db07c2607, type: 2}
+  m_CullingMode: 2
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &463678202320600559
 PrefabInstance:
   m_ObjectHideFlags: 0

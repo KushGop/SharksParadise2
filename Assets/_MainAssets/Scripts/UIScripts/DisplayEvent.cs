@@ -5,11 +5,13 @@ using UnityEngine;
 public class DisplayEvent : MonoBehaviour
 {
   [SerializeField] TextMeshProUGUI text;
+  Color color;
 
   void Start()
   {
     GameManager.eventText += DisplayEventText;
     text.enabled = false;
+    color = text.color;
   }
   private void OnDestroy()
   {
@@ -19,7 +21,7 @@ public class DisplayEvent : MonoBehaviour
   private void DisplayEventText(string displayText, float waitTime)
   {
     text.enabled = true;
-    text.color = new Color(255, 255, 255, 255);
+    text.color = color;
     text.text = displayText;
     StartCoroutine(Display(waitTime));
   }
@@ -31,7 +33,8 @@ public class DisplayEvent : MonoBehaviour
     for (float i = waitTime; i >= 0; i -= Time.deltaTime)
     {
       // set color with i as alpha
-      text.color = new Color(255, 255, 255, i);
+      color.a = i;
+      text.color = color;
       yield return null;
     }
     text.enabled = false;

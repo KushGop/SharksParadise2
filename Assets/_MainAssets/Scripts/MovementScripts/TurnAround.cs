@@ -26,7 +26,7 @@ public class TurnAround : MonoBehaviour
       if (fish.fishName == Fishes.JELLY)
         jelly.RotateEnemy(180);
       else if (fish.fishType == FishType.SENSOR)
-        if (!movement.getTrigger())
+        if (!movement.GetTrigger())
           movement.RotateEnemy(180);
     }
   }

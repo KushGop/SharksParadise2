@@ -19,7 +19,8 @@ public class SquidMovement : AbstractMovement
 
   public override void TriggerAI(bool trigger)
   {
-    base.TriggerAI(trigger);
+    //base.TriggerAI(trigger);
+    isTriggered = trigger;
     if (trigger && isIdle)
     {
       isIdle = false;

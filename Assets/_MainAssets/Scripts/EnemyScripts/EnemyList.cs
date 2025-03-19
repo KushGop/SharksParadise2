@@ -19,11 +19,23 @@ public static class EnemyList
     Fishes.CUCUMBER
   };
 
+  readonly static public List<Fishes> goldRushList = new()
+  {
+    Fishes.SHARK_S,
+    Fishes.CLOWN,
+    Fishes.ANGEL,
+    Fishes.FLUB,
+    Fishes.EEL,
+    Fishes.MANTA,
+    Fishes.CRAWLER,
+  };
+
   readonly static public List<FishType> playAreaList = new()
   {
     FishType.PREY,
     FishType.PREDATOR,
-    FishType.STARFISH
+    FishType.STARFISH,
+    FishType.BUBBLE
   };
 
   readonly static public List<FishType> spawnList = new()

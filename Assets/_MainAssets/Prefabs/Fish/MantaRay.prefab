@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2374862290123641946}
-  - component: {fileID: 3147631664960237938}
   - component: {fileID: 3575760928834325239}
-  - component: {fileID: 1530420872766966741}
   - component: {fileID: 6171646511635756204}
   - component: {fileID: 8942402387276520348}
   - component: {fileID: 5904275189400737025}
+  - component: {fileID: 8808206584556723331}
   m_Layer: 8
   m_Name: MantaRay
   m_TagString: Untagged
@@ -40,20 +39,6 @@ Transform:
   - {fileID: 2249962548017226189}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3147631664960237938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771635871766758695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d9d81f8f288dbb428d5780d365ffd89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 3575760928834325239}
-  animator: {fileID: 1530420872766966741}
 --- !u!212 &3575760928834325239
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -106,27 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1530420872766966741
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771635871766758695}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b15c39a72c5a5d548a019849f5ca7be5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6171646511635756204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +188,27 @@ PolygonCollider2D:
       - {x: 1.393246, y: 0.13591127}
       - {x: 0.74485797, y: -3.979718}
   m_UseDelaunayMesh: 0
+--- !u!95 &8808206584556723331
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771635871766758695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b15c39a72c5a5d548a019849f5ca7be5, type: 2}
+  m_CullingMode: 2
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &271517725572691497
 PrefabInstance:
   m_ObjectHideFlags: 0

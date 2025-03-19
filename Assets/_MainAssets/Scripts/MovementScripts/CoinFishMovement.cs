@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class CoinFishMovement : AbstractMovement
 {
-
-  private Transform CoinParent;
-  public GameObject Coin;
   public SpriteRenderer sprite;
   private CapsuleCollider2D col;
   private Color newColor = new Color32(255, 255, 255, 0);
   private bool hasBeenTriggered;
 
-  private new void Start()
+  private void Awake()
   {
     hasBeenTriggered = false;
-    CoinParent = transform.parent.GetChild(0);
     col = transform.GetComponent<CapsuleCollider2D>();
   }
 
@@ -45,12 +41,6 @@ public class CoinFishMovement : AbstractMovement
     }
   }
 
-  IEnumerator Coins()
-  {
-    Instantiate(Coin, transform.position, transform.rotation, CoinParent);
-    yield return new WaitForSeconds(0.2f);
-    StartCoroutine(Coins());
-  }
   IEnumerator Delay()
   {
     yield return new WaitForSeconds(5f);

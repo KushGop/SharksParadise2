@@ -44,11 +44,13 @@ public class NightCycle : MonoBehaviour
     yield return new WaitForSeconds(dayTime);
 
     //night
+    GameManager.isNight = true;
     GameManager.switchToNight();
     yield return new WaitForSeconds(dayTime);
     //day
     GameManager.day++;
     MissionData.IncrementMission(MissionName.nightsSurvived);
+    GameManager.isNight = false;
     GameManager.switchToDay();
     StartCoroutine(CycleDays());
   }

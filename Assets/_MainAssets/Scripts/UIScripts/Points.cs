@@ -11,9 +11,14 @@ public class Points : MonoBehaviour
   {
     GameManager.score = 0;
     scoreText.text = "0";
+    GameManager.UpdateScore += UpdateScore;
+  }
+  private void OnDestroy()
+  {
+    GameManager.UpdateScore -= UpdateScore;
   }
 
-  void Update()
+  void UpdateScore()
   {
     scoreText.text = GameManager.score.ToString();
   }

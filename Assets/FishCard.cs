@@ -19,6 +19,8 @@ public class FishCard : MonoBehaviour
   //[SerializeField] Image bubble;
   [SerializeField] Image baseImg;
   [SerializeField] Colors_SO colors;
+  [SerializeField] GameObject increaseBubble;
+  [SerializeField] Transform bubbleParent;
   bool canUpgade;
 
 
@@ -104,6 +106,8 @@ public class FishCard : MonoBehaviour
       {
         GameManager.totalCoins -= EnemyList.rarityCoinCost[fishS.rarity];
         fishS.count += 1;
+        GameObject go = Instantiate(increaseBubble, bubbleParent);
+        go.GetComponent<PointPrefab>().SetText("+1");
       }
       else
       {

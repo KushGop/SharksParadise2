@@ -19,6 +19,8 @@ public static class GameManager
   public static bool isFlying = false;
   public static readonly float dayCycleTime = 40f;
   public static int day = 1;
+  public static bool isNight = false;
+  public static bool isGoldRush = false;
 
   public delegate void Power(string text, float waitTime);
   public static Power eventText;
@@ -41,7 +43,15 @@ public static class GameManager
   public static NormalEvent unpause;
 
   public static NormalEvent IncrementBirdMeter;
+  public static NormalEvent IncrementGoldMeter;
   public static NormalEvent FullBirdMeter;
+  public static NormalEvent StopGoldRush;
+
+  public static NormalEvent UpdateScore;
+
+  public static GameObject coinPrefab;
+  public static Transform coinParent;
+
 
   //main background music loop
   public static NormalEvent pauseBackground;

@@ -22,6 +22,7 @@ public class PlayAreaTrigger : MonoBehaviour
       }
 
       else if (EnemyList.spawnList.Contains(id.fishType))
+      {
         if (id.fishType == FishType.TREASURE)
         {
           if (!other.transform.GetComponent<Treasure>().isCollected)
@@ -29,8 +30,9 @@ public class PlayAreaTrigger : MonoBehaviour
             other.transform.parent.GetComponent<AbstractFactory>().UpdateObject(other.transform);
           }
         }
-        else
-          Destroy(other.gameObject);
+      }
+      else
+        Destroy(other.gameObject);
     }
   }
 }
