@@ -42,11 +42,15 @@ public class PopulateLeaderboard : MonoBehaviour
     StartCoroutine(Loading());
     GetResults();
   }
-
+  public void LoadLeaderBoard(bool top14)
+  {
+    StartCoroutine(Loading());
+    GetResults();
+  }
   public void GetResults()
   {
 #if GLEY_GAMESERVICES_ANDROID
-    API.GetPlayerCenter(LeaderboardNames.Highscores, isPlayerCenter, rows, action1);
+    API.LoadLeaderboard(LeaderboardNames.Highscores, isPlayerCenter, rows, action1);
 #endif
 #if GLEY_GAMESERVICES_IOS
         List<Leaderboard> gameLeaderboards;
@@ -70,8 +74,6 @@ public class PopulateLeaderboard : MonoBehaviour
   IEnumerator Loading()
   {
     while (!loaded) yield return null;
-
-    leaderboardInit.DoneLoading(isPlayerCenter);
   }
 
   #region Android
@@ -103,14 +105,14 @@ public class PopulateLeaderboard : MonoBehaviour
 
 
 
+
+  #endregion
+  #region iOS
   public void OnUsernameReceived(string username)
   {
     usernames[index] = username;
     index++;
   }
-
-  #endregion
-  #region iOS
   public void OnLeaderboardLoaded(string leaderboardData)
   {
     // leaderboardData will be a string of the format: "rank,playerName,score;rank,playerName,score;..."

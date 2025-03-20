@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
   private float fishEnergy;
 
   [Header("Powers")]
-  [SerializeField] private SpriteRenderer playerSprite;
+  [SerializeField] private UnityEngine.Rendering.SortingGroup playerSpriteGroup;
   [SerializeField] private TextMeshProUGUI textColor;
   [SerializeField] GameObject invinsiblePower;
   [SerializeField] GameObject speedPower;
@@ -334,7 +334,7 @@ public class PlayerMovement : MonoBehaviour
     GameManager.dodgeHelper.Clear();
     //slomo
     Time.timeScale = 1f;
-    playerSprite.sortingLayerName = playerSprite.sortingLayerName == "Jump" ? "Player" : "Jump";
+    playerSpriteGroup.sortingLayerName = playerSpriteGroup.sortingLayerName == "Jump" ? "Player" : "Jump";
     hatRenderer.sortingLayerName = hatRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
     trails.GetComponent<TrailScript>().changeParent();
   }

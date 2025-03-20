@@ -45,18 +45,18 @@ void _getPlayerNameFromUserID(const char* userID) {
 
 void _loadLeaderboardScores(const char* leaderboardID, int rowCount, const char* gameObjectName, bool isCentered) {
     NSString *leaderboardIdentifier = [NSString stringWithUTF8String:leaderboardID];
-NSString *unityObjectName = [NSString stringWithUTF8String:gameObjectName];
+NSString *unityObjectName = [NSString stringWithUTF8String:gameObjectName]; 
 
     GKLeaderboard *leaderboard = [[GKLeaderboard alloc] init];
     leaderboard.identifier = leaderboardIdentifier;
     leaderboard.timeScope = GKLeaderboardTimeScopeAllTime; // or GKLeaderboardTimeScopeToday for daily
 
-    leaderboard.range = NSMakeRange(isCentered? 0 : 1, rowCount); // This limits the number of scores we fetch
+    leaderboard.range = NSMakeRange(0,rowCount); // This limits the number of scores we fetch
 
     // Load the scores
     [GKLeaderboard loadLeaderboardsWithIDs:@[leaderboardIdentifier] completionHandler:^(NSArray<GKLeaderboard *> *leaderboards, NSError *error) {
     GKLeaderboard *leaderboard = leaderboards.firstObject;
-    [leaderboard loadEntriesForPlayerScope:GKLeaderboardPlayerScopeGlobal timeScope:GKLeaderboardTimeScopeAllTime range:NSMakeRange(1, rowCount) completionHandler:^(GKLeaderboardEntry *localPlayerEntry, NSArray<GKLeaderboardEntry *> *entries, NSInteger totalPlayerCount, NSError *error) {
+    [leaderboard loadEntriesForPlayerScope:GKLeaderboardPlayerScopeGlobal timeScope:GKLeaderboardTimeScopeAllTime range:NSMakeRange(0, rowCount) completionHandler:^(GKLeaderboardEntry *localPlayerEntry, NSArray<GKLeaderboardEntry *> *entries, NSInteger totalPlayerCount, NSError *error) {
         if (error) {
             NSLog(@"Error loading leaderboard: %@", error.localizedDescription);
             UnitySendMessage("GameCenterManager", "OnLeaderboardLoaded", "Error loading leaderboard");

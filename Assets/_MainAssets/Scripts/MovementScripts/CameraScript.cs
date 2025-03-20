@@ -14,20 +14,29 @@ public class CameraScript : MonoBehaviour
   public float boostLerpTime;
   private float currentSize;
   private bool isBig;
+  private Coroutine shake;
+  private Vector3 rot;
+
+  [SerializeField] float speed = 0.05f;
+  [SerializeField] float ping = 0.5f;
+  [SerializeField] int numShakes = 2;
 
   private void Start()
   {
+    rot = new();
     QualitySettings.vSyncCount = 0;
 
     currentSize = Camera.main.orthographicSize;
     transform.position = Vector3.zero;
 
     joystick.JumpPlayer += CameraZoomOut;
+    GameManager.fishEaten += CameraShake;
   }
 
   private void OnDisable()
   {
     joystick.JumpPlayer -= CameraZoomOut;
+    GameManager.fishEaten -= CameraShake;
   }
   //Lerps behind player
   void FixedUpdate()
@@ -70,5 +79,36 @@ public class CameraScript : MonoBehaviour
       yield return null;
     }
 
+  }
+
+  private void CameraShake()
+  {
+    if (shake != null)
+    {
+      StopCoroutine(shake);
+      transform.eulerAngles = new();
+    }
+    shake = StartCoroutine(CameraShakeHelper(speed, ping));
+  }
+  IEnumerator CameraShakeHelper(float interval, float pong)
+  {
+    float elapsedTime;
+    for (int i = 0; i < numShakes; i++)
+    {
+      for (elapsedTime = 0; elapsedTime < interval; elapsedTime += Time.deltaTime)
+      {
+        rot.z = Mathf.Lerp(-pong, pong, elapsedTime / interval);
+        transform.localEulerAngles = rot;
+        yield return null;
+      }
+      for (elapsedTime = 0; elapsedTime < interval; elapsedTime += Time.deltaTime)
+      {
+        rot.z = Mathf.Lerp(pong, -pong, elapsedTime / interval);
+        transform.localEulerAngles = rot;
+        yield return null;
+      }
+    }
+    rot.z = 0;
+    transform.localEulerAngles = rot;
   }
 }

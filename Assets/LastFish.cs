@@ -8,14 +8,16 @@ public class LastFish : MonoBehaviour
 {
   [SerializeField] Aquarium_SO fishes;
   [SerializeField] TextMeshProUGUI multiText;
-  [SerializeField] Image bubble;
+  [SerializeField] Image fire;
   [SerializeField] Colors_SO colors;
+  [SerializeField] CanvasGroup group;
   int multi;
   private void Awake()
   {
     multi = 0;
     multiText.text = "*" + 0;
-    bubble.gameObject.SetActive(false);
+    group.alpha = 0;
+    //fire.gameObject.SetActive(false);
     GameManager.fishEaten += FishEaten;
   }
   private void OnDestroy()
@@ -25,7 +27,8 @@ public class LastFish : MonoBehaviour
 
   private void FishEaten()
   {
-    bubble.gameObject.SetActive(true);
+    //fire.gameObject.SetActive(true);
+    group.alpha = 1;
     Instantiate(fishes.images[GameManager.lastFish], transform);
     if (transform.childCount > 3)
     {
@@ -33,7 +36,7 @@ public class LastFish : MonoBehaviour
     }
     multi = GameManager.multiplyer * (GameManager.isMultiActive ? 2 : 1);
     multiText.text = "*" + multi;
-    bubble.color = multi == 1 ? Color.white : colors.colors[multi % colors.colors.Length];
+    fire.color = multi == 1 ? Color.clear : colors.colors[multi % colors.colors.Length];
     UpdateChildenAlpha();
   }
 

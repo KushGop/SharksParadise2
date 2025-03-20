@@ -13,13 +13,6 @@ public class FirstAchievement : MonoBehaviour
       {
         API.SubmitAchievement(AchievementNames.SharksParadise);
       }
-      API.GetPlayerScore(LeaderboardNames.Highscores, e =>
-      {
-        if (GameManager.highscore > e)
-        {
-          API.SubmitScore(GameManager.highscore, LeaderboardNames.Highscores);
-        }
-      });
     }
   }
 

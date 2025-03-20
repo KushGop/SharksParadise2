@@ -78,7 +78,7 @@ namespace Gley.GameServices
       GameServicesManager.Instance.ShowSpecificLeaderboard(leaderboardName);
     }
 
-    public static void GetPlayerCenter(LeaderboardNames leaderboardName, bool isPlayerCenter, int rows, UnityAction<LeaderboardUserData[]> completeMethod)
+    public static void LoadLeaderboard(LeaderboardNames leaderboardName, bool isPlayerCenter, int rows, UnityAction<LeaderboardUserData[]> completeMethod)
     {
       GameServicesManager.Instance.LoadLeaderboardScores(leaderboardName, isPlayerCenter, rows, completeMethod);
     }
