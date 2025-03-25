@@ -35,8 +35,17 @@ public class LastFish : MonoBehaviour
       Destroy(transform.GetChild(0).gameObject);
     }
     multi = GameManager.multiplyer * (GameManager.isMultiActive ? 2 : 1);
-    multiText.text = "*" + multi;
-    fire.color = multi == 1 ? Color.clear : colors.colors[multi % colors.colors.Length];
+    if (multi == 1)
+    {
+      multiText.text = "";
+      fire.color = Color.clear;
+    }
+    else
+    {
+      multiText.text = "*" + multi;
+      fire.color = colors.colors[multi % colors.colors.Length];
+
+    }
     UpdateChildenAlpha();
   }
 

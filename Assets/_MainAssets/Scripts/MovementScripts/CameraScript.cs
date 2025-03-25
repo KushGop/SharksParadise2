@@ -20,7 +20,8 @@ public class CameraScript : MonoBehaviour
   [SerializeField] float speed = 0.05f;
   [SerializeField] float ping = 0.5f;
   [SerializeField] int numShakes = 2;
-
+  [SerializeField] Color baseColor;
+  [SerializeField] Color flashColor;
   private void Start()
   {
     rot = new();
@@ -30,13 +31,13 @@ public class CameraScript : MonoBehaviour
     transform.position = Vector3.zero;
 
     joystick.JumpPlayer += CameraZoomOut;
-    GameManager.fishEaten += CameraShake;
+    //GameManager.fishEaten += CameraShake;
   }
 
   private void OnDisable()
   {
     joystick.JumpPlayer -= CameraZoomOut;
-    GameManager.fishEaten -= CameraShake;
+    //GameManager.fishEaten -= CameraShake;
   }
   //Lerps behind player
   void FixedUpdate()
@@ -81,34 +82,38 @@ public class CameraScript : MonoBehaviour
 
   }
 
-  private void CameraShake()
-  {
-    if (shake != null)
-    {
-      StopCoroutine(shake);
-      transform.eulerAngles = new();
-    }
-    shake = StartCoroutine(CameraShakeHelper(speed, ping));
-  }
-  IEnumerator CameraShakeHelper(float interval, float pong)
-  {
-    float elapsedTime;
-    for (int i = 0; i < numShakes; i++)
-    {
-      for (elapsedTime = 0; elapsedTime < interval; elapsedTime += Time.deltaTime)
-      {
-        rot.z = Mathf.Lerp(-pong, pong, elapsedTime / interval);
-        transform.localEulerAngles = rot;
-        yield return null;
-      }
-      for (elapsedTime = 0; elapsedTime < interval; elapsedTime += Time.deltaTime)
-      {
-        rot.z = Mathf.Lerp(pong, -pong, elapsedTime / interval);
-        transform.localEulerAngles = rot;
-        yield return null;
-      }
-    }
-    rot.z = 0;
-    transform.localEulerAngles = rot;
-  }
+  //private void CameraShake()
+  //{
+  //  if (shake != null)
+  //  {
+  //    StopCoroutine(shake);
+  //    Camera.main.backgroundColor = baseColor;
+  //    //transform.eulerAngles = new();
+  //  }
+  //  shake = StartCoroutine(CameraShakeHelper(speed, ping));
+  //}
+  //IEnumerator CameraShakeHelper(float interval, float pong)
+  //{
+  //  float elapsedTime;
+  //  for (int i = 0; i < numShakes; i++)
+  //  {
+  //    //for (elapsedTime = 0; elapsedTime < interval; elapsedTime += Time.deltaTime)
+  //    //{
+  //    //  Camera.main.backgroundColor = Color.Lerp(baseColor, flashColor, elapsedTime / interval);
+  //    //  //rot.z = Mathf.Lerp(-pong, pong, elapsedTime / interval);
+  //    //  //transform.localEulerAngles = rot;
+  //    //  yield return null;
+  //    //}
+  //    for (elapsedTime = 0; elapsedTime < interval; elapsedTime += Time.deltaTime)
+  //    {
+  //      Camera.main.backgroundColor = Color.Lerp(flashColor, baseColor, elapsedTime / interval);
+  //      //rot.z = Mathf.Lerp(pong, -pong, elapsedTime / interval);
+  //      //transform.localEulerAngles = rot;
+  //      yield return null;
+  //    }
+  //  }
+  //  Camera.main.backgroundColor = baseColor;
+  //  //rot.z = 0;
+  //  //transform.localEulerAngles = rot;
+  //}
 }

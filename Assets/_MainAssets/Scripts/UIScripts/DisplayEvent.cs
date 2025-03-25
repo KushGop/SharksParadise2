@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class DisplayEvent : MonoBehaviour
 {
-  [SerializeField] TextMeshProUGUI text;
-  Color color;
+  [SerializeField] Transform listParent;
+  [SerializeField] GameObject eventPrefab;
 
   void Start()
   {
     GameManager.eventText += DisplayEventText;
-    text.enabled = false;
-    color = text.color;
   }
   private void OnDestroy()
   {
@@ -20,23 +18,21 @@ public class DisplayEvent : MonoBehaviour
 
   private void DisplayEventText(string displayText, float waitTime)
   {
-    text.enabled = true;
-    text.color = color;
-    text.text = displayText;
-    StartCoroutine(Display(waitTime));
+    GameObject prefab = Instantiate(eventPrefab, listParent);
+    prefab.GetComponentInChildren<TextMeshProUGUI>().text = displayText;
+    StartCoroutine(Display(waitTime, prefab));
   }
 
-  IEnumerator Display(float waitTime)
+  IEnumerator Display(float waitTime, GameObject prefab)
   {
+    CanvasGroup group = prefab.GetComponent<CanvasGroup>();
     yield return new WaitForSeconds(waitTime);
 
     for (float i = waitTime; i >= 0; i -= Time.deltaTime)
     {
-      // set color with i as alpha
-      color.a = i;
-      text.color = color;
+      group.alpha = i;
       yield return null;
     }
-    text.enabled = false;
+    Destroy(prefab);
   }
 }

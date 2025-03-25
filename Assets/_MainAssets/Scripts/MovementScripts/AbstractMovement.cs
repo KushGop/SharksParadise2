@@ -30,7 +30,7 @@ public class AbstractMovement : MonoBehaviour
 
 
 
-  private void OnDestroy()
+  protected void OnDestroy()
   {
     GameManager.StopGoldRush -= StopGoldRush;
   }
@@ -89,7 +89,7 @@ public class AbstractMovement : MonoBehaviour
     return isTriggered;
   }
 
-  private void StopGoldRush()
+  protected void StopGoldRush()
   {
     StopAllCoroutines();
   }

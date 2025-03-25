@@ -6,18 +6,18 @@ public class BirdMovement : AbstractMovement
 {
 
   [SerializeField] private Color nightColor;
-  [SerializeField] private SpriteRenderer sprite;
+  [SerializeField] protected SpriteRenderer sprite;
   private float fadeTime;
 
-  private new void Start()
+  protected new void Start()
   {
-    sprite.color = Color.white;
+    //sprite.color = Color.white;
     fadeTime = 3f;
     GameManager.switchToNight += TurnOnGlow;
     GameManager.switchToDay += TurnOffGlow;
   }
 
-  private void OnDestroy()
+  protected new void OnDestroy()
   {
     GameManager.switchToNight -= TurnOnGlow;
     GameManager.switchToDay -= TurnOffGlow;

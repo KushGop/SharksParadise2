@@ -27,7 +27,7 @@ public static class GameManager
   public static Dictionary<int, string> powers = new()
   {
     { -1, "Second Chance" },
-    { 0, "Invincible" },
+    { 0, "Shield" },
     { 1, "Double Points" },
     { 2, "Speed Boost" }
   };
