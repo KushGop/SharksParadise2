@@ -12649,8 +12649,8 @@ MonoBehaviour:
   reviveCost: 500
   timer: {fileID: 556231753}
   counter: {fileID: 376123400}
-  Total: 0
-  BaseTotal: 0
+  total: 0
+  inGameTotal: 0
 --- !u!1 &831995736
 GameObject:
   m_ObjectHideFlags: 0
@@ -28825,9 +28825,9 @@ MonoBehaviour:
   currency: 2
   reviveCost: 10
   timer: {fileID: 556231753}
-  counter: {fileID: 376123400}
-  Total: 0
-  BaseTotal: 0
+  counter: {fileID: 1764297868}
+  total: 0
+  inGameTotal: 0
 --- !u!114 &2052123620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29276,8 +29276,9 @@ GameObject:
   - component: {fileID: 2071201765}
   - component: {fileID: 2071201767}
   - component: {fileID: 2071201768}
+  - component: {fileID: 2071201769}
   m_Layer: 0
-  m_Name: Loaders
+  m_Name: DataPersistence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29320,6 +29321,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a61494d765207946aa1a72ec961a50d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2071201769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071201763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6655fd8b057c943937e664e76040ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2071788394

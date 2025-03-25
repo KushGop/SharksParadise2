@@ -12,49 +12,69 @@ public class ReviveButton : MonoBehaviour
   [SerializeField] private int reviveCost;
   [SerializeField] private DeathTimer timer;
   [SerializeField] private CurrencyCounter counter;
-  [SerializeReference] private int Total;
-  [SerializeReference] private int BaseTotal;
+  [SerializeReference] private int total;
+  [SerializeReference] private int inGameTotal;
   private string icon;
 
-  void Awake()
+  //Sets scene objects and texts
+  private void OnEnable()
   {
+    //set variables
     if (currency == Currency.Coin)
     {
-      Total = GameManager.totalCoins;
-      BaseTotal = GameManager.coins;
+      total = GameManager.totalCoins;
+      inGameTotal = GameManager.coins;
       icon = "<sprite name=\"Coin\">";
     }
     else if (currency == Currency.Gem)
     {
-      Total = GameManager.totalGems;
-      BaseTotal = GameManager.gems;
+      total = GameManager.totalGems;
+      inGameTotal = GameManager.gems;
       icon = "<sprite name=\"Gem\">";
     }
+    buttonText.text = icon + (reviveCost).ToString();
+    //set interactable based on total currency
+    button.interactable = total + inGameTotal >= reviveCost;
   }
 
-  private void OnEnable()
-  {
-    buttonText.text = icon + (reviveCost).ToString();
-    if (Total + BaseTotal >= reviveCost)
-    {
-      button.interactable = true;
-    }
-    else
-    {
-      button.interactable = false;
-    }
-  }
+  //Updates currencies then continues the game
   public void Revive()
   {
-    reviveCost *= currency == Currency.Coin ? 2 : 1;
-    int value = 0;
-    Total -= reviveCost;
-    if (Total < 0)
+    //update manager count for currencies
+    //Uses AddCurrency() to update in-game text currency
+    if (currency == Currency.Coin)
     {
-      value = Mathf.Abs(Total);
-      Total = 0;
+      if (reviveCost > GameManager.totalCoins)
+      {
+        inGameTotal = reviveCost - GameManager.totalCoins;
+        GameManager.totalCoins = 0;
+        counter.AddCurrency(currency, -inGameTotal);
+      }
+      else
+      {
+        GameManager.totalCoins -= reviveCost;
+        counter.AddCurrency(currency, 0);
+      }
     }
-    counter.AddCurrency(currency, -value);
+    else if (currency == Currency.Gem)
+    {
+      if (reviveCost > GameManager.totalCoins)
+      {
+        inGameTotal = reviveCost - GameManager.totalCoins;
+        GameManager.totalGems = 0;
+        GameManager.gems = inGameTotal;
+        counter.AddCurrency(currency, -inGameTotal);
+      }
+      else
+      {
+        GameManager.totalGems -= reviveCost;
+        counter.AddCurrency(currency, 0);
+      }
+    }
+    //Save game
+    DataPersistenceManager.instance.SaveGame();
+    //Double revive cost
+    reviveCost *= currency == Currency.Coin ? 2 : 1;
     timer.ContinueGame();
   }
 

@@ -79,14 +79,13 @@ public class DeathTimer : MonoBehaviour
     transform.parent.gameObject.SetActive(false);
     playercollider.enabled = true;
 
-    //Time.timeScale = 0.25f;
+    Time.timeScale = 1f;
     GameManager.TurnCoinsOff();
     GameManager.unpause();
   }
 
   public void GiveUp()
   {
-    Gley.GameServices.API.SubmitScore(Mathf.Max(GameManager.highscore, GameManager.score), Gley.GameServices.LeaderboardNames.Highscores);
     DataPersistenceManager.instance.SaveGame();
     playerSprite.color = new Color(0, 0, 0, 0);
     colors.SetActive(false);

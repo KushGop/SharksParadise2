@@ -28,6 +28,7 @@ public class ExtraLiveButton : MonoBehaviour
 
   private void OnEnable()
   {
+    print("here----------------------------------------------");
     reviveCostCoin *= reviveCount;
     buttonTextCoin.text = "Use " + (reviveCostCoin).ToString() + " coins";
     buttonTextGem.text = "Use " + (reviveCostGem).ToString() + " gems";

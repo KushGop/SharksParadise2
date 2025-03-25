@@ -27,7 +27,7 @@ public class GoldRushMeter : MonoBehaviour
     if (slider.value < slider.maxValue)
     {
       slider.value++;
-      if (slider.value == slider.maxValue)
+      if (slider.value == slider.maxValue && !GameManager.isGoldRush)
       {
         GameManager.isGoldRush = true;
         GameManager.eventText("Gold Rush", 1f);

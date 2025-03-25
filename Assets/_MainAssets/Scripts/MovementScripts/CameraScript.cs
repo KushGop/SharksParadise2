@@ -13,9 +13,6 @@ public class CameraScript : MonoBehaviour
   public int boostOffset;
   public float boostLerpTime;
   private float currentSize;
-  private bool isBig;
-  private Coroutine shake;
-  private Vector3 rot;
 
   [SerializeField] float speed = 0.05f;
   [SerializeField] float ping = 0.5f;
@@ -24,7 +21,6 @@ public class CameraScript : MonoBehaviour
   [SerializeField] Color flashColor;
   private void Start()
   {
-    rot = new();
     QualitySettings.vSyncCount = 0;
 
     currentSize = Camera.main.orthographicSize;
@@ -51,6 +47,7 @@ public class CameraScript : MonoBehaviour
   //   currentSize += (size / 10);
   //   Camera.main.orthographicSize = currentSize;
   // }
+
 
   //Camera zooms out on boost
   private void CameraZoomOut()

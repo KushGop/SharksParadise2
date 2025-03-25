@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BirdMeter : MonoBehaviour
 {
   [SerializeField] Slider slider;
+  bool isBirdFrenzy;
 
   void Start()
   {
@@ -22,8 +23,9 @@ public class BirdMeter : MonoBehaviour
     if (slider.value < slider.maxValue)
     {
       slider.value++;
-      if (slider.value == slider.maxValue)
+      if (slider.value == slider.maxValue && !isBirdFrenzy)
       {
+        isBirdFrenzy = true;
         GameManager.FullBirdMeter();
         GameManager.eventText("Bird Frenzy", 1f);
         StartCoroutine(BirdFrenzyTimer());
@@ -40,5 +42,6 @@ public class BirdMeter : MonoBehaviour
   public void ResetSlider()
   {
     slider.value = 0;
+    isBirdFrenzy = false;
   }
 }

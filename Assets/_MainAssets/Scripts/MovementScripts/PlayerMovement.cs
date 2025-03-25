@@ -394,7 +394,10 @@ public class PlayerMovement : MonoBehaviour
         rb2d.velocity = new();
         PlayerJump();
         extraLife.SetTrigger("Shield");
-        goto case 0;
+        if (invisEvent != null) StopCoroutine(invisEvent);
+        invisEvent = StartCoroutine(DrainPower(GameManager.starfishPowerTime, invinsiblePower.transform.GetChild(0).GetComponent<Slider>(), invinsiblePower, invinsibleBarr, 0));
+        isInvincible = true;
+        break;
       case 0:
         //Invincible
         if (isInvincible == true && i != -1) { TriggerPower(Random.Range(0, 3)); return; }
