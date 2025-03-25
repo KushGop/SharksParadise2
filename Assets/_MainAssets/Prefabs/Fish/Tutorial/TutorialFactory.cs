@@ -14,6 +14,6 @@ public class TutorialFactory : AbstractFactory
 
     identifier.fishName = Fishes.JELLY;
     identifier.fishType = FishType.PREY;
-    identifier.value = value + Random.Range(lower, upper);
+    identifier.value = value + Random.Range(0, upper);
   }
 }

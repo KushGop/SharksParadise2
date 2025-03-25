@@ -14,7 +14,7 @@ public class MantaRayFactory : AbstractFactory
 
     identifier.fishName = Fishes.MANTA;
     identifier.fishType = FishType.PREY;
-    identifier.value = value + Random.Range(lower, upper);
+    identifier.value = value + Random.Range(0, upper);
 
   }
 }

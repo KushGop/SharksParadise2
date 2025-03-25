@@ -1350,7 +1350,7 @@ MonoBehaviour:
   enemy: {fileID: 6771334235839270525, guid: 1e30f0e00b95796468e43ce144aa530f, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  value: 0
+  fishName: 0
   lower: 0
   upper: 0
 --- !u!4 &82633939
@@ -1416,7 +1416,7 @@ MonoBehaviour:
   enemy: {fileID: 1482236928047527574, guid: 3adbaec163161f94ca264e3b22b33ce9, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
-  value: 15
+  fishName: 3
   lower: 1
   upper: 11
 --- !u!1 &87092368
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   enemy: {fileID: 674566900302869769, guid: ae6a29904c6b1e24589a1cad26004ce7, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  value: 0
+  fishName: 14
   lower: 0
   upper: 0
 --- !u!1 &93105436
@@ -6275,11 +6275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642b46bcff4bf2a4ea69e4c4c1b2eed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numEnemies: 10
+  numEnemies: 5
   enemy: {fileID: 2188907405217074925, guid: 05b78dce4d1d7ec4ebdfae1c2e811a30, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  value: 75
+  fishName: 5
   lower: 0
   upper: 15
 --- !u!1 &432189526
@@ -7668,7 +7668,7 @@ MonoBehaviour:
   enemy: {fileID: 5244597689451686802, guid: 8decf47e1823f2044b7fd76cce4c753a, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  value: 0
+  fishName: 15
   lower: 0
   upper: 0
 --- !u!1 &530666462
@@ -8013,7 +8013,7 @@ MonoBehaviour:
   enemy: {fileID: 738650125920437243, guid: 613ff47e2dbebd742bea32c2da7c6dd7, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
-  value: 50
+  fishName: 7
   lower: 0
   upper: 15
 --- !u!4 &542869044
@@ -8896,7 +8896,7 @@ MonoBehaviour:
   enemy: {fileID: 883634014959979343, guid: 855960f961d362b4e904c679d6703fd6, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  value: 0
+  fishName: 13
   lower: 0
   upper: 0
 --- !u!1 &578555465
@@ -9533,7 +9533,7 @@ MonoBehaviour:
   enemy: {fileID: 6912446743301761095, guid: adc064e2d2f2d034982b919f16ba68a5, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
-  value: 15
+  fishName: 0
   lower: 0
   upper: 5
 --- !u!4 &620397763
@@ -12935,9 +12935,9 @@ MonoBehaviour:
   enemy: {fileID: 738650125920437243, guid: a7edb48588653dd4badf48b3b57142b8, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 1.3
-  value: 200
+  fishName: 12
   lower: 0
-  upper: 0
+  upper: 25
 --- !u!1 &843272456
 GameObject:
   m_ObjectHideFlags: 0
@@ -13977,7 +13977,7 @@ GameObject:
   - component: {fileID: 924855524}
   - component: {fileID: 924855526}
   m_Layer: 0
-  m_Name: LightFish
+  m_Name: CrawlerFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14014,7 +14014,7 @@ MonoBehaviour:
   enemy: {fileID: 5450230440147122619, guid: a235bdbb194d6974cbd29196feccf16e, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
-  value: 50
+  fishName: 6
   lower: 0
   upper: 15
 --- !u!1 &944147621
@@ -14283,7 +14283,7 @@ MonoBehaviour:
   enemy: {fileID: 4925372311823117165, guid: f14da7beebbc98845b4984eca59265f5, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  value: 65
+  fishName: 9
   lower: 0
   upper: 15
 --- !u!1 &989008963
@@ -15295,7 +15295,7 @@ MonoBehaviour:
   enemy: {fileID: 1509352139439049057, guid: 60e95dda025b02c4aa88665c14cb7503, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
-  value: 10
+  fishName: 4
   lower: 0
   upper: 5
 --- !u!1 &1061275908
@@ -17049,6 +17049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1193207592}
+  nightColor: {r: 0.13363296, g: 0.19488919, b: 0.1981132, a: 0.23529412}
 --- !u!114 &1193207592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20402,7 +20403,7 @@ GameObject:
   - component: {fileID: 1430311811}
   - component: {fileID: 1430311812}
   m_Layer: 0
-  m_Name: BirdFactory
+  m_Name: SeagullFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20439,7 +20440,7 @@ MonoBehaviour:
   enemy: {fileID: 3359531363661896676, guid: dc1b0c2bfd3cbc448b350ba2e85debba, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  value: 20
+  fishName: 10
   lower: 0
   upper: 5
 --- !u!1 &1442207377
@@ -23168,7 +23169,7 @@ MonoBehaviour:
   enemy: {fileID: 1718593785410570617, guid: e8e948dfe67186541ae3814dfcb01911, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
-  value: 10
+  fishName: 8
   lower: 0
   upper: 10
 --- !u!1 &1635580149
@@ -23807,7 +23808,7 @@ MonoBehaviour:
   enemy: {fileID: 3030828680735082641, guid: 6fd58027cff68334ab3d2b609b65a57d, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
-  value: 25
+  fishName: 1
   lower: 0
   upper: 10
 --- !u!1 &1682560583
@@ -26322,7 +26323,7 @@ MonoBehaviour:
   enemy: {fileID: 1771635871766758695, guid: a1b5df266cc15414dbafd46344f41fb1, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
-  value: 30
+  fishName: 2
   lower: 0
   upper: 15
 --- !u!1 &1878668154
@@ -27000,7 +27001,7 @@ GameObject:
   - component: {fileID: 1961434335}
   - component: {fileID: 1961434336}
   m_Layer: 0
-  m_Name: BadLightFish
+  m_Name: CucumberFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27037,9 +27038,9 @@ MonoBehaviour:
   enemy: {fileID: 7277694954682331125, guid: 88e169530a59e6f429efbd022ca8b000, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 1.3
-  value: 250
+  fishName: 11
   lower: 0
-  upper: 0
+  upper: 25
 --- !u!1001 &1965859622
 PrefabInstance:
   m_ObjectHideFlags: 0

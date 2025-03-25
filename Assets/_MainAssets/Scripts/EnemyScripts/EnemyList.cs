@@ -86,10 +86,11 @@ public static class EnemyList
   };
   public static readonly Dictionary<Rarity, int[]> rarityPoint = new()
   {
-    { Rarity.COMMON, new int[] { 100, 150, 250, 400, 600 } },
-    { Rarity.UNCOMMON, new int[] { 250, 350, 500, 700, 950 } },
-    { Rarity.RARE, new int[] { 500, 900, 1500, 2200, 3000 } },
+    { Rarity.COMMON, new int[] { 10, 15, 25, 40, 60 } },
+    { Rarity.UNCOMMON, new int[] { 25, 35, 50, 70, 95 } },
+    { Rarity.RARE, new int[] { 50, 90, 150, 220, 300 } },
     { Rarity.SPECIAL, new int[] { 0, 0, 0, 0, 0 } },
+    { Rarity.OTHER, new int[] { 0, 0, 0, 0, 0 } },
   };
   public static readonly Dictionary<Rarity, int[]> rarityGemCost = new()
   {

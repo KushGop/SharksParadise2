@@ -23,7 +23,7 @@ public class BigSharkFactory : AbstractFactory
 
     identifier.fishName = Fishes.SHARK_L;
     identifier.fishType = FishType.PREDATOR;
-    identifier.value = value + Random.Range(lower, upper);
+    identifier.value = value + Random.Range(0, upper);
     identifier.id = i;
   }
 

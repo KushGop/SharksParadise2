@@ -19,7 +19,7 @@ public class CoinFishFactory : AbstractFactory
 
     identifier.fishName = Fishes.COIN;
     identifier.fishType = FishType.PREY;
-    identifier.value = value + Random.Range(lower, upper);
+    identifier.value = value + Random.Range(0, upper);
 
   }
 }

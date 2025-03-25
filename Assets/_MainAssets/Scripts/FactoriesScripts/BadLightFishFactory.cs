@@ -17,6 +17,9 @@ public class BadLightFishFactory : AbstractFactory
 
   void Start()
   {
+    Rarity rarity = AquariumManager.aquariumData.fishRarity[fishName];
+    int level = AquariumManager.aquariumData.fishCards[fishName].level;
+    value = EnemyList.rarityPoint[rarity][level];
     r = player.r;
     s = player.s;
   }
@@ -39,7 +42,7 @@ public class BadLightFishFactory : AbstractFactory
 
     identifier.fishName = Fishes.CUCUMBER;
     identifier.fishType = FishType.PREDATOR;
-    identifier.value = value;
+    identifier.value = value + Random.Range(0, upper);
     identifier.id = i;
   }
 

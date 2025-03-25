@@ -20,8 +20,8 @@ public class AbstractFactory : MonoBehaviour
   protected SortingGroup sortingGroup;
 
   [Header("Point stats")]
-  [SerializeField] protected int value;
-  [SerializeField] protected int lower;
+  [SerializeField] protected Fishes fishName;
+  protected int value;
   [SerializeField] protected int upper;
 
   [Space]
@@ -36,6 +36,9 @@ public class AbstractFactory : MonoBehaviour
   **/
   void Start()
   {
+    Rarity rarity = AquariumManager.aquariumData.fishRarity[fishName];
+    int level = rarity == Rarity.OTHER ? 0 : AquariumManager.aquariumData.fishCards[fishName].level;
+    value = EnemyList.rarityPoint[rarity][level];
     r = player.r;
     s = player.s;
     for (i = 0; i < numEnemies; i++)

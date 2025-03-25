@@ -15,7 +15,7 @@ public class SquidFactory : AbstractFactory
 
     identifier.fishName = Fishes.SQUID;
     identifier.fishType = FishType.PREY;
-    identifier.value = value + Random.Range(lower, upper);
+    identifier.value = value + Random.Range(0, upper);
 
   }
 }

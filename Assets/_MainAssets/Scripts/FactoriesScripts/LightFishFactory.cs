@@ -17,6 +17,9 @@ public class LightFishFactory : AbstractFactory
 
   void Start()
   {
+    Rarity rarity = AquariumManager.aquariumData.fishRarity[fishName];
+    int level = AquariumManager.aquariumData.fishCards[fishName].level;
+    value = EnemyList.rarityPoint[rarity][level];
     r = player.r;
     s = player.s;
   }
@@ -39,7 +42,7 @@ public class LightFishFactory : AbstractFactory
 
     identifier.fishName = Fishes.CRAWLER;
     identifier.fishType = FishType.PREY;
-    identifier.value = value + Random.Range(lower, upper);
+    identifier.value = value + Random.Range(0, upper);
 
   }
 }

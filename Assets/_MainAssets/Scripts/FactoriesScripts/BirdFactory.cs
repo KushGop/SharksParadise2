@@ -25,7 +25,7 @@ public class BirdFactory : AbstractFactory
 
     identifier.fishName = Fishes.SEAGULL;
     identifier.fishType = isFrenzy ? FishType.FOOD : FishType.PREY;
-    identifier.value = value + Random.Range(lower, upper);
+    identifier.value = value + Random.Range(0, upper);
 
     if (isFrenzy && GameManager.isNight)
     {

@@ -66,7 +66,7 @@ public class AquariumData
 {
   public SerializableDictionary<Fishes, FishCard_S> fishCards;
 
-  private readonly Dictionary<Fishes, Rarity> fishRarity = new()
+  public readonly Dictionary<Fishes, Rarity> fishRarity = new()
   {
     //common
     { Fishes.CLOWN, Rarity.COMMON },
