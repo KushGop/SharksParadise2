@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Gley.GameServices;
 using UnityEngine.Events;
+using Gley.GameServices;
+using System.Runtime.InteropServices;
+using Gley.GameServices.Internal;
+using System.Linq;
 
 public class PopulateHighscores : MonoBehaviour
 {
@@ -10,7 +13,7 @@ public class PopulateHighscores : MonoBehaviour
 #if GLEY_GAMESERVICES_IOS
     // Import the native Objective-C function
     [DllImport("__Internal")]
-    private static extern void _loadLeaderboardScores(string leaderboardID, int rowCount, string gameObjectName, bool isCentered);
+    private static extern void _loadLeaderboardScores(string leaderboardID, string gameObjectName);
 #endif
   /*
    * first i want to submit score to leaderboard
@@ -101,9 +104,7 @@ public class PopulateHighscores : MonoBehaviour
             gameLeaderboards = Resources.Load<GameServicesData>(Constants.DATA_NAME_RUNTIME).allGameLeaderboards;
             _loadLeaderboardScores(
                 gameLeaderboards.FirstOrDefault(cond => cond.name == LeaderboardNames.Highscores.ToString()).idIos,
-                rows,
-                gameObject.name,
-                isPlayerCenter);
+                gameObject.name);
         }
         catch
         {
@@ -167,7 +168,6 @@ public class PopulateHighscores : MonoBehaviour
 
       transform.GetChild(childIndex++).GetComponent<LeaderboardItem>().SetScore(scores[i]);
     }
-    //loaded = true;
   }
   #endregion
 }

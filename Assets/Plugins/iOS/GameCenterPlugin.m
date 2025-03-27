@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
+
 // This is the method we'll call from Unity to get the player info.
 void _getPlayerDisplayName() {
     // Ensure the Game Center local player is authenticated
@@ -43,37 +44,100 @@ void _getPlayerNameFromUserID(const char* userID) {
     }];
 }
 
-void _loadLeaderboardScores(const char* leaderboardID, int rowCount, const char* gameObjectName, bool isCentered) {
-    NSString *leaderboardIdentifier = [NSString stringWithUTF8String:leaderboardID];
-NSString *unityObjectName = [NSString stringWithUTF8String:gameObjectName]; 
-
-    GKLeaderboard *leaderboard = [[GKLeaderboard alloc] init];
-    leaderboard.identifier = leaderboardIdentifier;
-    leaderboard.timeScope = GKLeaderboardTimeScopeAllTime; // or GKLeaderboardTimeScopeToday for daily
-
-    leaderboard.range = NSMakeRange(0,rowCount); // This limits the number of scores we fetch
-
-    // Load the scores
-    [GKLeaderboard loadLeaderboardsWithIDs:@[leaderboardIdentifier] completionHandler:^(NSArray<GKLeaderboard *> *leaderboards, NSError *error) {
-    GKLeaderboard *leaderboard = leaderboards.firstObject;
-    [leaderboard loadEntriesForPlayerScope:GKLeaderboardPlayerScopeGlobal timeScope:GKLeaderboardTimeScopeAllTime range:NSMakeRange(0, rowCount) completionHandler:^(GKLeaderboardEntry *localPlayerEntry, NSArray<GKLeaderboardEntry *> *entries, NSInteger totalPlayerCount, NSError *error) {
+void recursiveLoad(GKLeaderboard *leaderboard, NSString *unityObjectName, NSInteger leaderboardStartIndex, NSInteger pageLength,NSMutableArray *top14Players) {
+    [leaderboard loadEntriesForPlayerScope:GKLeaderboardPlayerScopeGlobal
+                                   timeScope:GKLeaderboardTimeScopeAllTime
+                                       range:NSMakeRange(leaderboardStartIndex, leaderboardStartIndex + pageLength)
+                          completionHandler:^(GKLeaderboardEntry *localPlayerEntry, NSArray<GKLeaderboardEntry *> *entries, NSInteger totalPlayerCount, NSError *error) {
         if (error) {
-            NSLog(@"Error loading leaderboard: %@", error.localizedDescription);
-            UnitySendMessage("GameCenterManager", "OnLeaderboardLoaded", "Error loading leaderboard");
+            NSLog(@"Error loading leaderboard entries: %@", error.localizedDescription);
+            UnitySendMessage([unityObjectName UTF8String], "OnLeaderboardLoaded", "Error loading leaderboard entries");
             return;
         }
-
+        
         NSMutableString *resultString = [NSMutableString string];
-        for (GKLeaderboardEntry *entry in entries) {
-            NSString *scoreData = [NSString stringWithFormat:@"%ld,%@,%lld;", (long)entry.rank, entry.player.displayName, entry.score];
-            [resultString appendString:scoreData];
+        
+        //Store top 14 players incase player is not in leaderboard
+        if(leaderboardStartIndex==0){
+            for (int i = 0; i < MIN(14, entries.count); i++) {
+                [top14Players addObject:entries[i]];
+            }
         }
-if (resultString.length == 0) {
-    UnitySendMessage([unityObjectName UTF8String], "OnLeaderboardLoaded", "No data available");
-} else {
-    UnitySendMessage([unityObjectName UTF8String], "OnLeaderboardLoaded", [resultString UTF8String]);
-}
-        //UnitySendMessage([unityObjectName UTF8String], "OnLeaderboardLoaded", [resultString UTF8String]);
+        // If local player's rank is less than 15, just send top 14
+        if(localPlayerEntry){
+            if (localPlayerEntry.rank < 15) {
+                for (int i = 0; i < MIN(14, entries.count); i++) {
+                    GKLeaderboardEntry *entry = entries[i];
+                    NSString *scoreData = [NSString stringWithFormat:@"%ld,%@,%lld;",
+                                           (long)entry.rank,
+                                           entry.player.displayName,
+                                           entry.score];
+                    [resultString appendString:scoreData];
+                }
+            }else{
+                // Get top 3 players
+                NSMutableArray *topThreePlayers = [NSMutableArray array];
+                for (int i = 0; i < MIN(3, top14Players.count); i++) {
+                    [topThreePlayers addObject:top14Players[i]];
+                }
+                
+                // Create a list centered around local player
+                NSMutableArray *centeredList = [NSMutableArray array];
+                
+                // Add top 3 first
+                [centeredList addObjectsFromArray:topThreePlayers];
+                
+                // Calculate start index for local player centered list
+                NSInteger startIndex = MAX(0, localPlayerEntry.rank - 5);
+                NSInteger endIndex = MIN(entries.count, startIndex + 11);
+                
+                // Add local player centered entries
+                for (NSInteger i = startIndex; i < endIndex; i++) {
+                    [centeredList addObject:entries[i]];
+                }
+                
+                // Convert centered list to result string
+                [resultString setString:@""];
+                for (GKLeaderboardEntry *entry in centeredList) {
+                    NSString *scoreData = [NSString stringWithFormat:@"%ld,%@,%lld;",
+                                           (long)entry.rank,
+                                           entry.player.displayName,
+                                           entry.score];
+                    [resultString appendString:scoreData];
+                }
+            }
+        }else{
+            if(leaderboard.maxRange > leaderboardStartIndex + pageLength){
+                recursiveLoad(leaderboard, unityObjectName, leaderboardStartIndex+pageLength, pageLength, top14Players);
+            }
+        }
+        
+        // Send results to Unity
+        if (resultString.length == 0) {
+            UnitySendMessage([unityObjectName UTF8String], "OnLeaderboardLoaded", "No data available");
+        } else {
+            UnitySendMessage([unityObjectName UTF8String], "OnLeaderboardLoaded", [resultString UTF8String]);
+        }
     }];
-}];
 }
+
+void _loadLeaderboardScores(const char* leaderboardID, const char* gameObjectName) {
+    NSString *leaderboardIdentifier = [NSString stringWithUTF8String:leaderboardID];
+    NSString *unityObjectName = [NSString stringWithUTF8String:gameObjectName]; 
+    
+    GKLeaderboard *leaderboard = [[GKLeaderboard alloc] init];
+    leaderboard.identifier = leaderboardIdentifier;
+    leaderboard.timeScope = GKLeaderboardTimeScopeAllTime;
+    
+    [GKLeaderboard loadLeaderboardsWithIDs:@[leaderboardIdentifier] completionHandler:^(NSArray<GKLeaderboard *> *leaderboards, NSError *error) {
+        if (error) {
+            NSLog(@"Error loading leaderboards: %@", error.localizedDescription);
+            UnitySendMessage([unityObjectName UTF8String], "OnLeaderboardLoaded", "Error loading leaderboard");
+            return;
+        }
+        GKLeaderboard *leaderboard = leaderboards.firstObject;
+        NSMutableArray *top14Players = [NSMutableArray array];
+        recursiveLoad(leaderboard, unityObjectName, 0, 1000, top14Players);
+    }];
+}
+

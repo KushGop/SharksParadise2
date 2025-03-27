@@ -75,7 +75,7 @@ PluginImporter:
         AddToEmbeddedBinaries: false
         CPU: AnyCPU
         CompileFlags: 
-        FrameworkDependencies: 
+        FrameworkDependencies: GameKit;
   userData: 
   assetBundleName: 
   assetBundleVariant: 

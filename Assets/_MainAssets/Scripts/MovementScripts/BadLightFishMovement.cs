@@ -11,14 +11,10 @@ public class BadLightFishMovement : AbstractMovement
     GameManager.switchToDay += LateDestroy;
   }
 
-  private void OnDestroy()
-  {
-    GameManager.switchToDay -= LateDestroy;
-  }
-
   private void LateDestroy()
   {
     col.enabled = false;
+    GameManager.switchToDay -= LateDestroy;
     Destroy(gameObject, 3f);
   }
 
