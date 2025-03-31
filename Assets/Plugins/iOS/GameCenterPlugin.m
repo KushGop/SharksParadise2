@@ -54,11 +54,10 @@ void recursiveLoad(GKLeaderboard *leaderboard, NSString *unityObjectName, NSInte
             UnitySendMessage([unityObjectName UTF8String], "OnLeaderboardLoaded", "Error loading leaderboard entries");
             return;
         }
-        
         NSMutableString *resultString = [NSMutableString string];
         
         //Store top 14 players incase player is not in leaderboard
-        if(leaderboardStartIndex==0){
+        if(leaderboardStartIndex==1){
             for (int i = 0; i < MIN(14, entries.count); i++) {
                 [top14Players addObject:entries[i]];
             }
@@ -108,6 +107,7 @@ void recursiveLoad(GKLeaderboard *leaderboard, NSString *unityObjectName, NSInte
             }
         }else{
             if(leaderboard.maxRange > leaderboardStartIndex + pageLength){
+            NSLog(@"Check next page");
                 recursiveLoad(leaderboard, unityObjectName, leaderboardStartIndex+pageLength, pageLength, top14Players);
             }
         }
@@ -128,7 +128,7 @@ void _loadLeaderboardScores(const char* leaderboardID, const char* gameObjectNam
     GKLeaderboard *leaderboard = [[GKLeaderboard alloc] init];
     leaderboard.identifier = leaderboardIdentifier;
     leaderboard.timeScope = GKLeaderboardTimeScopeAllTime;
-    
+
     [GKLeaderboard loadLeaderboardsWithIDs:@[leaderboardIdentifier] completionHandler:^(NSArray<GKLeaderboard *> *leaderboards, NSError *error) {
         if (error) {
             NSLog(@"Error loading leaderboards: %@", error.localizedDescription);
@@ -137,7 +137,7 @@ void _loadLeaderboardScores(const char* leaderboardID, const char* gameObjectNam
         }
         GKLeaderboard *leaderboard = leaderboards.firstObject;
         NSMutableArray *top14Players = [NSMutableArray array];
-        recursiveLoad(leaderboard, unityObjectName, 0, 1000, top14Players);
+        recursiveLoad(leaderboard, unityObjectName, 1, 99, top14Players);
     }];
 }
 

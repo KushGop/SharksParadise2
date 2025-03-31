@@ -4,8 +4,6 @@ using UnityEngine.Events;
 #if GLEY_GAMESERVICES_ANDROID
 using GooglePlayGames;
 #endif
-using Firebase.Auth;
-
 namespace Gley.GameServices.Internal
 {
   public class LogInManager
@@ -30,17 +28,6 @@ namespace Gley.GameServices.Internal
       {
         if (success)
         {
-#if GLEY_GAMESERVICES_ANDROID
-          string idToken = PlayGamesPlatform.Instance.localUser.id;
-          FirebaseAuth auth = FirebaseAuth.DefaultInstance;
-          Credential credential = GoogleAuthProvider.GetCredential(idToken, null);
-          FirebaseAuth.DefaultInstance.SignInWithCredentialAsync(credential).
-          ContinueWith(task =>
-          {
-            if (task.IsCompleted) Debug.Log("Firebase signed-in");
-            else Debug.Log("Firebase sign-in failed");
-          });
-#endif
           login = true;
 
 

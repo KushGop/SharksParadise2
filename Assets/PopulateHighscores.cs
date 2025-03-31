@@ -168,6 +168,8 @@ public class PopulateHighscores : MonoBehaviour
 
       transform.GetChild(childIndex++).GetComponent<LeaderboardItem>().SetScore(scores[i]);
     }
+        loaded1 = true;
+        loaded2 = true;
   }
   #endregion
 }

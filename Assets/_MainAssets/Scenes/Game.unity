@@ -1351,7 +1351,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 0
-  lower: 0
   upper: 0
 --- !u!4 &82633939
 Transform:
@@ -1417,7 +1416,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
   fishName: 3
-  lower: 1
   upper: 11
 --- !u!1 &87092368
 GameObject:
@@ -1528,7 +1526,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 14
-  lower: 0
   upper: 0
 --- !u!1 &93105436
 GameObject:
@@ -6280,7 +6277,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 5
-  lower: 0
   upper: 15
 --- !u!1 &432189526
 GameObject:
@@ -7669,7 +7665,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 15
-  lower: 0
   upper: 0
 --- !u!1 &530666462
 GameObject:
@@ -8014,7 +8009,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
   fishName: 7
-  lower: 0
   upper: 15
 --- !u!4 &542869044
 Transform:
@@ -8897,7 +8891,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 13
-  lower: 0
   upper: 0
 --- !u!1 &578555465
 GameObject:
@@ -9534,7 +9527,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
   fishName: 0
-  lower: 0
   upper: 5
 --- !u!4 &620397763
 Transform:
@@ -12936,7 +12928,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 1.3
   fishName: 12
-  lower: 0
   upper: 25
 --- !u!1 &843272456
 GameObject:
@@ -14015,7 +14006,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
   fishName: 6
-  lower: 0
   upper: 15
 --- !u!1 &944147621
 GameObject:
@@ -14284,7 +14274,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 9
-  lower: 0
   upper: 15
 --- !u!1 &989008963
 GameObject:
@@ -15296,7 +15285,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
   fishName: 4
-  lower: 0
   upper: 5
 --- !u!1 &1061275908
 GameObject:
@@ -17016,7 +17004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1193207590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20441,7 +20429,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 10
-  lower: 0
   upper: 5
 --- !u!1 &1442207377
 GameObject:
@@ -23170,7 +23157,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
   fishName: 8
-  lower: 0
   upper: 10
 --- !u!1 &1635580149
 GameObject:
@@ -23809,7 +23795,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 1
-  lower: 0
   upper: 10
 --- !u!1 &1682560583
 GameObject:
@@ -26324,7 +26309,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0.5
   fishName: 2
-  lower: 0
   upper: 15
 --- !u!1 &1878668154
 GameObject:
@@ -27039,7 +27023,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 1.3
   fishName: 11
-  lower: 0
   upper: 25
 --- !u!1001 &1965859622
 PrefabInstance:
