@@ -31,7 +31,7 @@ public class PlayAreaTrigger : MonoBehaviour
           }
         }
       }
-      else
+      else if (id.fishType != FishType.STUN)
         Destroy(other.gameObject);
     }
   }

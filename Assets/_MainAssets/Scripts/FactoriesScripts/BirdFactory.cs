@@ -29,7 +29,7 @@ public class BirdFactory : AbstractFactory
 
     if (isFrenzy && GameManager.isNight)
     {
-      newEnemy.GetComponent<BirdMovement>().QuickNightSet();
+      newEnemy.GetComponent<NightColor>().QuickNightSet();
     }
   }
 

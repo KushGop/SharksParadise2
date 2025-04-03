@@ -94,6 +94,11 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] Transform ArrowOrigin;
   Dictionary<Transform, GameObject> arrows;
 
+  [Header("Spark")]
+  [SerializeField] GameObject SparkPrefab;
+  [SerializeField] Transform rightWayUp;
+
+
   [Header("Hat")]
   [SerializeField] Transform hatParent;
   [SerializeField] HatLoader hatLoader;
@@ -184,6 +189,9 @@ public class PlayerMovement : MonoBehaviour
     //arrow
     arrows = new();
 
+    //sparks
+    GameManager.fishEaten += Spark;
+
     GameManager.isAlive = true;
   }
   private void OnDestroy()
@@ -192,6 +200,13 @@ public class PlayerMovement : MonoBehaviour
     joystick.OnBoostPressed -= BoostOn;
     joystick.OnBoostReleased -= BoostOff;
     joystick.JumpPlayer -= PlayerJump;
+    GameManager.fishEaten -= Spark;
+  }
+
+  private void Spark()
+  {
+    GameObject go = Instantiate(SparkPrefab, rightWayUp);
+    Destroy(go, 1f);
   }
 
   //Position, boost (UI, Refill, Drain)

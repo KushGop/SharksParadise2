@@ -20932,6 +20932,8 @@ MonoBehaviour:
   StarfishArrowPrefab: {fileID: 7881948659023930626, guid: bc6a9fe53cb6a894ab9b858045b2bcdd, type: 3}
   RedCircleOrigin: {fileID: 944147622}
   ArrowOrigin: {fileID: 531135971}
+  SparkPrefab: {fileID: 53750812709698569, guid: 6aca9724ff7e52444bca23433661891d, type: 3}
+  rightWayUp: {fileID: 1635580150}
   hatParent: {fileID: 1844029495}
   hatLoader: {fileID: 2071201768}
   hats: {fileID: 11400000, guid: ee15a72afad5d1343ae237278023c957, type: 2}

@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3359531363661896697}
+  - component: {fileID: 9058482273671945185}
   - component: {fileID: -3644507501404271408}
   - component: {fileID: 2072336151140745206}
   - component: {fileID: 5196910120366311892}
@@ -121,6 +122,20 @@ Transform:
   - {fileID: 3305854183896093452}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9058482273671945185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3359531363661896676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65740cfc163a65942b0e3a7b6bc01285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+  sprite: {fileID: 3966833879797870900}
 --- !u!114 &-3644507501404271408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,8 +154,6 @@ MonoBehaviour:
   rotationSpeed: 0
   idleRot: 0
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
-  nightColor: {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}
-  sprite: {fileID: 3966833879797870900}
 --- !u!50 &2072336151140745206
 Rigidbody2D:
   serializedVersion: 4
