@@ -8,6 +8,8 @@ public class LastFish : MonoBehaviour
 {
   [SerializeField] Aquarium_SO fishes;
   [SerializeField] TextMeshProUGUI multiText;
+  [SerializeField] TextMeshProUGUI maxText;
+  [SerializeField] Shaker shaker;
   [SerializeField] Image fire;
   [SerializeField] Colors_SO colors;
   [SerializeField] CanvasGroup group;
@@ -19,6 +21,7 @@ public class LastFish : MonoBehaviour
     group.alpha = 0;
     //fire.gameObject.SetActive(false);
     GameManager.fishEaten += FishEaten;
+    GameManager.maxMulti = false;
   }
   private void OnDestroy()
   {
@@ -39,13 +42,15 @@ public class LastFish : MonoBehaviour
     {
       multiText.text = "";
       fire.color = Color.clear;
+      GameManager.maxMulti = false;
     }
     else
     {
+      shaker.Shake();
       multiText.text = "*" + multi;
       fire.color = colors.colors[multi % colors.colors.Length];
-
     }
+    maxText.enabled = GameManager.maxMulti;
     UpdateChildenAlpha();
   }
 

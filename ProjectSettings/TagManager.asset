@@ -81,14 +81,14 @@ TagManager:
   - name: People
     uniqueID: 2237882889
     locked: 0
+  - name: Night
+    uniqueID: 3973107331
+    locked: 0
   - name: Glow
     uniqueID: 3609842009
     locked: 0
   - name: Jump
     uniqueID: 1383205115
-    locked: 0
-  - name: Night
-    uniqueID: 3973107331
     locked: 0
   - name: Bird
     uniqueID: 5

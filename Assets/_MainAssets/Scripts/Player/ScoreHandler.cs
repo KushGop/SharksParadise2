@@ -28,6 +28,10 @@ public class ScoreHandler : MonoBehaviour
       {
         GameManager.multiplyer++;
       }
+      else
+      {
+        GameManager.maxMulti = true;
+      }
       multiplyerText.GetComponent<NewPoints>().OnMultiply(GameManager.multiplyer * starfishMultiplyer, pos);
       // Mathf.Lerp(1f, 0, 1.2f * gameStats.multiplyer * Time.deltaTime);
     }

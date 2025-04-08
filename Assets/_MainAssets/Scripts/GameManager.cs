@@ -74,4 +74,5 @@ public static class GameManager
   public static int coinfishMulti;
   public static int treasureMulti;
 
+  internal static bool maxMulti = false;
 }
