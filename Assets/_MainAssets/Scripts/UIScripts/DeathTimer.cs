@@ -28,7 +28,7 @@ public class DeathTimer : MonoBehaviour
   {
     count.text = countdownTime.ToString();
     startTime = countdownTime;
-    GameManager.TurnCoinsOn();
+    GameManager.ToogleCoins(true);
     StartCoroutine(CountDown());
   }
 
@@ -72,7 +72,7 @@ public class DeathTimer : MonoBehaviour
   public void ContinueGame()
   {
     GameManager.isAlive = true;
-    playerMovement.SetIsInvincible(true);
+    GameManager.isInvincible = true;
     StopAllCoroutines();
     playerMovement.TriggerPower(-1);
 
@@ -80,7 +80,7 @@ public class DeathTimer : MonoBehaviour
     playercollider.enabled = true;
 
     Time.timeScale = 1f;
-    GameManager.TurnCoinsOff();
+    GameManager.ToogleCoins(false);
     GameManager.unpause();
   }
 

@@ -8,14 +8,9 @@ public class TutorialMobileJoystick : MobileJoystick
 
   void Awake()
   {
-    boostDistance = 1000000000;
     jumpDistance = 1000000000;
   }
 
-  public void SetBoostDistance()
-  {
-    boostDistance = 18000;
-  }
   public void SetJumpDistance()
   {
     jumpDistance = 90000;

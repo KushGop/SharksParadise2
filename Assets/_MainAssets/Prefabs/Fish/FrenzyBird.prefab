@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3359531363661896697}
-  - component: {fileID: 5383254548184732268}
   - component: {fileID: 2072336151140745206}
   - component: {fileID: 5196910120366311892}
   m_Layer: 8
@@ -121,32 +120,6 @@ Transform:
   - {fileID: 3305854183896093452}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5383254548184732268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3359531363661896676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a97a9dfb4290d4bafd843daad524c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb2d: {fileID: 2072336151140745206}
-  movementSpeed: 3
-  idleSpeed: 0
-  rotationSpeed: 0
-  idleRot: 0
-  player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
-  nightColor: {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}
-  sprite: {fileID: 3966833879797870900}
-  col: {fileID: 5196910120366311892}
-  sprites:
-  - {fileID: 3966833879797870900}
-  - {fileID: 5201912737289027351}
-  - {fileID: 1317437077363429018}
-  - {fileID: 506975181123815285}
 --- !u!50 &2072336151140745206
 Rigidbody2D:
   serializedVersion: 4
@@ -415,11 +388,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a57f464e8b89f1c4cbd738006812d35c, type: 3}
---- !u!212 &506975181123815285 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3896745119231640477, guid: a57f464e8b89f1c4cbd738006812d35c, type: 3}
-  m_PrefabInstance: {fileID: 3539026904023106792}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3305854183896093452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2089079697257568228, guid: a57f464e8b89f1c4cbd738006812d35c, type: 3}
@@ -506,11 +474,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b33d091b00b727940b5f5a7d24ef86a7, type: 3}
---- !u!212 &1317437077363429018 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 8448883416139436576, guid: b33d091b00b727940b5f5a7d24ef86a7, type: 3}
-  m_PrefabInstance: {fileID: 7424197975997619386}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4080711969699764963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6893204889004967513, guid: b33d091b00b727940b5f5a7d24ef86a7, type: 3}

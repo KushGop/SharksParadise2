@@ -6,6 +6,7 @@ using UnityEngine;
 public class Points : MonoBehaviour
 {
   [SerializeField] private TextMeshProUGUI scoreText;
+  [SerializeField] Shaker shake;
 
   void Start()
   {
@@ -20,6 +21,7 @@ public class Points : MonoBehaviour
 
   void UpdateScore()
   {
+    shake.Shake();
     scoreText.text = GameManager.score.ToString();
   }
 }

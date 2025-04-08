@@ -12,6 +12,7 @@ public class FishCard : MonoBehaviour
   [SerializeField] TextMeshProUGUI count;
   [SerializeField] TextMeshProUGUI multiplyer;
   [SerializeField] TextMeshProUGUI value;
+  [SerializeField] TextMeshProUGUI description;
   [SerializeField] TextMeshProUGUI increase;
   [SerializeField] Transform fishImage;
   [SerializeField] Aquarium_SO images;
@@ -53,10 +54,17 @@ public class FishCard : MonoBehaviour
     multiplyer.text = "level " + (cardData.level + 1).ToString();
     value.text = f switch
     {
-      Fishes.COIN => EnemyList.specialFish[f][cardData.level].ToString() + "* value",
-      Fishes.TREASURE => EnemyList.specialFish[f][cardData.level].ToString() + "* value",
-      Fishes.STARFISH => EnemyList.specialFish[f][cardData.level].ToString() + " seconds",
-      _ => EnemyList.rarityPoint[cardData.rarity][cardData.level].ToString() + " points",
+      Fishes.COIN => $"{EnemyList.specialFish[f][cardData.level]}*",
+      Fishes.TREASURE => $"{EnemyList.specialFish[f][cardData.level]}*",
+      Fishes.STARFISH => EnemyList.specialFish[f][cardData.level].ToString(),
+      _ => EnemyList.rarityPoint[cardData.rarity][cardData.level].ToString(),
+    };
+    description.text = f switch
+    {
+      Fishes.COIN => "value",
+      Fishes.TREASURE => "value",
+      Fishes.STARFISH => "seconds",
+      _ => "points",
     };
     //clear fish image
     foreach (Transform t in fishImage.transform)

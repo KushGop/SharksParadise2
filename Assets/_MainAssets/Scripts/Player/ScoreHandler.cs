@@ -45,8 +45,11 @@ public class ScoreHandler : MonoBehaviour
 
   public void AddPoints(int value)
   {
-    GameManager.score += value * GameManager.multiplyer * starfishMultiplyer;
-    newPoints.GetComponent<NewPoints>().OnNewPoint(value * GameManager.multiplyer * starfishMultiplyer);
+    if (value > 0)
+    {
+      GameManager.score += value * GameManager.multiplyer * starfishMultiplyer;
+      newPoints.GetComponent<NewPoints>().OnNewPoint(value * GameManager.multiplyer * starfishMultiplyer);
+    }
   }
 
   //IEnumerator MultiplyerTimeout()

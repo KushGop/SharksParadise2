@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
+  [Header("Night")]
+  [SerializeField] Color nightColor;
+
   [Header("Extra Life")]
   [SerializeField] Animator extraLife;
 
@@ -28,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
   public Animator hatAnim;
   public PolygonCollider2D col;
   public PlayerStats stats;
+  public SpriteRenderer playerSprite;
   public SpriteRenderer color;
   public SpriteRenderer glow0;
   public SpriteRenderer glow1;
@@ -61,8 +65,7 @@ public class PlayerMovement : MonoBehaviour
   //private IEnumerator boostCoroutine;
   //private bool canRefill;
   private bool isOverBoat;
-  private bool isInvincible, isSpeedBoost;
-  private int i = 0;
+  private bool isSpeedBoost;
 
   //upgrades
   private float baseSpeed;
@@ -147,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
     isJump = false;
     enemyCount = 0;
     //boostCoroutine = RefillEnergyTimer();
-    isInvincible = false;
+    GameManager.isInvincible = false;
     isSpeedBoost = false;
     Color c = Color.green;
     color.color = c;
@@ -301,6 +304,13 @@ public class PlayerMovement : MonoBehaviour
     if (isStun || isJump || !GameManager.isAlive)
       return;
     //Splash routine
+    if (GameManager.isNight)
+    {
+      playerSprite.color = nightColor;
+      hatRenderer.color = nightColor;
+    }
+    playerSpriteGroup.sortingLayerName = "Jump";
+    hatRenderer.sortingLayerName = "Jump";
     splashSound.Play();
     StartCoroutine(SplashDelay(1f));
     col.isTrigger = true;
@@ -349,8 +359,10 @@ public class PlayerMovement : MonoBehaviour
     GameManager.dodgeHelper.Clear();
     //slomo
     Time.timeScale = 1f;
-    playerSpriteGroup.sortingLayerName = playerSpriteGroup.sortingLayerName == "Jump" ? "Player" : "Jump";
-    hatRenderer.sortingLayerName = hatRenderer.sortingLayerName == "Jump" ? "Player" : "Jump";
+    playerSprite.color = Color.white;
+    hatRenderer.color = Color.white;
+    playerSpriteGroup.sortingLayerName = "Player";
+    hatRenderer.sortingLayerName = "Player";
     trails.GetComponent<TrailScript>().changeParent();
   }
   #endregion
@@ -359,7 +371,7 @@ public class PlayerMovement : MonoBehaviour
   //Stun
   public void Stun()
   {
-    if (!isInvincible)
+    if (!GameManager.isInvincible)
     {
       isStun = true;
       shockParent.SetActive(true);
@@ -401,24 +413,25 @@ public class PlayerMovement : MonoBehaviour
   }
   public void TriggerPower(int i)
   {
-    GameManager.eventText(GameManager.powers[i], 3f);
     switch (i)
     {
       case -1:
         //Extra life
         rb2d.velocity = new();
+        GameManager.isInvincible = true;
         PlayerJump();
         extraLife.SetTrigger("Shield");
         if (invisEvent != null) StopCoroutine(invisEvent);
+        GameManager.Invincible?.Invoke(true);
         invisEvent = StartCoroutine(DrainPower(GameManager.starfishPowerTime, invinsiblePower.transform.GetChild(0).GetComponent<Slider>(), invinsiblePower, invinsibleBarr, 0));
-        isInvincible = true;
         break;
       case 0:
         //Invincible
-        if (isInvincible == true && i != -1) { TriggerPower(Random.Range(0, 3)); return; }
+        if (GameManager.isInvincible == true && i != -1) { TriggerPower(Random.Range(0, 3)); return; }
         if (invisEvent != null) StopCoroutine(invisEvent);
+        GameManager.Invincible?.Invoke(true);
         invisEvent = StartCoroutine(DrainPower(GameManager.starfishPowerTime, invinsiblePower.transform.GetChild(0).GetComponent<Slider>(), invinsiblePower, invinsibleBarr, 0));
-        isInvincible = true;
+        GameManager.isInvincible = true;
         break;
       case 1:
         //Double Points
@@ -436,6 +449,7 @@ public class PlayerMovement : MonoBehaviour
         isSpeedBoost = true;
         break;
     }
+    GameManager.eventText(GameManager.powers[i], 3f);
   }
 
   IEnumerator DrainPower(float waitTime, Slider slider, GameObject power, GameObject barr, int i)
@@ -459,7 +473,8 @@ public class PlayerMovement : MonoBehaviour
     switch (i)
     {
       case 0://Invincible
-        isInvincible = false;
+        GameManager.Invincible?.Invoke(false);
+        GameManager.isInvincible = false;
         break;
       case 1://Double Points
         GameManager.isMultiActive = false;
@@ -483,99 +498,6 @@ public class PlayerMovement : MonoBehaviour
       }
     }
   }
-
-  #region RotateColors
-  IEnumerator ImageRotateColors(float waitTime, Image sprite)
-  {
-    i = 0;
-    float timePassed = 0f;
-    Color startColor = sprite.color;
-    StartCoroutine(ColorDelay());
-    while (timePassed < waitTime - 3)
-    {
-      sprite.color = Color.Lerp(sprite.color, colors[i % 6], waitTime * Time.deltaTime);
-      timePassed += Time.deltaTime;
-      yield return null;
-    }
-    StopCoroutine(ColorDelay());
-    for (int j = 0; j < 5; j++)
-    {
-      sprite.color = startColor;
-      yield return new WaitForSeconds(0.3f);
-      sprite.color = Color.red;
-      yield return new WaitForSeconds(0.3f);
-    }
-
-    sprite.color = startColor;
-    yield return null;
-  }
-  IEnumerator SpriteRotateColors(float waitTime, SpriteRenderer sprite)
-  {
-    i = 0;
-    float timePassed = 0f;
-    Color startColor = Color.white;
-    StartCoroutine(ColorDelay());
-    while (timePassed < waitTime - 3)
-    {
-      sprite.color = Color.Lerp(sprite.color, colors[i % 6], waitTime * Time.deltaTime);
-      timePassed += Time.deltaTime;
-      yield return null;
-    }
-    StopCoroutine(ColorDelay());
-    for (int j = 0; j < 5; j++)
-    {
-      sprite.color = startColor;
-      yield return new WaitForSeconds(0.3f);
-      sprite.color = Color.red;
-      yield return new WaitForSeconds(0.3f);
-    }
-
-    sprite.color = startColor;
-    yield return null;
-  }
-
-  IEnumerator TextRotateColors(float waitTime, TextMeshProUGUI sprite)
-  {
-    i = 0;
-    float timePassed = 0f;
-    Color startColor = sprite.color;
-    StartCoroutine(ColorDelay());
-    while (timePassed < waitTime - 3)
-    {
-      sprite.color = Color.Lerp(sprite.color, colors[i % 6], waitTime * Time.deltaTime);
-      timePassed += Time.deltaTime;
-      yield return null;
-    }
-    StopCoroutine(ColorDelay());
-    for (int j = 0; j < 5; j++)
-    {
-      sprite.color = startColor;
-      yield return new WaitForSeconds(0.3f);
-      sprite.color = Color.red;
-      yield return new WaitForSeconds(0.3f);
-    }
-
-    sprite.color = startColor;
-    yield return null;
-  }
-  IEnumerator ColorDelay()
-  {
-    yield return new WaitForSeconds(0.2f);
-    i++;
-    StartCoroutine(ColorDelay());
-  }
-  #endregion
-
-
-  public bool GetIsInvincible()
-  {
-    return isInvincible;
-  }
-  public void SetIsInvincible(bool i)
-  {
-    isInvincible = i;
-  }
-
   #endregion
 
 

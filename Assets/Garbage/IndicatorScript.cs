@@ -1,12 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Indicator attached to predator shark
 public class IndicatorScript : MonoBehaviour
 {
+  [SerializeField] Image arrow;
+
+  [SerializeField] Color red;
+  [SerializeField] Color green;
   Transform target, player;
   float scale;
+
+  private void Start()
+  {
+    GameManager.Invincible += SwitchColor;
+    SwitchColor(GameManager.isInvincible);
+  }
+  private void OnDestroy()
+  {
+    GameManager.Invincible -= SwitchColor;
+  }
 
   private void LateUpdate()
   {
@@ -19,5 +34,10 @@ public class IndicatorScript : MonoBehaviour
   {
     target = obj;
     this.player = player;
+  }
+
+  private void SwitchColor(bool invincible)
+  {
+    arrow.color = invincible ? green : red;
   }
 }

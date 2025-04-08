@@ -5396,6 +5396,7 @@ GameObject:
   - component: {fileID: 376123399}
   - component: {fileID: 376123400}
   - component: {fileID: 376123401}
+  - component: {fileID: 376123402}
   m_Layer: 5
   m_Name: Coins
   m_TagString: Untagged
@@ -5410,7 +5411,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376123398}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.000015258789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -5443,6 +5444,7 @@ MonoBehaviour:
   pointPrefab: {fileID: 7521037106626310900, guid: e278631b5cc1d7541ba0f84ba76a500d, type: 3}
   player: {fileID: 1459522621}
   buff: {x: -100, y: 0, z: 0}
+  shake: {fileID: 376123402}
 --- !u!225 &376123401
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5455,6 +5457,18 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &376123402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376123398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f2a2a33bc3df24abcd096c35eb0e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &399573230
 GameObject:
   m_ObjectHideFlags: 0
@@ -6569,6 +6583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostJoystickCanvas: {fileID: 0}
   jumpJoystickCanvas: {fileID: 0}
+  jumpText: {fileID: 0}
   joystickOuter: {fileID: 0}
   joystick: {fileID: 1851770802}
   panel: {fileID: 0}
@@ -7280,11 +7295,6 @@ MonoBehaviour:
   offsetSmoothing: 2.5
   boostOffset: 5
   boostLerpTime: 0.7
-  speed: 0.25
-  ping: 1
-  numShakes: 1
-  baseColor: {r: 0.15294118, g: 0.79607844, b: 0.81960785, a: 1}
-  flashColor: {r: 0.16470589, g: 0.7254902, b: 0.74509805, a: 1}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9033,7 +9043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448883416139436576, guid: b33d091b00b727940b5f5a7d24ef86a7, type: 3}
       propertyPath: m_SortingLayer
-      value: -9
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 8448883416139436576, guid: b33d091b00b727940b5f5a7d24ef86a7, type: 3}
       propertyPath: m_SortingOrder
@@ -10392,7 +10402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448883416139436576, guid: b33d091b00b727940b5f5a7d24ef86a7, type: 3}
       propertyPath: m_SortingLayer
-      value: -9
+      value: -11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11015,7 +11025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448883416139436576, guid: b33d091b00b727940b5f5a7d24ef86a7, type: 3}
       propertyPath: m_SortingLayer
-      value: -9
+      value: -11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11812,7 +11822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointPrefab: {fileID: 7521037106626310900, guid: d735e32ea8a4b7849847e43a0031b95d, type: 3}
-  colors: {fileID: 0}
+  colors: {fileID: 11400000, guid: 57685cfc3aa9e214ba1f0deb2b24be5e, type: 2}
   newPointOrigin: {fileID: 1860830836}
   player: {fileID: 1459522621}
   buff: {x: 0, y: 0, z: 0}
@@ -14274,7 +14284,7 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 0
   fishName: 9
-  upper: 15
+  upper: 0
 --- !u!1 &989008963
 GameObject:
   m_ObjectHideFlags: 0
@@ -15521,6 +15531,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 270384915}
+  - {fileID: 2102484321}
   - {fileID: 55167287}
   - {fileID: 1459181076}
   m_Father: {fileID: 688370690}
@@ -17977,8 +17988,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask: {fileID: 1259899055}
   slider: {fileID: 262203720}
+  powerIcon: {fileID: 0}
   max: 284
   direction: 0
+  isRadial: 0
 --- !u!114 &1259899057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18695,6 +18708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostJoystickCanvas: {fileID: 0}
   jumpJoystickCanvas: {fileID: 0}
+  jumpText: {fileID: 0}
   joystickOuter: {fileID: 0}
   joystick: {fileID: 451954362}
   panel: {fileID: 0}
@@ -20819,6 +20833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostJoystickCanvas: {fileID: 55167290}
   jumpJoystickCanvas: {fileID: 270384918}
+  jumpText: {fileID: 2102484323}
   joystickOuter: {fileID: 270384915}
   joystick: {fileID: 599376984}
   panel: {fileID: 1459181076}
@@ -20884,6 +20899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd48b6413ec8594497dd6f066925e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nightColor: {r: 0.6320754, g: 0.623131, b: 0.623131, a: 1}
   extraLife: {fileID: 1615665028}
   shockParent: {fileID: 455406563}
   shocks:
@@ -20899,6 +20915,7 @@ MonoBehaviour:
   hatAnim: {fileID: 0}
   col: {fileID: 2132061366}
   stats: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
+  playerSprite: {fileID: 1844029492}
   color: {fileID: 2000852979}
   glow0: {fileID: 586209947}
   glow1: {fileID: 723721400}
@@ -22216,6 +22233,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172796032612904274, guid: d09d7878dbf619a44805dcbede595367, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172796032612904274, guid: d09d7878dbf619a44805dcbede595367, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8478018293094721389, guid: d09d7878dbf619a44805dcbede595367, type: 3}
@@ -23723,7 +23744,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.15294118, g: 0.79607844, b: 0.81960785, a: 0.14117648}
+  m_Color: {r: 0.15294118, g: 0.79607844, b: 0.81960785, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -24877,6 +24898,7 @@ GameObject:
   - component: {fileID: 1764297867}
   - component: {fileID: 1764297868}
   - component: {fileID: 1764297869}
+  - component: {fileID: 1764297870}
   m_Layer: 5
   m_Name: Gems
   m_TagString: Untagged
@@ -24924,6 +24946,7 @@ MonoBehaviour:
   pointPrefab: {fileID: 7521037106626310900, guid: 28003efdef6bae94995dc4423f5fd8bc, type: 3}
   player: {fileID: 1459522621}
   buff: {x: -50, y: -10, z: 0}
+  shake: {fileID: 1764297870}
 --- !u!225 &1764297869
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -24936,6 +24959,18 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1764297870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764297866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f2a2a33bc3df24abcd096c35eb0e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1778981283
 GameObject:
   m_ObjectHideFlags: 0
@@ -29656,6 +29691,7 @@ GameObject:
   - component: {fileID: 2093371292}
   - component: {fileID: 2093371293}
   - component: {fileID: 2093371294}
+  - component: {fileID: 2093371295}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -29706,6 +29742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2093371294}
+  shake: {fileID: 2093371295}
 --- !u!210 &2093371293
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -29807,6 +29844,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2093371295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093371288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f2a2a33bc3df24abcd096c35eb0e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2097015707
 GameObject:
   m_ObjectHideFlags: 0
@@ -29881,6 +29930,108 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097015707}
+  m_CullTransparentMesh: 1
+--- !u!1 &2102484320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2102484321}
+  - component: {fileID: 2102484325}
+  - component: {fileID: 2102484324}
+  - component: {fileID: 2102484323}
+  - component: {fileID: 2102484322}
+  m_Layer: 5
+  m_Name: Joystick_OuterText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2102484321
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102484320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1074566550}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 600, y: 600}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2102484322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102484320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb9646aeea61514aa9430f34c8ca421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 12
+--- !u!225 &2102484323
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102484320}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2102484324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102484320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a5e364a505500004da9769fba4471abd, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2102484325
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102484320}
   m_CullTransparentMesh: 1
 --- !u!1 &2103831449
 GameObject:
@@ -31005,8 +31156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask: {fileID: 4959743586057369774}
   slider: {fileID: 2196309663329186978}
+  powerIcon: {fileID: 0}
   max: 284
   direction: 0
+  isRadial: 0
 --- !u!1 &4712505927693870980
 GameObject:
   m_ObjectHideFlags: 0

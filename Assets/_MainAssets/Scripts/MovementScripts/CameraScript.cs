@@ -13,12 +13,6 @@ public class CameraScript : MonoBehaviour
   public int boostOffset;
   public float boostLerpTime;
   private float currentSize;
-
-  [SerializeField] float speed = 0.05f;
-  [SerializeField] float ping = 0.5f;
-  [SerializeField] int numShakes = 2;
-  [SerializeField] Color baseColor;
-  [SerializeField] Color flashColor;
   private void Start()
   {
     QualitySettings.vSyncCount = 0;
@@ -78,39 +72,4 @@ public class CameraScript : MonoBehaviour
     }
 
   }
-
-  //private void CameraShake()
-  //{
-  //  if (shake != null)
-  //  {
-  //    StopCoroutine(shake);
-  //    Camera.main.backgroundColor = baseColor;
-  //    //transform.eulerAngles = new();
-  //  }
-  //  shake = StartCoroutine(CameraShakeHelper(speed, ping));
-  //}
-  //IEnumerator CameraShakeHelper(float interval, float pong)
-  //{
-  //  float elapsedTime;
-  //  for (int i = 0; i < numShakes; i++)
-  //  {
-  //    //for (elapsedTime = 0; elapsedTime < interval; elapsedTime += Time.deltaTime)
-  //    //{
-  //    //  Camera.main.backgroundColor = Color.Lerp(baseColor, flashColor, elapsedTime / interval);
-  //    //  //rot.z = Mathf.Lerp(-pong, pong, elapsedTime / interval);
-  //    //  //transform.localEulerAngles = rot;
-  //    //  yield return null;
-  //    //}
-  //    for (elapsedTime = 0; elapsedTime < interval; elapsedTime += Time.deltaTime)
-  //    {
-  //      Camera.main.backgroundColor = Color.Lerp(flashColor, baseColor, elapsedTime / interval);
-  //      //rot.z = Mathf.Lerp(pong, -pong, elapsedTime / interval);
-  //      //transform.localEulerAngles = rot;
-  //      yield return null;
-  //    }
-  //  }
-  //  Camera.main.backgroundColor = baseColor;
-  //  //rot.z = 0;
-  //  //transform.localEulerAngles = rot;
-  //}
 }

@@ -45,10 +45,19 @@ public class PopulateHighscores : MonoBehaviour
     {
       if (GameManager.highscore > score)
       {
-        API.SubmitScore(GameManager.highscore, LeaderboardNames.Highscores);
+        API.SubmitScore(GameManager.highscore, LeaderboardNames.Highscores, (bool b, GameServicesError e) =>
+         {
+           GetLeaderboardData();
+         });
+      }
+      else
+      {
+        GetLeaderboardData();
       }
     });
-
+  }
+  private void GetLeaderboardData()
+  {
 #if GLEY_GAMESERVICES_ANDROID
     //check rank
     API.GetPlayerRank(LeaderboardNames.Highscores, (long rank) =>
@@ -168,8 +177,8 @@ public class PopulateHighscores : MonoBehaviour
 
       transform.GetChild(childIndex++).GetComponent<LeaderboardItem>().SetScore(scores[i]);
     }
-        loaded1 = true;
-        loaded2 = true;
+    loaded1 = true;
+    loaded2 = true;
   }
   #endregion
 }

@@ -9,9 +9,11 @@ public class StarfishScript : MonoBehaviour
   [SerializeField] SpriteRenderer sprite;
   [SerializeField] SpriteRenderer glow;
   [SerializeField] float speed;
+  float waitTime = 0.4f;
 
   private void Start()
   {
+    i = 0;
     size = colors.colors.Length;
     StartCoroutine(SpriteRotateColors());
   }
@@ -19,22 +21,13 @@ public class StarfishScript : MonoBehaviour
 
   IEnumerator SpriteRotateColors()
   {
-    i = 0;
-    float timePassed = 0f;
-    StartCoroutine(ColorDelay());
-    while (true)
+    for (float elapsedTime = 0; elapsedTime < waitTime; elapsedTime += Time.deltaTime)
     {
-      sprite.color = Color.Lerp(sprite.color, colors.colors[i % size], speed * Time.deltaTime);
-      glow.color = Color.Lerp(glow.color, colors.colors[i % size], speed * Time.deltaTime);
-      timePassed += Time.deltaTime;
+      sprite.color = Color.Lerp(sprite.color, colors.colors[i % size], elapsedTime / waitTime);
+      glow.color = Color.Lerp(glow.color, colors.colors[i % size], elapsedTime / waitTime);
       yield return null;
     }
-  }
-
-  IEnumerator ColorDelay()
-  {
-    yield return new WaitForSeconds(0.3f);
-    i++;
-    StartCoroutine(ColorDelay());
+    i = (i + 1) % size;
+    StartCoroutine(SpriteRotateColors());
   }
 }

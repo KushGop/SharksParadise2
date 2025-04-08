@@ -15,29 +15,27 @@ public class CurrencyCounter : MonoBehaviour
   [SerializeField] GameObject pointPrefab;
   [SerializeField] Transform player;
   [SerializeField] Vector3 buff;
+  [SerializeField] Shaker shake;
 
   // Start is called before the first frame update
   void Start()
   {
-    GameManager.TurnCoinsOn += TurnOn;
-    GameManager.TurnCoinsOff += TurnOff;
+    GameManager.ToogleCoins += Toggle;
     if (c == Currency.Coin)
       count.text = GameManager.coins.ToString();
     else if (c == Currency.Gem)
       count.text = GameManager.gems.ToString();
-    //StartCoroutine(FadeOut());
   }
   private void OnDestroy()
   {
-    GameManager.TurnCoinsOn -= TurnOn;
-    GameManager.TurnCoinsOff -= TurnOff;
+    GameManager.ToogleCoins -= Toggle;
   }
 
   public void AddCurrency(Currency currency, int value)
   {
+    shake.Shake();
     GameObject newPoint = Instantiate(pointPrefab, Camera.main.WorldToScreenPoint(player.position) + buff, Quaternion.identity, addOrigin.transform);
     newPoint.transform.GetComponent<PointPrefab>().SetText("+" + value.ToString());
-    newPoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     if (currency == c)
     {
       StopAllCoroutines();
@@ -52,39 +50,14 @@ public class CurrencyCounter : MonoBehaviour
         count.text = GameManager.gems.ToString();
       }
       group.alpha = 1;
-      //StartCoroutine(FadeOut());
     }
   }
 
-  //private IEnumerator FadeOut()
-  //{
-  //  yield return new WaitForSeconds(3f);
-  //  float waitTime = 3f;
-  //  float i;
-  //  for (i = waitTime; i >= 0; i -= Time.deltaTime)
-  //  {
-  //    // set color with i as alpha
-  //    group.alpha = i / waitTime;
-  //    yield return null;
-  //  }
-  //  group.alpha = 0;
-  //}
-
-  private void TurnOn()
-  {
-    //StopAllCoroutines();
-    //group.alpha = 1;
-    if (c == Currency.Coin)
-      count.text = (GameManager.totalCoins + GameManager.coins).ToString();
-    else if (c == Currency.Gem)
-      count.text = (GameManager.totalGems + GameManager.gems).ToString();
-  }
-  private void TurnOff()
+  private void Toggle(bool b)
   {
     if (c == Currency.Coin)
-      count.text = GameManager.coins.ToString();
+      count.text = ((b ? GameManager.totalCoins : 0) + GameManager.coins).ToString();
     else if (c == Currency.Gem)
-      count.text = GameManager.gems.ToString();
-    //StartCoroutine(FadeOut());
+      count.text = ((b ? GameManager.totalGems : 0) + GameManager.gems).ToString();
   }
 }

@@ -144,7 +144,6 @@ public class TutorialSequence : MonoBehaviour
   }
   public void BoostSequence()
   {
-    tutJoystick.SetBoostDistance();
     StartCoroutine(TextIteratorTwoPart(new string[] {
     "Drag the joystick further to boost!",
     "Use boost to catch smaller fish or swim away from bigger sharks!"

@@ -33,7 +33,7 @@ public class EatingHandler : MonoBehaviour
     otherIdentifier = otherTransform.GetComponent<Identifier>();
     fishType = otherIdentifier.fishType;
 
-    if (!playerMovement.GetIsJump())
+    if (!playerMovement.GetIsJump() && !GameManager.isInvincible)
     {
       if (fishType == FishType.PREDATOR)
       {
@@ -74,8 +74,8 @@ public class EatingHandler : MonoBehaviour
       switch (fishType)
       {
         case FishType.PREDATOR:
-          print("IsInvincible: " + playerMovement.GetIsInvincible());
-          if (playerMovement.GetIsInvincible())
+          print("IsInvincible: " + GameManager.isInvincible);
+          if (GameManager.isInvincible)
           {
             MissionData.IncrementMission(MissionName.bigSharksEaten);
             AquariumManager.IncrementFish(fishName);
@@ -189,7 +189,7 @@ public class EatingHandler : MonoBehaviour
     switch (fishType)
     {
       case FishType.STUN:
-        if (!playerMovement.GetIsJump() && !playerMovement.GetIsInvincible())
+        if (!playerMovement.GetIsJump() && !GameManager.isInvincible)
         {
           GameManager.eventText("Stung", 1f);
           other.transform.parent.GetComponent<JellyMovement>().Shock();
@@ -198,7 +198,7 @@ public class EatingHandler : MonoBehaviour
         }
         break;
       case FishType.INK:
-        if (!playerMovement.GetIsJump() && !playerMovement.GetIsInvincible())
+        if (!playerMovement.GetIsJump() && !GameManager.isInvincible)
         {
           GameManager.eventText("Inked", 1f);
           other.enabled = false;

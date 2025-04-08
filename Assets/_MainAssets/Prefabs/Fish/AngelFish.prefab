@@ -80,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 2
   m_SortingLayer: -16
   m_SortingOrder: -1
-  m_Sprite: {fileID: 1520017135, guid: ab7bd3494070c49468a90890206d0cfb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f49e712641935cb4da77c10595e5fefc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.26, y: 5.32}
+  m_Size: {x: 5.32, y: 4.260156}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -428,7 +428,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shadow
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6834162287237837488, guid: a57f464e8b89f1c4cbd738006812d35c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

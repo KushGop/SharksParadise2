@@ -7,11 +7,11 @@ public class CoinFishMovement : AbstractMovement
   public SpriteRenderer sprite;
   private CapsuleCollider2D col;
   private Color newColor = new Color32(255, 255, 255, 0);
-  private bool hasBeenTriggered;
+  private bool firstTrigger;
 
   private void Awake()
   {
-    hasBeenTriggered = false;
+    firstTrigger = false;
     col = transform.GetComponent<CapsuleCollider2D>();
   }
 
@@ -32,10 +32,10 @@ public class CoinFishMovement : AbstractMovement
 
   public override void TriggerAI(bool trigger)
   {
-    if (trigger && !hasBeenTriggered)
+    if (trigger && !firstTrigger)
     {
       isTriggered = trigger;
-      hasBeenTriggered = true;
+      firstTrigger = true;
       StartCoroutine(Coins());
       StartCoroutine(Delay());
     }

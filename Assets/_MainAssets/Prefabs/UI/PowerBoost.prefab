@@ -92,8 +92,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask: {fileID: 5836577626788132106}
   slider: {fileID: 743622728316369158}
+  powerIcon: {fileID: 3676387922447226840}
   max: 100
   direction: 1
+  isRadial: 1
 --- !u!114 &5836577626788132106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,13 +251,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 26bb7d1b243fa754db6e70fa811dde32, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillClockwise: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6146590793417615904

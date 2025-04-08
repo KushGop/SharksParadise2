@@ -9,6 +9,7 @@ public class MobileJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 {
   [SerializeField] private CanvasGroup boostJoystickCanvas;
   [SerializeField] private CanvasGroup jumpJoystickCanvas;
+  [SerializeField] private CanvasGroup jumpText;
   [SerializeField] private Transform joystickOuter;
 
   public RectTransform joystick;
@@ -16,13 +17,12 @@ public class MobileJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
   private Vector2 offset;
 
   protected int jumpDistance = 90000;
-  protected int boostDistance = 18000;
+  protected int jumpTextDistance = 70000;
 
-  private int dragMovementDistance = 70;
-  private int dragDistanceMove = 120;
-  private int dragDistanceBoost = 150;
+  private int dragMovementDistance = 90;
+  private int dragDistanceMove = 155;
   private int dragDistanceJump = 230;
-  private float dragOffsetDistance = 70;
+  private float dragOffsetDistance = 90;
 
   private float angle;
   private Vector2 unitValue;
@@ -32,7 +32,7 @@ public class MobileJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
   public event Action OnBoostPressed;
   public event Action OnBoostReleased;
   public event Action JumpPlayer;
-  private bool isBoosting = false, hasJumped = false;
+  private bool hasJumped = false;
   private float actionDistance;
 
   private void Start()
@@ -79,6 +79,7 @@ public class MobileJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
     unitValue.y = Mathf.Sin(angle);
 
     actionDistance = Vector2.SqrMagnitude(offset);
+    jumpText.alpha = actionDistance / jumpTextDistance;
     if (actionDistance < jumpDistance)
     {
       hasJumped = false;
@@ -90,22 +91,6 @@ public class MobileJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
       dragMovementDistance = dragDistanceMove;
       dragOffsetDistance = dragDistanceMove;
     }
-    //else if (actionDistance < jumpDistance)
-    //{
-    //  if (hasJumped)
-    //  {
-    //    hasJumped = false;
-    //    HighlightCanvas(false, jumpJoystickCanvas);
-    //  }
-    //  if (!isBoosting)
-    //  {
-    //    HighlightCanvas(true, boostJoystickCanvas);
-    //    BoostPressed();
-    //    isBoosting = true;
-    //  }
-    //  dragMovementDistance = dragDistanceBoost;
-    //  dragOffsetDistance = dragDistanceBoost;
-    //}
     else
     {
       if (!hasJumped)

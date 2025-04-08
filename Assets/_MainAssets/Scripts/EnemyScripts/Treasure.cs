@@ -31,7 +31,7 @@ public class Treasure : MonoBehaviour
 
   IEnumerator FadeAway()
   {
-    yield return new WaitForSeconds(2);
+    yield return new WaitForSeconds(0.5f);
     float waitTime = 3f;
     while (chest.color.a > 0.01)
     {
