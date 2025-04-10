@@ -13082,7 +13082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab01b635e6ffb540a317f062c304c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numEnemies: 4
+  numEnemies: 1
   enemy: {fileID: 738650125920437243, guid: a7edb48588653dd4badf48b3b57142b8, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 1.3
@@ -27204,7 +27204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3bae55999a47146a72dd42a00763f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numEnemies: 3
+  numEnemies: 1
   enemy: {fileID: 7277694954682331125, guid: 88e169530a59e6f429efbd022ca8b000, type: 3}
   player: {fileID: 11400000, guid: d6ac7116ad505ba4da01c9e54643634f, type: 2}
   sizeOffset: 1.3
