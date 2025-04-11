@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GoogleMobileAds.Api;
+using UnityEngine.SceneManagement;
 
 public class NeutralAgeScreen : MonoBehaviour
 {
@@ -55,5 +56,7 @@ public class NeutralAgeScreen : MonoBehaviour
     if (MobileAds.GetRequestConfiguration() == null)
       print("null2");
     print("Rating: " + requestConfig.MaxAdContentRating.Value);
+
+    SceneManager.LoadScene("LoadShop");
   }
 }
