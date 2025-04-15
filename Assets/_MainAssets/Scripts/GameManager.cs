@@ -75,4 +75,6 @@ public static class GameManager
   public static int treasureMulti;
 
   internal static bool maxMulti = false;
+  internal static bool isMusicOn;
+  internal static bool hasSeenTutorial;
 }

@@ -7,7 +7,6 @@ public class DayNightMusic : MonoBehaviour
   [SerializeField] AudioSource music;
   private void Start()
   {
-    PlayMusic();
     GameManager.switchToDay += PlayMusic;
     GameManager.pause += music.Pause;
     GameManager.unpause += music.UnPause;

@@ -20,14 +20,14 @@ public class SpawnMission : MonoBehaviour
 
   private IEnumerator StartSequence()
   {
-    yield return new WaitForSecondsRealtime(1f);
+    yield return new WaitForSeconds(1f);
     for (int i = 0; i < 3; i++)
     {
       if (!MissionManager.missions[i].isComplete)
       {
         GameObject cm = Instantiate(missionComplete, transform);
         cm.transform.GetComponent<CompletedMissionDropDrown>().SetTextAndState(MissionManager.missions[i].text, false);
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSeconds(2f);
       }
     }
   }

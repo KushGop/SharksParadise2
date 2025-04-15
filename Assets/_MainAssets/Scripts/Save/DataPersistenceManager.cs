@@ -148,6 +148,7 @@ public class DataPersistenceManager : MonoBehaviour
     // start a new game if the data is null and we're configured to initialize data for debugging purposes
     if (this.gameData == null && initializeDataIfNull)
     {
+      print("still null -> newGame");
       NewGame();
     }
 

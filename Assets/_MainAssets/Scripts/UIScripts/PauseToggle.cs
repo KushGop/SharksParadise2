@@ -8,31 +8,36 @@ public class PauseToggle : MonoBehaviour
   private void Start()
   {
     optionsMenu.SetActive(false);
+    GameManager.pause += PauseGame;
+    GameManager.unpause += ResumeGame;
   }
-  public void toggle()
+  private void OnDestroy()
+  {
+    GameManager.pause -= PauseGame;
+    GameManager.unpause -= ResumeGame;
+  }
+  public void Toggle()
   {
     if (optionsMenu.activeSelf)
     {
       optionsMenu.SetActive(false);
       icon.SetActive(true);
-      resumeGame();
       GameManager.unpause();
     }
     else
     {
       optionsMenu.SetActive(true);
       icon.SetActive(false);
-      pauseGame();
       GameManager.pause();
     }
   }
 
-  private void pauseGame()
+  private void PauseGame()
   {
     //Gley.MobileAds.API.ShowInterstitial();
     Time.timeScale = 0;
   }
-  private void resumeGame()
+  private void ResumeGame()
   {
     Time.timeScale = 1;
     DataPersistenceManager.instance.SaveGame();

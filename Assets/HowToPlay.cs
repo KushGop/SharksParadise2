@@ -11,17 +11,19 @@ public class HowToPlay : MonoBehaviour
   [SerializeField] Transform slides;
   [SerializeField] Button left;
   [SerializeField] Button right;
+  [SerializeField] Button okay;
 
   private void OnEnable()
   {
     slideNum = 0;
     navValue.text = "1/" + slides.childCount;
-    slides.GetChild(0).gameObject.SetActive(true);
-    slides.GetChild(1).gameObject.SetActive(false);
-    slides.GetChild(2).gameObject.SetActive(false);
+    for (int i = 1; i < slides.childCount; i++)
+      slides.GetChild(i).gameObject.SetActive(false);
 
+    slides.GetChild(0).gameObject.SetActive(true);
     left.interactable = false;
     right.interactable = true;
+    okay.gameObject.SetActive(GameManager.hasSeenTutorial);
   }
 
   public void NavLeft()
@@ -44,6 +46,7 @@ public class HowToPlay : MonoBehaviour
     left.interactable = true;
     if (slideNum + 1 >= slides.childCount)
     {
+      okay.gameObject.SetActive(true);
       right.interactable = false;
       slideNum = slides.childCount - 1;
 

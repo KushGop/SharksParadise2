@@ -57,6 +57,6 @@ public class NeutralAgeScreen : MonoBehaviour
       print("null2");
     print("Rating: " + requestConfig.MaxAdContentRating.Value);
 
-    SceneManager.LoadScene("LoadShop");
+    DataPersistenceManager.instance.SaveGame();
   }
 }

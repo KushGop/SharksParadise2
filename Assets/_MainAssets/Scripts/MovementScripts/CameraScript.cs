@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
   public float smoothSpeed;
   public Vector3 offset, playerPos;
   public float offsetSmoothing;
-  public int boostOffset;
+  public int jumpOffset;
   public float boostLerpTime;
   private float currentSize;
   private void Start()
@@ -46,7 +46,7 @@ public class CameraScript : MonoBehaviour
   //Camera zooms out on boost
   private void CameraZoomOut()
   {
-    StartCoroutine(JumpHelper(currentSize, currentSize + boostOffset, boostLerpTime));
+    StartCoroutine(JumpHelper(currentSize, currentSize + jumpOffset, boostLerpTime));
   }
 
   //Helper to adjust camera size

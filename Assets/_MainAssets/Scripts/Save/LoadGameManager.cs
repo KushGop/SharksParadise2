@@ -13,7 +13,8 @@ public class LoadGameManager : MonoBehaviour, IDataPersistence
     GameManager.highscore = data.highscore;
     GameManager.control = data.control;
     GameManager.playedTutorial = data.playedTutorial;
-
+    GameManager.isMusicOn = data.isMusicOn;
+    GameManager.hasSeenTutorial = data.hasSeenTutorial;
   }
 
   public void SaveData(GameData data)
